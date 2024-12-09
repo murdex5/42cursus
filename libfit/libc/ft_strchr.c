@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 16:29:58 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/09 16:45:58 by kadferna         ###   ########.fr       */
+/*   Created: 2024/12/09 17:12:56 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/09 17:19:07 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(char c)
+char	*strchr(const char *s, int c)
 {
-	if (!((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')))
-		return (0);
-	return (1);
-}
+	int	i;
 
-/*
-#include <stdio.h>
-int main(int ac, char **av)
-{
-    if (ac != 2)
-        return 1;
-    else
-    {
-        if (ft_isalpha(av[1][0]) == 1)
-            printf("is alpha\n");
-        else
-            printf("not alpha\n");
-    }
-    return 0;
-}*/
+	i = 0;
+	while (str[c] != '\0')
+	{
+		if (str[c] == i)
+		{
+			return (str[c]);
+		}
+		i++;
+	}
+	return (NULL);
+}

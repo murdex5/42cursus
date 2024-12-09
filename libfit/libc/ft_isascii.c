@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 16:29:58 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/09 16:45:58 by kadferna         ###   ########.fr       */
+/*   Created: 2024/12/09 16:37:20 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/09 16:45:14 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(char c)
+int	ft_isascii(char c)
 {
-	if (!((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')))
+	if (!(c >= 0 && c <= 127))
 		return (0);
 	return (1);
 }
 
 /*
 #include <stdio.h>
-int main(int ac, char **av)
+int main(void)
 {
-    if (ac != 2)
-        return 1;
-    else
-    {
-        if (ft_isalpha(av[1][0]) == 1)
-            printf("is alpha\n");
-        else
-            printf("not alpha\n");
-    }
-    return 0;
+	if (ft_isascii(L'ø') == 0)
+		printf("ascii\n");
+	return 0;
 }*/

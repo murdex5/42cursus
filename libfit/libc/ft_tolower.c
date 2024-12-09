@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 16:29:58 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/09 16:45:58 by kadferna         ###   ########.fr       */
+/*   Created: 2024/12/09 17:06:07 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/09 17:09:33 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(char c)
+int	ft_tolower(char c)
 {
-	if (!((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')))
-		return (0);
-	return (1);
+	if (c >= 'A' && c <= 'Z')
+		return (c + 32);
+	return (c);
 }
-
-/*
-#include <stdio.h>
-int main(int ac, char **av)
-{
-    if (ac != 2)
-        return 1;
-    else
-    {
-        if (ft_isalpha(av[1][0]) == 1)
-            printf("is alpha\n");
-        else
-            printf("not alpha\n");
-    }
-    return 0;
-}*/

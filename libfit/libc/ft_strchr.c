@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*strchr(const char *s, int c)
+char	*ft_strchr(const char *str, int c)
 {
 	int	i;
 
@@ -23,5 +23,14 @@ char	*strchr(const char *s, int c)
 		}
 		i++;
 	}
-	return (NULL);
+	return ('\0');
+}
+
+#include <stdio.h>
+int main(void)
+{
+	char	*str = "Hello world";
+	char	s = 'w';
+	printf("%s\n", ft_strchr(str, s));
+	return(0);
 }

@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 09:54:46 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/11 10:13:20 by kadferna         ###   ########.fr       */
+/*   Created: 2024/12/11 11:33:08 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/11 11:59:17 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *str, int c)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (str[c] != '\0')
+	while (i < n)
 	{
-		if ((unsigned char)str[i] == (unsigned char)c)
+		if (((unsigned char *)s)[i] == (unsigned char)c)
 		{
-			return ((char *)&str[i]);
+			return ((unsigned char *)s + i);
 		}
 		i++;
 	}
-	if (c == '\0')
-		return ((char *)&str[i]);
-	return (0);
+	return (NULL);
 }
 /*
-#include <stdio.h>
-
 int	main(void)
 {
-	char	*str = "Hello world";
-	char	s = 'w';
-	printf("%s\n", ft_strchr(str, s));
-	return(0);
+	char	str[] = "Hello, world";
+	char	*result = ft_memchr(str, 'w', (size_t)strlen(str));
+
+	printf("%s \n", result);
+	return (0);
 }*/

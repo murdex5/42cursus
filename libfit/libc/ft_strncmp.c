@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 09:54:46 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/11 10:13:20 by kadferna         ###   ########.fr       */
+/*   Created: 2024/12/11 11:02:58 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/11 11:12:21 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *str, int c)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (str[c] != '\0')
-	{
-		if ((unsigned char)str[i] == (unsigned char)c)
-		{
-			return ((char *)&str[i]);
-		}
+	while (s1[i] && s2[i] && s1[i] == s2[i] && i < n)
 		i++;
-	}
-	if (c == '\0')
-		return ((char *)&str[i]);
-	return (0);
+	return (s1[i] - s2[i]);
 }
 /*
-#include <stdio.h>
-
 int	main(void)
 {
-	char	*str = "Hello world";
-	char	s = 'w';
-	printf("%s\n", ft_strchr(str, s));
-	return(0);
+	char	*str = "HELLO";
+	char	*s = "Apple";
+	printf("%d \n", ft_strncmp(str, s, 5));
+	return (0);
 }*/

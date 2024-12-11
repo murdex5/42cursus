@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 09:54:46 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/11 10:13:20 by kadferna         ###   ########.fr       */
+/*   Created: 2024/12/11 11:59:44 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/11 12:20:41 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *str, int c)
+void	*memcpy(void *dest, const void *src, size_t n)
 {
-	int	i;
+	size_t	i;
+	char	*d;
+	char	*s;
 
 	i = 0;
-	while (str[c] != '\0')
+	d = (char *)dest;
+	s = (char *)src;
+	while (i < n)
 	{
-		if ((unsigned char)str[i] == (unsigned char)c)
-		{
-			return ((char *)&str[i]);
-		}
+		s[i] = d[i];
 		i++;
 	}
-	if (c == '\0')
-		return ((char *)&str[i]);
-	return (0);
+	return (dest);
 }
-/*
-#include <stdio.h>
-
-int	main(void)
-{
-	char	*str = "Hello world";
-	char	s = 'w';
-	printf("%s\n", ft_strchr(str, s));
-	return(0);
-}*/

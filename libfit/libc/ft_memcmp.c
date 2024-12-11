@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memcpm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 09:54:46 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/11 10:13:20 by kadferna         ###   ########.fr       */
+/*   Created: 2024/12/11 12:21:33 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/11 12:30:01 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *str, int c)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	i;
+	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
 	i = 0;
-	while (str[c] != '\0')
-	{
-		if ((unsigned char)str[i] == (unsigned char)c)
-		{
-			return ((char *)&str[i]);
-		}
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	while (str1[i] == str2[i] && i < n)
 		i++;
-	}
-	if (c == '\0')
-		return ((char *)&str[i]);
-	return (0);
+	if (i == n)
+		return (0);
+	return (str1[i] - str2[i]);
 }
-/*
-#include <stdio.h>
-
-int	main(void)
-{
-	char	*str = "Hello world";
-	char	s = 'w';
-	printf("%s\n", ft_strchr(str, s));
-	return(0);
-}*/

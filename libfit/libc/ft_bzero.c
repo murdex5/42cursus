@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 09:54:46 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/11 10:13:20 by kadferna         ###   ########.fr       */
+/*   Created: 2024/12/11 11:14:36 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/11 11:29:05 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *str, int c)
+void	ft_bzero(void *s, size_t n)
 {
-	int	i;
+	size_t			i;
+	unsigned char	c;
+	unsigned char	*str;
 
 	i = 0;
-	while (str[c] != '\0')
+	c = '\0';
+	str = (unsigned char *)s;
+	while (i < n)
 	{
-		if ((unsigned char)str[i] == (unsigned char)c)
-		{
-			return ((char *)&str[i]);
-		}
+		str[i] = (unsigned char)c;
 		i++;
 	}
-	if (c == '\0')
-		return ((char *)&str[i]);
-	return (0);
 }
 /*
-#include <stdio.h>
-
 int	main(void)
 {
-	char	*str = "Hello world";
-	char	s = 'w';
-	printf("%s\n", ft_strchr(str, s));
-	return(0);
+	char	*str = "Hello, World!";
+	ft_bzero(str, (size_t)strlen(str));
+	printf("%s \n", str);
+	return (0);
 }*/

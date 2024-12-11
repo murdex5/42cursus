@@ -6,13 +6,13 @@
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:51:05 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/09 16:51:51 by kadferna         ###   ########.fr       */
+/*   Updated: 2024/12/11 14:12:56 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char	*str)
+size_t	ft_strlen(const char *str)
 {
-	int	c;
+	size_t	c;
 
 	c = 0;
 	while (str[c] != '\0')

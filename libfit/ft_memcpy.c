@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t	i;
 	char	*d;
@@ -21,7 +21,7 @@ void	*memcpy(void *dest, const void *src, size_t n)
 	s = (char *)src;
 	while (i < n)
 	{
-		s[i] = d[i];
+		d[i] = s[i];
 		i++;
 	}
 	return (dest);

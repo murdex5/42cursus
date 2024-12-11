@@ -33,12 +33,12 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 int	main(void)
 {
 	char	*src;
-		char    dest[12] = "Hello";
+	char    dest[12] = "Hello";
 	int		len;
 
 	src = " world";
-		len = ft_strlcat(dest, src, sizeof(dest));
-		printf("%s \n", dest);
-		return (0);
+	len = ft_strlcat(dest, src, sizeof(dest));
+	printf("%s \n", dest);
+	return (0);
 }
 */

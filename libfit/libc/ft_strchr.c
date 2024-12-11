@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 17:12:56 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/09 17:19:07 by kadferna         ###   ########.fr       */
+/*   Created: 2024/12/11 09:54:46 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/11 09:54:51 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strchr(const char *str, int c)
 	}
 	return ('\0');
 }
-
+/*
 #include <stdio.h>
 int main(void)
 {
@@ -33,4 +33,4 @@ int main(void)
 	char	s = 'w';
 	printf("%s\n", ft_strchr(str, s));
 	return(0);
-}
+}*/

@@ -41,8 +41,11 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 /*
 int	main(void)
 {
-	char	*str = "Hello, World!";
-	char	*dest = malloc(sizeof(char *) * 13);
+	char	*str;
+	char	*dest;
+
+	str = "Hello, World!";
+	dest = malloc(sizeof(char *) * 13);
 	dest = ft_memmove(dest, str, 13);
 	printf("%s \n", dest);
 	free(dest);

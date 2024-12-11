@@ -43,11 +43,12 @@ int	main(int ac, char **av)
 {
 	if (ac != 2)
 	{
-		return (0);
+		return (1);
 	}
 	else
 	{
 		printf("%d \n", ft_atoi(av[1]));
 		printf("%d \n", atoi(av[1]));
 	}
+	return 0;
 }*/

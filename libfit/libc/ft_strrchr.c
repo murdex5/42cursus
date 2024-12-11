@@ -1,38 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 09:54:46 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/11 10:13:20 by kadferna         ###   ########.fr       */
+/*   Created: 2024/12/11 09:56:39 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/11 10:16:23 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *str, int c)
+char	*ft_strrchr(const char *str, int c)
 {
 	int	i;
+	int	enc;
+	int	index;
 
 	i = 0;
-	while (str[c] != '\0')
+	enc = 0;
+	index = 0;
+	while (str[i] != '\0')
 	{
 		if ((unsigned char)str[i] == (unsigned char)c)
 		{
-			return ((char *)&str[i]);
+			index = i;
+			enc++;
 		}
 		i++;
 	}
-	if (c == '\0')
+	if (enc < 1)
 		return ((char *)&str[i]);
-	return (0);
+	return ((char *)&str[index]);
 }
 /*
 #include <stdio.h>
 int main(void)
 {
-	char	*str = "Hello world";
-	char	s = 'w';
-	printf("%s\n", ft_strchr(str, s));
-	return(0);
+	char *str = "Hello, World";
+	int	c = 'l';
+	printf("%s\n", ft_strrchr(str, c));
+	return 0;
 }*/

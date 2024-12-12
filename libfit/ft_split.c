@@ -40,9 +40,9 @@ static int	count_words(char const *s, char const c)
 }
 static void	split_words(char const *s, char const c, char **strarr)
 {
-	size_t i;
-    size_t index;
-	size_t start;
+	size_t	i;
+	size_t	index;
+	size_t	start;
 	size_t	len;
 
 	i = 0;
@@ -59,12 +59,12 @@ static void	split_words(char const *s, char const c, char **strarr)
 			if (!strarr[index])
 				return ;
 			ft_strlcpy(strarr[index], &s[start], len);
-			strarr[index][len+1] = '\0';
+			strarr[index][len + 1] = '\0';
 			index++;
 		}
 		i++;
 	}
-    strarr[index] = NULL;
+	strarr[index] = NULL;
 }
 
 char	**ft_split(char const *s, char const c)

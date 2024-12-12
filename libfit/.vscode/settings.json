@@ -1,0 +1,10 @@
+{
+    "cSpell.words": [
+        "issep"
+    ],
+    "files.associations": {
+        "*.ejs": "html",
+        "*.html": "html",
+        "stdlib.h": "c"
+    }
+}

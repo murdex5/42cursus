@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kadferna <marvin@42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 17:41:55 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/12 14:44:23 by kadferna         ###   ########.fr       */
+/*   Created: 2024/12/12 18:57:39 by malshapraboth     #+#    #+#             */
+/*   Updated: 2024/12/12 18:57:41 by malshapraboth    ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 static int	isin(char c, char const *set)
 {
@@ -25,9 +25,10 @@ static int	isin(char c, char const *set)
 	}
 	return (0);
 }
-static void check_len(char const *s1, char const *set, size_t len)
+
+static void	check_len(char const *s1, char const *set, size_t len)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (s1[i] != '\0')

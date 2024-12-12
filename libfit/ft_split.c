@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malshapraboth <marvin@42.fr>               +#+  +:+       +#+        */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 17:11:24 by malshapraboth     #+#    #+#             */
-/*   Updated: 2024/12/12 17:11:27 by malshapraboth    ###   ########.fr       */
+/*   Created: 2024/12/12 19:08:37 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/12 19:08:42 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static int	count_words(char const *s, char const c)
 	}
 	return (words);
 }
+
 static void	split_words(char const *s, char const c, char **strarr)
 {
 	size_t	i;
@@ -81,6 +82,7 @@ char	**ft_split(char const *s, char const c)
 	split_words(s, c, strarr);
 	return (strarr);
 }
+
 /*
 int	main(void)
 {

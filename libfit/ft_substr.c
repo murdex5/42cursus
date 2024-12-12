@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malshapraboth <marvin@42.fr>               +#+  +:+       +#+        */
+/*   By: kadferna <marvin@42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:08:55 by malshapraboth     #+#    #+#             */
 /*   Updated: 2024/12/12 14:08:58 by malshapraboth    ###   ########.fr       */

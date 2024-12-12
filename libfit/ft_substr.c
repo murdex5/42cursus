@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:45:28 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/11 15:45:31 by kadferna         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:56:15 by kadferna         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -20,7 +20,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	str = (char *)s;
 	if (!s)
 		return (NULL);
-	sub_len = strlen(&s[start]);
+	sub_len = ft_strlen(&s[start]);
 	sub = malloc(sizeof(char) * sub_len + 1);
 	if (!sub)
 		return (NULL);
@@ -32,13 +32,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	sub[i] = '\0';
 	return (sub);
 }
-
 /*
 int	main(void)
 {
 	char    *main = "Hello, World!";
-	char    *test = ft_substr(main, 7, strlen(main));
+	char    *test = ft_substr(main, 7, ft_strlen(main));
 	printf("%s\n", test);
 	free(test);
 	return (0);
-}*/
+}
+*/

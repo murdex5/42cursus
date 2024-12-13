@@ -9,6 +9,7 @@
 /*   Updated: 2024/12/11 15:19:20 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
@@ -19,6 +20,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	arr = malloc(nmemb * size);
 	if (!arr)
 		return (NULL);
-	ft_bzero(arr, 0, size);
+	ft_bzero(arr, size);
 	return (arr);
 }

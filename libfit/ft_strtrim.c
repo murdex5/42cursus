@@ -9,6 +9,7 @@
 /*   Updated: 2024/12/12 18:57:41 by malshapraboth    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
 static int	isin(char c, char const *set)
 {

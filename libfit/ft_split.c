@@ -9,6 +9,7 @@
 /*   Updated: 2024/12/12 19:08:42 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
 static int	issep(char const s, char const c)
 {

@@ -1,6 +1,16 @@
 #include <stdio.h>
 #include "libft.h"
 
+// Example function to use with ft_striteri
+void ft_striteri_function(unsigned int i, char c) {
+    printf("ft_striteri: %c at index %u\n", c, i);
+}
+
+// Example function to use with ft_strmapi
+char ft_strmapi_function(unsigned int i, char c) {
+    return c - i;
+}
+
 int main() {
     // Test ft_putchar_fd
     char c = 'A';
@@ -72,8 +82,8 @@ int main() {
     }
 
     // Test ft_striteri
-    //char str3[] = "abcdef";
-    //ft_striteri(str3, [](unsigned int i, char c) { printf("ft_striteri: %c at index %u\n", c, i); });
+    char str3[] = "abcdef";
+    ft_striteri(str3, ft_striteri_function);  // This will now work
     
     // Test ft_strchr
     printf("ft_strchr: %s\n", ft_strchr("Hello, World!", 'W')); // Expected output: "World!"
@@ -91,7 +101,7 @@ int main() {
     printf("ft_strnstr: %s\n", ft_strnstr("Hello, World!", "World", 5)); // Expected output: NULL
 
     // Test ft_strmapi
-    //printf("ft_strmapi: %s\n", ft_strmapi("abcdef", [](unsigned int i, char c) { return c - i; })); // Expected output: "abcde"
+    printf("ft_strmapi: %s\n", ft_strmapi("abcdef", ft_strmapi_function)); // Expected output: "abcde"
 
     // Test ft_itoa
     printf("ft_itoa: %s\n", ft_itoa(12345)); // Expected output: "12345"
@@ -99,12 +109,14 @@ int main() {
     // Test ft_split
     char **split = ft_split("one,two,three", ',');
     for (int i = 0; split && split[i]; i++) {
-        printf("ft_split: %s\n", split[i]);
+        printf("ft_split: %s\n", split[i]); // Expected output: "one", "two", "three"
     }
     free(split);
 
     // Test ft_atoi
     printf("ft_atoi: %d\n", ft_atoi("   -42")); // Expected output: -42
+    printf("ft_atoi: %d\n", ft_atoi("12345"));   // Expected output: 12345
+    printf("ft_atoi: %d\n", ft_atoi("   42abc")); // Expected output: 42
 
     return 0;
 }

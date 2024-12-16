@@ -36,6 +36,8 @@ char	*ft_itoa(int nb)
 	if (!result)
 		return (NULL);
 	result[len] = '\0';
+	if (nb == 0)
+		result[0] = '0';
 	if (nb < 0)
 		result[0] = '-';
 	while (nb != 0)
@@ -49,7 +51,7 @@ char	*ft_itoa(int nb)
 /*
 int	main(void)
 {
-	char *str = ft_itoa(8899);
+	char *str = ft_itoa(0);
 	printf("%s\n", str);
 	return (0);
 }*/

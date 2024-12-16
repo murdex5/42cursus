@@ -13,8 +13,7 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <malloc.h>
-# include <stddef.h>
+# include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
 

@@ -29,27 +29,18 @@ static int	get_digit(int nb)
 	return (digits);
 }
 
-static char *get_mem(int len)
-{
-	char *str;
-	str = malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	str[len] = '\0';
-	return (str);
-}
-
 char	*ft_itoa(int nb)
 {
 	char	*result;
 	int		len;
-	
-	if (nb == (int)-2147483648)
+
+	if (nb == -2147483648)
 		return ("-2147483648");
 	len = get_digit(nb);
-	result = get_mem(len);
+	result = malloc(sizeof(char) * (len + 1));
 	if (!result)
 		return (NULL);
+	result[len] = '\0';
 	if (nb == 0)
 		result[0] = '0';
 	if (nb < 0)
@@ -67,6 +58,7 @@ char	*ft_itoa(int nb)
 }
 /*
 #include <stdio.h>
+
 int	main(void)
 {
 	char *str = ft_itoa(-2147483648);

@@ -58,5 +58,7 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char				*ft_itoa(int nb);
 char				**ft_split(char const *s, char const c);
 int					ft_atoi(const char *npr);
-
+t_list  ft_lstnew(void *content);
+t_list  ft_lstsize(t_list *lst);
+t_list	ft_lstlast(t_list *lst);
 #endif

@@ -13,9 +13,10 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
+# include <stdint.h>
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *str, int fd);

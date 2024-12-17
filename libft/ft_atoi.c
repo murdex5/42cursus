@@ -27,8 +27,10 @@ int	ft_atoi(const char *nptr)
 		sign = -1;
 		i++;
 	}
-	if (!(nptr[i] >= '0' && nptr[i] <= '9'))
+	if (!(nptr[i] >= '0' && nptr[i] <= '9') && !(nptr[i] == '+'))
 		return (0);
+	else
+		i++;
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		result = result * 10 + (nptr[i] - '0');

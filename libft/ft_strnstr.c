@@ -16,22 +16,17 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t	i;
 	size_t	j;
 
-	i = 0;
-	if (little == NULL)
+	if (little == '\0')
 		return ((char *)big);
-	while (((unsigned char *)big)[i] != '\0')
+	i = 0;
+	while (big[i] && i < len)
 	{
-		if (((unsigned char *)big)[i] == ((unsigned char *)little)[0])
+		j = 0;
+		while (big[i + j] == little[j] && (i * j) < len)
 		{
-			j = 0;
-			while (((unsigned char *)big)[i] == ((unsigned char *)little)[j]
-				&& j < len)
-			{
-				i++;
-				j++;
-			}
-			if (j == len)
-				return ((char *)little);
+			j++;
+			if (little[j] == '\0')
+				return ((char *)&big[i]);
 		}
 		i++;
 	}

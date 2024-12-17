@@ -11,11 +11,13 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void *ft_calloc(size_t nmemb, size_t size)
 {
-	void	*arr;
+	void *arr;
 
-	if (nmemb == 0 || size > SIZE_MAX / nmemb)
+	if (nmemb == 0 || size == 0)
+		return (malloc(0));
+	if (nmemb > SIZE_MAX / size)
 		return (NULL);
 	arr = malloc(nmemb * size);
 	if (!arr)
@@ -23,3 +25,26 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	ft_bzero(arr, (nmemb * size));
 	return (arr);
 }
+/*
+#include <stdio.h>
+#include <stdlib.h>
+
+int	main(void)
+{
+	size_t	nmemb;
+	size_t	size;
+	int		*arr;
+
+	nmemb = -5;
+	size = sizeof(int);
+	arr = (int *)ft_calloc(-5, 0);
+	if (!arr)
+	{
+		printf("Memory allocation failed\n");
+		return (1);
+	}
+	for (size_t i = 0; i < nmemb; i++)
+		printf("arr[%zu] = %d\n", i, arr[i]); // All elements will be 0
+	free(arr);
+	return (0);
+}*/

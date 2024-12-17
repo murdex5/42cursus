@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 16:37:20 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/09 16:45:14 by kadferna         ###   ########.fr       */
+/*   Created: 2024/12/17 16:12:22 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/17 16:12:23 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-int	ft_isascii(int c)
+int	ft_isalnum(int c)
 {
-	if (c >= 0 && c <= 127)
+	if ((c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97
+			&& c <= 122))
 		return (1);
 	return (0);
 }
-
-/*
-#include <stdio.h>
-int main(void)
-{
-	if (ft_isascii(L'ø') == 0)
-		printf("ascii\n");
-	return 0;
-}*/

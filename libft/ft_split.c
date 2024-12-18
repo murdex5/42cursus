@@ -11,15 +11,6 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-static int	issep(char const s, char const c)
-{
-	if (s == c)
-	{
-		return (1);
-	}
-	return (0);
-}
-
 static int	count_words(char const *s, char const c)
 {
 	size_t	i;
@@ -29,9 +20,9 @@ static int	count_words(char const *s, char const c)
 	words = 0;
 	while (s[i] != '\0')
 	{
-		if (!issep(s[i], c))
+		if (!(s[i] == c))
 		{
-			while (!issep(s[i], c))
+			while (!(s[i] == c))
 				i++;
 			words++;
 		}
@@ -39,47 +30,46 @@ static int	count_words(char const *s, char const c)
 	}
 	return (words);
 }
-
-static void	split_words(char const *s, char const c, char **strarr)
+static int	split_words(char const *s, char const c, char **strarr, int word)
 {
-	size_t start;
-	size_t index;
+	size_t	start;
+	size_t	end;
 
+	end = 0;
 	start = 0;
-	index = 0;
-	while (*s)
+	while (s[end])
 	{
-		while (!issep(*s, c))
-			s++;
-		start = 0;
-		if (start > 0)
+		if (s[end] == c || s[end] == 0)
+			start = end + 1;
+		if (s[end] != c && (s[end + 1] == c || s[end] == 0))
 		{
-			strarr[index] = malloc(sizeof(char) * (start + 1));
-			if (!strarr[index])
+			strarr[word] = malloc(sizeof(char) * (end - start + 2));
+			if (!strarr)
 			{
-				free(strarr);
-				return ;
+				while (word++)
+					free(strarr[word]);
+				return (0);
 			}
-			ft_strlcpy(strarr[index], s, start + 1);
-			index++;
-			s += start;
+			ft_strlcpy(strarr[word], (s + start), end - start + 2);
+			word++;
 		}
+		end++;
 	}
-	strarr[index] = NULL;
+	strarr[word] = NULL;
+	return (1);
 }
 
 char	**ft_split(char const *s, char const c)
 {
 	char	**strarr;
-	int		words_len;
 
-	if (!s || !c)
+	if (!s)
 		return (NULL);
-	words_len = count_words(s, c);
-	strarr = malloc(sizeof(char *) * (words_len + 1));
+	strarr = malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (!strarr)
 		return (NULL);
-	split_words(s, c, strarr);
+	if (!split_words(s, c, strarr, 0))
+		return (NULL);
 	return (strarr);
 }
 

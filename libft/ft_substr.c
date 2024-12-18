@@ -13,31 +13,33 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	sub_len;
-	size_t	str_len;
-	size_t	i;
 	char	*sub;
+	size_t	new_len;
 
 	if (!s)
 		return (NULL);
-	str_len = ft_strlen(s);
-	if (start >= str_len)
-		return (NULL);
-	sub_len = str_len - start;
-	if (sub_len > len)
-		sub_len = len;
-	sub = (char *)malloc(sizeof(char) * (sub_len + 1));
-	if (!sub)
-		return (NULL);
-	i = 0;
-	while (i < sub_len)
+	if (ft_strlen(s) < start)
 	{
-		sub[i] = s[start + i];
-		i++;
+		sub = ft_calloc(1, sizeof(char));
+		if (!sub)
+			return (NULL);
 	}
-	sub[i] = '\0';
+	else
+	{
+		new_len = ft_strlen(s + start);
+		if (!(new_len < len))
+			new_len = len;
+		sub = (char *)malloc((new_len + 1) * sizeof(char));
+		if (!sub)
+			return (NULL);
+		sub[new_len] = 0;
+		while (new_len-- > 0)
+			sub[new_len] = s[start + new_len];
+	}
 	return (sub);
 }
+
+
 /*
 int	main(void)
 {

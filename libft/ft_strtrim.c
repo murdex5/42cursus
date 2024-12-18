@@ -27,44 +27,27 @@ static int	isin(char c, char const *set)
 	return (0);
 }
 
-static void	check_len(char const *s1, char const *set, size_t len)
-{
-	size_t	i;
-
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		if (isin(s1[i], set))
-		{
-			len--;
-		}
-		i++;
-	}
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*result;
-	size_t	trim_len;
-	size_t	i;
-	size_t	j;
+	size_t start;
+	size_t end;
+	size_t trim_len;
 
-	j = 0;
-	trim_len = ft_strlen(s1);
-	check_len(s1, set, trim_len);
-	result = malloc(sizeof(char) * trim_len + 1);
+	if (!s1 || !set)
+		return (NULL);
+	start = 0;
+	while (s1[start] && isin(s1[start], set))
+		start++;
+	end = ft_strlen(s1);
+	while (end > start && isin(s1[end - 1], set))
+		end--;
+	trim_len = end - start;
+	result = malloc(sizeof(char) * (trim_len + 1));
 	if (!result)
 		return (NULL);
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		if (!isin(s1[i], set))
-		{
-			result[j] = s1[i];
-			j++;
-		}
-		i++;
-	}
+	ft_memmove(result, s1 + start, trim_len);
+	result[trim_len] = '\0';
 	return (result);
 }
 /*

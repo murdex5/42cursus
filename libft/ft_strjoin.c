@@ -14,17 +14,19 @@
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*dest;
-	int		len;
+	int		len1;
+	int	len2;
 
 	if (!s1 || !s2)
 		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	dest = malloc(sizeof(char) * len + 1);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	dest = malloc(sizeof(char) * (len1 + len2 + 1));
 	if (!dest)
 		return (NULL);
-	ft_memmove(dest, s1, ft_strlen(s1));
-	ft_memmove(dest + ft_strlen(s1), s2, ft_strlen(s2));
-	dest[len + 1] = '\0';
+	ft_memmove(dest, s1, len1);
+	ft_memmove(dest + len1, s2, len2);
+	dest[len1 + len2] = '\0';
 	return (dest);
 }
 /*

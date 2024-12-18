@@ -42,29 +42,28 @@ static int	count_words(char const *s, char const c)
 
 static void	split_words(char const *s, char const c, char **strarr)
 {
-	size_t	i;
-	size_t	index;
-	size_t	start;
-	size_t	len;
+	size_t start;
+	size_t index;
 
-	i = 0;
+	start = 0;
 	index = 0;
-	while (s[i] != '\0')
+	while (*s)
 	{
-		if (!issep(s[i], c))
+		while (!issep(*s, c))
+			s++;
+		start = 0;
+		if (start > 0)
 		{
-			start = i;
-			while (!issep(s[i], c) && s[i])
-				i++;
-			len = i - start;
-			strarr[index] = malloc(sizeof(char) * (len + 1));
+			strarr[index] = malloc(sizeof(char) * (start + 1));
 			if (!strarr[index])
+			{
+				free(strarr);
 				return ;
-			ft_strlcpy(strarr[index], &s[start], len);
-			strarr[index][len + 1] = '\0';
+			}
+			ft_strlcpy(strarr[index], s, start + 1);
 			index++;
+			s += start;
 		}
-		i++;
 	}
 	strarr[index] = NULL;
 }

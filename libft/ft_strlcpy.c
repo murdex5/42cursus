@@ -14,30 +14,34 @@
 size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
 	size_t	i;
+	size_t	src_len;
+	size_t	copy_len;
 
 	if (size == 0)
 		return (ft_strlen(src));
+	src_len = 0;
+	while (src[src_len] != '\0')
+		src_len++;
+	copy_len = src_len;
+	if (copy_len > size - 1)
+		copy_len = size - 1;
 	i = 0;
-	while (i < size - 1 && src[i] != '\0')
+	while (i < copy_len)
 	{
 		dest[i] = src[i];
 		i++;
 	}
 	dest[i] = '\0';
-	return (i);
+	return (src_len);
 }
 /*
+#include <stdio.h>
+
 int	main(void)
 {
-	char *str = "Hello, World!";
-	char *dest = malloc(sizeof(char) * 6); 
-		// Allocate enough space for 5 characters + null terminator
-	size_t len = 13;  // The length of the source string
-	size_t i = ft_strlcpy(dest, str, len); 
-		// Corrected the order of parameters for ft_strlcpy
-
-	printf("%s %zu \n", dest, i); 
-		// Output the copied string and the length of the source string
-	free(dest);  // Free the allocated memory
-   return (0);
+	char	src[] = "coucou";
+	char	dest[10]; ft_memset(dest, 'A', 10);
+	size_t i = ft_strlcpy(dest, src, 1);
+	printf("%s %zu", dest, i);
+	return (0);
 }*/

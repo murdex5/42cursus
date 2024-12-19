@@ -22,9 +22,10 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		return (NULL);
 	while (s[i] != '\0')
 	{
-		result[i] = f(i, s[i]);
+		result[i] = (*f)(i, s[i]);
 		i++;
 	}
+	result[i] = '\0';
 	return (result);
 }
 /*

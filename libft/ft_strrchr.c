@@ -13,8 +13,8 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	size_t i;
-	
+	size_t	i;
+
 	i = 0;
 	while (s[i] != '\0')
 		i++;
@@ -23,7 +23,6 @@ char	*ft_strrchr(const char *s, int c)
 	while (i > 0)
 	{
 		i--;
-
 		if (s[i] == (char)c)
 			return ((char *)&s[i]);
 	}
@@ -33,10 +32,11 @@ char	*ft_strrchr(const char *s, int c)
 }
 /*
 #include <stdio.h>
-int main(void)
+
+int	main(void)
 {
 	char *str = "Hello, World";
 	int	c = 'l';
 	printf("%s\n", ft_strrchr(str, c));
-	return 0;
+	return (0);
 }*/

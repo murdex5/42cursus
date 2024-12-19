@@ -10,50 +10,53 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
+#include <stdio.h>
 
-static int	count_words(char const *s, char const c)
+static size_t	count_words(char const *s, char const c)
 {
 	size_t	i;
-	int		words;
+	size_t	words;
 
 	i = 0;
 	words = 0;
 	while (s[i] != '\0')
 	{
-		if (!(s[i] == c))
-		{
-			while (!(s[i] == c))
-				i++;
+		while (s[i] == c)
+			i++;
+		if (s[i + 1] != c)
 			words++;
-		}
-		i++;
+		while (s[i] && s[i] != c)
+			i++;
 	}
 	return (words);
 }
-static int	split_words(char const *s, char const c, char **strarr, int word)
+static int	split_words(char const *s, char const c, char **strarr, size_t word)
 {
+	size_t	i;
 	size_t	start;
-	size_t	end;
 
-	end = 0;
+	i = 0;
 	start = 0;
-	while (s[end])
+	while (s[i])
 	{
-		if (s[end] == c || s[end] == 0)
-			start = end + 1;
-		if (s[end] != c && (s[end + 1] == c || s[end] == 0))
+		if (s[i] != c)
 		{
-			strarr[word] = malloc(sizeof(char) * (end - start + 2));
-			if (!strarr)
+			start = i;
+			while (s[i] != c && s[i])
+				i++;
+			strarr[word] = malloc(sizeof(char) * (i - start) + 1);
+			if (!strarr[word])
 			{
-				while (word++)
-					free(strarr[word]);
+				while (word > 0)
+				{
+					free(strarr[word--]);
+				}
 				return (0);
 			}
-			ft_strlcpy(strarr[word], (s + start), end - start + 2);
+			ft_memcpy(strarr[word], &s[start], i - start + 1);
 			word++;
 		}
-		end++;
+		i++;
 	}
 	strarr[word] = NULL;
 	return (1);
@@ -62,25 +65,30 @@ static int	split_words(char const *s, char const c, char **strarr, int word)
 char	**ft_split(char const *s, char const c)
 {
 	char	**strarr;
+	size_t	word_len;
+	size_t	words;
 
-	if (!s)
+	if (!s || !c)
 		return (NULL);
-	strarr = malloc(sizeof(char *) * (count_words(s, c) + 1));
+	words = 0;
+	word_len = count_words(s, c);
+	strarr = malloc(sizeof(char *) * word_len + 1);
 	if (!strarr)
 		return (NULL);
-	if (!split_words(s, c, strarr, 0))
+	if (split_words(s, c, strarr, words) == 0)
 		return (NULL);
 	return (strarr);
 }
-
 /*
 int	main(void)
 {
-	char *str = "Hello World, how are you?";
+	//char *str = "                  olol";
+	char	*str = "Hello world how are you";
 	char charset = ' ';
 	char **strarr;
 	int i = 0;
 
+	//printf("%d\n", count_words(str, charset));
 	strarr = ft_split(str, charset);
 	while (strarr[i] != NULL)
 	{

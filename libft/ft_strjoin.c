@@ -15,7 +15,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*dest;
 	int		len1;
-	int	len2;
+	int		len2;
 
 	if (!s1 || !s2)
 		return (NULL);
@@ -29,6 +29,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	dest[len1 + len2] = '\0';
 	return (dest);
 }
+
 /*
 int	main(void)
 {

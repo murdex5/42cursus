@@ -29,15 +29,33 @@ static int	get_digit(int nb)
 	return (digits);
 }
 
+static char	*allocate_mem(int len, int nb)
+{
+	char	*str;
+
+	if (nb == -2147483648)
+	{
+		str = malloc(sizeof(char) + 12);
+		if (!str)
+			return (NULL);
+		ft_strlcpy(str, "-2147483648", 12);
+		return (str);
+	}
+	str = malloc(sizeof(char) * len + 1);
+	if (!str)
+		return (NULL);
+	return (str);
+}
+
 char	*ft_itoa(int nb)
 {
 	char	*result;
 	int		len;
 
-	if (nb == -2147483648)
-		return ("-2147483648");
 	len = get_digit(nb);
-	result = malloc(sizeof(char) * (len + 1));
+	if (nb == -2147483648)
+		return (allocate_mem(len, nb));
+	result = allocate_mem(len, nb);
 	if (!result)
 		return (NULL);
 	result[len] = '\0';
@@ -58,10 +76,12 @@ char	*ft_itoa(int nb)
 }
 /*
 #include <stdio.h>
+#include <stdlib.h>
 
-int	main(void)
+int	main(int ac, char **av)
 {
-	char *str = ft_itoa(-2147483648);
+	char *str = ft_itoa(atoi(av[1]));
 	printf("%s\n", str);
+	free(str);
 	return (0);
 }*/

@@ -11,6 +11,14 @@
 /* ************************************************************************** */
 #include "libft.h"
 
+static void	cause_segfault(void)
+{
+	char	*ptr;
+
+	ptr = 0;
+	*ptr = *ptr;
+}
+
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	size_t			i;
@@ -18,7 +26,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	unsigned char	*str2;
 
 	if (!s1 && !s2)
-		*((char *)0) = *((char *)0);
+		cause_segfault();
 	str1 = (unsigned char *)s1;
 	str2 = (unsigned char *)s2;
 	i = 0;

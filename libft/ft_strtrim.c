@@ -30,9 +30,9 @@ static int	isin(char c, char const *set)
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*result;
-	size_t start;
-	size_t end;
-	size_t trim_len;
+	size_t	start;
+	size_t	end;
+	size_t	trim_len;
 
 	if (!s1 || !set)
 		return (NULL);

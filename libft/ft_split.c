@@ -19,44 +19,46 @@ static size_t	count_words(char const *s, char const c)
 
 	i = 0;
 	words = 0;
-	while (s[i] != '\0')
+	while (s[i])
 	{
-		while (s[i] == c)
+		while (s[i] == c && s[i])
 			i++;
-		if (s[i + 1] != c)
+		if (s[i])
 			words++;
-		while (s[i] && s[i] != c)
+		while (s[i] != c && s[i])
 			i++;
 	}
 	return (words);
 }
+
 static int	split_words(char const *s, char const c, char **strarr, size_t word)
 {
 	size_t	i;
 	size_t	start;
+	size_t	len;
 
 	i = 0;
-	start = 0;
 	while (s[i])
 	{
-		if (s[i] != c)
+		while (s[i] == c && s[i])
+			i++;
+		if (s[i])
 		{
 			start = i;
 			while (s[i] != c && s[i])
 				i++;
-			strarr[word] = malloc(sizeof(char) * (i - start) + 1);
+			len = i - start;
+			strarr[word] = malloc(sizeof(char) * (len + 1));
 			if (!strarr[word])
 			{
 				while (word > 0)
-				{
-					free(strarr[word--]);
-				}
+					free(strarr[--word]);
 				return (0);
 			}
-			ft_memcpy(strarr[word], &s[start], i - start + 1);
+			ft_memcpy(strarr[word], &s[start], len);
+			strarr[word][len] = '\0';
 			word++;
 		}
-		i++;
 	}
 	strarr[word] = NULL;
 	return (1);

@@ -15,15 +15,18 @@ SRCS =  ft_atoi.c  ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c
 OBJS = ${SRCS:.c=.o}
 NAME = libft.a
 LIBC = ar rcs
-CC = cc
+CC = gcc
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fPIC
 
 .c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+	${CC} ${CFLAGS} -c $< -o $@
 
 ${NAME}: ${OBJS}
 	${LIBC} ${NAME} ${OBJS}
+
+so: ${OBJS}
+	${CC} -shared -o libft.so ${OBJS}
 
 all: ${NAME}
 
@@ -31,8 +34,8 @@ clean:
 	${RM} ${OBJS}
 
 fclean: clean
-	${RM} ${NAME} ${bonus} 
+	${RM} ${NAME} libft.so
 
 re: fclean all
 
-.PHONY : all bonus clean fclean re
+.PHONY: all clean fclean re so

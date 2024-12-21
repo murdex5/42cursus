@@ -13,7 +13,7 @@
 
 void	ft_lstiter(t_list **lst, void (*f)(void *))
 {
-	t_list *temp;
+	t_list	*temp;
 
 	if (!lst || !f)
 		return ;

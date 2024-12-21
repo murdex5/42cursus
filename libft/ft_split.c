@@ -12,75 +12,65 @@
 #include "libft.h"
 #include <stdio.h>
 
-static size_t	count_words(char const *s, char const c)
+static int	numwords(char const *s, char c)
 {
-	size_t	i;
-	size_t	words;
+	int	cur;
+	int	word_num;
 
-	i = 0;
-	words = 0;
-	while (s[i])
+	cur = 0;
+	word_num = 0;
+	while (s[cur] != 0)
 	{
-		while (s[i] == c && s[i])
-			i++;
-		if (s[i])
-			words++;
-		while (s[i] != c && s[i])
-			i++;
+		if (s[cur] != c && (s[cur + 1] == c || s[cur + 1] == 0))
+			word_num++;
+		cur++;
 	}
-	return (words);
+	return (word_num);
 }
 
-static int	split_words(char const *s, char const c, char **strarr, size_t word)
+static int	split_words(char **result, char const *s, char c, int word)
 {
-	size_t	i;
-	size_t	start;
-	size_t	len;
+	int		start_cur;
+	int		end_cur;
 
-	i = 0;
-	while (s[i])
+	end_cur = 0;
+	start_cur = 0;
+	while (s[end_cur])
 	{
-		while (s[i] == c && s[i])
-			i++;
-		if (s[i])
+		if (s[end_cur] == c || s[end_cur] == 0)
+			start_cur = end_cur + 1;
+		if (s[end_cur] != c && (s[end_cur + 1] == c || s[end_cur + 1] == 0))
 		{
-			start = i;
-			while (s[i] != c && s[i])
-				i++;
-			len = i - start;
-			strarr[word] = malloc(sizeof(char) * (len + 1));
-			if (!strarr[word])
+			result[word] = malloc(sizeof(char) * (end_cur - start_cur + 2));
+			if (!result[word])
 			{
-				while (word > 0)
-					free(strarr[--word]);
+				while (word++)
+					free(result[word]);
 				return (0);
 			}
-			ft_memcpy(strarr[word], &s[start], len);
-			strarr[word][len] = '\0';
+			ft_strlcpy(result[word], (s + start_cur), end_cur - start_cur + 2);
 			word++;
 		}
+		end_cur++;
 	}
-	strarr[word] = NULL;
+	result[word] = 0;
 	return (1);
 }
 
-char	**ft_split(char const *s, char const c)
+char	**ft_split(char const *s, char c)
 {
-	char	**strarr;
-	size_t	word_len;
-	size_t	words;
+	char	**result;
 
-	if (!s || !c)
+	if (!s)
 		return (NULL);
-	words = 0;
-	word_len = count_words(s, c);
-	strarr = malloc(sizeof(char *) * word_len + 1);
-	if (!strarr)
+	result = malloc(sizeof(char *) * (numwords(s, c) + 1));
+	if (!result)
 		return (NULL);
-	if (split_words(s, c, strarr, words) == 0)
+	if (!split_words(result, s, c, 0))
 		return (NULL);
-	return (strarr);
+	return (result);
 }
+
 /*
 int	main(void)
 {

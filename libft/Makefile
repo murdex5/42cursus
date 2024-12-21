@@ -75,7 +75,7 @@ clean:
 			rm -f ${OBJS} ${OBJS_BONUS}
 
 fclean:		clean
-			rm -f ${NAME}
+			rm -f ${NAME} libft.so
 
 re:			fclean all
 

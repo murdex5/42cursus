@@ -17,11 +17,11 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	size_t	src_len;
 	size_t	copy_len;
 
-	if (size == 0)
-		return (ft_strlen(src));
 	src_len = 0;
 	while (src[src_len] != '\0')
 		src_len++;
+	if (size == 0)
+		return (src_len);
 	copy_len = src_len;
 	if (copy_len > size - 1)
 		copy_len = size - 1;
@@ -39,9 +39,12 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 
 int	main(void)
 {
-	char	src[] = "coucou";
-	char	dest[10]; ft_memset(dest, 'A', 10);
-	size_t i = ft_strlcpy(dest, src, 1);
+	char	src[] = "-2147483648";
+	size_t	i;
+
+	char	dest[12]; ft_memset(dest, 0, 12);
+	i = ft_strlcpy(dest, src, 12);
 	printf("%s %zu", dest, i);
 	return (0);
-}*/
+}
+*/

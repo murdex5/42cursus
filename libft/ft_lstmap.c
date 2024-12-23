@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/21 21:32:11 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/21 21:32:12 by kadferna         ###   ########.fr       */
+/*   Created: 2024/12/23 10:36:09 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/23 10:36:10 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,3 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	}
 	return (new_list);
 }
-

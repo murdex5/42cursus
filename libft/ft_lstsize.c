@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/19 21:16:58 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/19 21:30:51 by kadferna         ###   ########.fr       */
+/*   Created: 2024/12/23 10:36:35 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/23 10:36:36 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 int	ft_lstsize(t_list *lst)
@@ -23,4 +24,3 @@ int	ft_lstsize(t_list *lst)
 	}
 	return (size);
 }
-

@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/21 21:13:45 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/21 21:13:46 by kadferna         ###   ########.fr       */
+/*   Created: 2024/12/23 10:35:17 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/23 10:35:18 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))

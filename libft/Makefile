@@ -34,10 +34,6 @@ bonus: $(OBJS) $(OBJS_BONUS)
 clean:
 	rm -rf $(OBJS) $(OBJS_BONUS)
 
-so:
-	$(CC) -nostartfiles -fPIC $(FLAGS) $(SRCS)
-	gcc -nostartfiles -shared -o libft.so $(OBJS)
-
 fclean: clean
 	rm -f $(NAME)
 

@@ -28,6 +28,7 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *str, int fd);
 void				ft_putendl_fd(char *str, int fd);
 void				ft_putnbr_fd(int n, int fd);
+void				ft_putnbr_base(int nbr, char *base);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isalpha(int c);

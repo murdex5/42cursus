@@ -30,10 +30,10 @@ int	ft_abs(int num)
 
 void	ft_print_addr(void *p0)
 {
-	int i;
-	int leading_zero;
-	uintptr_t p;
-	int hex_val;
+	int			i;
+	int			leading_zero;
+	uintptr_t	p;
+	int			hex_val;
 
 	ft_putchar_fd('0', 1);
 	ft_putchar_fd('x', 1);
@@ -56,7 +56,7 @@ void	ft_print_addr(void *p0)
 	}
 }
 
-void print_number(char c, va_list args)
+void	print_number(char c, va_list args)
 {
 	if (c == 'i')
 		check_int(args);

@@ -44,7 +44,7 @@ void	print_basic(char c, va_list args)
 	if (c == 'd')
 		check_num(args);
 }
-void print_hexes(char c, va_list args)
+void	print_hexes(char c, va_list args)
 {
 	if (c == 'x')
 		to_decimal_lowercase(args);

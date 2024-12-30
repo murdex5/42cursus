@@ -55,3 +55,11 @@ void	ft_print_addr(void *p0)
 		ft_putchar_fd('0', 1);
 	}
 }
+
+void print_number(char c, va_list args)
+{
+	if (c == 'i')
+		check_int(args);
+	if (c == 'u')
+		check_unsigned(args);
+}

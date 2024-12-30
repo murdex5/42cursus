@@ -14,11 +14,6 @@
 int	ft_printf(const char *format, ...)
 {
 	va_list			args;
-	int				c;
-	char			*str;
-	int				num;
-	void			*mem_loc;
-	unsigned long	n;
 
 	va_start(args, format);
 	while (*format != '\0')
@@ -26,24 +21,14 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			if (*format == 'c')
-				check_char(c, args);
-			else if (*format == 's')
-				check_str(str, args);
+			if (*format == 'c' || *format == 's' || *format == 'd')
+				print_basic(*format, args);
 			else if (*format == 'p')
-				check_mem(mem_loc, args);
-			else if (*format == 'd')
-				check_num(num, args);
-			else if (*format == 'i')
-				check_int(num, args);
-			else if (*format == 'u')
-				check_unsinged(n, args);
-			else if (*format == 'x')
-				to_decimal_lowercase(num, args);
-			else if (*format == 'X')
-				to_decimal_uppercase(num, args);
-			else if (*format == '%')
-				ft_putchar_fd('%', 1);
+				check_mem(args);
+			else if (*format == 'i' || *format == 'u')
+				print_number(*format, args);
+			else if (*format == '%' || *format == 'X' || *format == 'x')
+				print_hexes(*format, args);
 			else
 				ft_putchar_fd('?', 1);
 		}

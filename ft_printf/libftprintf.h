@@ -26,11 +26,17 @@ void	ft_putnbr_base(int nbr, char *base);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *str, int fd);
-void	check_char(int c, va_list args);
-void	check_str(char *str, va_list args);
-void	check_mem(void *p, va_list args);
-void	check_num(int num, va_list args);
-void	check_int(int num, va_list args);
+void	check_char(va_list args);
+void	check_str(va_list args);
+void	check_mem(va_list args);
+void	check_num(va_list args);
+void	check_int(va_list args);
+void	check_unsigned(va_list args);
+void	to_decimal_lowercase(va_list args);
+void	to_decimal_uppercase(va_list args);
+void	print_basic(char c, va_list args);
+void	print_number(char c, va_list args);
+void	print_hexes(char c, va_list args);
 int		ft_printf(const char *format, ...);
 
 #endif

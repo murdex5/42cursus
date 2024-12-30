@@ -12,32 +12,42 @@
 
 #include "libftprintf.h"
 
-void check_char(int c, va_list args)
+void	check_char(va_list args)
 {
-    c = va_arg(args, int);
-    ft_putchar_fd(c, 1);
+	int	c;
+
+	c = va_arg(args, int);
+	ft_putchar_fd(c, 1);
 }
 
-void check_str(char *str, va_list args)
+void	check_str(va_list args)
 {
-    str =  va_arg(args, char *);
-    ft_putstr_fd(str, 1);
+	char	*str;
+
+	str = va_arg(args, char *);
+	ft_putstr_fd(str, 1);
 }
 
-void check_mem(void *p, va_list args)
+void	check_mem(va_list args)
 {
-    p = va_arg(args, void *);
-    ft_print_addr(p);
+	void	*p;
+
+	p = va_arg(args, void *);
+	ft_print_addr(p);
 }
 
-void check_num(int num, va_list args)
+void	check_num(va_list args)
 {
-    num = va_arg(args, int);
-    ft_putnbr_fd(num, 1);
+	int	num;
+
+	num = va_arg(args, int);
+	ft_putnbr_fd(num, 1);
 }
 
-void check_int(int num, va_list args)
+void	check_int(va_list args)
 {
-    num = va_arg(args, int);
-    ft_putnbr_base(num, "0123456789");
+	int	num;
+
+	num = va_arg(args, int);
+	ft_putnbr_base(num, "0123456789");
 }

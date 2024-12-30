@@ -11,20 +11,45 @@
 /* ************************************************************************** */
 #include "libftprintf.h"
 
-void	check_unsinged(unsigned long n, va_list args)
+void	check_unsigned(va_list args)
 {
+	unsigned long long	n;
+
 	n = va_arg(args, unsigned long);
 	ft_putnbr_fd_unsigned(n, 1);
 }
 
-void to_decimal_lowercase(int num, va_list args)
+void	to_decimal_lowercase(va_list args)
 {
-    num = va_arg(args, int);
-    ft_putnbr_base(num, "0123456789abcdef");
+	int	num;
+
+	num = va_arg(args, int);
+	ft_putnbr_base(num, "0123456789abcdef");
 }
 
-void to_decimal_uppercase(int num, va_list args)
+void	to_decimal_uppercase(va_list args)
 {
-    num = va_arg(args, int);
-    ft_putnbr_base(num, "0123456789ABCDEF");
+	int	num;
+
+	num = va_arg(args, int);
+	ft_putnbr_base(num, "0123456789ABCDEF");
+}
+
+void	print_basic(char c, va_list args)
+{
+	if (c == 'c')
+		check_char(args);
+	if (c == 's')
+		check_str(args);
+	if (c == 'd')
+		check_num(args);
+}
+void print_hexes(char c, va_list args)
+{
+	if (c == 'x')
+		to_decimal_lowercase(args);
+	if (c == 'X')
+		to_decimal_uppercase(args);
+	if (c == '%')
+		ft_putchar_fd('%', 1);
 }

@@ -9,7 +9,7 @@
 /*   Updated: 2024/12/30 08:42:48 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_printf(const char *format, ...)
 {

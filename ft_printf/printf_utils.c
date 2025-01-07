@@ -26,7 +26,10 @@ int	check_chars(char c, va_list args)
 	else if (c == '%' || c == 'X' || c == 'x')
 		count = print_hexes(c, args);
 	else
+	{
 		ft_putchar_fd('?', 1);
+		count = 1;
+	}
 	return (count);
 }
 
@@ -51,5 +54,3 @@ int	count_first_param(const char *str)
 	}
 	return (len);
 }
-
-

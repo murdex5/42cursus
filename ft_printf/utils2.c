@@ -78,6 +78,6 @@ int	check_int(va_list args)
 		ft_putstr_fd("-2147483648", 1);
 		return (count);
 	}
-	ft_putnbr_base(num, "0123456789");
+	ft_putnbr_fd(num, 1);
 	return (count);
 }

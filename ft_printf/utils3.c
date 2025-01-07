@@ -50,6 +50,7 @@ int	print_hexes(char c, va_list args)
 {
 	int	count;
 
+	count = 0;
 	if (c == 'x')
 		count = to_decimal_lowercase(args);
 	if (c == 'X')
@@ -57,7 +58,7 @@ int	print_hexes(char c, va_list args)
 	if (c == '%')
 	{
 		ft_putchar_fd('%', 1);
-		return (1);
+		count = 1;
 	}
 	return (count);
 }
@@ -66,6 +67,7 @@ int	print_number(char c, va_list args)
 {
 	int	count;
 
+	count = 0;
 	if (c == 'i')
 		count = check_int(args);
 	if (c == 'u')

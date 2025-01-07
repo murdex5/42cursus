@@ -14,7 +14,7 @@
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	int count;
+	int		count;
 
 	count = count_first_param(format);
 	va_start(args, format);
@@ -32,9 +32,10 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (count);
 }
+
 /*
 int	main(void)
 {
-	ft_printf("%i %i", 2147483647, (int)-2147483648);
+	ft_printf("the password is %x", 3735929054u);
 	return (0);
 }*/

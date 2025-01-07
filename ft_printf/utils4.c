@@ -48,7 +48,7 @@ int	count_unsigned_digits(unsigned long nb)
 	return (digits);
 }
 
-int	count_hex_digits(int nb)
+int	count_hex_digits(unsigned int nb)
 {
 	int count;
 

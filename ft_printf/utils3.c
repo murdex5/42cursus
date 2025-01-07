@@ -13,10 +13,10 @@
 
 int	to_decimal_lowercase(va_list args)
 {
-	int	num;
-	int	count;
+	unsigned int	num;
+	int				count;
 
-	num = va_arg(args, int);
+	num = va_arg(args, unsigned int);
 	count = count_hex_digits(num);
 	ft_putnbr_base(num, "0123456789abcdef");
 	return (count);
@@ -24,10 +24,10 @@ int	to_decimal_lowercase(va_list args)
 
 int	to_decimal_uppercase(va_list args)
 {
-	int	num;
-	int	count;
+	unsigned int	num;
+	int				count;
 
-	num = va_arg(args, int);
+	num = va_arg(args, unsigned int);
 	count = count_hex_digits(num);
 	ft_putnbr_base(num, "0123456789ABCDEF");
 	return (count);

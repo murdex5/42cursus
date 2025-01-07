@@ -22,7 +22,7 @@
 void	ft_print_addr(void *addr);
 int		ft_abs(int c);
 void	ft_putnbr_fd_unsigned(unsigned int n, int fd);
-void	ft_putnbr_base(int nbr, char *base);
+void	ft_putnbr_base(unsigned int nbr, char *base);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *str, int fd);
@@ -40,7 +40,7 @@ int		print_number(char c, va_list args);
 int		print_hexes(char c, va_list args);
 int		count_digits(int nb);
 int		count_unsigned_digits(unsigned long nb);
-int		count_hex_digits(int nb);
+int		count_hex_digits(unsigned int nb);
 int		check_chars(char c, va_list args);
 int		count_first_param(const char *str);
 int		ft_printf(const char *format, ...);

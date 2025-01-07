@@ -11,14 +11,6 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-void	check_unsigned(va_list args)
-{
-	unsigned long long	n;
-
-	n = va_arg(args, unsigned long);
-	ft_putnbr_fd_unsigned(n, 1);
-}
-
 void	to_decimal_lowercase(va_list args)
 {
 	int	num;
@@ -52,4 +44,12 @@ void	print_hexes(char c, va_list args)
 		to_decimal_uppercase(args);
 	if (c == '%')
 		ft_putchar_fd('%', 1);
+}
+
+void	print_number(char c, va_list args)
+{
+	if (c == 'i')
+		check_int(args);
+	if (c == 'u')
+		check_unsigned(args);
 }

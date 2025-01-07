@@ -56,10 +56,10 @@ void	ft_print_addr(void *p0)
 	}
 }
 
-void	print_number(char c, va_list args)
+void	check_unsigned(va_list args)
 {
-	if (c == 'i')
-		check_int(args);
-	if (c == 'u')
-		check_unsigned(args);
+	unsigned long long n;
+
+	n = va_arg(args, unsigned long);
+	ft_putnbr_fd_unsigned(n, 1);
 }

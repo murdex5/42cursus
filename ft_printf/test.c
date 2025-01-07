@@ -1,14 +1,41 @@
-#include "libftprintf.h"
+#include <stdio.h>
 
-int main(void)
+size_t	ft_strlen(char *str)
 {
-    ft_printf("Hello, %c!\n", 'A');                    // %c: Print a character
-    ft_printf("String: %s\n", "Hello, World!");         // %s: Print a string
-    ft_printf("Pointer: %p\n", (void *)0x1234abcd);     // %p: Print a pointer (address)
-    ft_printf("Signed Integer: %d\n", -12345);          // %d: Print a signed integer
-    ft_printf("Unsigned Integer: %u\n", 12345);         // %u: Print an unsigned integer
-    ft_printf("Hex (lowercase): %x\n", 255);            // %x: Print a hexadecimal number (lowercase)
-    ft_printf("Hex (uppercase): %X\n", 255);            // %X: Print a hexadecimal number (uppercase)
+	size_t	count;
 
-    return 0;
+	count = 0;
+	while (str[count] != '\0')
+		count++;
+	return (count);
+}
+
+int	count_first_param(char *str)
+{
+	int	count;
+	int	len;
+
+	len = (int)ft_strlen(str);
+	count = 0;
+	while (str[count] != '\0' && str[count + 1] != '\0')
+	{
+		if (str[count] == '%' && (str[count + 1] == 'c' || str[count + 1] == 's'
+				|| str[count + 1] == 'd' || str[count + 1] == 'p' || str[count
+				+ 1] == 'i' || str[count + 1] == 'u' || str[count + 1] == '%'
+				|| str[count + 1] == 'x' || str[count + 1] == 'X'))
+		{
+			if (len != 0)
+				len -= 2;
+		}
+		count++;
+	}
+	return (len);
+}
+
+int	main(void)
+{
+	char *str = "Hello%s %p";
+	int count = count_first_param(str);
+	printf("%d\n", count);
+	return (0);
 }

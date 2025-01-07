@@ -14,35 +14,27 @@
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
+	int count;
 
+	count = count_first_param(format);
 	va_start(args, format);
 	while (*format != '\0')
 	{
 		if (*format == '%')
 		{
 			format++;
-			if (*format == 'c' || *format == 's' || *format == 'd')
-				print_basic(*format, args);
-			else if (*format == 'p')
-				check_mem(args);
-			else if (*format == 'i' || *format == 'u')
-				print_number(*format, args);
-			else if (*format == '%' || *format == 'X' || *format == 'x')
-				print_hexes(*format, args);
-			else
-				ft_putchar_fd('?', 1);
+			count += check_chars(*format, args);
 		}
 		else
 			ft_putchar_fd(*format, 1);
 		format++;
 	}
 	va_end(args);
-	return (0);
+	return (count);
 }
-
-// int	main(void)
-// {
-// 	ft_printf("Hello, my name is %s, I am %u years old \n", "Malsha", -934);
-// 	printf("Hello, my name is %s, I am %u years old\n", "Malsha", -934);
-// 	return (0);
-// }
+/*
+int	main(void)
+{
+	ft_printf("%i %i", 2147483647, (int)-2147483648);
+	return (0);
+}*/

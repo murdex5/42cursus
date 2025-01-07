@@ -11,45 +11,64 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-void	to_decimal_lowercase(va_list args)
+int	to_decimal_lowercase(va_list args)
 {
 	int	num;
+	int	count;
 
 	num = va_arg(args, int);
+	count = count_hex_digits(num);
 	ft_putnbr_base(num, "0123456789abcdef");
+	return (count);
 }
 
-void	to_decimal_uppercase(va_list args)
+int	to_decimal_uppercase(va_list args)
 {
 	int	num;
+	int	count;
 
 	num = va_arg(args, int);
+	count = count_hex_digits(num);
 	ft_putnbr_base(num, "0123456789ABCDEF");
+	return (count);
 }
 
-void	print_basic(char c, va_list args)
+int	print_basic(char c, va_list args)
 {
+	int	count;
+
+	count = 0;
 	if (c == 'c')
-		check_char(args);
+		count = check_char(args);
 	if (c == 's')
-		check_str(args);
+		count = check_str(args);
 	if (c == 'd')
-		check_num(args);
+		count = check_num(args);
+	return (count);
 }
-void	print_hexes(char c, va_list args)
+int	print_hexes(char c, va_list args)
 {
+	int	count;
+
 	if (c == 'x')
-		to_decimal_lowercase(args);
+		count = to_decimal_lowercase(args);
 	if (c == 'X')
-		to_decimal_uppercase(args);
+		count = to_decimal_uppercase(args);
 	if (c == '%')
+	{
 		ft_putchar_fd('%', 1);
+		return (1);
+	}
+	return (count);
 }
 
-void	print_number(char c, va_list args)
+int	print_number(char c, va_list args)
 {
+	int	count;
+
 	if (c == 'i')
-		check_int(args);
+		count = check_int(args);
 	if (c == 'u')
-		check_unsigned(args);
+		count = check_unsigned(args);
+	return (count);
 }

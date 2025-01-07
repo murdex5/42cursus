@@ -51,15 +51,26 @@ void	ft_print_addr(void *p0)
 		i -= 4;
 	}
 	if (leading_zero)
-	{
 		ft_putchar_fd('0', 1);
-	}
 }
 
-void	check_unsigned(va_list args)
+int	check_unsigned(va_list args)
 {
-	unsigned long long n;
+	unsigned long long	n;
+	int count;
 
 	n = va_arg(args, unsigned long);
+	count = count_unsigned_digits(n);
 	ft_putnbr_fd_unsigned(n, 1);
+	return (count);
+}
+
+size_t	ft_strlen(char *str)
+{
+	size_t count;
+
+	count = 0;
+	while (str[count] != '\0')
+		count++;
+	return (count);
 }

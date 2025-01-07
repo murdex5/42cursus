@@ -12,7 +12,7 @@
 
 CC = gcc
 FLAGS = -Wall -Werror -Wextra
-SRCS = utils0.c utils1.c utils2.c utils3.c ft_printf.c
+SRCS = utils0.c utils1.c utils2.c utils3.c utils4.c printf_utils.c ft_printf.c
 NAME = libftprintf.a
 OBJS = ${SRCS:.c=.o}
 

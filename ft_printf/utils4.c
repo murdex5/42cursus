@@ -60,8 +60,6 @@ int	count_hex_digits(unsigned int nb)
 	count = 0;
 	if (nb == 0)
 		return (1);
-	if (nb < 0)
-		nb = -nb;
 	while (nb > 0)
 	{
 		nb /= 16;

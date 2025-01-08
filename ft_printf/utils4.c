@@ -58,7 +58,7 @@ int	count_unsigned_digits(unsigned long nb)
 
 int	count_hex_digits(unsigned int nb)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (nb == 0)
@@ -72,4 +72,3 @@ int	count_hex_digits(unsigned int nb)
 	}
 	return (count);
 }
-

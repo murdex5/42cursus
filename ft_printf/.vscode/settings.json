@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "*.html": "html",
-        "libftprintf.h": "c",
-        "stdio.h": "c",
-        "algorithm": "c",
-        "ft_printf.h": "c"
-    }
-}

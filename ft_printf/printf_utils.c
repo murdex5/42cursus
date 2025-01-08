@@ -51,7 +51,6 @@ int	count_first_param(const char *str)
 				|| *(str + 1) == 'p' || *(str + 1) == 'i' || *(str + 1) == 'u'
 				|| *(str + 1) == 'x' || *(str + 1) == 'X')
 			{
-				
 				str++;
 			}
 		}

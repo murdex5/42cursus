@@ -6,7 +6,7 @@
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 13:16:37 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/30 13:16:39 by kadferna         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:21:15 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,19 @@ void	ft_putnbr_base(unsigned int nbr, char *base)
 {
 	int		base_len;
 	char	c;
+	int		i;
 
+	i = -1;
 	if (!base)
 		return ;
 	base_len = 0;
 	while (base[base_len])
 	{
-		for (int i = 0; i < base_len; i++)
-			if (base[i] == base[base_len])
+		while (i < base_len)
+		{
+			if (base[i++] == base[base_len])
 				return ;
+		}
 		if (base[base_len] == '+' || base[base_len] == '-')
 			return ;
 		base_len++;

@@ -46,6 +46,7 @@ int	print_basic(char c, va_list args)
 		count = check_num(args);
 	return (count);
 }
+
 int	print_hexes(char c, va_list args)
 {
 	int	count;

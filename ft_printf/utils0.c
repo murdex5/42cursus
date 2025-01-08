@@ -63,7 +63,7 @@ int	check_unsigned(va_list args)
 	unsigned long long	n;
 	int					count;
 
-	n = va_arg(args, unsigned long);
+	n = va_arg(args, unsigned long long);
 	count = count_unsigned_digits(n);
 	ft_putnbr_fd_unsigned(n, 1);
 	return (count);

@@ -38,16 +38,13 @@ int	count_digits(int nb)
 	return (digits);
 }
 
-int	count_unsigned_digits(unsigned long nb)
+int	count_unsigned_digits(unsigned long long nb)
 {
 	int	digits;
 
 	digits = 0;
-	if (nb <= 0)
-	{
-		++digits;
-		nb = -nb;
-	}
+	if (nb == 0)
+		return (1);
 	while (nb != 0)
 	{
 		digits++;

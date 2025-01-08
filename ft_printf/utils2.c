@@ -44,9 +44,13 @@ int	check_mem(va_list args)
 	void	*p;
 	int		count;
 
-	count = 0;
 	p = va_arg(args, void *);
-	ft_print_addr(p);
+	if (p == (void *)0)
+	{
+		ft_putstr_fd("(nil)", 1);
+		return (5);
+	}
+	count = ft_print_addr(p);
 	return (count);
 }
 

@@ -12,6 +12,14 @@
 
 #include "ft_printf.h"
 
+int	ft_abs(int num)
+{
+	if (num < 0)
+		return (-num);
+	else
+		return (num);
+}
+
 int	count_digits(int nb)
 {
 	int	digits;
@@ -64,3 +72,4 @@ int	count_hex_digits(unsigned int nb)
 	}
 	return (count);
 }
+

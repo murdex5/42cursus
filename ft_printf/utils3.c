@@ -58,7 +58,7 @@ int	print_hexes(char c, va_list args)
 	if (c == '%')
 	{
 		ft_putchar_fd('%', 1);
-		count = 1;
+		return (0);
 	}
 	return (count);
 }

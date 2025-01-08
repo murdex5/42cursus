@@ -20,21 +20,25 @@ static char	hex_digit(int v)
 		return ('a' + v - 10);
 }
 
-int	ft_abs(int num)
+static void	check_val(int hex_val, int *leading_zero, int *count)
 {
-	if (num < 0)
-		return (-num);
-	else
-		return (num);
+	if (hex_val != 0 || !(*leading_zero))
+	{
+		ft_putchar_fd(hex_digit(hex_val), 1);
+		(*count)++;
+		(*leading_zero) = 0;
+	}
 }
 
-void	ft_print_addr(void *p0)
+int	ft_print_addr(void *p0)
 {
 	int			i;
 	int			leading_zero;
 	uintptr_t	p;
 	int			hex_val;
+	int			count;
 
+	count = 2;
 	ft_putchar_fd('0', 1);
 	ft_putchar_fd('x', 1);
 	p = (uintptr_t)p0;
@@ -43,21 +47,21 @@ void	ft_print_addr(void *p0)
 	while (i >= 0)
 	{
 		hex_val = (p >> i) & 0xf;
-		if (hex_val != 0 || !leading_zero)
-		{
-			ft_putchar_fd(hex_digit(hex_val), 1);
-			leading_zero = 0;
-		}
+		check_val(hex_val, &leading_zero, &count);
 		i -= 4;
 	}
 	if (leading_zero)
+	{
 		ft_putchar_fd('0', 1);
+		count++;
+	}
+	return (count);
 }
 
 int	check_unsigned(va_list args)
 {
 	unsigned long long	n;
-	int count;
+	int					count;
 
 	n = va_arg(args, unsigned long);
 	count = count_unsigned_digits(n);

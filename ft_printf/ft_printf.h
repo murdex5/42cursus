@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-void	ft_print_addr(void *addr);
+int		ft_print_addr(void *p0);
 int		ft_abs(int c);
 void	ft_putnbr_fd_unsigned(unsigned int n, int fd);
 void	ft_putnbr_base(unsigned int nbr, char *base);

@@ -36,21 +36,28 @@ int	check_chars(char c, va_list args)
 int	count_first_param(const char *str)
 {
 	int	count;
-	int	len;
 
-	len = (int)ft_strlen((char *)str);
 	count = 0;
-	while (str[count] != '\0' && str[count + 1] != '\0')
+	while (*str)
 	{
-		if (str[count] == '%' && (str[count + 1] == 'c' || str[count + 1] == 's'
-				|| str[count + 1] == 'd' || str[count + 1] == 'p' || str[count
-				+ 1] == 'i' || str[count + 1] == 'u' || str[count + 1] == '%'
-				|| str[count + 1] == 'x' || str[count + 1] == 'X'))
+		if (*str == '%')
 		{
-			if (len != 0)
-				len -= 2;
+			if (*(str + 1) == '%')
+			{
+				count++;
+				str++;
+			}
+			else if (*(str + 1) == 'c' || *(str + 1) == 's' || *(str + 1) == 'd'
+				|| *(str + 1) == 'p' || *(str + 1) == 'i' || *(str + 1) == 'u'
+				|| *(str + 1) == 'x' || *(str + 1) == 'X')
+			{
+				
+				str++;
+			}
 		}
-		count++;
+		else
+			count++;
+		str++;
 	}
-	return (len);
+	return (count);
 }

@@ -42,3 +42,5 @@ char *read_line(int fd, char *res)
     free(buffer);
     return (res);
 }
+
+char *get_line ?

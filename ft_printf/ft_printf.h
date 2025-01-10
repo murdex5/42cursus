@@ -39,7 +39,7 @@ int		print_basic(char c, va_list args);
 int		print_number(char c, va_list args);
 int		print_hexes(char c, va_list args);
 int		count_digits(int nb);
-int		count_unsigned_digits(unsigned long long nb);
+int		count_unsigned_digits(unsigned int nb);
 int		count_hex_digits(unsigned int nb);
 int		check_chars(char c, va_list args);
 int		count_first_param(const char *str);

@@ -38,7 +38,7 @@ int	count_digits(int nb)
 	return (digits);
 }
 
-int	count_unsigned_digits(unsigned long long nb)
+int	count_unsigned_digits(unsigned int nb)
 {
 	int	digits;
 

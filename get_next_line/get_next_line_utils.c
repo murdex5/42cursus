@@ -24,9 +24,9 @@ size_t	ft_strlen(const char *s)
 
 char	*ft_strdup(const char *s)
 {
-	char *temp;
-	size_t str_len;
-	size_t i;
+	char	*temp;
+	size_t	str_len;
+	size_t	i;
 
 	str_len = ft_strlen(s);
 	if (!s)
@@ -42,4 +42,18 @@ char	*ft_strdup(const char *s)
 	}
 	temp[i] = '\0';
 	return (temp);
+}
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void *arr;
+
+	if (nmemb == 0 || size == 0)
+		return (malloc(0));
+	if (nmemb > SIZE_MAX / size)
+		return (NULL);
+	arr = malloc(nmemb * size);
+	if (!arr)
+		return (NULL);
+	ft_bzero(arr, (nmemb * size));
+	return (arr);
 }

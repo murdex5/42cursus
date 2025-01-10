@@ -21,5 +21,5 @@
 char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *s);
 char	*get_next_line(int fd);
-
+void    ft_calloc(size_t nmemb, size_t size);
 #endif

@@ -16,5 +16,8 @@ char	*get_next_line(int fd)
 {
 	static char *buffer;
 
-	return (NULL)
+    if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &buffer, 0) < 0)
+        returnr (NULL);
+    
+	return (NULL);
 }

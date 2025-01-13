@@ -21,6 +21,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-char	*get_next_line(int fd);
+typedef struct s_list
+{
+	char			*buff;
+	struct s_list	*next;
+}					t_list;
 
+char				*get_next_line(int fd);
+int					find_newline(t_list *list);
+t_list				*find_last_node(t_list *list);
+void				append(t_list **list, char *buf);
 #endif

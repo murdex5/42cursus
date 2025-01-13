@@ -34,6 +34,44 @@ void	create_list(t_list **list, int fd)
 	}
 }
 
+char    *get_line(t_list *list)
+{
+    char    *line;
+    int str_len;
+
+    str_len = get_len_lists(list);
+    line = malloc(str_len + 1);
+    if (!line)
+        return (NULL);
+    copy_str(list, line);
+}
+
+void clean_list(t_list **list)
+{
+    t_list *clean_list;
+    t_list *last_node;
+    int i;
+    int k;
+    char *buf;
+
+    buf = malloc(BUFFER_SIZE + 1);
+    clean_list = malloc(sizeof(t_list));
+    if (!buf || !clean_list)
+        return ;
+    last_node = find_last_node(list);
+
+    i = 0;
+    k = 0;
+    while (last_node->buff[i] != '\0' && last_node->buff[i] ==  '\0')
+        ++i;
+    while (last_node->buff[i] != '\0' && last_node->buff[++i])
+        buf[k++] = last_node->buff[++i];
+    buf[k] = '\0';
+    clean_list->buff = buf;
+    clean_list->next = NULL;
+
+}
+
 char	*get_next_line(int fd)
 {
 	static t_list *list;
@@ -42,6 +80,23 @@ char	*get_next_line(int fd)
 	list = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &list, 0) < 0)
 		return (NULL);
+    create_list(&list, fd);
+    if (list == NULL)
+        return (NULL);
+    clean_list(&list);
+	return (next_line);
+}
 
-	return (NULL);
+
+int main(void)
+{
+    int fd;
+    char *line;
+    int lines;
+
+    lines = 1;
+    fd = open("text.txt", O_RDONLY);
+    while ((line = get_next_line(fd)))
+        printf("%d->%s\n", lines++, line);
+    return (0);
 }

@@ -56,3 +56,76 @@ t_list	*find_last_node(t_list *list)
 	}
 	return (temp);
 }
+
+size_t	get_len_lists(t_list *list)
+{
+	int	i;
+	int	l;
+
+	i = 0;
+	while (list)
+	{
+		l = 0;
+		while (list->buff[l])
+		{
+			if (list->buff[l] == '\n')
+			{
+				++i;
+				return (i);
+			}
+			++l;
+		}
+		i += l;
+		list = list->next;
+	}
+	return (i);
+}
+
+void	copy_str(t_list *list, char *str)
+{
+	int	i;
+	int	k;
+
+	if (list == NULL)
+		return ;
+	k = 0;
+	while (list)
+	{
+		i = 0;
+		while (list->buff[i])
+		{
+			if (list->buff[i] == '\n')
+			{
+				str[k++] = '\n';
+				str[k] = '\0';
+			}
+			str[k++] = list->buff[i++];
+		}
+		list = list->next;
+	}
+	str[k] = '\0';
+}
+
+void	dealloc(t_list **list, t_list *node, char *buf)
+{
+	t_list	*tmp;
+
+	if (buf)
+		free(buf);
+	if (!*list)
+		return ;
+	while (*list)
+	{
+		tmp = (*list)->next;
+		free((*list)->buff);
+		free(*list);
+		*list = tmp;
+	}
+	*list = NULL;
+	if (node->buff[0])
+		*list = node;
+	else
+	{
+		free(node);
+	}
+}

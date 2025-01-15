@@ -12,18 +12,35 @@
 
 #include "get_next_line.h"
 
-void create_line(t_list **list, int fd)
+void	create_list(t_list **list, int fd)
 {
+	char	*buffer;
+	int		read_chars;
 
+	while (!find_newline(*list))
+	{
+		buffer = malloc(BUFFER_SIZE + 1);
+		if (!buffer)
+			return ;
+		read_chars = read(fd, buffer, BUFFER_SIZE);
+		if (read_chars <= 0)
+		{
+			free(buffer);
+			return ;
+		}
+		buffer[read_chars] = '\0';
+		append(list, buffer);
+	}
 }
 
-
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-    static char *buffer;
-    char *line;
+	static t_list *list;
+	char *line;
 
-    if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &buffer, 0) < 0)
-        return (NULL);
-    return (line);
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &list, 0) < 0)
+		return (NULL);
+	return (line);
+    create_list(list, fd);
+    
 }

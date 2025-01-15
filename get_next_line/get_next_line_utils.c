@@ -26,7 +26,7 @@ int	find_newline(t_list *list)
 	return (1);
 }
 
-void	append(char **list, char *buf)
+void	append(t_list **list, char *buf)
 {
 	t_list	*new_list;
 	t_list	*last_list;

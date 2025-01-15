@@ -10,4 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
 
+void create_line(t_list **list, int fd)
+{
+
+}
+
+
+char *get_next_line(int fd)
+{
+    static char *buffer;
+    char *line;
+
+    if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &buffer, 0) < 0)
+        return (NULL);
+    return (line);
+}

@@ -37,6 +37,7 @@ char	*get_line(int fd, char *buf, char *buffer)
 	}
 	return (buffer);
 }
+
 char	*clean_up(char *line)
 {
 	int		count;

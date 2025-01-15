@@ -39,8 +39,8 @@ t_list	*find_last_node(t_list **list)
 
 void	append(t_list **list, char *buffer)
 {
-	t_list *new_node;
-	t_list *last_node;
+	t_list	*new_node;
+	t_list	*last_node;
 
 	new_node = malloc(sizeof(t_list));
 	if (!new_node)
@@ -53,4 +53,44 @@ void	append(t_list **list, char *buffer)
 	}
 	last_node = find_last_node(list);
 	last_node->next = new_node;
+}
+
+int	list_str_len(t_list *list)
+{
+	int	i;
+	int	k;
+
+	i = 0;
+	while (list != NULL)
+	{
+		k = 0;
+		while (list->line[k] != '\0')
+			k++;
+		i += k;
+		list = list->next;
+	}
+	return (i);
+}
+
+void	copy_str(t_list *list, char *buffer)
+{
+	int	i;
+	int	k;
+
+	i = 0;
+	if (!list)
+		return ;
+	while (list)
+	{
+		k = 0;
+		while (list->line[k] && list->line[k] != '\n')
+			buffer[i++] = list->line[k++];
+		if (list->line[k] == '\n')
+		{
+			buffer[i++] = '\n';
+			return ;
+		}
+		list = list->next;
+	}
+	buffer[i] = '\0';
 }

@@ -33,6 +33,19 @@ void	create_list(t_list **list, int fd)
 	}
 }
 
+char	*get_line(t_list **list)
+{
+	char	*line;
+	int		str_len;
+
+	str_len = list_str_len(list);
+	line = malloc(str_len + 1);
+	if (!line)
+		return (NULL);
+	copy_str(list, line);
+	return (line);
+}
+
 char	*get_next_line(int fd)
 {
 	static t_list *list;
@@ -41,6 +54,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &list, 0) < 0)
 		return (NULL);
 	return (line);
-    create_list(list, fd);
-    
+	create_list(list, fd);
+	line = get_line(list);
+	return (line);
 }

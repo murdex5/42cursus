@@ -29,8 +29,9 @@ typedef struct s_list
 # include <unistd.h>
 
 char				*get_next_line(int fd);
-int find_newline(t_list *list);
-void append(t_list **list, char *buffer);
-t_list	*find_last_node(t_list **list);
-
+int					find_newline(t_list *list);
+void				append(t_list **list, char *buffer);
+t_list				*find_last_node(t_list **list);
+int					list_str_len(t_list *list);
+void				copy_str(t_list *list, char *buffer);
 #endif

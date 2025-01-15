@@ -94,3 +94,8 @@ void	copy_str(t_list *list, char *buffer)
 	}
 	buffer[i] = '\0';
 }
+
+void polish_list(t_list *list)
+{
+
+}

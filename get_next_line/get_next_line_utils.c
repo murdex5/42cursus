@@ -55,28 +55,27 @@ char	*ft_strdup(const char *s)
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*dest;
-	int		len1;
-	int		len2;
 	int		i;
 	int		j;
 
 	if (!s1 || !s2)
 		return (NULL);
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	dest = malloc(sizeof(char) * (len1 + len2 + 1));
+	dest = malloc(sizeof(char) * ((int)ft_strlen(s1) + (int)ft_strlen(s2) + 1));
 	if (!dest)
 		return (NULL);
 	i = 0;
-	while (i < len1)
-		dest[i++] = s1[i++];
+	while (i < (int)ft_strlen(s1))
+	{
+		dest[i] = s1[i];
+        i++;
+	}
 	j = 0;
-	while (j < len2)
+	while (j < (int)ft_strlen(s2))
 	{
 		dest[i + j] = s2[j];
 		j++;
 	}
-	dest[len1 + len2] = '\0';
+	dest[(int)ft_strlen(s1) + (int)ft_strlen(s2)] = '\0';
 	return (dest);
 }
 

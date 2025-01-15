@@ -18,6 +18,7 @@ int main(void)
     while ((line = get_next_line(fd)) != NULL)
     {
         printf("%d %s", count, line);
+        printf("\n");
         free(line);
         count++;
     }

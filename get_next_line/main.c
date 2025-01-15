@@ -6,6 +6,7 @@ int main(void)
 {
     int fd;
     char *line;
+    int count = 0;
     printf("Opening file...\n");
     fd = open("text.txt", O_RDONLY);
     if (fd < 0)
@@ -16,8 +17,9 @@ int main(void)
 
     while ((line = get_next_line(fd)) != NULL)
     {
-        printf("%s", line);
+        printf("%d %s", count, line);
         free(line);
+        count++;
     }
         
     close(fd);

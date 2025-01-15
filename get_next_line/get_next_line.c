@@ -12,26 +12,6 @@
 
 #include "get_next_line.h"
 
-void	create_list(t_list **list, int fd)
-{
-	char	*buffer;
-	int		read_chars;
-
-	while (!find_newline(*list))
-	{
-		buffer = malloc(BUFFER_SIZE + 1);
-		if (!buffer)
-			return ;
-		read_chars = read(fd, buffer, BUFFER_SIZE);
-		if (read_chars <= 0)
-		{
-			free(buffer);
-			break ;
-		}
-		buffer[read_chars] = '\0';
-		append(list, buffer);
-	}
-}
 
 char	*get_line(t_list *list)
 {
@@ -39,6 +19,8 @@ char	*get_line(t_list *list)
 	int		str_len;
 
 	str_len = list_str_len(list);
+	if (str_len == 0)
+		return (NULL);
 	line = malloc(str_len + 1);
 	if (!line)
 		return (NULL);
@@ -46,20 +28,60 @@ char	*get_line(t_list *list)
 	return (line);
 }
 
-char	*get_next_line(int fd)
+void    create_list(t_list **list, int fd)
 {
-	static t_list	*list;
-	char			*line;
+    char    *buffer;
+    int     read_chars;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &list, 0) < 0)
-		return (NULL);
-	return (line);
-	create_list(&list, fd);
 	if (!list)
-		return (NULL);
-	line = get_line(list);
-	if (!line)
-		return (NULL);
-	polish_list(&list);
-	return (line);
+		return ;
+    while (!find_newline(*list))
+    {
+        buffer = malloc(BUFFER_SIZE + 1);
+        if (!buffer)
+        {
+            return;
+        }
+        read_chars = read(fd, buffer, BUFFER_SIZE);
+        if (read_chars <= 0)
+        {
+            free(buffer);
+            return;
+        }
+        buffer[read_chars] = '\0';
+        append(list, buffer);
+        if (read_chars < BUFFER_SIZE)
+            break;
+    }
+}
+
+
+char    *get_next_line(int fd)
+{
+    static t_list    *list;
+    char            *line;
+
+    if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) < 0)
+    {
+        if (list)
+        {
+            polish_list(&list);
+            list = NULL;
+        }
+        return (NULL);
+    }
+    create_list(&list, fd);
+    if (!list)
+    {
+        return (NULL);
+    }
+    line = get_line(list);
+    if (!line)
+    {
+        polish_list(&list);
+        list = NULL;
+        return (NULL);
+    }
+    polish_list(&list);
+    return (line);
 }

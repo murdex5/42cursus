@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <string.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
@@ -31,7 +32,7 @@ typedef struct s_list
 char				*get_next_line(int fd);
 int					find_newline(t_list *list);
 void				append(t_list **list, char *buffer);
-t_list				*find_last_node(t_list **list);
+t_list				*find_last_node(t_list *list);
 int					list_str_len(t_list *list);
 void				copy_str(t_list *list, char *buffer);
 void				polish_list(t_list **list);

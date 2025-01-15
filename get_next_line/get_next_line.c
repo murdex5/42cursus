@@ -26,14 +26,14 @@ void	create_list(t_list **list, int fd)
 		if (read_chars <= 0)
 		{
 			free(buffer);
-			return ;
+			break ;
 		}
 		buffer[read_chars] = '\0';
 		append(list, buffer);
 	}
 }
 
-char	*get_line(t_list **list)
+char	*get_line(t_list *list)
 {
 	char	*line;
 	int		str_len;
@@ -54,7 +54,12 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &list, 0) < 0)
 		return (NULL);
 	return (line);
-	create_list(list, fd);
+	create_list(&list, fd);
+	if (!list)
+		return (NULL);
 	line = get_line(list);
+	if (!line)
+		return (NULL);
+	polish_list(&list);
 	return (line);
 }

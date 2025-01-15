@@ -50,6 +50,7 @@ void	append(t_list **list, char *buffer)
 	if (*list == NULL)
 	{
 		*list = new_node;
+        return ;
 	}
 	last_node = find_last_node(list);
 	last_node->next = new_node;
@@ -65,7 +66,14 @@ int	list_str_len(t_list *list)
 	{
 		k = 0;
 		while (list->line[k] != '\0')
-			k++;
+        {
+            if (list->line[k] == '\n')
+            {
+                i += k + 1;
+                return (i);
+            }
+            k++;
+        }
 		i += k;
 		list = list->next;
 	}
@@ -88,14 +96,45 @@ void	copy_str(t_list *list, char *buffer)
 		if (list->line[k] == '\n')
 		{
 			buffer[i++] = '\n';
-			return ;
+			break ;
 		}
 		list = list->next;
 	}
 	buffer[i] = '\0';
 }
 
-void polish_list(t_list *list)
+void	dealloc(t_list *list)
 {
+	if (!list)
+		return ;
+	free(list->line);
+	free(list);
+}
 
+void	polish_list(t_list **list)
+{
+	t_list	*current;
+	t_list	*next;
+	int		i;
+
+	if (!list || !*list)
+		return ;
+	current = *list;
+	while (current)
+	{
+		i = 0;
+		while (current->line[i] && current->line[i] != '\n')
+			i++;
+		if (current->line[i] == '\n')
+		{
+			next = current->next;
+			dealloc(current);
+			*list = next;
+			return ;
+		}
+		next = current->next;
+		dealloc(current);
+		current = next;
+	}
+	*list = NULL;
 }

@@ -60,14 +60,15 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 || !s2)
 		return (NULL);
-	dest = malloc(sizeof(char) * ((int)ft_strlen(s1) + (int)ft_strlen(s2) + 1));
+	dest = malloc(sizeof(char) * ((int)ft_strlen(s1) + (int)cft_strlen(s2)
+				+ 1));
 	if (!dest)
 		return (NULL);
 	i = 0;
 	while (i < (int)ft_strlen(s1))
 	{
 		dest[i] = s1[i];
-        i++;
+		i++;
 	}
 	j = 0;
 	while (j < (int)ft_strlen(s2))

@@ -60,7 +60,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 || !s2)
 		return (NULL);
-	dest = malloc(sizeof(char) * ((int)ft_strlen(s1) + (int)cft_strlen(s2)
+	dest = malloc(sizeof(char) * ((int)ft_strlen(s1) + (int)ft_strlen(s2)
 				+ 1));
 	if (!dest)
 		return (NULL);

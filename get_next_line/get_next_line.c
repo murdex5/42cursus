@@ -43,13 +43,15 @@ char	*clean_up(char *line)
 	int		count;
 	char	*buf;
 
+	if (!line)
+		return (NULL);
 	count = 0;
 	while (line[count] != '\n' && line[count])
 		count++;
 	if (line[count] == '\0' || line[1] == '\0')
-		return (0);
+		return (NULL);
 	buf = ft_substr(line, count + 1, ft_strlen(line) - count);
-	if (*buf == '\0')
+	if (!buf || *buf == '\0')
 	{
 		free(buf);
 		buf = NULL;
@@ -70,5 +72,7 @@ char	*get_next_line(int fd)
 	if (!buf)
 		return (NULL);
 	line = get_line(fd, buf, buffer);
+	buffer = clean_up(line);
+	free(buf);
 	return (line);
 }

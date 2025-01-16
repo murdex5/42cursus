@@ -29,7 +29,7 @@ char	*get_line(int fd, char *buf, char *buffer)
 		if (!buffer)
 			buffer = ft_strdup("");
 		temp = buffer;
-		buffer = ft_strjoin(buffer, buf);
+		buffer = ft_strjoin(temp, buf);
 		free(temp);
 		if (ft_strchr(buf, '\n'))
 			break ;

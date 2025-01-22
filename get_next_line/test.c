@@ -19,13 +19,14 @@ int main(void)
 
 	int count;
 
-	fd = open("text.txt", O_RDONLY);
+	fd = open("text2.txt", O_RDONLY);
 	if (fd < 0)
 	{
 		perror("Couldn't open the file");
 		return (1);
 	}
 	line = get_next_line(fd);
+	
 	while (line != NULL)
 	{
 		printf("%s", line);

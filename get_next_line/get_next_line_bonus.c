@@ -63,7 +63,7 @@ char	*clean_up(char *line)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer[1024];
 	char		*buf;
 	char		*line;
 
@@ -72,8 +72,8 @@ char	*get_next_line(int fd)
 	buf = malloc(BUFFER_SIZE + 1);
 	if (!buf)
 		return (NULL);
-	line = get_line(fd, buf, buffer);
-	buffer = clean_up(line);
+	line = get_line(fd, buf, buffer[fd]);
+	buffer[fd] = clean_up(line);
 	free(buf);
 	return (line);
 }

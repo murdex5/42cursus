@@ -52,9 +52,15 @@ char	*clean_up(char *line)
 		return (NULL);
 	buf = ft_substr(line, count + 1, ft_strlen(line) - count);
 	if (!buf)
-		buf = NULL;
+	{
+		line[count + 1] = '\0';
+		return (NULL);
+	}
 	if ( *buf == '\0')
+	{
 		free(buf);
+		buf = NULL;
+	}
 	line[count + 1] = '\0';
 	return (buf);
 }

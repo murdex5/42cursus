@@ -51,7 +51,12 @@ char	*clean_up(char *line)
 	if (line[count] == '\0' || line[1] == '\0')
 		return (NULL);
 	buf = ft_substr(line, count + 1, ft_strlen(line) - count);
-	if (!buf || *buf == '\0')
+	if (!buf)
+	{
+		line[count + 1] = '\0';
+		return (NULL);
+	}
+	if ( *buf == '\0')
 	{
 		free(buf);
 		buf = NULL;

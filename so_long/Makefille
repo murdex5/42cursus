@@ -13,3 +13,4 @@ MIX_LIB = minilibx-linux/libmlx.a
     $(CC) CFLAGS -Imlx -c $< -o $@
 
 
+#-Imlx minlibx-linux/libmlx.a -lX11 -lXext -lm -lz

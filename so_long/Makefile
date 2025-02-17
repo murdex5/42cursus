@@ -7,7 +7,9 @@ CFLAGS = -Wall -Werror -Wextra -I. -Imlx
 
 CUSTOM_LIBS = my_libs/libft.a my_libs/libftprintf.a
 
-MIX_LIB = minilibx-linux/libmlx.a
+LIBRARY_PATH = minlibx-linux
+MLX_LIB = -L$(LIBRARY_PATH) -lmlx
+
 MLX_FLAGS = -lX11 -lXext -lm -lz
 
 TARGET = so_long

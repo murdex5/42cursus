@@ -5,7 +5,7 @@ OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Werror -Wextra -I. -Imlx
 
-CUSTOM_LIBS = my_libs/libft.a my_libs/libftprintf.a
+CUSTOM_LIBS = my_libs/libft.a
 
 LIBRARY_PATH = minlibx-linux
 MLX_LIB = -L$(LIBRARY_PATH) -lmlx

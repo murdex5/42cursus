@@ -3,8 +3,7 @@
 
 
 # include "minlibx-linux/mlx.h"
-#include "my_headers/ft_printf.h"
-//#include "my_headers/libft.h"
+#include "my_headers/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>

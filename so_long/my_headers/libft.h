@@ -18,6 +18,11 @@
 # include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 50
+# endif
 
 typedef struct s_list
 {
@@ -90,4 +95,5 @@ int					count_first_param(const char *str);
 int					ft_printf(const char *format, ...);
 void				ft_putnbr_fd_unsigned(unsigned int n, int fd);
 int					ft_print_addr(void *p0);
+char	*get_next_line(int fd);
 #endif

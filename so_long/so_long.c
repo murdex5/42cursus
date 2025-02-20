@@ -19,12 +19,11 @@
 int	main(int argc, char **argv)
 {
 	char *map;
-
 	if (argc != 2)
 		return (0);
 	map = argv[1];
-	ft_printf("The file: %d\n", check_map(map));
-	int i = parsing_map(map);
-	ft_printf("The num %d\n", i);
+
+	t_map_dims	k = parsing_map(map);
+	ft_printf("length: %d width: %d\n", k.height, k.width);
 	return (0);
 }

@@ -32,11 +32,17 @@ int check_map(char *file)
 {
     int i;
 
+    t_map_dims k;
+
     i = check_file_type(file, ".ber");
     if (i)
     {
         ft_printf("Wrong file type!\n");
         return (1);
     }
+
+    k = parsing_map(file);
+    if (k.width != k.height)
+        return (1);
     return (i);
 }

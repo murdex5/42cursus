@@ -23,8 +23,14 @@ typedef struct s_vars
 	void *win;
 } t_vars;
 
+typedef struct s_map_dims
+{
+	int width;
+	int height;
+} t_map_dims;
+
 int	check_file_type(char *file, char *type);
-int	parsing_map(char *file);
-int check_map(char *file);
+t_map_dims	parsing_map(char *file);
+int	check_map(char *file);
 
 #endif

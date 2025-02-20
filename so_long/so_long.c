@@ -24,6 +24,6 @@ int	main(int argc, char **argv)
 	map = argv[1];
 
 	t_map_dims	k = parsing_map(map);
-	ft_printf("length: %d width: %d\n", k.height, k.width);
+	ft_printf("height: %d width: %d\n", k.height, k.width);
 	return (0);
 }

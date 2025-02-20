@@ -12,14 +12,7 @@
 
 #include "so_long.h"
 
-typedef struct s_data
-{
-    void    *img;
-    char *addr;
-    int bits_per_pixel;
-    int line_length;
-    int endian;
-} t_data;
+
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -31,32 +24,40 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 int main(void)
 {
-    void *mlx;
-    void *mlx_win;
-
-    int i;
-    int j;
-
-    t_data img;
+    // void *mlx;
+    // void *mlx_win;
+    t_vars  vars;
 
 
-    i = 0;
-    j = 0;
-    mlx = mlx_init();
-    mlx_win = mlx_new_window(mlx, 1000, 1000, "Hello, world!");
-    img.img = mlx_new_image(mlx, 1000, 1000);
-    img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-    while (i < 10)
-    {
-        j = 0;
-        while (j < 10)
-        {
-            my_mlx_pixel_put(&img, 5+i, 5+j, 0x00FF0000);
-            j++;
-        }
-        i++;
-    }    
-        
-    mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-    mlx_loop(mlx);
+    // t_data img;
+
+
+ 
+    vars.mlx = mlx_init();
+    // mlx_win = mlx_new_window(mlx, 1000, 1000, "Hello, world!");
+    // img.img = mlx_new_image(mlx, 1000, 1000);
+    // img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+    // while (i < 50)
+    // {
+    //     j = 0;
+    //     while (j < 50)
+    //     {
+    //         my_mlx_pixel_put(&img, 460+i, 500+j, 0x00FF0000);
+    //         j++;
+    //     }
+    //     i++;
+    // }    
+    // i = 0;
+    // while (i < 50)
+    // {
+    //     j = 0;
+    //     while (j < 50)
+    //     {
+    //         my_mlx_pixel_put(&img, 460+i, 590+j, 0x00EB34E5);
+    //         j++;
+    //     }
+    //     i++;
+    // }
+    vars.win = mlx_new_window(vars.mlx, 640, 480, "Hello, World!");
+    mlx_loop(vars.mlx);
 }

@@ -30,7 +30,7 @@ int	read_file(char *file, unsigned char *buffer)
 {
 	int	fd;
 	int	read_bytes;
-
+	
 	fd = open_file(file);
 	if (fd == -1)
 		return (-1);
@@ -45,3 +45,5 @@ int	read_file(char *file, unsigned char *buffer)
 	close(fd);
 	return (read_bytes);
 }
+
+

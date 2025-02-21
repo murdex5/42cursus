@@ -1,21 +1,31 @@
 CC = gcc
 
-SRCS = so_long.c events.c check_maps.c parsing_map.c
+SRCS = main.c events.c check_maps.c parsing_map.c
 OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Werror -Wextra -I. -Imlx
+
+ifeq ($(shell uname), Linux)
+	INCLUDES = -I/usr/include -Imlx
+else
+	INCLUDES = -I/opt/X11/include -Imlx
+endif
 
 CUSTOM_LIBS = my_libs/libft.a
 
 LIBRARY_PATH = minlibx-linux
 MLX_LIB = -L$(LIBRARY_PATH) -lmlx
 
-MLX_FLAGS = -lX11 -lXext -lm -lz
+ifeq ($(shell uname), Linux)
+	MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+else
+	MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
+endif
 
 TARGET = so_long
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
 
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(CUSTOM_LIBS) $(MLX_LIB) $(MLX_FLAGS) -o $(TARGET)

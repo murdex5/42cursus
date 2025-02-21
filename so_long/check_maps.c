@@ -14,35 +14,32 @@
 
 int	check_file_type(char *file, char *type)
 {
-	char *dot;
+	char	*dot;
 
-    dot = ft_strchr(file, '.');
-    if (!dot)
-        return (1);
-    if (ft_strlen(dot) != ft_strlen(type))
-        return (1);
-    if (ft_strncmp(dot, type, ft_strlen(type)) == 0)
-        return (0);
-    else
-        return (1);
+	dot = ft_strchr(file, '.');
+	if (!dot)
+		return (1);
+	if (ft_strlen(dot) != ft_strlen(type))
+		return (1);
+	if (ft_strncmp(dot, type, ft_strlen(type)) == 0)
+		return (0);
+	else
+		return (1);
 }
 
-
-int check_map(char *file)
+int	check_map(int argc, char **argv)
 {
-    int i;
+	int i;
+	char *file;
 
-    t_map_dims k;
-
-    i = check_file_type(file, ".ber");
-    if (i)
-    {
-        ft_printf("Wrong file type!\n");
-        return (1);
-    }
-
-    k = parsing_map(file);
-    if (k.width != k.height)
-        return (1);
-    return (i);
+	if (argc != 2)
+		return (1);
+	file = argv[1];
+	i = check_file_type(file, ".ber");
+	if (i)
+	{
+		ft_printf("Wrong file type!\n");
+		return (1);
+	}
+	return (0);
 }

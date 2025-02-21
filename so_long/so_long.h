@@ -3,34 +3,30 @@
 
 # include "minlibx-linux/mlx.h"
 # include "my_headers/libft.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct s_data
-{
-	void *img;
-	char *addr;
-	int bits_per_pixel;
-	int line_length;
-	int endian;
-} t_data;
+/* STRUCTS */
 
-typedef struct s_vars
-{
-	void *mlx;
-	void *win;
-} t_vars;
-
-typedef struct s_map_dims
+typedef struct s_map
 {
 	int width;
 	int height;
-} t_map_dims;
+} t_map;
+
+typedef struct s_data
+{
+	void *mlx_ptr;
+	void *win_ptr;
+} t_data;
 
 int	check_file_type(char *file, char *type);
-t_map_dims	parsing_map(char *file);
-int	check_map(char *file);
+int	check_map(int argc, char **argv);
+int	on_keypress(int keysym, t_data *data);
+int	on_destroy(t_data *data);
 
 #endif

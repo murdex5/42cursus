@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.html": "html",
-        "string_view": "c"
+        "string_view": "c",
+        "so_long.h": "c"
     }
 }

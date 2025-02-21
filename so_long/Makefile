@@ -13,7 +13,7 @@ endif
 
 CUSTOM_LIBS = my_libs/libft.a
 
-LIBRARY_PATH = minlibx-linux
+LIBRARY_PATH = ./mlx
 MLX_LIB = -L$(LIBRARY_PATH) -lmlx
 
 ifeq ($(shell uname), Linux)
@@ -24,13 +24,16 @@ endif
 
 TARGET = so_long
 
+all: $(TARGET) $(LIBRARY_PATH)
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
 
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(CUSTOM_LIBS) $(MLX_LIB) $(MLX_FLAGS) -o $(TARGET)
+	$(CC) $(CFLAGS) $(OBJS) $(CUSTOM_LIBS) $(MLX_LIB) $(MLX_FLAGS) -o $(TARGET) $(INCLUDES)
 
-all: $(TARGET)
+$(LIBRARY_PATH):
+	@make -C $(LIBRARY_PATH)
 
 clean:
 	rm -rf $(OBJS)

@@ -17,23 +17,23 @@ LIBRARY_PATH = ./mlx
 MLX_LIB = -L$(LIBRARY_PATH) -lmlx
 
 ifeq ($(shell uname), Linux)
-	MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+	MLX_FLAGS =  -L/usr/lib/X11 -lXext -lX11
 else
-	MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
+	MLX_FLAGS =  -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
 endif
 
 TARGET = so_long
 
-all: $(TARGET) $(LIBRARY_PATH)
+all: $(LIBRARY_PATH) $(TARGET) 
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
 
+$(LIBRARY_PATH):
+	@make -C $(MLX_LIB)
+
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(CUSTOM_LIBS) $(MLX_LIB) $(MLX_FLAGS) -o $(TARGET) $(INCLUDES)
-
-$(LIBRARY_PATH):
-	@make -C $(LIBRARY_PATH)
 
 clean:
 	rm -rf $(OBJS)

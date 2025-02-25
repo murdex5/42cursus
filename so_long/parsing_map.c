@@ -1,20 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parsing_map.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/20 12:11:58 by kadferna          #+#    #+#             */
-/*   Updated: 2025/02/20 12:12:00 by kadferna         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "so_long.h"
+
 
 int	open_file(char *file)
 {
-	int	fd;
+	int fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
@@ -28,9 +17,9 @@ int	open_file(char *file)
 
 int	read_file(char *file, unsigned char *buffer)
 {
-	int	fd;
-	int	read_bytes;
-	
+	int fd;
+	int read_bytes;
+
 	fd = open_file(file);
 	if (fd == -1)
 		return (-1);
@@ -45,5 +34,3 @@ int	read_file(char *file, unsigned char *buffer)
 	close(fd);
 	return (read_bytes);
 }
-
-

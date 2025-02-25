@@ -2,9 +2,12 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   check_maps.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2025/02/20 11:46:33 by kadferna          #+#    #+#             */
 /*   Updated: 2025/02/20 11:46:34 by kadferna         ###   ########.fr       */
 /*                                                                            */
@@ -12,9 +15,10 @@
 
 #include "so_long.h"
 
+
 int	check_file_type(char *file, char *type)
 {
-	char	*dot;
+	char *dot;
 
 	dot = ft_strchr(file, '.');
 	if (!dot)

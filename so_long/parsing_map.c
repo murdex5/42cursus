@@ -89,10 +89,88 @@ static int	read_map_file(t_map *map, char *file)
 	return (1);
 }
 
+static int	store_player_position(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < map->height)
+	{
+		j = 0;
+		while (j < map->width)
+		{
+			if (map->content[i][j] == 'P')
+			{
+				map->player_y = i;
+				map->player_x = j;
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+static void	clean_up(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	if (map->content)
+	{
+		while (i < map->height && map->content[i])
+		{
+			free(map->content[i]);
+			i++;
+		}
+		free(map->content);
+	}
+	free(map);
+}
+
+static t_map	*populating_map(t_map *map, char *file)
+{
+	if (!read_map_file(map, file))
+	{
+		clean_up(map);
+		return (error_message("Couldn't read to the file"), NULL);
+	}
+	if (!check_map(map))
+	{
+		clean_up(map);
+		return (error_message("The map is invalid"), NULL);
+	}
+	if (!store_player_position(map))
+	{
+		clean_up(map);
+		return (error_message("Failed to store player position"), NULL);
+	}
+	return (map);
+}
+
 t_map	*parsing_map(char *file)
 {
-	t_map *map;
+	t_map	*map;
+	int		line_count;
 
-    if (!check_file_type(file, ".ber"))
+	if (!check_file_type(file, ".ber"))
 		return (error_message("Wrong File Type."));
+	line_count = count_lines(file);
+	if (line_count <= 0)
+		return (error_message("Failed to read the file type"), NULL);
+	map = create_map();
+	if (!map)
+		return (error_message("Memory allocation failed"), NULL);
+	map->height = line_count;
+	map->content = (char **)malloc(sizeof(char *) * (line_count + 1));
+	if (!map->content)
+	{
+		free(map);
+		return (error_message("Memory allocation failed"), NULL);
+	}
+	map->content = NULL;
+	map = populating_map(map, file);
+	retunr(map);
 }

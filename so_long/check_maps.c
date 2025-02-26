@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   check_maps.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
+/*                                                    +:+ +:+
 	+:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+      
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+
 	+#+        */
-/*                                                +#+#+#+#+#+  
+/*                                                +#+#+#+#+#+
 	+#+           */
 /*   Created: 2025/02/20 11:46:33 by kadferna          #+#    #+#             */
 /*   Updated: 2025/02/20 11:46:34 by kadferna         ###   ########.fr       */
@@ -50,9 +50,9 @@ int	if_map_rectangled(t_map *map)
 	return (1);
 }
 
-int if_map_sorrounded(t_map *map)
+int	if_map_sorrounded(t_map *map)
 {
-    int i;
+	int i;
 
 	i = 0;
 	while (i < map->width)
@@ -67,6 +67,35 @@ int if_map_sorrounded(t_map *map)
 	{
 		if (map->content[0][i] != '1' || map->content[map->width - 1] != '1')
 			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	check_map_contents(t_map *map)
+{
+	int i;
+	int j;
+
+	map->collectables = 0;
+	map->exit_count = 0;
+	map->player_count = 0;
+	i = 0;
+	while (i < map->height)
+	{
+		j = 0;
+		while (j < map->width)
+		{
+			if (map->content[i][j] == 'P')
+				map->player_count++;
+			else if (map->content[i][j] == 'E')
+				map->exit_count++;
+			else if (map->content[i][j] == 'C')
+				map->collectables++;
+			else
+				return (0);
+			j++;
+		}
 		i++;
 	}
 	return (1);

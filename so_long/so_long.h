@@ -21,10 +21,14 @@
 
 typedef struct s_map
 {
+	char **content;
 	int width;
 	int height;
+	int player_count;
+	int exit_count;
 	int collectables;
-	int exits;
+	int player_x;
+	int player_y;
 } t_map;
 
 typedef struct s_data

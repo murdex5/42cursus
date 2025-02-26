@@ -119,10 +119,20 @@ int	check_map(int argc, char **argv, t_map *map)
 		return (1);
 	file = argv[1];
 	if (!check_file_type(file, ".ber"))
-        return (error_message("Wrong File Type"));
+        return (error_message("Wrong File Type."));
     if (!if_map_rectangled(map))
-        return (error_message("Map is not recatngular"));
+        return (error_message("Map is not recatngular."));
     if (!if_map_sorrounded(map))
-        return (error_message("Map is not surrounded by walls"));
+        return (error_message("Map is not surrounded by walls."));
+    if (!check_map_contents(map))
+        return (error_message("Map contains invalid characters"));
+    if (map->player_count != 1)
+        return (error_message("Invalid Player count."));
+    if (map->exit_count != 1)
+        return (error_message("Must have One exit."));
+    if (map->collectables > 1)
+        return (error_message("The map must have atleast One collectible."));
+    if (check_path(map))
+        return (error_message("Map does not have a valid path."));
 	return (1);
 }

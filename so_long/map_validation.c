@@ -37,7 +37,7 @@ static char	**copy_map(t_map *map)
 	return (map_copy);
 }
 
-static void	free_map(char **map_arr)
+void	free_map(char **map_arr)
 {
 	int	i;
 
@@ -88,7 +88,7 @@ int	check_path(t_map *map)
 	int		y;
 	int		exit_count;
 
-	map_copy = copy_map(map->content);
+	map_copy = copy_map(map);
 	if (!map_copy)
 		return (0);
 	y = 0;
@@ -110,22 +110,21 @@ int	check_path(t_map *map)
 	return (0);
 }
 
-
 int	check_map(t_map *map)
 {
-    if (!if_map_rectangled(map))
-        return (error_message("Map is not recatngular."));
-    if (!if_map_sorrounded(map))
-        return (error_message("Map is not surrounded by walls."));
-    if (!check_map_contents(map))
-        return (error_message("Map contains invalid characters"));
-    if (map->player_count != 1)
-        return (error_message("Invalid Player count."));
-    if (map->exit_count != 1)
-        return (error_message("Must have One exit."));
-    if (map->collectables > 1)
-        return (error_message("The map must have atleast One collectible."));
-    if (check_path(map))
-        return (error_message("Map does not have a valid path."));
+	if (!if_map_rectangled(map))
+		return (error_message("Map is not recatngular."));
+	if (!if_map_sorrounded(map))
+		return (error_message("Map is not surrounded by walls."));
+	if (!check_map_contents(map))
+		return (error_message("Map contains invalid characters"));
+	if (map->player_count != 1)
+		return (error_message("Invalid Player count."));
+	if (map->exit_count != 1)
+		return (error_message("Must have One exit."));
+	if (map->collectables > 1)
+		return (error_message("The map must have atleast One collectible."));
+	if (check_path(map))
+		return (error_message("Map does not have a valid path."));
 	return (1);
 }

@@ -16,11 +16,8 @@
 int	main(int argc, char **argv)
 {
 	t_data data;
-	int k;
 
-	k = check_map(argc, argv);
-	if (k)
-		return (1);
+	
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
 		return (1);

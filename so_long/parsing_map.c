@@ -41,7 +41,50 @@ static int count_lines(char *file)
     if (fd < 0)
     {
         perror("So long");
+        return (-1);
+    }
+    line_count = 0;
+    line = get_next_line(fd);
+    while (line != NULL)
+    {
+        line_count++;
+        free(line);
+        line = get_next_line(fd);
+    }
+    close(fd);
+    return (line_count);
+}
+static int free_str(char **content, int i)
+{
+    while (i > 0)
+        free(content[--i]);
+    free(content);
+    return (0);
+}
+static int read_map_file(t_map *map,char *file)
+{
+    int fd;
+    int i;
+    char *line;
+
+    fd = open(file, O_RDONLY);
+    if (fd < 0)
+    {
+        perror("So long");
         return (0);
     }
+    i = 0;
     line = get_next_line(fd);
+    while (line = get_next_line(fd) != NULL)
+    {
+        if (line[ft_strlen(line) - 1] == '\n')
+            line[ft_strlen(line) - 1] = '\0';
+        map->content[i] = ft_strdup(line); 
+        free(line);
+        if (!map->content[i])
+            return (free_str(map->content[i], i));
+        i++;
+    }
+    close(fd);
+    return (1);
 }

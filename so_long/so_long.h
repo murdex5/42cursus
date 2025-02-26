@@ -45,6 +45,7 @@ int	error_message(char *msg);
 int	if_map_rectangled(t_map *map);
 int	if_map_sorrounded(t_map *map);
 int	check_map_contents(t_map *map);
-int	check_map(int argc, char **argv, t_map *map);
+void	free_map(char **map_arr);
+int	check_map(t_map *map);
 
 #endif

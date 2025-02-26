@@ -17,7 +17,8 @@ int	main(int argc, char **argv)
 {
 	t_data data;
 
-	
+	if (!check_file_type(argv[1], ".ber"))
+        return (error_message("Wrong File Type."));
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
 		return (1);

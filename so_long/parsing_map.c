@@ -112,6 +112,7 @@ static int	store_player_position(t_map *map)
 			}
 			j++;
 		}
+		ft_printf("\n");
 		i++;
 	}
 	return (0);

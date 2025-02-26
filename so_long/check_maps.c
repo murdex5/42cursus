@@ -28,6 +28,25 @@ int	check_file_type(char *file, char *type)
 		return (1);
 }
 
+int if_map_rectangled(t_map *map)
+{
+	int first_line_lentgh;
+	int i;
+
+	if (!map || !map->content || !map->content[0])
+		return (0);
+	first_line_lentgh = ft_strlen(map->content[0]);
+	i = 0;
+	while (i < map->height)
+	{
+		if ((int)ft_strlen(map->content[i]) != first_line_lentgh)
+			return (0);
+		i++;
+	}
+	map->width = first_line_lentgh;
+	return (1);
+}
+
 int	check_map(int argc, char **argv)
 {
 	int i;

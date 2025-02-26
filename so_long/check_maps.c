@@ -42,7 +42,7 @@ int	if_map_sorrounded(t_map *map)
 	i = 0;
 	while (i < map->width)
 	{
-		if (map->content[0][i] != '1' || map->content[map->width - 1] != '1')
+		if (map->content[0][i] != '1' || map->content[i][map->width - 1] != '1')
 			return (0);
 		i++;
 	}
@@ -50,7 +50,7 @@ int	if_map_sorrounded(t_map *map)
 	i = 0;
 	while (i < map->height)
 	{
-		if (map->content[0][i] != '1' || map->content[map->width - 1] != '1')
+		if (map->content[0][i] != '1' || map->content[i][map->width - 1] != '1')
 			return (0);
 		i++;
 	}

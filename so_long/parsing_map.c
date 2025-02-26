@@ -75,15 +75,16 @@ static int	read_map_file(t_map *map, char *file)
 	}
 	i = 0;
 	line = get_next_line(fd);
-	while (line = get_next_line(fd) != NULL)
+	while (line != NULL)
 	{
 		if (line[ft_strlen(line) - 1] == '\n')
 			line[ft_strlen(line) - 1] = '\0';
 		map->content[i] = ft_strdup(line);
 		free(line);
 		if (!map->content[i])
-			return (free_str(map->content[i], i));
+			return (free_str(map->content, i));
 		i++;
+		line = get_next_line(fd);
 	}
 	close(fd);
 	return (1);
@@ -113,7 +114,7 @@ static int	store_player_position(t_map *map)
 	return (0);
 }
 
-static void	clean_up(t_map *map)
+void	clean_up(t_map *map)
 {
 	int	i;
 
@@ -135,17 +136,20 @@ static t_map	*populating_map(t_map *map, char *file)
 	if (!read_map_file(map, file))
 	{
 		clean_up(map);
-		return (error_message("Couldn't read to the file"), NULL);
+		error_message("Couldn't read to the file");
+		return (NULL);
 	}
 	if (!check_map(map))
 	{
 		clean_up(map);
-		return (error_message("The map is invalid"), NULL);
+		error_message("The map is invalid");
+		return (NULL);
 	}
 	if (!store_player_position(map))
 	{
 		clean_up(map);
-		return (error_message("Failed to store player position"), NULL);
+		error_message("Failed to store player position");
+		return (NULL);
 	}
 	return (map);
 }
@@ -156,7 +160,7 @@ t_map	*parsing_map(char *file)
 	int		line_count;
 
 	if (!check_file_type(file, ".ber"))
-		return (error_message("Wrong File Type."));
+		return (error_message("Wrong File Type."), NULL);
 	line_count = count_lines(file);
 	if (line_count <= 0)
 		return (error_message("Failed to read the file type"), NULL);
@@ -172,5 +176,5 @@ t_map	*parsing_map(char *file)
 	}
 	map->content = NULL;
 	map = populating_map(map, file);
-	retunr(map);
+	return(map);
 }

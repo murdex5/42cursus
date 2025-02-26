@@ -47,5 +47,7 @@ int	if_map_sorrounded(t_map *map);
 int	check_map_contents(t_map *map);
 void	free_map(char **map_arr);
 int	check_map(t_map *map);
+t_map	*parsing_map(char *file);
+void	clean_up(t_map *map);
 
 #endif

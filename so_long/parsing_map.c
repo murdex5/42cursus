@@ -103,7 +103,6 @@ static int	store_player_position(t_map *map)
 		j = 0;
 		while (j < map->width)
 		{
-			ft_printf("%c", map->content[i][j]);
 			if (map->content[i][j] == 'P')
 			{
 				map->player_y = i;
@@ -112,7 +111,6 @@ static int	store_player_position(t_map *map)
 			}
 			j++;
 		}
-		ft_printf("\n");
 		i++;
 	}
 	return (0);

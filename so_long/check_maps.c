@@ -84,7 +84,7 @@ int	check_map_contents(t_map *map)
 				map->exit_count++;
 			else if (map->content[i][j] == 'C')
 				map->collectables++;
-			else
+			else if (map->content[i][j] != '0' && map->content[i][j] != '1')
 				return (0);
 			j++;
 		}

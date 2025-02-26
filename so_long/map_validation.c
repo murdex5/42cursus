@@ -37,30 +37,33 @@ static char	**copy_map(t_map *map)
 	return (map_copy);
 }
 
-void	free_map(char **map_arr)
+void	free_map(char **map_arr, int height)
 {
 	int	i;
 
+	if (!map_arr)
+		return ;
 	i = 0;
-	while (map_arr[i])
+	while (i < height)
 	{
-		free(map_arr[i]);
+		if (map_arr[i])
+			free(map_arr[i]);
 		i++;
 	}
 	free(map_arr);
 }
 
-static int	flood_fill(char **map_copy, int x, int y, int *collectable_count)
+static int	flood_fill(char **map, int x, int y, int *collectibles)
 {
 	int	exit_found;
 
 	exit_found = 0;
-	if (map_copy[y][x] == '1')
-		return (0);
-	if (map_copy[y][x] == 'E')
-		exit_found = 1;
-	if (map_copy[y][x] == 'C')
-		(*collectable_count)++;
+	if (x < 0 || y < 0 || !map[y] || map[y][x] == '1' || map[y][x] == 'V')
+        return (0);
+	if (map[y][x] == 'E')
+        exit_found = 1;
+	if (map[y][x] == 'C')
+        (*collectibles)++;
 	map_copy[y][x] = 1;
 	exit_found |= flood_fill(map_copy, x + 1, y, collectable_count);
 	exit_found |= flood_fill(map_copy, x - 1, y, collectable_count);
@@ -100,13 +103,14 @@ int	check_path(t_map *map)
 			if (map->content[y][x] == 'P')
 			{
 				exit_count = flodd_filling(map, map_copy, x, y);
+				free_map(map_copy, map->height);
 				return (exit_count);
 			}
 			x++;
 		}
 		y++;
 	}
-	free_map(map_copy);
+	free_map(map_copy, map->height);
 	return (0);
 }
 

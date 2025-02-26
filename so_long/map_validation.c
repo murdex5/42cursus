@@ -113,18 +113,18 @@ int	check_path(t_map *map)
 int	check_map(t_map *map)
 {
 	if (!if_map_rectangled(map))
-		return (error_message("Map is not recatngular."));
+		return (error_message("Map is not recatngular."), 0);
 	if (!if_map_sorrounded(map))
-		return (error_message("Map is not surrounded by walls."));
+		return (error_message("Map is not surrounded by walls."), 0);
 	if (!check_map_contents(map))
-		return (error_message("Map contains invalid characters"));
+		return (error_message("Map contains invalid characters"), 0);
 	if (map->player_count != 1)
-		return (error_message("Invalid Player count."));
+		return (error_message("Invalid Player count."), 0);
 	if (map->exit_count != 1)
-		return (error_message("Must have One exit."));
+		return (error_message("Must have One exit."), 0);
 	if (map->collectables > 1)
-		return (error_message("The map must have atleast One collectible."));
+		return (error_message("The map must have atleast One collectible."), 0);
 	if (check_path(map))
-		return (error_message("Map does not have a valid path."));
+		return (error_message("Map does not have a valid path."), 0);
 	return (1);
 }

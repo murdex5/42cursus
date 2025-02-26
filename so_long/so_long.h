@@ -35,6 +35,8 @@ typedef struct s_data
 {
 	void *mlx_ptr;
 	void *win_ptr;
+	void *textures;
+	t_map *map;
 } t_data;
 
 int	check_file_type(char *file, char *type);

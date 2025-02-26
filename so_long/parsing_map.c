@@ -96,11 +96,14 @@ static int	store_player_position(t_map *map)
 	int	j;
 
 	i = 0;
+	map->width = (int)ft_strlen(map->content[0]);
+	ft_printf("%d\n", map->width);
 	while (i < map->height)
 	{
 		j = 0;
 		while (j < map->width)
 		{
+			ft_printf("%c", map->content[i][j]);
 			if (map->content[i][j] == 'P')
 			{
 				map->player_y = i;
@@ -139,20 +142,21 @@ static t_map	*populating_map(t_map *map, char *file)
 		error_message("Couldn't read to the file");
 		return (NULL);
 	}
-	if (!check_map(map))
-	{
-		clean_up(map);
-		error_message("The map is invalid");
-		return (NULL);
-	}
 	if (!store_player_position(map))
 	{
 		clean_up(map);
 		error_message("Failed to store player position");
 		return (NULL);
 	}
+	if (!check_map(map))
+	{
+		clean_up(map);
+		error_message("The map is invalid");
+		return (NULL);
+	}
 	return (map);
 }
+
 
 t_map	*parsing_map(char *file)
 {
@@ -167,14 +171,13 @@ t_map	*parsing_map(char *file)
 	map = create_map();
 	if (!map)
 		return (error_message("Memory allocation failed"), NULL);
-	map->height = line_count;
 	map->content = (char **)malloc(sizeof(char *) * (line_count + 1));
 	if (!map->content)
 	{
 		free(map);
 		return (error_message("Memory allocation failed"), NULL);
 	}
-	map->content = NULL;
+	map->height = line_count;
 	map = populating_map(map, file);
 	return(map);
 }

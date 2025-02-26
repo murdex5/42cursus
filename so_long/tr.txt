@@ -1,0 +1,6 @@
+==150116== Use of uninitialised value of size 8
+==150116==    at 0x10A5BD: if_map_sorrounded (in /home/malshapraboth/42cursus/so_long/so_long)
+==150116==    by 0x10B161: check_map (in /home/malshapraboth/42cursus/so_long/so_long)
+==150116==    by 0x10ABC5: populating_map (in /home/malshapraboth/42cursus/so_long/so_long)
+==150116==    by 0x10AD23: parsing_map (in /home/malshapraboth/42cursus/so_long/so_long)
+==150116==    by 0x10B25E: main (in /home/malshapraboth/42cursus/so_long/so_long)

@@ -38,21 +38,28 @@ int	if_map_rectangled(t_map *map)
 int	if_map_sorrounded(t_map *map)
 {
 	int i;
+	int j;
 
+	if (!map || !map->content ||  map->width <= 0 || map->height <= 0)
+		return (0);
+	
 	i = 0;
 	while (i < map->width)
 	{
-		if (map->content[0][i] != '1' || map->content[i][map->width - 1] != '1')
+		if (map->content[0][i] != '1')
+			return (0);
+		if (map->content[map->height - 1][i] != '1')
 			return (0);
 		i++;
 	}
-
-	i = 0;
-	while (i < map->height)
+	j = 0;
+	while (j < map->height)
 	{
-		if (map->content[0][i] != '1' || map->content[i][map->width - 1] != '1')
+		if (map->content[j][0] != '1')
 			return (0);
-		i++;
+		if (map->content[j][map->width - 1] != '1')
+			return (0);
+		j++;
 	}
 	return (1);
 }

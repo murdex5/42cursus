@@ -109,3 +109,20 @@ int	check_path(t_map *map)
 	free_map(map_copy);
 	return (0);
 }
+
+
+int	check_map(int argc, char **argv, t_map *map)
+{
+	char *file;
+
+	if (argc != 2)
+		return (1);
+	file = argv[1];
+	if (!check_file_type(file, ".ber"))
+        return (error_message("Wrong File Type"));
+    if (!if_map_rectangled(map))
+        return (error_message("Map is not recatngular"));
+    if (!if_map_sorrounded(map))
+        return (error_message("Map is not surrounded by walls"));
+	return (1);
+}

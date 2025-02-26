@@ -38,8 +38,12 @@ typedef struct s_data
 } t_data;
 
 int	check_file_type(char *file, char *type);
-int	check_map(int argc, char **argv);
 int	on_keypress(int keysym, t_data *data);
 int	on_destroy(t_data *data);
+int	check_path(t_map *map);
+int	error_message(char *msg);
+int	if_map_rectangled(t_map *map);
+int	if_map_sorrounded(t_map map);
+int	check_map(int argc, char **argv, t_map *map);
 
 #endif

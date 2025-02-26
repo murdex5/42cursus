@@ -10,12 +10,21 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+/* Data Types */
+# define EMPTY 0
+# define WALL 1
+# define COLLECTABLE 2
+# define EXIT 3
+# define VISITED 4
+
 /* STRUCTS */
 
 typedef struct s_map
 {
 	int width;
 	int height;
+	int collectables;
+	int exits;
 } t_map;
 
 typedef struct s_data

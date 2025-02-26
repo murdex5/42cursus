@@ -96,5 +96,7 @@ int	count_first_param(const char *str);
 int	ft_printf(const char *format, ...);
 void	ft_putnbr_fd_unsigned(unsigned int n, int fd);
 int	ft_print_addr(void *p0);
+char	*get_next_line(int fd);
+char	*get_next_line_bonus(int fd);
 
 #endif

@@ -50,9 +50,26 @@ int	if_map_rectangled(t_map *map)
 	return (1);
 }
 
-int if_map_sorrounded(t_map map)
+int if_map_sorrounded(t_map *map)
 {
-    
+    int i;
+
+	i = 0;
+	while (i < map->width)
+	{
+		if (map->content[0][i] != '1' || map->content[map->width - 1] != '1')
+			return (0);
+		i++;
+	}
+
+	i = 0;
+	while (i < map->height)
+	{
+		if (map->content[0][i] != '1' || map->content[map->width - 1] != '1')
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 int	error_message(char *msg)

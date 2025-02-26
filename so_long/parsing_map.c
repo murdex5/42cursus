@@ -88,3 +88,11 @@ static int	read_map_file(t_map *map, char *file)
 	close(fd);
 	return (1);
 }
+
+t_map	*parsing_map(char *file)
+{
+	t_map *map;
+
+    if (!check_file_type(file, ".ber"))
+		return (error_message("Wrong File Type."));
+}

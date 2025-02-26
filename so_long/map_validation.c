@@ -37,7 +37,7 @@ static char	**copy_map(t_map *map)
 	return (map_copy);
 }
 
-void	free_map(char **map_arr)
+static void	free_map(char **map_arr)
 {
 	int	i;
 

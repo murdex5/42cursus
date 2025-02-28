@@ -56,24 +56,24 @@ void free_map_content(char **content, int height)
 	free(content);
 }
 
-void free_mlx_pointer(t_data *data)
-{
-    if (!data)
-        return ;
-    if(data->win_ptr && data->mlx_ptr)
-    {
-        mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-        data->win_ptr = NULL;
-    }
-    if(data->mlx_ptr)
-    {
-        mlx_destroy_display(data->mlx_ptr);
-        data->win_ptr = NULL;
-    }
-    if (data->map)
-    {
-        free_map(data->map);
-        data->map = NULL;
-    }
-    free(data);
-}
+// void free_mlx_pointer(t_data *data)
+// {
+//     if (!data)
+//         return ;
+//     if(data->win_ptr && data->mlx_ptr)
+//     {
+//         mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+//         data->win_ptr = NULL;
+//     }
+//     if(data->mlx_ptr)
+//     {
+//         mlx_destroy_display(data->mlx_ptr);
+//         data->win_ptr = NULL;
+//     }
+//     if (data->map)
+//     {
+//         free_map(data->map);
+//         data->map = NULL;
+//     }
+//     free(data);
+// }

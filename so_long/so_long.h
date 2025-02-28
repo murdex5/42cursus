@@ -46,11 +46,18 @@ typedef struct s_map
 	int player_y;
 } t_map;
 
+// typedef struct s_data
+// {
+// 	void *mlx_ptr;
+// 	void *win_ptr;
+// 	t_map *map;
+// } t_data;
+
 typedef struct s_data
 {
 	void *mlx_ptr;
 	void *win_ptr;
-	t_map *map;
+	void *img_ptr; // Correct type
 } t_data;
 
 int	check_file_type(char *file, char *type);

@@ -37,21 +37,6 @@ static char	**copy_map(t_map *map)
 	return (map_copy);
 }
 
-void	free_map(char **map_arr, int height)
-{
-	int	i;
-
-	if (!map_arr)
-		return ;
-	i = 0;
-	while (i < height)
-	{
-		if (map_arr[i])
-			free(map_arr[i]);
-		i++;
-	}
-	free(map_arr);
-}
 
 static int	flood_fill(char **map, int x, int y, int *collectibles)
 {
@@ -104,14 +89,14 @@ int	check_path(t_map *map)
 			if (map->content[y][x] == 'P')
 			{
 				exit_count = flodd_filling(map, map_copy, x, y);
-				free_map(map_copy, map->height);
+				free_map_content(map_copy, map->height);
 				return (exit_count);
 			}
 			x++;
 		}
 		y++;
 	}
-	free_map(map_copy, map->height);
+	free_map_content(map_copy, map->height);
 	return (0);
 }
 

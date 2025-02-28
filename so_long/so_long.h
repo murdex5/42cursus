@@ -2,9 +2,12 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+
+	+:+     */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+
+	+#+        */
+/*                                                +#+#+#+#+#+
+	+#+           */
 /*   Created: 2025/02/28 15:29:36 by kadferna          #+#    #+#             */
 /*   Updated: 2025/02/28 15:29:52 by kadferna         ###   ########.fr       */
 /*                                                                            */
@@ -47,7 +50,6 @@ typedef struct s_data
 {
 	void *mlx_ptr;
 	void *win_ptr;
-	void **textures;
 	t_map *map;
 } t_data;
 
@@ -59,9 +61,10 @@ int	error_message(char *msg);
 int	if_map_rectangled(t_map *map);
 int	if_map_sorrounded(t_map *map);
 int	check_map_contents(t_map *map);
-void	free_map(char **map_arr, int height);
+void	free_map(t_map *map);
 int	check_map(t_map *map);
 t_map	*parsing_map(char *file);
 void	clean_up(t_map *map);
-
+void	free_map_content(char **content, int height);
+void	free_mlx_pointer(t_data *data);
 #endif

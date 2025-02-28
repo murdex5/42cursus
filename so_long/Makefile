@@ -1,6 +1,6 @@
 CC = gcc
 
-SRCS = events.c check_maps.c parsing_map.c map_validation.c  main.c
+SRCS = events.c check_maps.c parsing_map.c map_validation.c free_funcs.c main.c
 OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Werror -Wextra -I. -Imlx

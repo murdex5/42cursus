@@ -58,13 +58,14 @@ static int	flood_fill(char **map, int x, int y, int *collectibles)
 	int	exit_found;
 
 	exit_found = 0;
-	if (x < 0 || y < 0 || !map[y] || map[y][x] == '1' || map[y][x] == 'V')
-        return (0);
+	if (x < 0 || y < 0 || !map[y] || map[y][x] || map[y][x] == '1'
+		|| map[y][x] == 'V')
+		return (0);
 	if (map[y][x] == 'E')
-        exit_found = 1;
+		exit_found = 1;
 	if (map[y][x] == 'C')
-        (*collectibles)++;
-	map[y][x] = 1;
+		(*collectibles)++;
+	map[y][x] = 'V';
 	exit_found |= flood_fill(map, x + 1, y, collectibles);
 	exit_found |= flood_fill(map, x - 1, y, collectibles);
 	exit_found |= flood_fill(map, x, y + 1, collectibles);

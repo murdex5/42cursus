@@ -97,7 +97,6 @@ static int	store_player_position(t_map *map)
 
 	i = 0;
 	map->width = (int)ft_strlen(map->content[0]);
-	ft_printf("%d\n", map->width);
 	while (i < map->height)
 	{
 		j = 0;

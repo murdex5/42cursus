@@ -12,7 +12,17 @@
 
 #include "fdf.h"
 
-int	check_file_type(char *file)
+int	check_file_type(char *file, char *type)
 {
-	return (0);
+	char *dot;
+
+	dot = ft_strchr(file, '.');
+	if (!dot)
+		return (0);
+	if (ft_strlen(dot) != ft_strlen(type))
+		return (0);
+	if (ft_strncmp(dot, type, ft_strlen(type)) == 0)
+		return (1);
+	else
+		return (0);
 }

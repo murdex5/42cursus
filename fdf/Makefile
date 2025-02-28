@@ -1,4 +1,6 @@
-SRCS = 
+SRCS = main.c check_map.c
 OBJS = 
 
-MY_LIBS = my_libs
+MY_LIBS_dir = ./my_libs
+
+

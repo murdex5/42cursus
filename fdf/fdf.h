@@ -20,4 +20,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 
+int	check_file_type(char *file, char *type);
+
 #endif

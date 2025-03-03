@@ -16,7 +16,7 @@
 int	on_keypress(int keysym, t_data *data)
 {
 	(void)data;
-	ft_printf("Pressed key: %c\n", keysym);
+	ft_printf("Pressed key: %d\n", keysym);
 	return (0);
 }
 

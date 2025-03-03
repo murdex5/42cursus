@@ -26,7 +26,11 @@
 # include <unistd.h>
 
 /* Data Types */
-# define ESC  53
+# define ESC 65307
+# define W 119
+# define A 97
+# define S 115
+# define D 100
 
 /* STRUCTS */
 
@@ -34,6 +38,8 @@ typedef struct s_vars
 {
 	void *mlx;
 	void *win;
+	int box_x;
+	int box_y;
 } t_vars;
 typedef struct s_map
 {

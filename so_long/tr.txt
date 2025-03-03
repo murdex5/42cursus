@@ -4,3 +4,11 @@
 ==150116==    by 0x10ABC5: populating_map (in /home/malshapraboth/42cursus/so_long/so_long)
 ==150116==    by 0x10AD23: parsing_map (in /home/malshapraboth/42cursus/so_long/so_long)
 ==150116==    by 0x10B25E: main (in /home/malshapraboth/42cursus/so_long/so_long)
+
+
+
+Pressed key: 119
+Pressed key: 97
+Pressed key: 115
+Pressed key: 100
+65307

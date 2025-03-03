@@ -2,14 +2,16 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2025/03/03 10:53:17 by kadferna          #+#    #+#             */
 /*   Updated: 2025/03/03 10:53:19 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "so_long.h"
 
@@ -25,14 +27,14 @@
 //     map = parsing_map(argv[1]);
 //     if (!map) {
 //         fprintf(stderr, "Error: parsing_map failed\n");
-//         return 1;
+//         return (1);
 //     }
 
 //     data.mlx_ptr = mlx_init();
 //     if (!data.mlx_ptr) {
 //         fprintf(stderr, "Error: mlx_init failed\n");
 //         free_map(map);
-//         return 1;
+//         return (1);
 //     }
 
 //     data.win_ptr = mlx_new_window(data.mlx_ptr, 288, 240, "hi :)");
@@ -40,22 +42,25 @@
 //         fprintf(stderr, "Error: mlx_new_window failed\n");
 //         mlx_destroy_display(data.mlx_ptr);
 //         free_map(map);
-//         return 1;
+//         return (1);
 //     }
 
-//     data.img_ptr = mlx_xpm_file_to_image(data.mlx_ptr, "./assets/House.xpm", &img_width, &img_height);
+//     data.img_ptr = mlx_xpm_file_to_image(data.mlx_ptr, "./assets/House.xpm",
+		&img_width, &img_height);
 //     if (!data.img_ptr) {
 //         fprintf(stderr, "Error: mlx_xpm_file_to_image failed\n");
 //         mlx_destroy_window(data.mlx_ptr, data.win_ptr);
 //         mlx_destroy_display(data.mlx_ptr);
 //         free_map(map);
-//         return 1;
+//         return (1);
 //     }
 
-//     mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_ptr, 0, 0); // Draw at (0, 0)
+//     mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_ptr, 0, 0);
+	// Draw at (0, 0)
 
 //     mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &on_keypress, &data);
-//     mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
+//     mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy,
+	&data);
 
 //     mlx_loop(data.mlx_ptr);
 
@@ -67,48 +72,86 @@
 //     return (0);
 // }
 
-
-void render_square(t_data *mlx, t_data *win, int color)
+int	keys(int keycode, t_vars *vars)
 {
-    int x;
-    int y;
-
-    x = 350;
-    y = 350;
-
-    while (x < 450)
-    {
-        while (y < 450)
-        {
-            mlx_pixel_put(mlx, win, x, y, color);
-            y++;
-        }
-        y = 350;
-        x++;
-    }
-}
-int quit(int keycode, t_vars *vars)
-{
-    if (keycode == ESC)
-    {
-        mlx_destroy_window(vars->mlx, vars->win);
-        free(vars);
-        exit(0);
-    }
-    return (0);
+	if (keycode == ESC)
+	{
+		mlx_destroy_window(vars->mlx, vars->win);
+		free(vars);
+		exit(0);
+	}
+	ft_printf("%d\n", keycode);
+	if (keycode == W)
+		vars->box_y -= 10;
+	if (keycode == A)
+		vars->box_x -= 10;
+	if (keycode == S)
+		vars->box_y += 10;
+	if (keycode == D)
+		vars->box_x += 10;
+	return (0);
 }
 
-int main(void)
+/* Function to close the program properly */
+int	close_program(t_vars *vars)
 {
-    t_vars *vars;
+	mlx_destroy_window(vars->mlx, vars->win);
+	free(vars);
+	exit(0);
+	return (0);
+}
 
-    vars = NULL;
-    vars = malloc(sizeof(t_vars));
+/* Function to render the square */
+int	render_square(t_vars *vars)
+{
+	int x;
+	int y;
 
-    vars->mlx = mlx_init();
-    vars->win = mlx_new_window(vars->mlx, 600, 600, "Test");
+	/* Draw the square at the current position */
+	x = 0;
+	while (x < 100)
+	{
+		y = 0;
+		while (y < 100)
+		{
+			mlx_pixel_put(vars->mlx, vars->win, x + vars->box_x + 350, y
+				+ vars->box_y + 350, 0xFFDDFF);
+			y++;
+		}
+		x++;
+	}
+	return (1);
+}
 
-    mlx_hook(vars->win, 2, 0, quit, vars);
-    mlx_loop(vars->mlx);
-    return 0;
+int	main(void)
+{
+	t_vars *vars;
+
+	vars = malloc(sizeof(t_vars));
+	if (!vars)
+		return (1);
+
+	vars->box_x = 0;
+	vars->box_y = 0;
+
+	vars->mlx = mlx_init();
+	if (!vars->mlx)
+	{
+		free(vars);
+		return (1);
+	}
+
+	vars->win = mlx_new_window(vars->mlx, 600, 600, "Test");
+	if (!vars->win)
+	{
+		free(vars);
+		return (1);
+	}
+
+	mlx_loop_hook(vars->mlx, render_square, vars);
+	mlx_hook(vars->win, 2, 0, keys, vars);
+	mlx_hook(vars->win, 17, 0, close_program, vars);
+	mlx_loop(vars->mlx);
+
+	return (0);
 }

@@ -46,7 +46,7 @@
 //     }
 
 //     data.img_ptr = mlx_xpm_file_to_image(data.mlx_ptr, "./assets/House.xpm",
-		&img_width, &img_height);
+// 		&img_width, &img_height);
 //     if (!data.img_ptr) {
 //         fprintf(stderr, "Error: mlx_xpm_file_to_image failed\n");
 //         mlx_destroy_window(data.mlx_ptr, data.win_ptr);
@@ -56,11 +56,11 @@
 //     }
 
 //     mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_ptr, 0, 0);
-	// Draw at (0, 0)
+// 	Draw at (0, 0)
 
 //     mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &on_keypress, &data);
 //     mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy,
-	&data);
+// 	&data);
 
 //     mlx_loop(data.mlx_ptr);
 

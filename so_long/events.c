@@ -22,6 +22,7 @@
 
 int on_keypress(int keysym, t_vars *vars)
 {
+	(void)vars;
 	if (keysym == ESC)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
@@ -36,7 +37,7 @@ int on_keypress(int keysym, t_vars *vars)
 		vars->box_y += 10;
 	if (keysym == D)
 		vars->box_x += 10;
-	ft_printf("%d\n", keysym);
+	//ft_printf("%d\n", keysym);
 	return (0);
 }
 

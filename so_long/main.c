@@ -2,15 +2,19 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+
+	+:+     */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+
+	+#+        */
+/*                                                +#+#+#+#+#+
+	+#+           */
 /*   Created: 2025/03/03 14:09:25 by kadferna          #+#    #+#             */
 /*   Updated: 2025/03/03 14:09:26 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
 
 // int main(int argc, char **argv) {
 //     t_data data;
@@ -88,7 +92,6 @@ int	keys(int keycode, t_vars *vars)
 	return (0);
 }
 
-
 int	close_program(t_vars *vars)
 {
 	mlx_destroy_window(vars->mlx, vars->win);
@@ -130,26 +133,21 @@ int	main(void)
 
 	vars->box_x = 0;
 	vars->box_y = 0;
-
 	vars->mlx = mlx_init();
 	if (!vars->mlx)
 	{
 		free(vars);
 		return (1);
 	}
-
 	vars->win = mlx_new_window(vars->mlx, 600, 600, "Test");
-	if (!vars->win)
+	if (!vars->win || !vars->mlx)
 	{
 		free(vars);
 		return (1);
 	}
-
 	mlx_loop_hook(vars->mlx, render_square, vars);
 	mlx_hook(vars->win, KeyRelease, KeyReleaseMask, &on_keypress, vars);
-	mlx_hook(vars->win, 2, 0, on_keypress, vars);
 	mlx_hook(vars->win, 17, 0, close_program, vars);
 	mlx_loop(vars->mlx);
-
 	return (0);
 }

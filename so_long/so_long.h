@@ -59,7 +59,7 @@ typedef struct s_data
 } t_data;
 
 int	check_file_type(char *file, char *type);
-int	on_keypress(int keysym, t_data *data);
+int	on_keypress(int keysym, t_vars *vars);
 int	on_destroy(t_data *data);
 int	check_path(t_map *map);
 int	error_message(char *msg);

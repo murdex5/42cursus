@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "so_long.h"
-
 
 // int main(int argc, char **argv) {
 //     t_data data;
@@ -78,7 +76,6 @@ int	keys(int keycode, t_vars *vars)
 		free(vars);
 		exit(0);
 	}
-	ft_printf("%d\n", keycode);
 	if (keycode == W)
 		vars->box_y -= 10;
 	if (keycode == A)
@@ -87,10 +84,11 @@ int	keys(int keycode, t_vars *vars)
 		vars->box_y += 10;
 	if (keycode == D)
 		vars->box_x += 10;
+	ft_printf("%d\n", keycode);
 	return (0);
 }
 
-/* Function to close the program properly */
+
 int	close_program(t_vars *vars)
 {
 	mlx_destroy_window(vars->mlx, vars->win);
@@ -105,6 +103,7 @@ int	render_square(t_vars *vars)
 	int x;
 	int y;
 
+	mlx_clear_window(vars->mlx, vars->win);
 	/* Draw the square at the current position */
 	x = 0;
 	while (x < 100)
@@ -147,7 +146,8 @@ int	main(void)
 	}
 
 	mlx_loop_hook(vars->mlx, render_square, vars);
-	mlx_hook(vars->win, 2, 0, keys, vars);
+	mlx_hook(vars->win, KeyRelease, KeyReleaseMask, &on_keypress, vars);
+	mlx_hook(vars->win, 2, 0, on_keypress, vars);
 	mlx_hook(vars->win, 17, 0, close_program, vars);
 	mlx_loop(vars->mlx);
 

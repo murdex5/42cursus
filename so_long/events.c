@@ -13,10 +13,30 @@
 #include "so_long.h"
 
 
-int	on_keypress(int keysym, t_data *data)
+// int	on_keypress(int keysym, t_data *data)
+// {
+// 	(void)data;
+// 	ft_printf("Pressed key: %d\n", keysym);
+// 	return (0);
+// }
+
+int on_keypress(int keysym, t_vars *vars)
 {
-	(void)data;
-	ft_printf("Pressed key: %d\n", keysym);
+	if (keysym == ESC)
+	{
+		mlx_destroy_window(vars->mlx, vars->win);
+		free(vars);
+		exit(0);
+	}
+	if (keysym == W)
+		vars->box_y -= 10;
+	if (keysym == A)
+		vars->box_x -= 10;
+	if (keysym == S)
+		vars->box_y += 10;
+	if (keysym == D)
+		vars->box_x += 10;
+	ft_printf("%d\n", keysym);
 	return (0);
 }
 

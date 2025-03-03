@@ -28,3 +28,4 @@ int	on_destroy(t_data *data)
 	exit(0);
 	return (0);
 }
+

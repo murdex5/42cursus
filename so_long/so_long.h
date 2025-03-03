@@ -26,14 +26,15 @@
 # include <unistd.h>
 
 /* Data Types */
-# define EMPTY 0
-# define WALL 1
-# define COLLECTABLE 2
-# define EXIT 3
-# define VISITED 4
+# define ESC  53
 
 /* STRUCTS */
 
+typedef struct s_vars
+{
+	void *mlx;
+	void *win;
+} t_vars;
 typedef struct s_map
 {
 	char **content;
@@ -46,18 +47,11 @@ typedef struct s_map
 	int player_y;
 } t_map;
 
-// typedef struct s_data
-// {
-// 	void *mlx_ptr;
-// 	void *win_ptr;
-// 	t_map *map;
-// } t_data;
-
 typedef struct s_data
 {
 	void *mlx_ptr;
 	void *win_ptr;
-	void *img_ptr; // Correct type
+	void *img_ptr;
 } t_data;
 
 int	check_file_type(char *file, char *type);

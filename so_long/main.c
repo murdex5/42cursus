@@ -106,7 +106,7 @@ int	render_square(t_vars *vars)
 	int x;
 	int y;
 
-	mlx_clear_window(vars->mlx, vars->win);
+	//mlx_clear_window(vars->mlx, vars->win);
 	/* Draw the square at the current position */
 	x = 0;
 	while (x < 100)
@@ -142,6 +142,7 @@ int	main(void)
 	vars->win = mlx_new_window(vars->mlx, 600, 600, "Test");
 	if (!vars->win || !vars->mlx)
 	{
+		free(vars->mlx);
 		free(vars);
 		return (1);
 	}
@@ -149,5 +150,8 @@ int	main(void)
 	mlx_hook(vars->win, KeyRelease, KeyReleaseMask, &on_keypress, vars);
 	mlx_hook(vars->win, 17, 0, close_program, vars);
 	mlx_loop(vars->mlx);
+	free(vars->mlx);
+	free(vars->win);
+	free(vars);
 	return (0);
 }

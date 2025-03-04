@@ -100,14 +100,11 @@ int	close_program(t_vars *vars)
 	return (0);
 }
 
-/* Function to render the square */
 int	render_square(t_vars *vars)
 {
 	int x;
 	int y;
 
-	//mlx_clear_window(vars->mlx, vars->win);
-	/* Draw the square at the current position */
 	x = 0;
 	while (x < 100)
 	{

@@ -15,10 +15,6 @@
 
 #include "so_long.h"
 
-void play_animation(t_vars *vars)
-{
-
-}
 int render_car(t_vars *vars)
 {
 	int x;
@@ -52,13 +48,11 @@ int main()
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, 800, 800, "HELLO");
 
-	vars->player = malloc(sizeof(t_obj));
+	vars->player = malloc(sizeof(t_player));
 	vars->player->x = 0;
 	vars->player->y = 0;
 	vars->player->next = NULL;
-	vars->player->idle->img = mlx_xpm_file_to_image(vars->mlx, "0.xpm", &vars->player->w, &vars->player->h);
-
-	
+	load_animation_idle(vars, vars->player->run);
 	mlx_loop_hook(vars->mlx, render_car, vars);
 	mlx_hook(vars->win, KeyPress, KeyPressMask, on_keypress, vars);
 	mlx_loop(vars->mlx);

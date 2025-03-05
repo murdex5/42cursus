@@ -11,7 +11,7 @@ void load_animation_idle(t_vars *vars, t_animation *sprite)
         path = get_path("./assets/player_idle/player_idle_down/", i, ".xpm", path);
         if (path == NULL)
         {
-            vars->player->idle = i;
+            vars->player->idle_frames = i;
             break ;
         }
         else
@@ -33,7 +33,7 @@ void load_animation_run(t_vars *vars, t_animation *sprite)
         path = get_path("./assets/player_idle/player_run_down/", i, ".xpm", path);
         if (path == NULL)
         {
-            vars->player->run = i;
+            vars->player->run_frames = i;
             break;
         }
         else

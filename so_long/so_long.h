@@ -41,10 +41,24 @@ typedef struct s_animation
 	int h;
 	struct s_animation *next;
 } t_animation;
+
+typedef struct s_map
+{
+	char **content;
+	int width;
+	int height;
+	int player_count;
+	int exit_count;
+	int collectables;
+	int player_x;
+	int player_y;
+} t_map;
 typedef struct s_player
 {
 	t_animation *idle;
 	t_animation *run;
+	int idle_frames;
+	int run_frames;
 	int w;
 	int h;
 	int x;
@@ -69,17 +83,6 @@ typedef struct s_vars
 	t_map *map;
 	t_player *player;
 } t_vars;
-typedef struct s_map
-{
-	char **content;
-	int width;
-	int height;
-	int player_count;
-	int exit_count;
-	int collectables;
-	int player_x;
-	int player_y;
-} t_map;
 
 int	check_file_type(char *file, char *type);
 int	on_keypress(int keysym, t_vars *vars);
@@ -93,8 +96,10 @@ int	check_map(t_map *map);
 t_map	*parsing_map(char *file);
 void	clean_up(t_map *map);
 char	*get_path(char *main, int frame, char *ext, char *path);
-void add_frames(t_vars *vars, char *path, t_animation *sprite);
-void add_frames_helper(t_vars *vars, char *path, t_animation *sprite);
+void	load_animation_idle(t_vars *vars, t_animation *sprite);
+void	load_animation_run(t_vars *vars, t_animation *sprite);
+void	add_frames(t_vars *vars, char *path, t_animation *sprite);
+void	add_frames_helper(t_vars *vars, char *path, t_animation *sprite);
 void	free_map(t_map *map);
 void	free_map_content(char **content, int height);
 void	free_animation(t_animation *anime, t_vars *vars);

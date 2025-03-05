@@ -35,7 +35,7 @@ void add_frames_helper(t_vars *vars, char *path, t_animation *sprite)
 
     temp = malloc(sizeof(t_animation));
     if (!temp)
-        
+        free_animation(temp);
 }
 
 void add_frames(t_vars *vars, char *path, t_animation *sprite)

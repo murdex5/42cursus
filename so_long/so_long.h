@@ -67,7 +67,7 @@ typedef struct s_vars
 	void *mlx;
 	void *win;
 	t_map *map;
-	t_obj *player;
+	t_player *player;
 } t_vars;
 typedef struct s_map
 {
@@ -89,10 +89,13 @@ int	error_message(char *msg);
 int	if_map_rectangled(t_map *map);
 int	if_map_sorrounded(t_map *map);
 int	check_map_contents(t_map *map);
-void	free_map(t_map *map);
 int	check_map(t_map *map);
 t_map	*parsing_map(char *file);
 void	clean_up(t_map *map);
+char	*get_path(char *main, int frame, char *ext, char *path);
+void	free_map(t_map *map);
 void	free_map_content(char **content, int height);
-char *get_path(char *main, int frame, char *ext, char *path);
+void	free_animation(t_animation *anime, t_vars *vars);
+void	free_player(t_player *p, t_vars *vars);
+void	free_vars(t_vars *vars);
 #endif

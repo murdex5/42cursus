@@ -155,7 +155,6 @@ static t_map	*populating_map(t_map *map, char *file)
 	return (map);
 }
 
-
 t_map	*parsing_map(char *file)
 {
 	t_map	*map;
@@ -177,5 +176,5 @@ t_map	*parsing_map(char *file)
 	}
 	map->height = line_count;
 	map = populating_map(map, file);
-	return(map);
+	return (map);
 }

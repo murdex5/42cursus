@@ -10,14 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "so_long.h"
 
 void	free_map(t_map *map)
 {
-	int	i;
-	char **map_arr;
-	
+	int		i;
+	char	**map_arr;
+
 	if (!map)
 		return ;
 	map_arr = map->content;
@@ -38,9 +37,10 @@ void	free_map(t_map *map)
 	map = NULL;
 }
 
-void free_map_content(char **content, int height)
+void	free_map_content(char **content, int height)
 {
-	int i;
+	int	i;
+
 	if (!content)
 		return ;
 	i = 0;
@@ -56,7 +56,7 @@ void free_map_content(char **content, int height)
 	free(content);
 }
 
-void free_animation(t_animation *anime, t_vars *vars)
+void	free_animation(t_animation *anime, t_vars *vars)
 {
 	if (anime)
 	{
@@ -66,7 +66,7 @@ void free_animation(t_animation *anime, t_vars *vars)
 	}
 }
 
-void free_player(t_player *p, t_vars *vars)
+void	free_player(t_player *p, t_vars *vars)
 {
 	if (p)
 	{
@@ -75,7 +75,7 @@ void free_player(t_player *p, t_vars *vars)
 		free(p);
 	}
 }
-void free_vars(t_vars *vars)
+void	free_vars(t_vars *vars)
 {
 	if (vars)
 	{

@@ -2,15 +2,19 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   check_maps.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2025/03/03 14:08:30 by kadferna          #+#    #+#             */
 /*   Updated: 2025/03/03 14:08:32 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
 
 int	check_file_type(char *file, char *type)
 {
@@ -51,9 +55,9 @@ int	if_map_sorrounded(t_map *map)
 	int i;
 	int j;
 
-	if (!map || !map->content ||  map->width <= 0 || map->height <= 0)
+	if (!map || !map->content || map->width <= 0 || map->height <= 0)
 		return (0);
-	
+
 	i = 0;
 	while (i < map->width)
 	{

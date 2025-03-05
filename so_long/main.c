@@ -15,7 +15,8 @@
 
 #include "so_long.h"
 
-int render_car(t_vars *vars)
+
+int	render_car(t_vars *vars)
 {
 	int x;
 	int y;
@@ -27,7 +28,8 @@ int render_car(t_vars *vars)
 	{
 		while (y < 450)
 		{
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->player->run, vars->player->x, vars->player->y);
+			mlx_put_image_to_window(vars->mlx, vars->win,
+				vars->player->run->img, vars->player->x, vars->player->y);
 			y++;
 		}
 		y = 350;
@@ -37,8 +39,7 @@ int render_car(t_vars *vars)
 	return (1);
 }
 
-
-int main()
+int	main(void)
 {
 	t_vars *vars;
 
@@ -52,7 +53,7 @@ int main()
 	vars->player->x = 0;
 	vars->player->y = 0;
 	vars->player->next = NULL;
-	load_animation_idle(vars, vars->player->run);
+	// load_animation_idle(vars, vars->player->run);
 	mlx_loop_hook(vars->mlx, render_car, vars);
 	mlx_hook(vars->win, KeyPress, KeyPressMask, on_keypress, vars);
 	mlx_loop(vars->mlx);

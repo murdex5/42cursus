@@ -2,9 +2,12 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2025/02/26 10:05:57 by kadferna          #+#    #+#             */
 /*   Updated: 2025/02/26 10:05:59 by kadferna         ###   ########.fr       */
 /*                                                                            */
@@ -20,7 +23,7 @@
 // 	return (0);
 // }
 
-int on_keypress(int keysym, t_vars *vars)
+int	on_keypress(int keysym, t_vars *vars)
 {
 	(void)vars;
 	if (keysym == ESC)
@@ -36,8 +39,8 @@ int on_keypress(int keysym, t_vars *vars)
 	if (keysym == S)
 		vars->player->y += 10;
 	if (keysym == D)
-		vars->player->x  += 10;
-	//ft_printf("%d\n", keysym);
+		vars->player->x += 10;
+	// ft_printf("%d\n", keysym);
 	return (0);
 }
 
@@ -49,4 +52,3 @@ int	on_destroy(t_vars *data)
 	exit(0);
 	return (0);
 }
-

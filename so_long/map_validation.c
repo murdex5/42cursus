@@ -37,7 +37,6 @@ static char	**copy_map(t_map *map)
 	return (map_copy);
 }
 
-
 static int	flood_fill(char **map, int x, int y, int *collectibles)
 {
 	int	exit_found;

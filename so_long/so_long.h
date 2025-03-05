@@ -93,9 +93,12 @@ int	check_map(t_map *map);
 t_map	*parsing_map(char *file);
 void	clean_up(t_map *map);
 char	*get_path(char *main, int frame, char *ext, char *path);
+void add_frames(t_vars *vars, char *path, t_animation *sprite);
+void add_frames_helper(t_vars *vars, char *path, t_animation *sprite);
 void	free_map(t_map *map);
 void	free_map_content(char **content, int height);
 void	free_animation(t_animation *anime, t_vars *vars);
 void	free_player(t_player *p, t_vars *vars);
 void	free_vars(t_vars *vars);
+void	malloc_er(t_vars *vars);
 #endif

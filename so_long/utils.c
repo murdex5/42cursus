@@ -35,10 +35,19 @@ void add_frames_helper(t_vars *vars, char *path, t_animation *sprite)
 
     temp = malloc(sizeof(t_animation));
     if (!temp)
-        free_animation(temp);
+        malloc_er(vars);
+    temp->img = mlx_xpm_file_to_image(vars->mlx, path, &temp->w, &temp->h);
+    temp->next = NULL;
+    while (sprite->next)
+        sprite = sprite->next;
+    sprite->next = temp;
 }
 
 void add_frames(t_vars *vars, char *path, t_animation *sprite)
 {
-    sprite->img = mlx_xpm_file_to_image(vars->mlx, path, &sprite->w, &sprite->h);
+    if (!sprite->img)
+        sprite->img = mlx_xpm_file_to_image(vars->mlx, path, &sprite->w, &sprite->h);
+    else
+        add_frames_helper(vars, path, sprite);
+    free(path);
 }

@@ -44,6 +44,8 @@ typedef struct s_obj
 	struct s_obj *next;
 } t_obj;
 
+typedef struct
+
 typedef struct s_vars
 {
 	void *mlx;

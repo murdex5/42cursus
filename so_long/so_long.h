@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
+/*                                                    +:+ +:+
 	+:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+      
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+
 	+#+        */
-/*                                                +#+#+#+#+#+  
+/*                                                +#+#+#+#+#+
 	+#+           */
 /*   Created: 2025/03/03 14:09:47 by kadferna          #+#    #+#             */
 /*   Updated: 2025/03/03 14:09:49 by kadferna         ###   ########.fr       */
@@ -44,7 +44,15 @@ typedef struct s_obj
 	struct s_obj *next;
 } t_obj;
 
-typedef struct
+typedef struct s_box
+{
+	int m_min;
+	int m_max;
+	int m_bd;
+	int bd;
+	int min;
+	int max;
+} t_box;
 
 typedef struct s_vars
 {

@@ -2,14 +2,16 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2025/03/03 14:09:47 by kadferna          #+#    #+#             */
 /*   Updated: 2025/03/03 14:09:49 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
@@ -32,12 +34,21 @@
 
 /* STRUCTS */
 
+typedef struct s_obj
+{
+	void *img;
+	int w;
+	int h;
+	int x;
+	int y;
+	struct s_obj *next;
+} t_obj;
+
 typedef struct s_vars
 {
 	void *mlx;
 	void *win;
-	int box_x;
-	int box_y;
+	t_obj *car;
 } t_vars;
 typedef struct s_map
 {

@@ -30,13 +30,13 @@ int on_keypress(int keysym, t_vars *vars)
 		exit(0);
 	}
 	if (keysym == W)
-		vars->box_y -= 10;
+		vars->car->y -= 10;
 	if (keysym == A)
-		vars->box_x -= 10;
+		vars->car->x -= 10;
 	if (keysym == S)
-		vars->box_y += 10;
+		vars->car->y += 10;
 	if (keysym == D)
-		vars->box_x += 10;
+		vars->car->x  += 10;
 	//ft_printf("%d\n", keysym);
 	return (0);
 }

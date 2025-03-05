@@ -15,7 +15,10 @@
 
 #include "so_long.h"
 
+void play_animation(t_vars *vars)
+{
 
+}
 int render_car(t_vars *vars)
 {
 	int x;
@@ -28,7 +31,7 @@ int render_car(t_vars *vars)
 	{
 		while (y < 450)
 		{
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->car->img, vars->car->x, vars->car->y);
+			mlx_put_image_to_window(vars->mlx, vars->win, vars->player->run, vars->player->x, vars->player->y);
 			y++;
 		}
 		y = 350;
@@ -37,6 +40,7 @@ int render_car(t_vars *vars)
 	mlx_do_sync(vars->mlx);
 	return (1);
 }
+
 
 int main()
 {
@@ -48,11 +52,11 @@ int main()
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, 800, 800, "HELLO");
 
-	vars->car = malloc(sizeof(t_obj));
-	vars->car->x = 0;
-	vars->car->y = 0;
-	vars->car->next = NULL;
-	vars->car->img = mlx_xpm_file_to_image(vars->mlx, "./assets/player_idle/player_idle_down/0.xpm", &vars->car->w, &vars->car->h);
+	vars->player = malloc(sizeof(t_obj));
+	vars->player->x = 0;
+	vars->player->y = 0;
+	vars->player->next = NULL;
+	vars->player->idle->img = mlx_xpm_file_to_image(vars->mlx, "0.xpm", &vars->player->w, &vars->player->h);
 
 	
 	mlx_loop_hook(vars->mlx, render_car, vars);

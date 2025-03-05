@@ -30,22 +30,22 @@ int on_keypress(int keysym, t_vars *vars)
 		exit(0);
 	}
 	if (keysym == W)
-		vars->car->y -= 10;
+		vars->player->y -= 10;
 	if (keysym == A)
-		vars->car->x -= 10;
+		vars->player->x -= 10;
 	if (keysym == S)
-		vars->car->y += 10;
+		vars->player->y += 10;
 	if (keysym == D)
-		vars->car->x  += 10;
+		vars->player->x  += 10;
 	//ft_printf("%d\n", keysym);
 	return (0);
 }
 
-int	on_destroy(t_data *data)
+int	on_destroy(t_vars *data)
 {
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
+	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_display(data->mlx);
+	free(data->mlx);
 	exit(0);
 	return (0);
 }

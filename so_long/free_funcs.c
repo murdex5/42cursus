@@ -55,3 +55,32 @@ void free_map_content(char **content, int height)
 	}
 	free(content);
 }
+
+void free_animation(t_animation *anime, t_vars *vars)
+{
+	if (anime)
+	{
+		free_animation(anime->next, vars);
+		mlx_destroy_image(vars->mlx, anime->img);
+		free(anime);
+	}
+}
+
+void free_player(t_player *p, t_vars *vars)
+{
+	if (p)
+	{
+		free_animation(p->idle, vars);
+		free_animation(p->run, vars);
+		free(p);
+	}
+}
+void free_vars(t_vars *vars)
+{
+	if (vars)
+	{
+		free_player(vars->player, vars);
+		free_map(vars->map);
+		free(vars);
+	}
+}

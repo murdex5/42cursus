@@ -34,15 +34,23 @@
 
 /* STRUCTS */
 
-typedef struct s_obj
+typedef struct s_animation
 {
 	void *img;
 	int w;
 	int h;
+	struct s_animation *next;
+} t_animation;
+typedef struct s_player
+{
+	t_animation *idle;
+	t_animation *run;
+	int w;
+	int h;
 	int x;
 	int y;
-	struct s_obj *next;
-} t_obj;
+	struct s_player *next;
+} t_player;
 
 typedef struct s_box
 {
@@ -58,7 +66,8 @@ typedef struct s_vars
 {
 	void *mlx;
 	void *win;
-	t_obj *car;
+	t_map *map;
+	t_obj *player;
 } t_vars;
 typedef struct s_map
 {
@@ -72,16 +81,9 @@ typedef struct s_map
 	int player_y;
 } t_map;
 
-typedef struct s_data
-{
-	void *mlx_ptr;
-	void *win_ptr;
-	void *img_ptr;
-} t_data;
-
 int	check_file_type(char *file, char *type);
 int	on_keypress(int keysym, t_vars *vars);
-int	on_destroy(t_data *data);
+int	on_destroy(t_vars *data);
 int	check_path(t_map *map);
 int	error_message(char *msg);
 int	if_map_rectangled(t_map *map);
@@ -92,5 +94,5 @@ int	check_map(t_map *map);
 t_map	*parsing_map(char *file);
 void	clean_up(t_map *map);
 void	free_map_content(char **content, int height);
-void	free_mlx_pointer(t_data *data);
+char *get_path(char *main, int frame, char *ext, char *path);
 #endif

@@ -34,6 +34,13 @@ typedef struct s_map
 	int		player_y;
 }			t_map;
 
+typedef struct s_vars
+{
+	void	*mlx;
+	void	*win;
+	t_map	*map;
+}			t_vars;
+
 int			check_file_type(char *file, char *type);
 int			check_path(t_map *map);
 int			error_message(char *msg);

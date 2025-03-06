@@ -1,5 +1,9 @@
 CC			= gcc
-SRCS		= frees.c map.c player.c utils1.c main.c 
+SRCS		= frees.c \
+				map_utils.c map_validation.c map.c \
+				player.c \
+				utils1.c \
+				main.c 
 OBJS		= ${SRCS:.c=.o}
 CFLAGS		= -Wall -Werror -Wextra
 MLX_DIR		= ./mlx

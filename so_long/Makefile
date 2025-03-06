@@ -17,7 +17,7 @@ ifeq ($(shell uname), Linux)
 	MLX_INCLUDES = -I/usr/include -Imlx
 else
 	MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
-	MLX_INCLUDES =
+	MLX_INCLUDES = -I/opt/X11/include -Imlx
 endif
 
 all: subsystems $(NAME)

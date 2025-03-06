@@ -13,15 +13,17 @@ LIBFT_LIB = $(LIBFT_PATH)/libft.a
 NAME	= so_long
 
 ifeq ($(shell uname), Linux)
-	MLX_FLAGS =  -L/usr/lib/X11 -lXext -lX11
+	MLX_FLAGS = -L/usr/lib -L/usr/lib/X11 -lXext -lX11 -lm -lbsd -lz
+	MLX_INCLUDES = -I/usr/include/X11
 else
-	MLX_FLAGS =  -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
+	MLX_FLAGS = -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
+	MLX_INCLUDES =
 endif
 
 all: subsystems $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -Imlx -c -o $@ $<
+	$(CC) $(CFLAGS) -Imlx $(MLX_INCLUDES) -c -o $@ $<
 
 subsystems:
 	@make -C $(MLX_DIR) all

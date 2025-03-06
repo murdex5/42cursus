@@ -20,7 +20,7 @@ else
 	MLX_INCLUDES = -I/opt/X11/include -Imlx
 endif
 
-all: subsystems $(NAME)
+all: subsystems $(NAME) #clean
 
 %.o : %.c
 	$(CC) $(CFLAGS) $(MLX_INCLUDES) -c -o $@ $<
@@ -34,7 +34,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) $(MLX_LIB) $(LIBFT_LIB) -o $(NAME)
 
 clean:
-	@make -C $(LIBFT_PATH) clean
+	@make -C $(LIBFT_PATH) fclean
 	rm -rf $(OBJS)
 
 fclean: clean

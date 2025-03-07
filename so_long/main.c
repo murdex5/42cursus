@@ -20,6 +20,11 @@ int main()
 	vars = malloc(sizeof(t_vars));
 
 	vars->mlx = mlx_init();
+    vars->map = parsing_map("/maps/map.ber");
+    if (!vars->map)
+    {
+        return (1);
+    }
 	vars->win = mlx_new_window(vars->mlx, 800, 800, "HELLO");
     mlx_loop(vars->mlx);
     mlx_destroy_window(vars->mlx, vars->win);

@@ -52,7 +52,7 @@ typedef struct s_vars
 {
 	void				*mlx;
 	void				*win;
-	// t_map	*map;
+	t_map				*map;
 }						t_vars;
 
 int						check_file_type(char *file, char *type);

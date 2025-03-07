@@ -176,5 +176,10 @@ t_map	*parsing_map(char *file)
 	}
 	map->height = line_count;
 	map = populating_map(map, file);
+	if (!map)
+	{
+		clean_up(map);
+		return (NULL);
+	}
 	return (map);
 }

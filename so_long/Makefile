@@ -3,6 +3,8 @@ SRCS		= frees.c \
 				map_utils.c map_validation.c map.c \
 				player.c \
 				utils1.c \
+				events.c \
+				game.c \
 				main.c 
 OBJS		= ${SRCS:.c=.o}
 CFLAGS		= -Wall -Werror -Wextra

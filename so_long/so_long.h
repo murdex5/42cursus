@@ -22,7 +22,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-
 /* DATA TYPES */
 
 # define ESC 65307
@@ -64,6 +63,6 @@ typedef struct s_vars
 	t_map				*map;
 }						t_vars;
 
-
-
+int						count_lines(char *file);
+char					**alloc_mem(char **arr, int line_count);
 #endif

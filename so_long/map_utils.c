@@ -70,19 +70,6 @@ int	count_lines(char *file)
 	}
 	return (lines);
 }
-int	alloc_mem(t_map *map, int line_count)
-{
-	if (!map)
-		return (0);
-	map->content = malloc(sizeof(char *) * (line_count + 1));
-	if (!map->content)
-	{
-		free(map);
-		return (0);
-	}
-	map->content[line_count] = NULL;
-	return (1);
-}
 
 char	**copy_map(t_map *map)
 {
@@ -107,6 +94,7 @@ char	**copy_map(t_map *map)
 	}
 	return (map_copy);
 }
+
 int	flood_fill(char **map, int x, int y, int *collectibles)
 {
 	int	exit_found;

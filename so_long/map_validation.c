@@ -84,17 +84,6 @@ int	check_map_contents(t_map *map)
 	}
 	return (1);
 }
-static int	flood_filling(t_map *map, char **map_copy, int x, int y)
-{
-	int	exit_found;
-	int	collectibles;
-
-	collectibles = 0;
-	exit_found = flood_fill(map_copy, x, y, &collectibles);
-	if (collectibles == map->collectables && exit_found)
-		return (1);
-	return (0);
-}
 
 int	check_path(t_map *map)
 {

@@ -41,9 +41,9 @@ int	store_player_position(t_map *map)
 
 int	read_map_file(t_map *map, char *file)
 {
-	int fd;
-	int i;
-	char *line;
+	int		fd;
+	int		i;
+	char	*line;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)

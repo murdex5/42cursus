@@ -12,7 +12,6 @@
 
 #include "so_long.h"
 
-
 void	free_map(t_map *map)
 {
 	int		i;
@@ -40,7 +39,7 @@ void	free_map(t_map *map)
 
 void	free_map_content(char **content, int height)
 {
-	int	i;
+	int i;
 
 	if (!content)
 		return ;

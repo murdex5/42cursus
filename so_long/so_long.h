@@ -69,6 +69,8 @@ int						check_file_type(char *file, char *type);
 int						error_message(char *msg);
 int						alloc_mem(t_map *map, int line_count);
 char					**copy_map(t_map *map);
+int						flood_filling(t_map *map, char **map_copy, int x,
+							int y);
 int						flood_fill(char **map, int x, int y, int *collectibles);
 int						read_map_file(t_map *map, char *file);
 int						store_player_position(t_map *map);

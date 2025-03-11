@@ -26,7 +26,7 @@ int	alloc_mem(t_map *map, int line_count)
 	return (1);
 }
 
-static int	flood_filling(t_map *map, char **map_copy, int x, int y)
+int	flood_filling(t_map *map, char **map_copy, int x, int y)
 {
 	int	exit_found;
 	int	collectibles;

@@ -12,14 +12,23 @@
 
 #include "so_long.h"
 
-int on_keypress(int keysym, t_vars *vars)
+int	on_keypress(int keysym, t_vars *vars)
 {
-    (void)vars;
-    if (keysym == ESC)
-    {
-        mlx_destroy_window(vars->mlx, vars->win);
-        free_map(vars->map);
-        free(vars);
-    }
-    return (0);
+	if (keysym == ESC)
+	{
+		mlx_destroy_window(vars->mlx, vars->win);
+		free_map(vars->map);
+		free(vars);
+	}
+	if (keysym == W)
+	{
+		ft_printf("W\n");
+	}
+	if (keysym == A)
+		ft_printf("A\n");
+	if (keysym == S)
+		ft_printf("S\n");
+	if (keysym == D)
+		ft_printf("D\n");
+	return (0);
 }

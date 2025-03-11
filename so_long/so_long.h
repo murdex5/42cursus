@@ -63,6 +63,7 @@ typedef struct s_vars
 	t_map				*map;
 }						t_vars;
 
+int						on_keypress(int keysym, t_vars *vars);
 int						count_lines(char *file);
 int						check_file_type(char *file, char *type);
 int						error_message(char *msg);

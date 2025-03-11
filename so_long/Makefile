@@ -1,6 +1,7 @@
 CC			= gcc
 SRCS		= frees.c \
-				map_utils.c map_validation.c map.c \
+				map_utils.c map_validation.c map_parsing_utils.c map.c \
+				errors.c \
 				player.c \
 				utils1.c \
 				events.c \
@@ -36,7 +37,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) $(MLX_LIB) $(LIBFT_LIB) -o $(NAME)
 
 clean:
-	@make -C $(LIBFT_PATH) fclean
+	@make -C $(LIBFT_PATH) clean
 	rm -rf $(OBJS)
 
 fclean: clean

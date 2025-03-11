@@ -64,5 +64,16 @@ typedef struct s_vars
 }						t_vars;
 
 int						count_lines(char *file);
-char					**alloc_mem(char **arr, int line_count);
+int						check_file_type(char *file, char *type);
+int						error_message(char *msg);
+int						alloc_mem(t_map *map, int line_count);
+char					**copy_map(t_map *map);
+int						flood_fill(char **map, int x, int y, int *collectibles);
+int						read_map_file(t_map *map, char *file);
+int						store_player_position(t_map *map);
+void					free_map(t_map *map);
+void					free_map_content(char **content, int height);
+int						free_str(char **content, int i);
+int						check_map(t_map *map);
+t_map					*parsing_map(char *file);
 #endif

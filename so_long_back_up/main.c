@@ -41,20 +41,23 @@ int	render_car(t_vars *vars)
 
 int	main(void)
 {
-	t_vars *vars;
-
-	vars = NULL;
-	vars = malloc(sizeof(t_vars));
-
-	vars->mlx = mlx_init();
-	vars->win = mlx_new_window(vars->mlx, 800, 800, "HELLO");
-
-	vars->player = malloc(sizeof(t_player));
-	vars->player->x = 0;
-	vars->player->y = 0;
-	vars->player->next = NULL;
-	// load_animation_idle(vars, vars->player->run);
-	mlx_loop_hook(vars->mlx, render_car, vars);
-	mlx_hook(vars->win, KeyPress, KeyPressMask, on_keypress, vars);
-	mlx_loop(vars->mlx);
+	t_map *map;
+	map = parsing_map("map.ber");
+	if (!map)
+	{
+		ft_printf("Doesnt exist\n");
+	}
+	int i = 0;
+	int j;
+	while (i < map->height)
+	{
+		j = 0;
+		while (map->content[i][j] != '\0')
+		{
+			ft_printf("%c", map->content[i][j]);
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }

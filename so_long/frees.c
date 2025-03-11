@@ -47,11 +47,7 @@ void	free_map_content(char **content, int height)
 	i = 0;
 	while (i < height)
 	{
-		if (content[i])
-		{
-			free(content[i]);
-			content[i] = NULL;
-		}
+		free(content[i]);
 		i++;
 	}
 	free(content);

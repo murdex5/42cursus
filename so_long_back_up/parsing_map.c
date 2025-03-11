@@ -86,6 +86,7 @@ static int	read_map_file(t_map *map, char *file)
 		i++;
 		line = get_next_line(fd);
 	}
+	map->content[i] = NULL;
 	close(fd);
 	return (1);
 }
@@ -95,6 +96,8 @@ static int	store_player_position(t_map *map)
 	int	i;
 	int	j;
 
+	if (!map->content || !map->content[0])
+        return (0);
 	i = 0;
 	map->width = (int)ft_strlen(map->content[0]);
 	while (i < map->height)
@@ -167,13 +170,14 @@ t_map	*parsing_map(char *file)
 		return (error_message("Failed to read the file type"), NULL);
 	map = create_map();
 	if (!map)
-		return (error_message("Memory allocation failed"), NULL);
+		return (error_message("Memory allocation failed"), NULL);	
 	map->content = (char **)malloc(sizeof(char *) * (line_count + 1));
 	if (!map->content)
 	{
 		free(map);
 		return (error_message("Memory allocation failed"), NULL);
 	}
+	map->content[line_count] = NULL;
 	map->height = line_count;
 	map = populating_map(map, file);
 	return (map);

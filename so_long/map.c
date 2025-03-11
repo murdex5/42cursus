@@ -12,9 +12,9 @@
 
 #include "so_long.h"
 
-t_map *map_init()
+static t_map	*map_init(void)
 {
-	t_map *map;
+	t_map	*map;
 
 	map = NULL;
 	map = malloc(sizeof(t_map));
@@ -31,16 +31,40 @@ t_map *map_init()
 	return (map);
 }
 
-
-t_map *parsing_map(char *file)
+static t_map	*map_pop(t_map *map, char *file)
 {
-	t_map *map;
-	int line_count;
+	if (!read_map_file(map, file))
+	{
+		free_map(map);
+		return (error_message("Couldn't read to the file"), NULL);
+	}
+	if (!store_player_position(map))
+	{
+		free_map(map);
+		return (error_message("Filed to store player position"), NULL);
+	}
+	if (!check_map(map))
+	{
+		free_map(map);
+		return (error_message("The map is invalid"), NULL);
+	}
+	return (map);
+}
 
+t_map	*parsing_map(char *file)
+{
+	t_map	*map;
+	int		line_count;
+
+	if (!check_file_type(file, ".ber"))
+		return (error_message("Wrong file type."), NULL);
 	line_count = count_lines(file);
 	map = map_init();
 	if (!map)
-		return (NULL);
-	if (alloc_mem(map->content, line_count) == NULL)
-		return (NULL);
+		return (error_message("Map initialization failed"), NULL);
+	if (!alloc_mem(map, line_count))
+		return (error_message("Memory allocation Failed"), NULL);
+	map->height = line_count;
+	map = map_pop(map, file);
+	return (map);
 }

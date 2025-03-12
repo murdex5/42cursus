@@ -39,17 +39,12 @@ t_player	*parse_player(t_vars *vars, t_map *map)
 		return (NULL);
 	player->pos_x = map->player_x;
 	player->pos_y = map->player_y;
-	player->idle = load_animation(vars, "/assets/player/player_idle/");
-    if (!player->idle)
-    {
-        free(player);
-        return (NULL);
-    }
-	player->run = load_animation(vars, "/assets/player/player_idle/");
-    if (!player->run)
-    {
-        free(player);
-        return (NULL);
-    }
+	player->idle = load_animation(vars, "./assets/player/player_idle/", player->h, player->w);
+	player->run = load_animation(vars, "./assets/player/player_idle/", player->h, player->w);
+	if (!player->run || !player->idle)
+	{
+		free(player);
+		return (NULL);
+	}
 	return (player);
 }

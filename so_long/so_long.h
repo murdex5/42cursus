@@ -89,7 +89,7 @@ void					free_map_content(char **content, int height);
 int						free_str(char **content, int i);
 int						check_map(t_map *map);
 t_map					*parsing_map(char *file);
-t_animation				*load_animation(t_vars *vars, char *path);
+t_animation				*load_animation(t_vars *vars, char *path, int h, int w);
 t_player				*parse_player(t_vars *vars, t_map *map);
 int						render_frame(t_vars *vars);
 #endif

@@ -43,7 +43,7 @@ static void	add_node(t_animation **head, t_animation *new_node)
 	}
 }
 
-t_animation	*load_animation(t_vars *vars, char *path)
+t_animation	*load_animation(t_vars *vars, char *path, int h, int w)
 {
 	int			i;
 	void		*img;
@@ -57,7 +57,7 @@ t_animation	*load_animation(t_vars *vars, char *path)
 	{
 		len = 0;
 		img = mlx_xpm_file_to_image(vars->mlx, ft_strjoin(path,
-					ft_strjoin(int_to_str(len, i), ".xpm")), &vars->player->w, &vars->player->h);
+					ft_strjoin(int_to_str(len, i), ".xpm")), &w, &h);
 		new_node = create_node(img);
 		if (!new_node)
 		{

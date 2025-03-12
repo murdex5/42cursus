@@ -12,6 +12,12 @@
 
 #include "so_long.h"
 
+struct typedef s_run
+{
+	t_animation *right;
+	t_aimatio
+}
+
 static t_player	*init_player(void)
 {
 	t_player	*player;
@@ -25,6 +31,8 @@ static t_player	*init_player(void)
 	player->pos_y = 0;
 	player->idle = NULL;
 	player->run = NULL;
+	player->player_state = 0;
+	player->player_direction = RIGHT;
 	return (player);
 }
 
@@ -39,12 +47,12 @@ t_player	*parse_player(t_vars *vars, t_map *map)
 		return (NULL);
 	player->pos_x = map->player_x;
 	player->pos_y = map->player_y;
-	// player->idle = load_animation(vars, "./assets/player/player_idle/", player->h, player->w);
-	// player->run = load_animation(vars, "./assets/player/player_run/", player->h, player->w);
-	// if (!player->run || !player->idle)
-	// {
-	// 	free(player);
-	// 	return (NULL);
-	// }
+	player->idle = load_animation(vars, "./assets/player/player_idle/", player->h, player->w);
+	player->run = load_animation(vars, "./assets/player/player_run/", player->h, player->w);
+	if (!player->run || !player->idle)
+	{
+		free(player);
+		return (NULL);
+	}
 	return (player);
 }

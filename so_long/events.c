@@ -12,30 +12,30 @@
 
 #include "so_long.h"
 
-void	run(t_vars *vars)
-{
-	vars->player->run = load_animation(vars, "./assets/player/player_run/",
-			vars->player->h, vars->player->w);
-	vars->player->idle = NULL;
-}
+// void	run(t_vars *vars)
+// {
+// 	vars->player->run = load_animation(vars, "./assets/player/player_run/",
+// 			vars->player->h, vars->player->w);
+// 	vars->player->idle = NULL;
+// }
 
-void	idle(t_vars *vars)
-{
-	vars->player->idle = load_animation(vars, "./assets/player/player_idle/",
-			vars->player->h, vars->player->w);
-	vars->player->run = NULL;
-}
+// void	idle(t_vars *vars)
+// {
+// 	vars->player->idle = load_animation(vars, "./assets/player/player_idle/",
+// 			vars->player->h, vars->player->w);
+// 	vars->player->run = NULL;
+// }
 
 int	move(int keysym, t_vars *vars)
 {
 	if (keysym == W)
-		run(vars);
-	if (keysym == A)
-		run(vars);
+		vars->map->player_y -= 10;
 	if (keysym == S)
-		run(vars);
+		vars->map->player_y += 10;
+	if (keysym == A)
+		vars->map->player_x -= 10;
 	if (keysym == D)
-		run(vars);
+		vars->map->player_x  += 10;
 	if (keysym == W || keysym == A || keysym == S || keysym == D)
 		return (1);
 	else
@@ -47,11 +47,10 @@ int	on_keypress(int keysym, t_vars *vars)
 	if (keysym == ESC)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
-		free_map(vars->map);
-		free(vars);
 	}
 	if (!move(keysym, vars))
-		idle(vars);
-	mlx_loop_hook(vars->mlx, render_frame, &vars);
+		vars->player->player_state = 0;
+	else
+		vars->player->player_state = 1;
 	return (0);
 }

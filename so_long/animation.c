@@ -81,15 +81,28 @@ void	render_animation(t_vars *vars, t_animation *anim)
 	anim = anim->next;
 }
 
-int	render_frame(t_vars *vars)
+int	render_player_frame(t_vars *vars)
 {
-	static t_animation *current_frame = NULL;
+	static t_animation	*current_frame = NULL;
 
-	if (!current_frame)
-		current_frame = vars->player->idle;
-	render_animation(vars, current_frame);
-	current_frame = current_frame->next;
-	if (!current_frame)
-		current_frame = vars->player->idle;
+	if (vars->player->player_state == 0)
+	{
+		if (!current_frame)
+			current_frame = vars->player->idle;
+		render_animation(vars, current_frame);
+		current_frame = current_frame->next;
+		if (!current_frame)
+			current_frame = vars->player->idle;
+	}
+	else
+	{
+		if (!current_frame)
+			current_frame = vars->player->run;
+		render_animation(vars, current_frame);
+		current_frame = current_frame->next;
+		if (!current_frame)
+			current_frame = vars->player->run;
+	}
+	usleep(100000);
 	return (0);
 }

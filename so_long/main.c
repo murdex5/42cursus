@@ -51,7 +51,7 @@ int main(int argc, char **argv)
 
     vars.player = parse_player(&vars, vars.map);
 
-	mlx_loop_hook(vars.mlx, render_frame, &vars);
+	mlx_hook(vars.mlx, KeyPress, KeyPressMask, on_keypress, &vars);
     mlx_loop(vars.mlx);
 
     return 0;

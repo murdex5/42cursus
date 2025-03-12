@@ -14,22 +14,23 @@
 
 int	main(int argc, char **argv)
 {
-	t_vars	*vars;
+	t_vars *vars;
 
 	if (argc != 2)
-		return (0);
-	vars = NULL;
+		return (1);
 	vars = malloc(sizeof(t_vars));
+	if (!vars)
+		return (1);
 	vars->mlx = mlx_init();
+	vars->win = mlx_new_window(vars->win, 600, 600, "HELLO");
 	vars->map = parsing_map(argv[1]);
 	if (!vars->map)
-	{
 		return (1);
-	}
-	vars->win = mlx_new_window(vars->mlx, 800, 800, "HELLO");
+	vars->player = parse_player(vars, vars->map);
+	if (!vars->player)
+		return (1);
+	mlx_loop_hook(vars->mlx, render_frame, vars);
+	mlx_hook(vars->win, KeyPress, KeyPressMask, on_keypress, vars);
 	mlx_loop(vars->mlx);
-	mlx_hook(vars->mlx, KeyRelease, KeyPressMask, on_keypress, vars);
-	mlx_destroy_window(vars->mlx, vars->win);
-	mlx_destroy_display(vars->mlx);
 	return (0);
 }

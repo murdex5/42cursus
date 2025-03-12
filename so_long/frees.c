@@ -39,7 +39,7 @@ void	free_map(t_map *map)
 
 void	free_map_content(char **content, int height)
 {
-	int i;
+	int	i;
 
 	if (!content)
 		return ;
@@ -50,4 +50,37 @@ void	free_map_content(char **content, int height)
 		i++;
 	}
 	free(content);
+}
+
+void	free_anim(t_animation **head)
+{
+	t_animation	*current;
+	t_animation	*next;
+
+	if (*head == NULL)
+		return ;
+	current = *head;
+	while (current != NULL)
+	{
+		next = current->next;
+		if (current->img != NULL)
+		{
+			free(current->img);
+			current->img = NULL;
+		}
+		free(current);
+		current = next;
+	}
+	*head = NULL;
+}
+
+void	free_player(t_player *player)
+{
+	if (!player)
+		return ;
+	if (player->idle)
+		free_anim(&player->idle);
+	if (player->run)
+		free_anim(&player->run);
+	free(player);
 }

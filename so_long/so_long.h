@@ -22,6 +22,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+/* Variables */
+
+# define ANIMATION_FRAMES 6
+
 /* DATA TYPES */
 
 # define ESC 65307
@@ -55,15 +59,19 @@ typedef struct s_player
 	t_animation			*run;
 	int					h;
 	int					w;
+	int					pos_x;
+	int					pos_y;
 }						t_player;
 typedef struct s_vars
 {
 	void				*mlx;
 	void				*win;
 	t_map				*map;
+	t_player			*player;
 }						t_vars;
 
 int						on_keypress(int keysym, t_vars *vars);
+char					*int_to_str(int len, int num);
 int						count_lines(char *file);
 int						check_file_type(char *file, char *type);
 int						error_message(char *msg);
@@ -74,9 +82,14 @@ int						flood_filling(t_map *map, char **map_copy, int x,
 int						flood_fill(char **map, int x, int y, int *collectibles);
 int						read_map_file(t_map *map, char *file);
 int						store_player_position(t_map *map);
+void					free_anim(t_animation **head);
+void					free_player(t_player *player);
 void					free_map(t_map *map);
 void					free_map_content(char **content, int height);
 int						free_str(char **content, int i);
 int						check_map(t_map *map);
 t_map					*parsing_map(char *file);
+t_animation				*load_animation(t_vars *vars, char *path);
+t_player				*parse_player(t_vars *vars, t_map *map);
+int						render_frame(t_vars *vars);
 #endif

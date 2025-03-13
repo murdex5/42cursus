@@ -53,9 +53,8 @@ int main(int argc, char **argv)
 
 	
     mlx_hook(vars.win, KeyPress, KeyPressMask, on_keypress, &vars);
-    mlx_hook(vars.win, KeyRelease, KeyReleaseMask, set_player_to_idle, &vars);
-    mlx_mouse_hook(vars.win, on_mouse_click, &vars);
-    mlx_loop_hook(vars.mlx, diter_direction, &vars);
+    //mlx_hook(vars.win, KeyRelease, KeyReleaseMask, set_player_to_idle, &vars);
+    mlx_loop_hook(vars.mlx, render_animation, &vars);
     mlx_loop(vars.mlx);
     return 0;
 }

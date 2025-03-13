@@ -38,6 +38,8 @@
 # define IDLE 0
 # define RIGHT 3
 # define LEFT 4
+# define UP 5
+# define DOWN 6
 
 /* Structs */
 
@@ -74,6 +76,7 @@ typedef struct s_player
 	int					pos_x;
 	int					pos_y;
 	int					player_state;
+	int					player_y_dir;
 	int					player_direction;
 	int					is_attacking;
 }						t_player;
@@ -111,6 +114,8 @@ t_animation				*load_animation(t_vars *vars, char *path, int h, int w);
 t_pdirec				*load_dir_animation(t_vars *vars, char *path, int h,
 							int w);
 t_player				*parse_player(t_vars *vars, t_map *map);
-int						render_player_frame(t_vars *vars, t_animation *anim);
-int						diter_direction(t_vars *vars);
+int						render_player_animation(t_vars *vars);
+/*int						render_player_frame(t_vars *vars,
+							t_animation *anim);
+int	diter_direction(t_vars *vars); */
 #endif

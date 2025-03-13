@@ -53,6 +53,7 @@ int main(int argc, char **argv)
 
 	
     mlx_hook(vars.win, KeyPress, KeyPressMask, on_keypress, &vars);
+    mlx_hook(vars.win, KeyRelease, KeyReleaseMask, on_keypress, &vars);
     mlx_loop_hook(vars.mlx, diter_direction, &vars);
     mlx_loop(vars.mlx);
     return 0;

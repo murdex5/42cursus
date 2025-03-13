@@ -100,6 +100,7 @@ void					free_player(t_player *player);
 void					free_map(t_map *map);
 void					free_map_content(char **content, int height);
 int						free_str(char **content, int i);
+void					free_vars(t_vars *vars);
 int						check_map(t_map *map);
 t_map					*parsing_map(char *file);
 t_animation				*load_animation(t_vars *vars, char *path, int h, int w);

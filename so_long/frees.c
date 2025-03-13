@@ -74,7 +74,7 @@ void	free_anim(t_animation **head)
 	*head = NULL;
 }
 
-void free_pdirec(t_pdirec *direction)
+void	free_pdirec(t_pdirec *direction)
 {
 	if (!direction)
 		return ;
@@ -94,4 +94,20 @@ void	free_player(t_player *player)
 	if (player->run)
 		free_pdirec(player->run);
 	free(player);
+}
+
+void	free_vars(t_vars *vars)
+{
+	if (!vars)
+		return ;
+	/*
+	if (vars->mlx)
+		free(vars->mlx);
+	if (vars->win)
+		free(vars->win);*/
+	if (vars->map)
+		free_map(vars->map);
+	if (vars->win)
+		free_player(vars->player);
+	free(vars);
 }

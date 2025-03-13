@@ -31,18 +31,18 @@ int	move(int keysym, t_vars *vars)
 	if (keysym == W || keysym == A || keysym == S || keysym == D)
 	{
 		if (keysym == W)
-		vars->map->player_y -= 5;
+		vars->map->player_y -= 4;
 		if (keysym == S)
-			vars->map->player_y += 5;
+			vars->map->player_y += 4;
 		if (keysym == A)
 		{
 			vars->player->player_direction = LEFT;
-			vars->map->player_x -= 5;
+			vars->map->player_x -= 4;
 		}
 		if (keysym == D)
 		{
 			vars->player->player_direction = RIGHT;
-			vars->map->player_x  += 5;
+			vars->map->player_x  += 4;
 		}
 		return (1);
 	}
@@ -55,6 +55,7 @@ int	on_keypress(int keysym, t_vars *vars)
 	if (keysym == ESC)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
+		free_vars(vars);
 	}
 	if (!move(keysym, vars))
 		vars->player->player_state = IDLE;

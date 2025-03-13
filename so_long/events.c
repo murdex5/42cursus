@@ -62,6 +62,7 @@ int	on_mouse_click(int button, int x, int y, t_vars *vars)
 {
 	int	i;
 
+	i = 0;
 	if (button == 1)
 		vars->player->is_attacking = 1;
 	return (x + y + i * 0);

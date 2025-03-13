@@ -83,6 +83,7 @@ void	free_pdirec(t_pdirec *direction)
 	if (direction->right)
 		free_anim(&direction->right);
 	free(direction);
+	direction = NULL;
 }
 
 void	free_player(t_player *player)

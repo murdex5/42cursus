@@ -12,10 +12,16 @@
 
 #include "so_long.h"
 
-struct typedef s_run
+static t_pdirec *init_ani_dir(void)
 {
-	t_animation *right;
-	t_aimatio
+	t_pdirec *player_direction;
+
+	player_direction = malloc(sizeof(t_pdirec));
+	if (!player_direction)
+		return (NULL);
+	player_direction->left = NULL;
+	player_direction->right = NULL;
+	return (player_direction);
 }
 
 static t_player	*init_player(void)
@@ -29,8 +35,10 @@ static t_player	*init_player(void)
 	player->w = 192;
 	player->pos_x = 0;
 	player->pos_y = 0;
-	player->idle = NULL;
-	player->run = NULL;
+	player->idle = init_ani_dir();
+	player->run = init_ani_dir();
+	if (!player->idle || !player->run)
+		return (NULL);
 	player->player_state = 0;
 	player->player_direction = RIGHT;
 	return (player);

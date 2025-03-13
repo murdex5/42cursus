@@ -56,10 +56,16 @@ typedef struct s_map
 	int					player_y;
 }						t_map;
 
+typedef struct s_pdirec
+{
+	t_animation			*left;
+	t_animation			*right;
+}						t_pdirec;
+
 typedef struct s_player
 {
-	t_animation			*idle;
-	t_animation			*run;
+	t_pdirec			*idle;
+	t_pdirec			*run;
 	int					h;
 	int					w;
 	int					pos_x;

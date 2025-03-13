@@ -34,6 +34,8 @@
 # define S 115
 # define D 100
 
+# define RUN 1
+# define IDLE 0
 # define RIGHT 3
 # define LEFT 4
 
@@ -101,6 +103,9 @@ int						free_str(char **content, int i);
 int						check_map(t_map *map);
 t_map					*parsing_map(char *file);
 t_animation				*load_animation(t_vars *vars, char *path, int h, int w);
+t_pdirec				*load_dir_animation(t_vars *vars, char *path, int h,
+							int w);
 t_player				*parse_player(t_vars *vars, t_map *map);
-int						render_player_frame(t_vars *vars);
+int						render_player_frame(t_vars *vars, t_animation *anim);
+int						diter_direction(t_vars *vars);
 #endif

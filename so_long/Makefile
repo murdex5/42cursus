@@ -3,7 +3,7 @@ SRCS		= frees.c \
 				map_utils.c map_validation.c map_parsing_utils.c map.c \
 				errors.c \
 				animation.c \
-				player.c \
+				player_utils.c player.c \
 				utils1.c \
 				events.c \
 				game.c \

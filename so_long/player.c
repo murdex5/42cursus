@@ -12,18 +12,6 @@
 
 #include "so_long.h"
 
-static t_pdirec *init_ani_dir(void)
-{
-	t_pdirec *player_direction;
-
-	player_direction = malloc(sizeof(t_pdirec));
-	if (!player_direction)
-		return (NULL);
-	player_direction->left = NULL;
-	player_direction->right = NULL;
-	return (player_direction);
-}
-
 static t_player	*init_player(void)
 {
 	t_player	*player;
@@ -35,11 +23,9 @@ static t_player	*init_player(void)
 	player->w = 192;
 	player->pos_x = 0;
 	player->pos_y = 0;
-	player->idle = init_ani_dir();
-	player->run = init_ani_dir();
-	if (!player->idle || !player->run)
-		return (NULL);
-	player->player_state = 0;
+	player->idle = NULL;
+	player->run = NULL;
+	player->player_state = IDLE;
 	player->player_direction = RIGHT;
 	return (player);
 }
@@ -55,8 +41,8 @@ t_player	*parse_player(t_vars *vars, t_map *map)
 		return (NULL);
 	player->pos_x = map->player_x;
 	player->pos_y = map->player_y;
-	player->idle = load_animation(vars, "./assets/player/player_idle/", player->h, player->w);
-	player->run = load_animation(vars, "./assets/player/player_run/", player->h, player->w);
+	player->idle = load_dir_animation(vars, "./assets/player/player_idle/", player->h, player->w);
+	player->run = load_dir_animation(vars, "./assets/player/player_run/", player->h, player->w);
 	if (!player->run || !player->idle)
 	{
 		free(player);

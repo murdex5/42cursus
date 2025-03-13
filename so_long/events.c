@@ -37,7 +37,13 @@ int	move(int keysym, t_vars *vars)
 	if (keysym == D)
 		vars->map->player_x  += 10;
 	if (keysym == W || keysym == A || keysym == S || keysym == D)
+	{
+		if (keysym == A)
+			vars->player->player_direction = LEFT;
+		if (keysym == D)
+			vars->player->player_direction = RIGHT;
 		return (1);
+	}
 	else
 		return (0);
 }
@@ -49,8 +55,8 @@ int	on_keypress(int keysym, t_vars *vars)
 		mlx_destroy_window(vars->mlx, vars->win);
 	}
 	if (!move(keysym, vars))
-		vars->player->player_state = 0;
+		vars->player->player_state = IDLE;
 	else
-		vars->player->player_state = 1;
+		vars->player->player_state = RUN;
 	return (0);
 }

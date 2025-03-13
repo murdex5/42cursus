@@ -28,6 +28,7 @@
 
 int	move(int keysym, t_vars *vars)
 {
+	//ft_printf("%d %d\n", vars->map->player_y, vars->map->player_x);
 	if (keysym == W || keysym == A || keysym == S || keysym == D)
 	{
 		if (keysym == W)
@@ -49,7 +50,6 @@ int	move(int keysym, t_vars *vars)
 	else
 		return (0);
 }
-
 int	on_keypress(int keysym, t_vars *vars)
 {
 	if (keysym == ESC)
@@ -62,8 +62,8 @@ int	on_keypress(int keysym, t_vars *vars)
 	return (0);
 }
 
-int	set_player_to_idle(t_vars *vars)
+int	set_player_to_idle(int keysym, t_vars *vars)
 {
 	vars->player->player_state = IDLE;
-	return (0);
+	return (keysym * 0);
 }

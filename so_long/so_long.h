@@ -84,7 +84,7 @@ typedef struct s_vars
 }						t_vars;
 
 int						on_keypress(int keysym, t_vars *vars);
-int						set_player_to_idle(t_vars *vars);
+int						set_player_to_idle(int keysym, t_vars *vars);
 char					*int_to_str(int len, int num);
 int						count_lines(char *file);
 int						check_file_type(char *file, char *type);

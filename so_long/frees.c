@@ -94,6 +94,8 @@ void	free_player(t_player *player)
 		free_pdirec(player->idle);
 	if (player->run)
 		free_pdirec(player->run);
+	if (player->attack)
+		free_pdirec(player->attack);
 	free(player);
 }
 

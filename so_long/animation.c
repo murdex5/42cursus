@@ -79,23 +79,35 @@ void	render_animation(t_vars *vars, t_animation *anim)
 	mlx_put_image_to_window(vars->mlx, vars->win, anim->img,
 		vars->map->player_x, vars->map->player_y);
 	anim = anim->next;
+	usleep(105000);
 }
 
 int	diter_direction(t_vars *vars)
 {
-	if (vars->player->player_direction == RIGHT)
+	if (vars->player->is_attacking == 0)
 	{
-		if (vars->player->player_state == IDLE)
-			render_player_frame(vars, vars->player->idle->right);
-		else
-			render_player_frame(vars, vars->player->run->right);
+		if (vars->player->player_direction == RIGHT)
+		{
+			if (vars->player->player_state == IDLE)
+				render_player_frame(vars, vars->player->idle->right);
+			else
+				render_player_frame(vars, vars->player->run->right);
+		}
+		if (vars->player->player_direction == LEFT)
+		{
+			if (vars->player->player_state == IDLE)
+				render_player_frame(vars, vars->player->idle->left);
+			else
+				render_player_frame(vars, vars->player->run->left);
+		}
 	}
-	if (vars->player->player_direction == LEFT)
+	else
 	{
-		if (vars->player->player_state == IDLE)
-			render_player_frame(vars, vars->player->idle->left);
+		if (vars->player->player_direction == RIGHT)
+			render_player_frame(vars, vars->player->attack->right);
 		else
-			render_player_frame(vars, vars->player->run->left);
+			render_player_frame(vars, vars->player->attack->left);
+		vars->player->is_attacking = 0;
 	}
 	return (0);
 }
@@ -110,6 +122,5 @@ int	render_player_frame(t_vars *vars, t_animation *anim)
 	current_frame = current_frame->next;
 	if (!current_frame)
 		current_frame = anim;
-	usleep(105000);
 	return (0);
 }

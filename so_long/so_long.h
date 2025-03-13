@@ -68,12 +68,14 @@ typedef struct s_player
 {
 	t_pdirec			*idle;
 	t_pdirec			*run;
+	t_pdirec			*attack;
 	int					h;
 	int					w;
 	int					pos_x;
 	int					pos_y;
 	int					player_state;
 	int					player_direction;
+	int					is_attacking;
 }						t_player;
 typedef struct s_vars
 {
@@ -85,6 +87,7 @@ typedef struct s_vars
 
 int						on_keypress(int keysym, t_vars *vars);
 int						set_player_to_idle(int keysym, t_vars *vars);
+int						on_mouse_click(int button, int x, int y, t_vars *vars);
 char					*int_to_str(int len, int num);
 int						count_lines(char *file);
 int						check_file_type(char *file, char *type);

@@ -25,8 +25,10 @@ static t_player	*init_player(void)
 	player->pos_y = 0;
 	player->idle = NULL;
 	player->run = NULL;
+	player->attack = NULL;
 	player->player_state = IDLE;
 	player->player_direction = RIGHT;
+	player->is_attacking = 0;
 	return (player);
 }
 
@@ -43,7 +45,8 @@ t_player	*parse_player(t_vars *vars, t_map *map)
 	player->pos_y = map->player_y;
 	player->idle = load_dir_animation(vars, "./assets/player/player_idle/", player->h, player->w);
 	player->run = load_dir_animation(vars, "./assets/player/player_run/", player->h, player->w);
-	if (!player->run || !player->idle)
+	player->attack = load_dir_animation(vars, "./assets/player/player_attack/", player->h, player->w);
+	if (!player->run || !player->idle || !player->attack)
 	{
 		free(player);
 		return (NULL);

@@ -100,7 +100,7 @@ int	diter_direction(t_vars *vars)
 	return (0);
 }
 
-int	render_player_frame(t_vars *vars, t_animation  *anim)
+int	render_player_frame(t_vars *vars, t_animation *anim)
 {
 	static t_animation	*current_frame = NULL;
 

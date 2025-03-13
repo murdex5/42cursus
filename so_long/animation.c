@@ -110,6 +110,6 @@ int	render_player_frame(t_vars *vars, t_animation *anim)
 	current_frame = current_frame->next;
 	if (!current_frame)
 		current_frame = anim;
-	usleep(100000);
+	usleep(105000);
 	return (0);
 }

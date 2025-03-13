@@ -12,8 +12,21 @@
 
 #include "so_long.h"
 
+void	check_bounderies(t_vars *vars, int min, int max)
+{
+	if (vars->map->player_x >= max)
+		vars->map->player_x = max - 1;
+	if (vars->map->player_x <= min)
+		vars->map->player_x = min + 1;
+	if (vars->map->player_y >= max)
+		vars->map->player_y = max - 1;
+	if (vars->map->player_y <= min)
+		vars->map->player_y = min + 1;
+}
+
 int	move(int keysym, t_vars *vars)
 {
+	check_bounderies(vars, 0, 200);
 	if (keysym == W || keysym == A || keysym == S || keysym == D)
 	{
 		if (keysym == W)

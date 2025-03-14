@@ -33,9 +33,9 @@ static void	check_bounderies(t_vars *vars, int min, int max)
 			vars->player->pos_x -= 1;
 	}
 }
-static void move(int keysym, t_vars *vars)
-{
-}
+// static void move(int keysym, t_vars *vars)
+// {
+// }
 
 static void turn_player(int keysym, t_vars *vars)
 {
@@ -51,6 +51,7 @@ static void turn_player(int keysym, t_vars *vars)
 int	on_keypress(int keysym, t_vars *vars)
 {
 	check_bounderies(vars, 0, vars->map->width);
+	//ft_printf("player state: %d \n player_dir%d\n", vars->player->player_state, vars->player->player_direction);
 	if (keysym == ESC)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
@@ -64,7 +65,17 @@ int	on_keypress(int keysym, t_vars *vars)
 		turn_player(keysym, vars);
 		vars->player->player_state = RUN;
 	}
-	else
-		vars->player->player_state = IDLE;
 	return (0);
+}
+int on_mouse_click(int button, int x, int y, t_vars *vars)
+{
+	if (button == 1)
+		vars->player->player_state = ATTACK;
+	return (x + y * 0);
+}
+
+int set_player_to_idle(int keysym, t_vars *vars)
+{
+	vars->player->player_state = IDLE;
+	return (keysym * 0);
 }

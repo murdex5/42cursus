@@ -36,6 +36,7 @@
 
 # define RUN 1
 # define IDLE 0
+# define ATTACK 2
 # define RIGHT 3
 # define LEFT 4
 # define UP 5
@@ -78,7 +79,6 @@ typedef struct s_player
 	int					player_state;
 	int					player_y_dir;
 	int					player_direction;
-	int					is_attacking;
 }						t_player;
 typedef struct s_vars
 {

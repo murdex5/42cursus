@@ -80,14 +80,44 @@ static void	render_animation(t_vars *vars, t_animation *anim)
 		vars->map->player_x, vars->map->player_y);
 	anim = anim->next;
 }
+static int	render_player_frame(t_vars *vars, t_animation *anim)
+{
+	static t_animation	*current_frame = NULL;
+
+	if (!current_frame)
+		current_frame = anim;
+	render_animation(vars, current_frame);
+	current_frame = current_frame->next;
+	if (!current_frame)
+		current_frame = anim;
+	return (0);
+}
+
 int	render_player_animation(t_vars *vars)
 {
 	t_player *player;
 
 	player = vars->player;
-	if (player->player_direction == LEFT)
-		render_animation(vars, player->run->left);
-	if (player->player_direction == RIGHT)
-		render_animation(vars, player->run->right);
+	if (player->player_state == RUN)
+	{
+		if (player->player_direction == LEFT)
+			render_player_frame(vars, player->run->left);
+		if (player->player_direction == RIGHT)
+			render_player_frame(vars, player->run->right);
+	}
+	if (player->player_state == IDLE)
+	{
+		if (player->player_direction == LEFT)
+			render_player_frame(vars, player->idle->left);
+		if (player->player_direction == RIGHT)
+			render_player_frame(vars, player->idle->right);
+	}
+	if (player->player_state == ATTACK)
+	{
+		if (player->player_direction == LEFT)
+			render_player_frame(vars, player->attack->left);
+		if (player->player_direction == RIGHT)
+			render_player_frame(vars, player->attack->right);
+	}
 	return (0);
 }

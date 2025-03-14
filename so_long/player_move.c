@@ -18,12 +18,12 @@ int	move(int keysym, t_vars *vars)
 
 	player = vars->player;
 	if (keysym == D)
-		player->pos_x += 4;
+		player->pos_x += 10;
 	if (keysym == A)
-		player->pos_x -= 4;
+		player->pos_x -= 10;
 	if (keysym == W)
-		player->pos_y -= 4;
+		player->pos_y -= 10;
 	if (keysym == S)
-		player->pos_y += 4;
+		player->pos_y += 10;
     return (0);
 }

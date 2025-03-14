@@ -41,7 +41,6 @@
 # define LEFT 4
 # define UP 5
 # define DOWN 6
-# define NO_Y 7
 
 /* Structs */
 

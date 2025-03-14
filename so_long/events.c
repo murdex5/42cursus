@@ -42,12 +42,10 @@ static void turn_player(int keysym, t_vars *vars)
 	if (keysym == A)
 	{
 		vars->player->player_direction = LEFT;
-		vars->player->player_y_dir = NO_Y;
 	}
 	if (keysym == D)
 	{
 		vars->player->player_direction = RIGHT;
-		vars->player->player_y_dir = NO_Y;
 	}
 	if (keysym == W)
 		vars->player->player_y_dir = UP;
@@ -86,6 +84,5 @@ int on_mouse_click(int button, int x, int y, t_vars *vars)
 int set_player_to_idle(int keysym, t_vars *vars)
 {
 	vars->player->player_state = IDLE;
-	vars->player->player_y_dir = NO_Y;
 	return (keysym * 0);
 }

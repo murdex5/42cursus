@@ -39,8 +39,6 @@
 # define ATTACK 2
 # define RIGHT 3
 # define LEFT 4
-# define UP 5
-# define DOWN 6
 
 /* Structs */
 

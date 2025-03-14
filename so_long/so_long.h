@@ -115,7 +115,4 @@ t_pdirec				*load_dir_animation(t_vars *vars, char *path, int h,
 							int w);
 t_player				*parse_player(t_vars *vars, t_map *map);
 int						render_player_animation(t_vars *vars);
-/*int						render_player_frame(t_vars *vars,
-							t_animation *anim);
-int	diter_direction(t_vars *vars); */
 #endif

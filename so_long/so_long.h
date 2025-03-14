@@ -34,13 +34,14 @@
 # define S 115
 # define D 100
 
-# define RUN 1
 # define IDLE 0
+# define RUN 1
 # define ATTACK 2
 # define RIGHT 3
 # define LEFT 4
 # define UP 5
 # define DOWN 6
+# define NO_Y 7
 
 /* Structs */
 
@@ -90,6 +91,7 @@ typedef struct s_vars
 
 int						on_keypress(int keysym, t_vars *vars);
 int						set_player_to_idle(int keysym, t_vars *vars);
+int						move(int keysym, t_vars *vars);
 int						on_mouse_click(int button, int x, int y, t_vars *vars);
 char					*int_to_str(int len, int num);
 int						count_lines(char *file);

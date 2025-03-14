@@ -77,7 +77,6 @@ typedef struct s_player
 	int					pos_x;
 	int					pos_y;
 	int					player_state;
-	int					player_y_dir;
 	int					player_direction;
 }						t_player;
 typedef struct s_vars

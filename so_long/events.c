@@ -47,10 +47,6 @@ static void turn_player(int keysym, t_vars *vars)
 	{
 		vars->player->player_direction = RIGHT;
 	}
-	if (keysym == W)
-		vars->player->player_y_dir = UP;
-	if (keysym == S)
-		vars->player->player_y_dir = DOWN;
 }
 int	on_keypress(int keysym, t_vars *vars)
 {

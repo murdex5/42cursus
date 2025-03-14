@@ -28,7 +28,6 @@ static t_player	*init_player(void)
 	player->attack = NULL;
 	player->player_state = IDLE;
 	player->player_direction = RIGHT;
-	player->player_y_dir = 0;
 	return (player);
 }
 

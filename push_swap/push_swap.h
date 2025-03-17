@@ -18,4 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+int	error_msg(void);
+int	check_params(int argc, char **argv);
+int	*get_ints(int argc, char **argv);
 #endif

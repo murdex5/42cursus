@@ -11,8 +11,9 @@
 # **************************************************************************** #
 
 CC = gcc
-SRCS =
-
+SRCS = utils0.c \
+		swap_func.c \
+		main.c
 FLAGS = -Wall -Werror -Wextra
 OBJS = ${SRCS:.c=.o}
 LIBFT_PATH = ./libft
@@ -28,13 +29,13 @@ subsystems:
 	@make -C $(LIBFT_PATH) all
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) -O $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) -o $(NAME)
 
 clean:
 	@make -C $(LIBFT_PATH) clean
 	rm -rf $(OBJS)
 
-fclean:
+fclean: clean
 	@make -C $(LIBFT_PATH) fclean
 	rm -rf $(NAME)
 

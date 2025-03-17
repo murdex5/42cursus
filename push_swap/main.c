@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:46:26 by kadferna          #+#    #+#             */
-/*   Updated: 2025/03/17 10:48:52 by kadferna         ###   ########.fr       */
+/*   Updated: 2025/03/17 12:25:52 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,23 @@
 
 int	main(int argc, char **argv)
 {
-	
+	int	*nums;
+	int	i;
+
+	if (!(argc >= 2))
+		return (error_msg(), 1);
+	if (!check_params(argc, argv))
+		return (error_msg(), 1);
+	nums = get_ints(argc, argv);
+	if (!nums)
+		return (error_msg(), 1);
+	i = 0;
+	while (i < (argc - 1))
+	{
+		ft_printf("%d\n", nums[i]);
+		free(&nums[i]);
+		i++;
+	}
+	free(nums);
 	return (0);
 }

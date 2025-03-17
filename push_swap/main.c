@@ -15,7 +15,6 @@
 int	main(int argc, char **argv)
 {
 	int	*nums;
-	int	i;
 
 	if (!(argc >= 2))
 		return (error_msg(), 1);
@@ -24,13 +23,5 @@ int	main(int argc, char **argv)
 	nums = get_ints(argc, argv);
 	if (!nums)
 		return (error_msg(), 1);
-	i = 0;
-	while (i < (argc - 1))
-	{
-		ft_printf("%d\n", nums[i]);
-		free(&nums[i]);
-		i++;
-	}
-	free(nums);
 	return (0);
 }

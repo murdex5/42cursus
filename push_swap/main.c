@@ -15,13 +15,11 @@
 int	main(int argc, char **argv)
 {
 	int	*nums;
-
+	int *b;
 	if (!(argc >= 2))
 		return (error_msg(), 1);
 	if (!check_params(argc, argv))
 		return (error_msg(), 1);
 	nums = get_ints(argc, argv);
-	if (!nums)
-		return (error_msg(), 1);
 	return (0);
 }

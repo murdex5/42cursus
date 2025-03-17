@@ -51,6 +51,14 @@ int	check_params(int argc, char **argv)
 	return (1);
 }
 
+int int_arr_len(int *arr)
+{
+	int len;
+
+	len = sizeof(arr) / sizeof(int);
+	return (len);
+}
+
 int	error_msg(void)
 {
 	ft_putstr_fd("Error", 2);

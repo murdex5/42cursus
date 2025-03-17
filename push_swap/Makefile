@@ -11,9 +11,11 @@
 # **************************************************************************** #
 
 CC = gcc
+
 SRCS = utils0.c \
 		swap_func.c \
 		main.c
+
 FLAGS = -Wall -Werror -Wextra
 OBJS = ${SRCS:.c=.o}
 LIBFT_PATH = ./libft

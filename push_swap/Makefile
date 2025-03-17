@@ -6,7 +6,7 @@
 #    By: kadferna <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/17 10:05:06 by kadferna          #+#    #+#              #
-#    Updated: 2025/03/17 10:41:54 by kadferna         ###   ########.fr        #
+#    Updated: 2025/03/17 10:45:26 by kadferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,12 @@ LIBFT_PATH = ./libft
 LIBFT_LIB = $(LIBFT_PATH)/libft.a
 NAME = push_swap
 
-all: sybsystem $(NAME) 
+all: subsystems $(NAME) 
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-subsytems:
+subsystems:
 	@make -C $(LIBFT_PATH) all
 
 $(NAME): $(OBJS)
@@ -35,9 +35,9 @@ clean:
 	rm -rf $(OBJS)
 
 fclean:
-	@make -c $(LIBFT_PATH) fclean
+	@make -C $(LIBFT_PATH) fclean
 	rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re subsytem
+.PHONY: all clean fclean re subsytems

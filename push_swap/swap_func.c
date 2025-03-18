@@ -18,12 +18,12 @@ int	pb(int *a, int *b)
 
 	int a_len = int_arr_len(a);
 	int b_len = int_arr_len(b);
-	if (b >= 1)
+	if ((sizeof(b) / sizeof(int)) >= 1)
 		b_len += 1;
     temp_b = malloc(sizeof(int) * b_len);
     if (!temp_b)
         return (0);
-    if (b >= 1)
+    if ((sizeof(b) / sizeof(int)) >= 1)
     {
         temp_b[b_len] = a[a_len];
         b_len--;

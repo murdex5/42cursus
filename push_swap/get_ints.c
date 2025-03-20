@@ -12,24 +12,21 @@
 
 #include "push_swap.h"
 
-static int	*int_arr(char **argv)
+static int	*int_arr(char **argv, int *len)
 {
 	char	**str;
-	int		len;
 	int		i;
 	int		*nums;
 
 	i = 0;
-    if (argv[1][0] == ' ')
-        return (NULL);
 	str = ft_split(argv[1], ' ');
 	if (!str)
 		return (NULL);
-	len = get_items(argv[1], ' ');
-	nums = malloc(sizeof(int) * len);
+    (*len) = get_items(argv[1], ' ');
+	nums = malloc(sizeof(int) * (*len));
 	if (!nums)
 		return (NULL);
-	while (i < len)
+	while (i <  (*len))
 	{
 		nums[i] = ft_atoi(str[i]);
 		i++;
@@ -41,13 +38,13 @@ static int	*int_arr(char **argv)
 	return (nums);
 }
 
-int	*get_ints(int argc, char **argv)
+int	*get_ints(int argc, char **argv, int *len)
 {
 	int *ints;
 	int i;
 
 	if (argc == 2)
-		return (int_arr(argv));
+		return (int_arr(argv, len));
 	ints = malloc(sizeof(int) * (argc - 1));
 	if (!ints)
 		return (NULL);
@@ -57,5 +54,6 @@ int	*get_ints(int argc, char **argv)
 		ints[i] = ft_atoi(argv[i + 1]);
 		i++;
 	}
+    i =  (*len);
 	return (ints);
 }

@@ -14,12 +14,12 @@
 
 int	int_arr_len(int *arr)
 {
-	int	len;
+	size_t	len;
 	if (arr)
 		len = sizeof(arr) / sizeof(arr[0]);
 	else
 		return (0);
-	return (len);
+	return ((int)len);
 }
 
 int	error_msg(void)

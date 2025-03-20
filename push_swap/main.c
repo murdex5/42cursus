@@ -16,16 +16,17 @@ int	main(int argc, char **argv)
 {
 	int	*ints;
 	int	i;
+	int len;
 
 	if (argc < 2)
 		return (error_msg(), 1);
 	if (!check_params(argc, argv))
 		return (error_msg(), 1);
-	ints = get_ints(argc, argv);
+	ints = get_ints(argc, argv, &len);
 	if (!ints)
 		return (error_msg(), 1);
 	i = 0;
-	while (i < (argc - 1))
+	while (i < len)
 	{
 		ft_printf("%d\n", ints[i]);
 		i++;

@@ -20,6 +20,7 @@
 
 int	error_msg(void);
 int	check_params(int argc, char **argv);
+int	check_doubles(int *arr, int len);
 int	int_arr_len(int *arr);
 int	pb(int *a, int *b);
 int	get_items(char const *s, char c);

@@ -15,8 +15,7 @@
 int	main(int argc, char **argv)
 {
 	int	*ints;
-	int	i;
-	int len;
+	int	len;
 
 	if (argc < 2)
 		return (error_msg(), 1);
@@ -25,12 +24,8 @@ int	main(int argc, char **argv)
 	ints = get_ints(argc, argv, &len);
 	if (!ints)
 		return (error_msg(), 1);
-	i = 0;
-	while (i < len)
-	{
-		ft_printf("%d\n", ints[i]);
-		i++;
-	}
+	if (!check_doubles(ints, len))
+		return (error_msg(), 1);
 	ft_printf("sucesss!!\n");
 	return (0);
 }

@@ -54,6 +54,6 @@ int	*get_ints(int argc, char **argv, int *len)
 		ints[i] = ft_atoi(argv[i + 1]);
 		i++;
 	}
-    i =  (*len);
+    (*len) = i;
 	return (ints);
 }

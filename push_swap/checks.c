@@ -14,9 +14,9 @@
 
 int	check_params(int argc, char **argv)
 {
-	int i;
-	int j;
-	int k;
+	int	i;
+	int	j;
+	int	k;
 
 	i = 1;
 	while (i < argc)
@@ -28,7 +28,7 @@ int	check_params(int argc, char **argv)
 			if ((argv[i][k] >= 'a' && argv[i][k] <= 'z'))
 				return (0);
 			if ((argv[i][k] >= 'A' && argv[i][k] <= 'Z'))
-                return (0);
+				return (0);
 			k++;
 		}
 		i++;
@@ -36,14 +36,25 @@ int	check_params(int argc, char **argv)
 	return (1);
 }
 
-int check_doubles(int *arr, int len)
+int	check_doubles(int *arr, int len)
 {
-	int temp;
-	int i = 0;
-	int j;
+	int	temp;
+	int	i;
+	int	j;
+
+	i = 0;
 	while (i < len)
 	{
 		j = i + 1;
 		temp = arr[i];
+		while (j < len)
+		{
+			if (temp == arr[j])
+				return (0);
+			ft_printf("%d %d \n", temp, arr[j]);
+			j++;
+		}
+		i++;
 	}
+	return (1);
 }

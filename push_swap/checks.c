@@ -35,3 +35,15 @@ int	check_params(int argc, char **argv)
 	}
 	return (1);
 }
+
+int check_doubles(int *arr, int len)
+{
+	int temp;
+	int i = 0;
+	int j;
+	while (i < len)
+	{
+		j = i + 1;
+		temp = arr[i];
+	}
+}

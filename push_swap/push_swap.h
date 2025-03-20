@@ -22,5 +22,6 @@ int	error_msg(void);
 int	check_params(int argc, char **argv);
 int	int_arr_len(int *arr);
 int	pb(int *a, int *b);
+int	get_items(char const *s, char c);
 int	*get_ints(int argc, char **argv);
 #endif

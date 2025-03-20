@@ -1,46 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils0.c                                           :+:      :+:    :+:   */
+/*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 10:46:39 by kadferna          #+#    #+#             */
-/*   Updated: 2025/03/17 10:46:40 by kadferna         ###   ########.fr       */
+/*   Created: 2025/03/20 13:55:09 by kadferna          #+#    #+#             */
+/*   Updated: 2025/03/20 13:55:25 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	int_arr_len(int *arr)
+int	check_params(int argc, char **argv)
 {
-	int	len;
-	if (arr)
-		len = sizeof(arr) / sizeof(arr[0]);
-	else
-		return (0);
-	return (len);
-}
+	int i;
+	int j;
+	int k;
 
-int	error_msg(void)
-{
-	ft_putstr_fd("Error", 2);
-	ft_putstr_fd("\n", 2);
-	return (0);
-}
-
-int	get_items(char const *s, char c)
-{
-	int cur;
-	int word_num;
-
-	cur = 0;
-	word_num = 0;
-	while (s[cur] != 0)
+	i = 1;
+	while (i < argc)
 	{
-		if (s[cur] != c && (s[cur + 1] == c || s[cur + 1] == 0))
-			word_num++;
-		cur++;
+		j = ft_strlen(argv[i]);
+		k = 0;
+		while (k < j)
+		{
+			if ((argv[i][k] >= 'a' && argv[i][k] <= 'z'))
+				return (0);
+			if ((argv[i][k] >= 'A' && argv[i][k] <= 'Z'))
+                return (0);
+			k++;
+		}
+		i++;
 	}
-	return (word_num);
+	return (1);
 }

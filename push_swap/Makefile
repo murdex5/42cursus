@@ -13,6 +13,8 @@
 CC = gcc
 
 SRCS = utils0.c \
+		checks.c \
+		get_ints.c \
 		swap_func.c \
 		main.c
 
@@ -34,7 +36,6 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) -o $(NAME)
 
 clean:
-	@make -C $(LIBFT_PATH) clean
 	rm -rf $(OBJS)
 
 fclean: clean

@@ -14,12 +14,22 @@
 
 int	main(int argc, char **argv)
 {
-	int	*nums;
-	int *b;
-	if (!(argc >= 2))
+	int	*ints;
+	int	i;
+
+	if (argc < 2)
 		return (error_msg(), 1);
 	if (!check_params(argc, argv))
 		return (error_msg(), 1);
-	nums = get_ints(argc, argv);
+	ints = get_ints(argc, argv);
+	if (!ints)
+		return (error_msg(), 1);
+	i = 0;
+	while (i < (argc - 1))
+	{
+		ft_printf("%d\n", ints[i]);
+		i++;
+	}
+	ft_printf("sucesss!!\n");
 	return (0);
 }

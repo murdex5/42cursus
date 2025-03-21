@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	check_params(int argc, char **argv)
+static int	check_params(int argc, char **argv)
 {
 	int	i;
 	int	j;
@@ -36,7 +36,7 @@ int	check_params(int argc, char **argv)
 	return (1);
 }
 
-int	check_doubles(int *arr, int len)
+static int	check_doubles(int *arr, int len)
 {
 	int	temp;
 	int	i;
@@ -51,10 +51,25 @@ int	check_doubles(int *arr, int len)
 		{
 			if (temp == arr[j])
 				return (0);
-			ft_printf("%d %d \n", temp, arr[j]);
 			j++;
 		}
 		i++;
 	}
 	return (1);
+}
+
+
+int *checks(int argc, char **argv)
+{
+	int *ints;
+	int len;
+
+	if (!check_params(argc, argv))
+		return (NULL);
+	ints = get_ints(argc, argv, &len);
+	if (!ints)
+		return (NULL);
+	if (!check_doubles(ints, len))
+		return(NULL);
+	return (ints);
 }

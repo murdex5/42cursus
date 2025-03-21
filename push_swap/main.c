@@ -15,16 +15,11 @@
 int	main(int argc, char **argv)
 {
 	int	*ints;
-	int	len;
 
 	if (argc < 2)
 		return (error_msg(), 1);
-	if (!check_params(argc, argv))
-		return (error_msg(), 1);
-	ints = get_ints(argc, argv, &len);
+	ints = checks(argc, argv);
 	if (!ints)
-		return (error_msg(), 1);
-	if (!check_doubles(ints, len))
 		return (error_msg(), 1);
 	ft_printf("sucesss!!\n");
 	return (0);

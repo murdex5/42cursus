@@ -21,6 +21,7 @@ int	pb(int *a, int *b)
 	int	i;
 	int	i;
 	int	i;
+	int	i;
 
 	a_len = int_arr_len(a);
 	b_len = int_arr_len(b);
@@ -43,23 +44,41 @@ int	pb(int *a, int *b)
 }*/
 static void	dealloc_arr(int **a, int *len)
 {
-    int i;
+	int i;
 
-    if (!*(a) || *(len) == 0)
-        return ;
-    i = 1;
-    while (i < *(len))
-    {
-        *(a)[i-1] = *(a)[i];
-        i++;
-    }
-    *(len)--;
-    *a = ft_realloc(a, (*(len) * sizeof(int)));
-    if (*len > 0 && *a == NULL)
-        *len = 0;
+	if (!a || !*a || *len == 0)
+		return ;
+	i = 1;
+	while (i < *len)
+	{
+		*a[i - 1] = *a[i];
+		i++;
+	}
+	free(a[i]);
 }
 
-// int	pa(int **a, int **b, int *a_len, int *b_len)
-// {
-	
-// }
+int	pa(int **a, int **b, int *a_len, int *b_len)
+{
+	int	i;
+
+	i = 0;
+	if (!b || !*b || *b_len == 0)
+		return (0);
+	if (!*a)
+	{
+		*a = malloc(sizeof(int) * 1);
+		if (!*a)
+			return (0);
+		*a_len = 0;
+	}
+	*a = ft_realloc(*a, (sizeof(int) * (*a_len + 1)));
+	while (i < *a_len)
+	{
+		(*a)[i] = (*a)[i + 1];
+		i++;
+	}
+	(*a)[0] = (*b)[0];
+	(*a_len)++;
+	dealloc_arr(b, b_len);
+	return (1);
+}

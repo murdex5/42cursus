@@ -15,6 +15,7 @@
 int	main(int argc, char **argv)
 {
 	int	**ints;
+	int **a;
 	int len;
 
 	if (argc < 2)
@@ -23,8 +24,7 @@ int	main(int argc, char **argv)
 	if (!ints)
 		return (error_msg(), 1);
 	int i = 0;
-	sa(ints, len);
-	sa(ints, len);
+	pa(a, ints, 0, &len);
 	while (i < len)
 	{
 		ft_printf("%d\n", *ints[i]);

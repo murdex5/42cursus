@@ -26,6 +26,7 @@ int		check_numbers(char *c);
 int		sa(int **stack_a, int len);
 int		sb(int **stack_b, int len);
 int		ss(int **stack_a, int **stack_b, int a_len, int b_len);
+int		pa(int **a, int **b, int *a_len, int *b_len);
 int		**checks(int argc, char **argv, int *len);
 int		get_items(char const *s, char c);
 int		**get_ints(int argc, char **argv, int *len);

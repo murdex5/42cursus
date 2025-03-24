@@ -12,23 +12,45 @@
 
 #include "push_swap.h"
 
-static int	*int_arr(char **argv, int *len)
+static int	free_str_int(int **ints, char **str, int len)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != NULL)
+		i++;
+	while (len > 0)
+	{
+		free(*(ints)[len]);
+		len--;
+	}
+	while (i > 0)
+		free(str[--i]);
+	free(str);
+	free(ints);
+	return (1);
+}
+
+static int	**int_arr(char **argv, int *len)
 {
 	char	**str;
 	int		i;
-	int		*nums;
+	int		**nums;
 
 	i = 0;
 	str = ft_split(argv[1], ' ');
 	if (!str)
 		return (NULL);
 	(*len) = get_items(argv[1], ' ');
-	nums = malloc(sizeof(int) * (*len));
+	nums = malloc(sizeof(int *) * (*len));
 	if (!nums)
 		return (NULL);
 	while (i < (*len))
 	{
-		nums[i] = ft_atoi(str[i]);
+		*(nums)[i] = malloc(sizeof(int));
+		if (!*(nums))
+			return (free_str_int(nums, str, i), NULL);
+		*(nums)[i] = ft_atoi(str[i]);
 		i++;
 	}
 	while (i > 0)
@@ -38,26 +60,23 @@ static int	*int_arr(char **argv, int *len)
 	return (nums);
 }
 
-int	*get_ints(int argc, char **argv, int *len)
+// if (argv[i + 1] == "2147483647" || argv[i + 1] == "-2147483648")
+// 			return (NULL);
+
+int	**get_ints(int argc, char **argv, int *len)
 {
-	int	*ints;
+	int	**ints;
 	int	i;
 
 	if (argc == 2)
+	{
+		if (ft_strncmp(argv[1], "2147483647", ft_strlen(argv[1])) == 0
+			|| ft_strncmp(argv[1], "-2147483648", ft_strlen(argv[1])) == 0)
+			return (NULL);
 		return (int_arr(argv, len));
-	ints = malloc(sizeof(int) * (argc - 1));
+	}
+	ints = malloc(sizeof(int *) * (argc - 1));
 	if (!ints)
 		return (NULL);
-	i = 0;
-	while (i < (argc - 1))
-	{
-		if (!check_numbers(argv[i + 1]))
-			return (NULL);
-		if (argv[i + 1] == "2147483647" || argv[i + 1] == "-2147483648")
-			return (NULL);
-		ints[i] = ft_atoi(argv[i + 1]);
-		i++;
-	}
-	(*len) = i;
-	return (ints);
+	
 }

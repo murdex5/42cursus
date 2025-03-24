@@ -56,8 +56,8 @@ int	check_numbers(char *c)
 
 int	get_items(char const *s, char c)
 {
-	int cur;
-	int word_num;
+	int	cur;
+	int	word_num;
 
 	cur = 0;
 	word_num = 0;
@@ -68,4 +68,23 @@ int	get_items(char const *s, char c)
 		cur++;
 	}
 	return (word_num);
+}
+
+void	*ft_realloc(void *a, size_t *new_size)
+{
+	void	*new_ptr;
+
+	if (!a)
+		return (malloc(new_size));
+	if (new_size == 0)
+	{
+		free(a);
+		return (NULL);
+	}
+	new_ptr = malloc(new_size);
+	if (!new_ptr)
+		return (NULL);
+	ft_memcpy(new_ptr, a, new_size);
+	free(a);
+	return (new_ptr);
 }

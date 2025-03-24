@@ -13,6 +13,7 @@
 CC = gcc
 
 SRCS = utils0.c \
+		free.c \
 		checks.c \
 		get_ints.c \
 		swap_func.c \

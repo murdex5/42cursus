@@ -15,6 +15,7 @@
 int	int_arr_len(int *arr)
 {
 	size_t	len;
+
 	if (arr)
 		len = sizeof(arr) / sizeof(arr[0]);
 	else
@@ -27,6 +28,30 @@ int	error_msg(void)
 	ft_putstr_fd("Error", 2);
 	ft_putstr_fd("\n", 2);
 	return (0);
+}
+
+int	check_numbers(char *c)
+{
+	int	i;
+	int	len;
+	int	j;
+
+	i = 0;
+	len = ft_strlen(c);
+	j = 0;
+	while (i < len)
+	{
+		if (c[i] == ' ' || (c[i] >= 9 && c[i] <= 13))
+			j = 0;
+		if (c[i] >= '0' && c[i] <= '9')
+			j = 0;
+		j++;
+		i++;
+	}
+	if (j >= 2)
+		return (0);
+	else
+		return (1);
 }
 
 int	get_items(char const *s, char c)

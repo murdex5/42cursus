@@ -20,6 +20,7 @@
 
 int	error_msg(void);
 int	int_arr_len(int *arr);
+int	check_numbers(char *c);
 int	pb(int *a, int *b);
 int	*checks(int argc, char **argv);
 int	get_items(char const *s, char c);

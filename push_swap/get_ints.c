@@ -22,11 +22,11 @@ static int	*int_arr(char **argv, int *len)
 	str = ft_split(argv[1], ' ');
 	if (!str)
 		return (NULL);
-    (*len) = get_items(argv[1], ' ');
+	(*len) = get_items(argv[1], ' ');
 	nums = malloc(sizeof(int) * (*len));
 	if (!nums)
 		return (NULL);
-	while (i <  (*len))
+	while (i < (*len))
 	{
 		nums[i] = ft_atoi(str[i]);
 		i++;
@@ -40,8 +40,8 @@ static int	*int_arr(char **argv, int *len)
 
 int	*get_ints(int argc, char **argv, int *len)
 {
-	int *ints;
-	int i;
+	int	*ints;
+	int	i;
 
 	if (argc == 2)
 		return (int_arr(argv, len));
@@ -51,9 +51,13 @@ int	*get_ints(int argc, char **argv, int *len)
 	i = 0;
 	while (i < (argc - 1))
 	{
+		if (!check_numbers(argv[i + 1]))
+			return (NULL);
+		if (argv[i + 1] == "2147483647" || argv[i + 1] == "-2147483648")
+			return (NULL);
 		ints[i] = ft_atoi(argv[i + 1]);
 		i++;
 	}
-    (*len) = i;
+	(*len) = i;
 	return (ints);
 }

@@ -36,7 +36,7 @@ static int	check_params(int argc, char **argv)
 	return (1);
 }
 
-static int	check_doubles(int *arr, int len)
+static int	check_doubles(int **arr, int len)
 {
 	int	temp;
 	int	i;
@@ -46,10 +46,10 @@ static int	check_doubles(int *arr, int len)
 	while (i < len)
 	{
 		j = i + 1;
-		temp = arr[i];
+		temp = *arr[i];
 		while (j < len)
 		{
-			if (temp == arr[j])
+			if (temp == *arr[j])
 				return (0);
 			j++;
 		}
@@ -59,16 +59,16 @@ static int	check_doubles(int *arr, int len)
 }
 
 
-int *checks(int argc, char **argv, int *len)
+int **checks(int argc, char **argv, int *len)
 {
-	int *ints;
+	int **ints;
 
 	if (!check_params(argc, argv))
 		return (NULL);
 	ints = get_ints(argc, argv, len);
 	if (!ints)
 		return (NULL);
-	if (!check_doubles(ints, len))
+	if (!check_doubles(ints, *(len)))
 		return(NULL);
 	return (ints);
 }

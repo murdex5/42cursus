@@ -16,7 +16,7 @@ int	free_list(int **a, int len)
 {
 	while (len > 0)
 	{
-		free(*(a)[len]);
+		free(a[len]);
 		len--;
 	}
 	free(a);

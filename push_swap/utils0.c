@@ -70,12 +70,15 @@ int	get_items(char const *s, char c)
 	return (word_num);
 }
 
-void	*ft_realloc(void *a, size_t *new_size)
+void	*ft_realloc(void *a, size_t new_size)
 {
 	void	*new_ptr;
 
 	if (!a)
-		return (malloc(new_size));
+	{
+		new_ptr = malloc(new_size);
+		return(new_ptr);
+	}
 	if (new_size == 0)
 	{
 		free(a);

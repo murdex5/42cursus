@@ -21,7 +21,7 @@ static int	free_str_int(int **ints, char **str, int len)
 		i++;
 	while (len > 0)
 	{
-		free(*(ints)[len]);
+		free(ints[len]);
 		len--;
 	}
 	while (i > 0)
@@ -47,10 +47,10 @@ static int	**int_arr(char **argv, int *len)
 		return (NULL);
 	while (i < (*len))
 	{
-		*(nums)[i] = malloc(sizeof(int));
-		if (!*(nums))
+		nums[i] = malloc(sizeof(int));
+		if (!nums[i])
 			return (free_str_int(nums, str, i), NULL);
-		*(nums)[i] = ft_atoi(str[i]);
+		*nums[i] = ft_atoi(str[i]);
 		i++;
 	}
 	while (i > 0)
@@ -69,14 +69,22 @@ int	**get_ints(int argc, char **argv, int *len)
 	int	i;
 
 	if (argc == 2)
-	{
-		if (ft_strncmp(argv[1], "2147483647", ft_strlen(argv[1])) == 0
-			|| ft_strncmp(argv[1], "-2147483648", ft_strlen(argv[1])) == 0)
-			return (NULL);
 		return (int_arr(argv, len));
-	}
+	i = 0;
 	ints = malloc(sizeof(int *) * (argc - 1));
 	if (!ints)
 		return (NULL);
-	
+	while (i < argc - 1)
+	{
+		ints[i] = malloc(sizeof(int));
+		if (ft_strncmp(argv[i + 1], "2147483647", ft_strlen(argv[i + 1])) == 0
+			|| ft_strncmp(argv[i + 1], "-2147483648", ft_strlen(argv[i + 1])) == 0)
+			return (free_list(ints, i), NULL);
+		if (!ints[i])
+			return (free_list(ints, i), NULL);
+		*ints[i] = ft_atoi(argv[i + 1]);
+		i++;
+	}
+	*len = argc - 1;
+	return (ints);
 }

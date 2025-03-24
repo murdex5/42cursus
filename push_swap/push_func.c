@@ -54,12 +54,12 @@ static void	dealloc_arr(int **a, int *len)
         i++;
     }
     *(len)--;
-    *a = realloc(a, (*(len) * sizeof(int)));
+    *a = ft_realloc(a, (*(len) * sizeof(int)));
     if (*len > 0 && *a == NULL)
         *len = 0;
 }
 
-int	pa(int **a, int **b, int *a_len, int *b_len)
-{
+// int	pa(int **a, int **b, int *a_len, int *b_len)
+// {
 	
-}
+// }

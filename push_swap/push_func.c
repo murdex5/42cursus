@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 10:46:26 by kadferna          #+#    #+#             */
-/*   Updated: 2025/03/17 12:25:52 by kadferna         ###   ########.fr       */
+/*   Created: 2025/03/24 10:02:47 by kadferna          #+#    #+#             */
+/*   Updated: 2025/03/24 10:03:13 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+int	pb(int *a, int *b)
 {
-	int	*ints;
-	int len;
+    int *temp_b;
 
-	if (argc < 2)
-		return (error_msg(), 1);
-	ints = checks(argc, argv, &len);
-	if (!ints)
-		return (error_msg(), 1);
-
-	int i = 0;
-	sa(ints, len);
-	while (i < len)
-	{
-		ft_printf("%d\n", ints[i]);
-		i++;
-	}
-	ft_printf("sucesss!!\n");
-	return (0);
+	int a_len = int_arr_len(a);
+	int b_len = int_arr_len(b);
+	if ((sizeof(b) / sizeof(int)) >= 1)
+		b_len += 1;
+    temp_b = malloc(sizeof(int) * b_len);
+    if (!temp_b)
+        return (0);
+    if ((sizeof(b) / sizeof(int)) >= 1)
+    {
+        temp_b[b_len] = a[a_len];
+        b_len--;
+    }
+    while (b_len > 0)
+    {
+        temp_b[b_len] = b[b_len];
+        b_len--;
+    }
+    return (1);
 }

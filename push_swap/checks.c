@@ -59,14 +59,13 @@ static int	check_doubles(int *arr, int len)
 }
 
 
-int *checks(int argc, char **argv)
+int *checks(int argc, char **argv, int *len)
 {
 	int *ints;
-	int len;
 
 	if (!check_params(argc, argv))
 		return (NULL);
-	ints = get_ints(argc, argv, &len);
+	ints = get_ints(argc, argv, len);
 	if (!ints)
 		return (NULL);
 	if (!check_doubles(ints, len))

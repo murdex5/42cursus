@@ -17,7 +17,7 @@ int	int_arr_len(int *arr)
 	size_t	len;
 
 	if (arr)
-		len = sizeof(arr) / sizeof(arr[0]);
+		len = sizeof(&arr) / sizeof(int);
 	else
 		return (0);
 	return ((int)len);

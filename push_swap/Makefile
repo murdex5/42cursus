@@ -16,6 +16,7 @@ SRCS = utils0.c \
 		checks.c \
 		get_ints.c \
 		swap_func.c \
+		push_func.c \
 		main.c
 
 FLAGS = -Wall -Werror -Wextra

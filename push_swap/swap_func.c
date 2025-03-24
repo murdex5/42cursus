@@ -12,26 +12,35 @@
 
 #include "push_swap.h"
 
-int	pb(int *a, int *b)
+int	sa(int *stack_a, int len)
 {
-    int *temp_b;
+	int	temp;
 
-	int a_len = int_arr_len(a);
-	int b_len = int_arr_len(b);
-	if ((sizeof(b) / sizeof(int)) >= 1)
-		b_len += 1;
-    temp_b = malloc(sizeof(int) * b_len);
-    if (!temp_b)
-        return (0);
-    if ((sizeof(b) / sizeof(int)) >= 1)
-    {
-        temp_b[b_len] = a[a_len];
-        b_len--;
-    }
-    while (b_len > 0)
-    {
-        temp_b[b_len] = b[b_len];
-        b_len--;
-    }
-    return (1);
+	if (len < 2)
+		return (0);
+	temp = stack_a[0];
+	stack_a[0] = stack_a[1];
+	stack_a[1] = temp;
+	return (1);
+}
+
+int	sb(int *stack_b, int len)
+{
+	int	temp;
+
+	if (len < 2)
+		return (0);
+	temp = stack_b[0];
+	stack_b[0] = stack_b[1];
+	stack_b[1] = temp;
+	return (1);
+}
+
+int	ss(int *stack_a, int *stack_b, int a_len, int b_len)
+{
+	if (!stack_a || !stack_b)
+		return (0);
+	if (sa(stack_a, a_len) && sb(stack_b, b_len))
+		return (1);
+	return (0);
 }

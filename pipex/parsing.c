@@ -28,3 +28,27 @@ t_pipex	*ft_init_pipex(void)
 	pipex->is_invalid_infile = FALSE;
 	return (pipex);
 }
+
+char	***ft_parse_args(int argc, char **argv, t_pipex *pipex)
+{
+	char	***args;
+	int		i;
+
+	i = 1;
+	if (!pipex)
+		return (0);
+	args = malloc(sizeof(char **) * argc);
+	if (!args)
+		return (NULL);
+	if (ft_strncmp(argv[1], "here_doc", ft_strlen("here_doc")) == 0)
+		pipex->here_doc = TRUE;
+	while (i < argc - 1)
+	{
+		args[i - 1] = ft_split(argv[i], ' ');
+		if (!args[i - 1])
+			return (free_arr(args, i), NULL);
+		i++;
+	}
+	args[i - 1] = NULL;
+	return (args);
+}

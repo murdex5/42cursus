@@ -36,4 +36,7 @@ typedef struct s_pipex
 	int		cmd_count;
 }			t_pipex;
 
+int			free_arr(char ***str_arr, int i);
+t_pipex		*ft_init_pipex(void);
+char		***ft_parse_args(int argc, char **argv, t_pipex *pipex);
 #endif

@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 09:46:39 by kadferna          #+#    #+#             */
-/*   Updated: 2025/03/26 09:46:41 by kadferna         ###   ########.fr       */
+/*   Created: 2025/03/26 11:10:28 by kadferna          #+#    #+#             */
+/*   Updated: 2025/03/26 11:10:30 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int argc, char **argv)
+int	free_arr(char ***str_arr, int i)
 {
-	t_pipex	*pipex;
-	int		i;
-	int		j;
+	int	j;
+	int	l;
 
-	if (argc < 5)
-		return (1);
-	pipex = ft_init_pipex();
-	if (!pipex)
-		return (1);
-	pipex->cmd_args = ft_parse_args(argc, argv, pipex);
-	if (!pipex->cmd_args)
+	while (i > 0)
 	{
-        ft_printf("%d\n", j);
-		free(pipex);
-		return (1);
+		j = 0;
+		while (str_arr[i][j] != NULL)
+		{
+			free(str_arr[i][j]);
+			j++;
+		}
+		i--;
 	}
-	return (0);
+	free(str_arr);
+	return (1);
 }

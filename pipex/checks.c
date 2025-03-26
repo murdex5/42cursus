@@ -28,7 +28,6 @@ static int	open_here_doc(t_pipex *pipex, int argc, char **argv)
 		return (err_p("Here doc file creation failed"));
 	while (1)
 	{
-        ft_putstr_fd("heredoc> ", 1);
 		line = get_next_line(0);
 		if (!line)
 			break ;
@@ -63,9 +62,9 @@ static int	open_reg_file(t_pipex *pipex, int argc, char **argv)
 		else
 		{
 			pipex->is_invalid_infile = TRUE;
-            ft_putstr_fd("pipex: ", 2);
-            ft_putstr_fd(argv[1], 2);
-            ft_putstr_fd(": No such file or directory\n", 2);
+			ft_putstr_fd("pipex: ", 2);
+			ft_putstr_fd(argv[1], 2);
+			ft_putstr_fd(": No such file or directory\n", 2);
 		}
 	}
 	pipex->out_fd = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
@@ -88,7 +87,7 @@ int	ft_check_args(int argc, char **argv, t_pipex *pipex)
 	}
 	if (pipex->out_fd == -1)
 		return (err_p("Output file error"));
-    if (pipex->here_doc == TRUE)
-        unlink(".here_doc_tmp");
+	if (pipex->here_doc == TRUE)
+		unlink(".here_doc_tmp");
 	return (1);
 }

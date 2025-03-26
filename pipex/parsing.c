@@ -28,7 +28,16 @@ t_pipex	*ft_init_pipex(void)
 	pipex->is_invalid_infile = FALSE;
 	return (pipex);
 }
+char ***ft_parse_cmds(int argc, char **argv, t_pipex *pipex)
+{
+	char ***cmds;
+	int i;
 
+	i = 2;
+	if(!pipex)
+		return (NULL);
+	
+}
 
 char	***ft_parse_args(int argc, char **argv, t_pipex *pipex)
 {
@@ -37,7 +46,7 @@ char	***ft_parse_args(int argc, char **argv, t_pipex *pipex)
 
 	i = 1;
 	if (!pipex)
-		return (0);
+		return (NULL);
 	args = malloc(sizeof(char **) * argc);
 	if (!args)
 		return (NULL);

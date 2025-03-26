@@ -34,5 +34,6 @@ int	main(int argc, char **argv, char *envp[])
 		free(pipex);
 		return (1);
 	}
+	ft_cleanup(pipex);
 	return (0);
 }

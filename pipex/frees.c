@@ -30,3 +30,32 @@ int	free_arr(char ***str_arr, int i)
 	free(str_arr);
 	return (1);
 }
+static void	clean_str_arr(char ***str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (str[i] != NULL)
+	{
+		j = 0;
+		while (str[i][j] != NULL)
+		{
+			if (str[i][j])
+				free(str[i][j]);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	ft_cleanup(t_pipex *pipex)
+{
+	if (!pipex)
+		return ;
+	if (!pipex->cmd_args)
+		clean_str_arr(pipex->cmd_args);
+	if (!pipex->cmd_paths)
+		clean_str_arr(pipex->cmd_paths);
+	free(pipex);
+}

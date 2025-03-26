@@ -51,7 +51,7 @@ static void	dealloc_arr(int **a, int *len)
 	i = 1;
 	while (i < *len)
 	{
-		*a[i - 1] = *a[i];
+		a[i - 1] = a[i];
 		i++;
 	}
 	free(a[i]);
@@ -64,14 +64,14 @@ int	pa(int **a, int **b, int *a_len, int *b_len)
 	i = 0;
 	if (!b || !*b || *b_len == 0)
 		return (0);
-	if (!*a)
+	if (!a || !*a)
 	{
-		*a = malloc(sizeof(int) * 1);
+		a = malloc(sizeof(int) * 1);
 		if (!*a)
 			return (0);
 		*a_len = 0;
 	}
-	*a = ft_realloc(*a, (sizeof(int) * (*a_len + 1)));
+	a = ft_realloc(*a, (sizeof(int) * (*a_len + 1)));
 	while (i < *a_len)
 	{
 		(*a)[i] = (*a)[i + 1];

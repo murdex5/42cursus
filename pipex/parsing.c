@@ -28,7 +28,8 @@ t_pipex	*ft_init_pipex(void)
 	pipex->is_invalid_infile = FALSE;
 	return (pipex);
 }
-char ***ft_parse_cmds(int argc, char **argv, t_pipex *pipex)
+
+char ***ft_parse_cmds(int argc, char **argv, t_pipex *pipex, char *envp[])
 {
 	char ***cmds;
 	int i;
@@ -36,7 +37,23 @@ char ***ft_parse_cmds(int argc, char **argv, t_pipex *pipex)
 	i = 2;
 	if(!pipex)
 		return (NULL);
-	
+	cmds = malloc(sizeof(char *) * (argc - 2 + 1));
+	if (!cmds)
+		return (NULL);
+	int j;
+	while (i < argc)
+	{
+		j = 0;
+		while (envp[j] != NULL)
+		{
+			if (ft_strnstr(envp[j], argv[i], ft_strlen(argv[i])))
+				cmds[i - 2] = ft_strnstr(envp[j], argv[i], ft_strlen(argv[i]));
+			j++;
+		}
+		i++;
+	}
+	cmds[i] = NULL;
+	return (cmds);
 }
 
 char	***ft_parse_args(int argc, char **argv, t_pipex *pipex)

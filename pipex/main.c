@@ -15,8 +15,6 @@
 int	main(int argc, char **argv, char *envp[])
 {
 	t_pipex	*pipex;
-	int		i;
-	int		j;
 
 	if (argc < 5)
 	{
@@ -33,7 +31,6 @@ int	main(int argc, char **argv, char *envp[])
 	pipex->cmd_args = ft_parse_args(argc, argv, pipex);
 	if (!pipex->cmd_args)
 	{
-        ft_printf("%d\n", j);
 		free(pipex);
 		return (1);
 	}

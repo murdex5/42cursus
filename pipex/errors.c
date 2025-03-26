@@ -15,5 +15,5 @@
 int	err_p(char *err_type)
 {
 	perror(err_type);
-	return (1);
+	return (0);
 }

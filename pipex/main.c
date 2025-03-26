@@ -27,6 +27,9 @@ int	main(int argc, char **argv)
 	pipex = ft_init_pipex();
 	if (!pipex)
 		return (1);
+	pipex->here_doc = ft_check_here_doc(argv);
+	if (!ft_check_args(argc, argv, pipex))
+		return (1);
 	pipex->cmd_args = ft_parse_args(argc, argv, pipex);
 	if (!pipex->cmd_args)
 	{

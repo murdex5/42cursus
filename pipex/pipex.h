@@ -38,6 +38,8 @@ typedef struct s_pipex
 
 int			free_arr(char ***str_arr, int i);
 int			err_p(char *err_type);
+t_bool		ft_check_here_doc(char **argv);
+int			ft_check_args(int argc, char **argv, t_pipex *pipex);
 t_pipex		*ft_init_pipex(void);
 char		***ft_parse_args(int argc, char **argv, t_pipex *pipex);
 #endif

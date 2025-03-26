@@ -47,7 +47,7 @@ char ***ft_parse_cmds(int argc, char **argv, t_pipex *pipex, char *envp[])
 		while (envp[j] != NULL)
 		{
 			if (ft_strnstr(envp[j], argv[i], ft_strlen(argv[i])))
-				cmds[i - 2] = ft_strnstr(envp[j], argv[i], ft_strlen(argv[i]));
+				cmds[i - 2][0] = ft_strnstr(envp[j], argv[i], ft_strlen(argv[i]));
 			j++;
 		}
 		i++;

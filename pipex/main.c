@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 09:39:00 by kadferna          #+#    #+#             */
-/*   Updated: 2025/03/26 09:39:13 by kadferna         ###   ########.fr       */
+/*   Created: 2025/03/26 09:46:39 by kadferna          #+#    #+#             */
+/*   Updated: 2025/03/26 09:46:41 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "pipex.h"
 
-# include "libft/libft.h"
-# include "sys/wait.h"
-# include <fcntl.h>
-# include <stdio.h>
-# include <unistd.h>
-
-#endif
+int main(void)
+{
+    return (0);
+}

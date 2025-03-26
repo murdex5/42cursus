@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 09:46:39 by kadferna          #+#    #+#             */
-/*   Updated: 2025/03/26 09:46:41 by kadferna         ###   ########.fr       */
+/*   Created: 2025/03/26 10:20:07 by kadferna          #+#    #+#             */
+/*   Updated: 2025/03/26 10:20:09 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int main(int argc, char **argv)
+t_pipex	*ft_init_pipex(void)
 {
-    if (argc < 2)
-        return (1);
-    return (0);
+	t_pipex	*pipex;
+
+	pipex = malloc(sizeof(t_pipex));
+	if (!pipex)
+		return (NULL);
+	pipex->in_fd = 0;
+	pipex->out_fd = 0;
+	pipex->cmd_args = NULL;
+	pipex->cmd_count = 0;
+	pipex->cmd_paths = NULL;
+	pipex->here_doc = FALSE;
+	pipex->is_invalid_infile = FALSE;
+	return (pipex);
 }

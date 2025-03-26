@@ -37,6 +37,7 @@ typedef struct s_pipex
 }			t_pipex;
 
 int			free_arr(char ***str_arr, int i);
+int			err_p(char *err_type);
 t_pipex		*ft_init_pipex(void);
 char		***ft_parse_args(int argc, char **argv, t_pipex *pipex);
 #endif

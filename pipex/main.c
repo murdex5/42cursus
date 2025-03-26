@@ -19,7 +19,11 @@ int	main(int argc, char **argv)
 	int		j;
 
 	if (argc < 5)
+	{
+		ft_printf("Usage: ./pipex file1 cmd1 cmd2 file2\n");
+		ft_printf("   or: ./pipex here_doc DELIMITER cmd1 cmd2 .... cmdn file\n");;
 		return (1);
+	}
 	pipex = ft_init_pipex();
 	if (!pipex)
 		return (1);

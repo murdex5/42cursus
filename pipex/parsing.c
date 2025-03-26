@@ -29,6 +29,20 @@ t_pipex	*ft_init_pipex(void)
 	return (pipex);
 }
 
+int ft_check_args(int argc, char **argv, t_pipex *pipex)
+{
+	if (!pipex)
+		return (1);
+	if (ft_strncmp(argv[1], "here_doc", ft_strlen("here_doc")) == 0)
+	{
+		pipex->here_doc = TRUE;
+		pipex->in_fd = open(".here_doc.tmp", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+		if (pipex->in_fd < 0)
+			return (err_p("Open"));
+	}
+	
+}
+
 char	***ft_parse_args(int argc, char **argv, t_pipex *pipex)
 {
 	char	***args;
@@ -40,8 +54,6 @@ char	***ft_parse_args(int argc, char **argv, t_pipex *pipex)
 	args = malloc(sizeof(char **) * argc);
 	if (!args)
 		return (NULL);
-	if (ft_strncmp(argv[1], "here_doc", ft_strlen("here_doc")) == 0)
-		pipex->here_doc = TRUE;
 	while (i < argc - 1)
 	{
 		args[i - 1] = ft_split(argv[i], ' ');

@@ -1,5 +1,5 @@
 CC = gcc
-SRCS = frees.c utils.c parsing.c main.c
+SRCS = frees.c utils.c parsing.c errors.c main.c
 OBJS = ${SRCS:.c=.o}
 FLAGS = -Wall -Werror -Wextra
 LIBFT_PATH = ./libft

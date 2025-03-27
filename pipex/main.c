@@ -34,6 +34,13 @@ int	main(int argc, char **argv, char *envp[])
 		free(pipex);
 		return (1);
 	}
+	pipex->cmd_paths = ft_parse_cmds(argc, argv, pipex, envp);
+	int i = 0;
+	while (pipex->cmd_paths[i])	
+	{
+		ft_printf("%s\n", pipex->cmd_paths[i][0]);
+		i++;
+	}
 	ft_cleanup(pipex);
-	return (0);
+	return(0);
 }

@@ -29,25 +29,26 @@ t_pipex	*ft_init_pipex(void)
 	return (pipex);
 }
 
-char ***ft_parse_cmds(int argc, char **argv, t_pipex *pipex, char *envp[])
+char	***ft_parse_cmds(int argc, char **argv, t_pipex *pipex, char *envp[])
 {
-	char ***cmds;
-	int i;
+	char	***cmds;
+	int		i;
+	int		j;
 
 	i = 2;
-	if(!pipex)
+	if (!pipex)
 		return (NULL);
 	cmds = malloc(sizeof(char *) * (argc - 2 + 1));
 	if (!cmds)
 		return (NULL);
-	int j;
 	while (i < argc)
 	{
 		j = 0;
 		while (envp[j] != NULL)
 		{
 			if (ft_strnstr(envp[j], argv[i], ft_strlen(argv[i])))
-				cmds[i - 2][0] = ft_strnstr(envp[j], argv[i], ft_strlen(argv[i]));
+				cmds[i - 2][0] = ft_strdup(ft_strnstr(envp[j], argv[i],
+							ft_strlen(argv[i])));
 			j++;
 		}
 		i++;

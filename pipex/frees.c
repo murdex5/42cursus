@@ -15,14 +15,14 @@
 int	free_arr(char ***str_arr, int i)
 {
 	int	j;
-	int	l;
 
 	while (i > 0)
 	{
 		j = 0;
 		while (str_arr[i][j] != NULL)
 		{
-			free(str_arr[i][j]);
+			if (str_arr[i][j])
+				free(str_arr[i][j]);
 			j++;
 		}
 		i--;
@@ -30,6 +30,7 @@ int	free_arr(char ***str_arr, int i)
 	free(str_arr);
 	return (1);
 }
+
 static void	clean_str_arr(char ***str)
 {
 	int	i;
@@ -49,6 +50,19 @@ static void	clean_str_arr(char ***str)
 	}
 }
 
+static void	clean_cmd_path(char ***path)
+{
+	int	i;
+
+	i = 0;
+	while (path[i][0] != NULL)
+	{
+		ft_printf("%s\n", path[i][0]);
+		free(path[i][0]);
+		i++;
+	}
+}
+
 void	ft_cleanup(t_pipex *pipex)
 {
 	if (!pipex)
@@ -56,6 +70,6 @@ void	ft_cleanup(t_pipex *pipex)
 	if (!pipex->cmd_args)
 		clean_str_arr(pipex->cmd_args);
 	if (!pipex->cmd_paths)
-		clean_str_arr(pipex->cmd_paths);
+		clean_cmd_path(pipex->cmd_paths);
 	free(pipex);
 }

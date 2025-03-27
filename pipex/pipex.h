@@ -43,4 +43,6 @@ t_bool		ft_check_here_doc(char **argv);
 int			ft_check_args(int argc, char **argv, t_pipex *pipex);
 t_pipex		*ft_init_pipex(void);
 char		***ft_parse_args(int argc, char **argv, t_pipex *pipex);
+char		***ft_parse_cmds(int argc, char **argv, t_pipex *pipex,
+				char *envp[]);
 #endif

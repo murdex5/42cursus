@@ -1,7 +1,7 @@
 CC = gcc
 SRCS = frees.c utils.c checks.c parsing.c errors.c main.c
 OBJS = ${SRCS:.c=.o}
-FLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 LIBFT_PATH = ./libft
 LIBFT_LIB = ${LIBFT_PATH}/libft.a
 NAME = pipex

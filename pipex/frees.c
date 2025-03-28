@@ -72,6 +72,7 @@ static void	clean_cmd_path(char **path)
 		free(path[i]);
 		i++;
 	}
+	free(path);
 }
 
 void	ft_cleanup(t_pipex *pipex)

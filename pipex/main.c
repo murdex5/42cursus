@@ -57,6 +57,7 @@ int	main(int argc, char **argv, char *envp[])
 		free(pipex);
 		return (1);
 	}
+	i = 0;
 	while (pipex->cmd_paths[i] != NULL)
 	{
 		ft_exec(pipex, envp);

@@ -14,6 +14,7 @@
 
 int	err_p(char *err_type)
 {
-	perror(err_type);
+	perror("pipex");
+	ft_printf("%s\n", err_type);
 	return (0);
 }

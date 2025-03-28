@@ -32,49 +32,46 @@ t_pipex	*ft_init_pipex(void)
 char	***ft_parse_cmds(int argc, char **argv, t_pipex *pipex, char *envp[])
 {
 	char	***cmds;
+	char	**paths;
 	int		i;
-	int		j;
+	int		l;
 
-	i = 2;
-	if (!pipex)
-		return (NULL);
-	cmds = malloc(sizeof(char *) * (argc - 2 + 1));
+	paths = ft_get_path(envp);
+	cmds = malloc(sizeof(char **) + (argc - 2 + 1));
+	l = 1;
+	if (pipex->here_doc == TRUE)
+		l = 2;
 	if (!cmds)
 		return (NULL);
-	while (i < argc)
+	i = l;
+	while (i < argc - l)
 	{
-		j = 0;
-		while (envp[j] != NULL)
-		{
-			if (ft_strnstr(envp[j], argv[i], ft_strlen(argv[i])))
-				cmds[i - 2][0] = ft_strdup(ft_strnstr(envp[j], argv[i],
-							ft_strlen(argv[i])));
-			j++;
-		}
-		i++;
+		
 	}
-	cmds[i] = NULL;
-	return (cmds);
 }
 
 char	***ft_parse_args(int argc, char **argv, t_pipex *pipex)
 {
 	char	***args;
 	int		i;
+	int		l;
 
-	i = 1;
+	l = 1;
 	if (!pipex)
 		return (NULL);
 	args = malloc(sizeof(char **) * argc);
 	if (!args)
 		return (NULL);
-	while (i < argc - 1)
+	if (pipex->here_doc == TRUE)
+		l = 2;
+	i = l;
+	while (i < argc - l)
 	{
-		args[i - 1] = ft_split(argv[i], ' ');
-		if (!args[i - 1])
+		args[i - l] = ft_split(argv[i], ' ');
+		if (!args[i - l])
 			return (free_arr(args, i), NULL);
 		i++;
 	}
-	args[i - 1] = NULL;
+	args[i - l] = NULL;
 	return (args);
 }

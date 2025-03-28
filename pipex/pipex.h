@@ -41,6 +41,8 @@ void		ft_cleanup(t_pipex *pipex);
 int			err_p(char *err_type);
 t_bool		ft_check_here_doc(char **argv);
 int			ft_check_args(int argc, char **argv, t_pipex *pipex);
+char		*ft_get_exe(char *cmd, char **paths);
+char		**ft_get_path(char **env);
 t_pipex		*ft_init_pipex(void);
 char		***ft_parse_args(int argc, char **argv, t_pipex *pipex);
 char		***ft_parse_cmds(int argc, char **argv, t_pipex *pipex,

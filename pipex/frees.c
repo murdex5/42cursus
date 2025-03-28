@@ -84,3 +84,15 @@ void	ft_cleanup(t_pipex *pipex)
 		clean_cmd_path(pipex->cmd_paths);
 	free(pipex);
 }
+
+void	ft_free_array(char **str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != NULL)
+	{
+		free(str[i]);
+		i++;
+	}
+}

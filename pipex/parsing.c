@@ -29,7 +29,7 @@ t_pipex	*ft_init_pipex(void)
 	return (pipex);
 }
 
-char	**ft_parse_cmds(int argc, char **argv, t_pipex *pipex, char *envp[])
+char	**ft_parse_cmds(int argc, char **argv, char *envp[])
 {
 	char	**cmds;
 	char	**paths;
@@ -37,16 +37,15 @@ char	**ft_parse_cmds(int argc, char **argv, t_pipex *pipex, char *envp[])
 	int		l;
 
 	paths = ft_get_path(envp);
-	l = 1;
-	if (pipex->here_doc == TRUE)
-		l = 2;
+	l = 2;
+	
 	cmds = malloc(sizeof(char *) + (argc - l + 1));
 	if (!cmds || !paths)
 		return (NULL);
 	i = l;
 	while (i < argc - l)
 	{
-		cmds[i - l] = ft_get_exe(argv[i], paths);
+		cmds[i - l] = ft_get_exe(ft_split(argv[i], ' ')[0], paths);
 		if (!cmds)
 			return (free_arr(cmds, (i - l)), NULL);
 		i++;

@@ -53,21 +53,10 @@ int	main(int argc, char **argv, char *envp[])
 	pipex->cmd_paths = ft_parse_cmds(argc, argv, envp);
 	if (!pipex->cmd_paths)
 	{
-		// Free cmd_args before exiting
 		free_ptr_arr(pipex->cmd_args, get_arr_lenth(pipex->cmd_args));
 		free(pipex);
 		return (1);
 	}
-	// Debug print (temporary)
-	i = 0;
-	ft_printf("Command paths:\n");
-	while (pipex->cmd_paths && pipex->cmd_paths[i] != NULL)
-	{
-		ft_printf("%d: %s\n", i, pipex->cmd_paths[i]);
-		i++;
-	}
-	// Here you would execute the actual pipex logic
-	// ft_execute_pipex(pipex, envp);
 	ft_cleanup(pipex);
 	ft_printf("Program finished successfully\n");
 	return (0);

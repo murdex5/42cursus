@@ -41,6 +41,7 @@ int			free_arr(char **str_arr, int i);
 void		ft_cleanup(t_pipex *pipex);
 int			err_p(char *err_type);
 int			ft_no_exec(char *s);
+int			ft_pipex_err(char *str);
 t_bool		ft_check_here_doc(char **argv);
 int			ft_check_args(int argc, char **argv, t_pipex *pipex);
 char		*ft_get_exe(char *cmd, char **paths);

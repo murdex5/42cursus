@@ -14,9 +14,15 @@
 
 int	err_p(char *err_type)
 {
-	perror("pipex");
-	ft_printf("%s\n", err_type);
+	perror(err_type);
 	return (0);
+}
+
+int	ft_pipex_err(char *str)
+{
+	ft_putstr_fd(str, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
+	exit(1);
 }
 
 int	ft_no_exec(char *s)

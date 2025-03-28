@@ -50,26 +50,3 @@ void	ft_close_fd(int in_fd, int out_fd)
 		close(out_fd);
 	}
 }
-
-void	reknew_pipe(int pip1, int pip2)
-{
-	close(pip1);
-	close(pip2);
-	pipe(pip1);
-	pipe(pip2);
-}
-
-void	ft_new_p_fork(t_pipex *pipex, char **env)
-{
-	int pid;
-
-	pid = fork();
-	if (pid < 0)
-		ft_pipex_err("Error when forking (1).");
-	if (pid == 0)
-	{
-		ft_close_fd(pipex->in_fd, pipex->out_fd);
-		ft_exec(pipex, env);
-	}
-	reknew_pipe(pipex->in_fd, pipex->out_fd);
-}

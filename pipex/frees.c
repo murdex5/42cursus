@@ -12,7 +12,7 @@
 
 #include "pipex.h"
 
-int	free_arr(char ***str_arr, int i)
+int	free_ptr_arr(char ***str_arr, int i)
 {
 	int	j;
 
@@ -25,6 +25,18 @@ int	free_arr(char ***str_arr, int i)
 				free(str_arr[i][j]);
 			j++;
 		}
+		i--;
+	}
+	free(str_arr);
+	return (1);
+}
+
+int	free_arr(char **str_arr, int i)
+{
+	while (i > 0)
+	{
+		if (str_arr[i])
+			free(str_arr[i]);
 		i--;
 	}
 	free(str_arr);
@@ -50,15 +62,14 @@ static void	clean_str_arr(char ***str)
 	}
 }
 
-static void	clean_cmd_path(char ***path)
+static void	clean_cmd_path(char **path)
 {
 	int	i;
 
 	i = 0;
-	while (path[i][0] != NULL)
+	while (path[i] != NULL)
 	{
-		ft_printf("%s\n", path[i][0]);
-		free(path[i][0]);
+		free(path[i]);
 		i++;
 	}
 }

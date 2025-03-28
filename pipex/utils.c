@@ -35,7 +35,7 @@ char	*ft_get_exe(char *cmd, char **paths)
 		path = ft_strjoin(*paths, "/");
 		path = ft_strjoin(path, cmd);
 		if (access(path, X_OK) == 0)
-			return (paths);
+			return (path);
 		path++;
 	}
 	err_p("Couldn't find the exe!");

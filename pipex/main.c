@@ -36,9 +36,9 @@ int	main(int argc, char **argv, char *envp[])
 	}
 	pipex->cmd_paths = ft_parse_cmds(argc, argv, pipex, envp);
 	int i = 0;
-	while (pipex->cmd_paths[i])	
+	while (pipex->cmd_paths[i] != NULL)	
 	{
-		ft_printf("%s\n", pipex->cmd_paths[i][0]);
+		ft_printf("%s\n", pipex->cmd_paths[i]);
 		i++;
 	}
 	ft_cleanup(pipex);

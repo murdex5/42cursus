@@ -29,6 +29,7 @@ int	get_arr_lenth(char ***str)
 int	main(int argc, char **argv, char *envp[])
 {
 	t_pipex	*pipex;
+	int		pipe_fd[2];
 	int		i;
 
 	if (argc < 5)
@@ -57,12 +58,23 @@ int	main(int argc, char **argv, char *envp[])
 		free(pipex);
 		return (1);
 	}
+	if (pipe(pipe_fd) == -1)
+	{
+		err_p("pipe");
+		ft_cleanup(pipex);
+		return (1);
+	}
 	i = 0;
 	while (pipex->cmd_paths[i] != NULL)
 	{
-		ft_exec(pipex, envp);
+		if (ft_exec(pipex, pipe_fd, i) < 0)
+		{
+			ft_cleanup(pipex);
+			return (1);
+		}
 		i++;
 	}
+	ft_close_fd(pipe_fd[0], pipe_fd[1]);
 	ft_cleanup(pipex);
 	ft_printf("Program finished successfully\n");
 	return (0);

@@ -38,7 +38,7 @@
 // 	ft_printf("Error: Command execution failed\n");
 // }
 
-static void	ft_fork(pid_t *pid, int fd[])
+static void	ft_fork(pid_t *pid)
 {
 	*pid = fork();
 	if (*pid == -1)
@@ -46,18 +46,12 @@ static void	ft_fork(pid_t *pid, int fd[])
 		err_p("Couldn't Fork");
 		exit(1);
 	}
-	if (pipe(fd) < 0)
-	{
-		err_p("Pipe cration failed");
-		exit(1);
-	}
 }
-void	ft_exec(t_pipex *pipex, char **env)
+int	 ft_exec(t_pipex *pipex, int pipe_fd[], int i)
 {
 	pid_t	pid;
-	int		pipe_fd[2];
 
-	ft_fork(&pid, pipe_fd);
+	ft_fork(&pid);
 	if (pid == 0)
 	{
 		close(pipe_fd[1]);
@@ -65,13 +59,15 @@ void	ft_exec(t_pipex *pipex, char **env)
 		{
 			dup2(pipex->in_fd, STDERR_FILENO);
 			close(pipex->in_fd);
+			return -1;
 		}
 		dup2(pipe_fd[0], STDOUT_FILENO);
 		close(pipe_fd[0]);
-		if (execve(pipex->cmd_paths[0], pipex->cmd_args[0], env) < 0)
+		if (execve(pipex->cmd_paths[i], pipex->cmd_args[i], NULL) < 0)
 		{
 			err_p("Execve Failed");
 			exit(EXIT_FAILURE);
+			return -1;
 		}
 	}
 	else
@@ -81,4 +77,5 @@ void	ft_exec(t_pipex *pipex, char **env)
 			close(pipex->in_fd);
 		pipex->in_fd = pipe_fd[1];
 	}
+	return 1;
 }

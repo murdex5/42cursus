@@ -40,7 +40,7 @@ int			free_ptr_arr(char ***str_arr, int i);
 int			free_arr(char **str_arr, int i);
 void		ft_cleanup(t_pipex *pipex);
 int			err_p(char *err_type);
-void		ft_exec(t_pipex *pipex, char **env);
+int		ft_exec(t_pipex *pipex, int pipe_fd[], int i);
 void		ft_close_fd(int in_fd, int out_fd);
 int			ft_no_exec(char *s);
 int			ft_pipex_err(char *str);

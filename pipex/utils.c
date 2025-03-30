@@ -51,13 +51,13 @@ void	ft_close_fd(int in_fd, int out_fd)
 	}
 }
 
-void ft_write_fd(char *name, int fd_in, int hd)
+void	ft_write_fd(char *name, int fd_in, t_bool hd)
 {
-	int fd_out;
-	int b_read;
-	char buff[1];
+	int		fd_out;
+	int		b_read;
+	char	buff[1];
 
-	if (hd)
+	if (hd == TRUE)
 		fd_out = open(name, O_RDWR | O_CREAT | O_APPEND, 00777);
 	else
 	{
@@ -75,4 +75,12 @@ void ft_write_fd(char *name, int fd_in, int hd)
 		write(fd_out, &buff, 1);
 		b_read = read(fd_in, &buff, sizeof(char));
 	}
+}
+
+void	ft_wait(int i)
+{
+	int status;
+
+	while (i-- > 0)
+		wait(&status);
 }

@@ -61,31 +61,6 @@ static void	clean_str_arr(char ***str)
 		i++;
 	}
 }
-
-static void	clean_cmd_path(char **path)
-{
-	int	i;
-
-	i = 0;
-	while (path[i] != NULL)
-	{
-		free(path[i]);
-		i++;
-	}
-	free(path);
-}
-
-void	ft_cleanup(t_pipex *pipex)
-{
-	if (!pipex)
-		return ;
-	if (!pipex->cmd_args)
-		clean_str_arr(pipex->cmd_args);
-	if (!pipex->cmd_paths)
-		clean_cmd_path(pipex->cmd_paths);
-	free(pipex);
-}
-
 void	ft_free_array(char **str)
 {
 	int i;
@@ -96,4 +71,15 @@ void	ft_free_array(char **str)
 		free(str[i]);
 		i++;
 	}
+}
+
+void	ft_cleanup(t_pipex *pipex)
+{
+	if (!pipex)
+		return ;
+	if (!pipex->cmd_args)
+		clean_str_arr(pipex->cmd_args);
+	if (!pipex->cmd_paths)
+		ft_free_array(pipex->cmd_paths);
+	free(pipex);
 }

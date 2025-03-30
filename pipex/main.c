@@ -74,7 +74,9 @@ int	main(int argc, char **argv, char *envp[])
 		}
 		i++;
 	}
+	ft_wait(i);
 	ft_close_fd(pipe_fd[0], pipe_fd[1]);
+	ft_write_fd(pipex->cmd_paths[i-1], pipex->in_fd, pipex->here_doc);
 	ft_cleanup(pipex);
 	ft_printf("Program finished successfully\n");
 	return (0);

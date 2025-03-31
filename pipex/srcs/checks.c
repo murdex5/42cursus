@@ -30,7 +30,7 @@ static int	open_here_doc(int argc, char **argv, t_pip *pip)
 {
 	char	*line;
 
-	pip->in_fd[0] = open("here_doc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	pip->in_fd[0] = open(".here_doc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (pip->in_fd[0] < 0)
 		return (err_p("Couldn not open ther file\n"), 0);
 	while (1)
@@ -48,7 +48,7 @@ static int	open_here_doc(int argc, char **argv, t_pip *pip)
 		free(line);
 	}
 	close(pip->in_fd[0]);
-	pip->in_fd[0] = open("here_doc_tmp", O_RDONLY);
+	pip->in_fd[0] = open(".here_doc_tmp", O_RDONLY);
 	if (pip->in_fd[0] < 0)
 		return (err_p("Couldn not open ther file\n"), 0);
 	pip->out_fd[0] = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
@@ -95,6 +95,6 @@ int	check_args(int argc, char **argv, t_pip *pip)
 	if (pip->out_fd[0] == -1)
 		return (err_p("Output file error"));
 	if (pip->here_doc == TRUE)
-		unlink("here_doc_tmp");
+		unlink(".here_doc_tmp");
 	return (1);
 }

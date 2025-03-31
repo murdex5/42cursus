@@ -20,4 +20,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+void	close_fd(int fd1, int fd2);
+int		ft_strcmp(const char *s1, const char *s2);
+int		ft_unlink(char *file);
+int		check_ac(int ac);
+int		err_p(char *msg);
+void	reknew_pipe(int (*p)[2]);
+void	read_here_doc(char *limiter, int fd_out);
+int		check_here_doc(char **argv, int (*p)[2]);
+
 #endif

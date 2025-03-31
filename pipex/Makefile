@@ -3,6 +3,7 @@ SRC_PATH = ./srcs
 SRCS = ${SRC_PATH}/utils.c \
 		${SRC_PATH}/checks.c \
 		${SRC_PATH}/errors.c \
+		${SRC_PATH}/parse.c \
 		${SRC_PATH}/main.c 
 OBJS = ${SRCS:.c=.o}
 CFLAGS = -Wall -Werror -Wextra

@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.html": "html",
+        "pipex.h": "c"
+    }
+}

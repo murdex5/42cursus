@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/31 10:28:51 by kadferna          #+#    #+#             */
-/*   Updated: 2025/03/31 10:29:01 by kadferna         ###   ########.fr       */
+/*   Created: 2025/03/31 13:39:11 by kadferna          #+#    #+#             */
+/*   Updated: 2025/03/31 13:39:14 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,75 +15,86 @@
 int	check_ac(int ac)
 {
 	if (ac < 5)
-	{
-		ft_putstr_fd("Pipex: ./pipex infile cmd1 cmd2 outfile \n",
-			STDERR_FILENO);
-		return (0);
-	}
+		return (std_errors("./pipex infile cmd1 cmd2 outfile"), 0);
 	return (1);
 }
 
-void	read_here_doc(char *limiter, int out_fd)
+t_bool	check_here_doc(char **argv)
+{
+	if (ft_strncmp("here_doc", argv[1], ft_strlen(argv[1])) == 0)
+		return (TRUE);
+	return (FALSE);
+}
+
+static int	open_here_doc(int argc, char **argv, t_pip *pip)
 {
 	char	*line;
 
+	pip->in_fd[0] = open("here_doc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (pip->in_fd[0] < 0)
+		return (err_p("Couldn not open ther file\n"), 0);
 	while (1)
 	{
 		line = get_next_line(0);
 		if (!line)
-			return ;
-		if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
+			break ;
+		if (ft_strncmp(line, argv[2], ft_strlen(argv[2])) == 0
+			&& line[ft_strlen(argv[2])] == '\n')
 		{
 			free(line);
-			return ;
+			break ;
 		}
-		ft_putstr_fd(line, out_fd);
+		ft_putstr_fd(line, pip->in_fd[0]);
 		free(line);
 	}
+	close(pip->in_fd[0]);
+	pip->in_fd[0] = open("here_doc_tmp", O_RDONLY);
+	if (pip->in_fd[0] < 0)
+		return (err_p("Couldn not open ther file\n"), 0);
+	pip->out_fd[0] = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
+	return (1);
 }
 
-void	ft_write(char **argv, char *name, int in_fd, int out_fd)
+static int	open_reguar(t_pip *pip, int argc, char **argv)
 {
-	char	buf[1];
-	int		bytes_read;
-
-	if (ft_strncmp("here_doc", argv[1], 8) == 0)
-		out_fd = open(name, O_RDONLY);
-	else
+	pip->in_fd[0] = open(argv[1], O_RDONLY);
+	if (pip->in_fd[0] == -1)
 	{
-		ft_unlink(name);
-		out_fd = open(name, O_CREAT | O_WRONLY, 0777);
-		if (out_fd < 0)
-			err_p("Could not create the file\n");
+		if (ft_strncmp(argv[1], "/dev/urandom", ft_strlen("/dev/urandom")) == 0)
+		{
+			pip->in_fd[0] = open("/dev/urandom", O_RDONLY);
+			if (pip->in_fd[0] == -1)
+				return (err_p("Cannot open /dev/urandom"));
+		}
+		else
+		{
+			pip->is_invalid_infile = TRUE;
+			ft_putstr_fd("pipex: ", 2);
+			ft_putstr_fd(argv[1], 2);
+			ft_putstr_fd(": No such file or directory\n", 2);
+		}
 	}
-	if (out_fd < 0)
-		err_p("Could not open the file\n");
-	bytes_read = read(in_fd, &buf, sizeof(char));
-	while (bytes_read > 0)
-	{
-		write(out_fd, &buf, 1);
-		bytes_read = read(in_fd, &buf, sizeof(char));
-	}
+	pip->out_fd[0] = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	return (1);
 }
 
-int	check_here_doc(char **argv, int (*p)[2])
+int	check_args(int argc, char **argv, t_pip *pip)
 {
-	int	fd_temp;
-
-	if (ft_strncmp("here_doc", argv[1], ft_strlen("here_doc")) == 0)
+	if (!pip)
+		return (0);
+	if (pip->here_doc == TRUE)
 	{
-		fd_temp = open("here_doc_tmp", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		if (fd_temp < 0)
-			return (err_p("Couldn't find or create the file\n"), 0);
-		read_here_doc(argv[2], fd_temp);
-		ft_write(argv, argv[6], fd_temp, (*p)[1]);
+		if (!open_here_doc(argc, argv, pip))
+			return (0);
 	}
 	else
 	{
-		fd_temp = open(argv[1], O_RDONLY);
-		if (fd_temp < 0)
-			return (err_p("Couldn't open the input file"), 0);
-		(*p)[0] = fd_temp;
+		if (!open_reguar(pip, argc, argv))
+			return (0);
 	}
-	return (0);
+	if (pip->out_fd[0] == -1)
+		return (err_p("Output file error"));
+	if (pip->here_doc == TRUE)
+		unlink("here_doc_tmp");
+	return (1);
 }

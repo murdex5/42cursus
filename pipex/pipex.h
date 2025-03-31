@@ -20,13 +20,28 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-void	close_fd(int fd1, int fd2);
-int		ft_strcmp(const char *s1, const char *s2);
-int		ft_unlink(char *file);
-int		check_ac(int ac);
-int		err_p(char *msg);
-void	reknew_pipe(int (*p)[2]);
-void	read_here_doc(char *limiter, int fd_out);
-int		check_here_doc(char **argv, int (*p)[2]);
+typedef enum e_bool
+{
+	TRUE,
+	FALSE
+}			t_bool;
 
+typedef struct s_pip
+{
+	int		in_fd[2];
+	int		out_fd[2];
+	t_bool	here_doc;
+	t_bool	is_invalid_infile;
+	char	**cmd_path;
+	char	***cmd_args;
+	int		cmd_count;
+}			t_pip;
+
+t_pip		*init_pip(void);
+int			std_errors(char *msg);
+int			err_p(char *msg);
+int			check_ac(int ac);
+void		close_fd(int fd1, int fd2);
+void		reknew_fd(int (*p)[2]);
+t_bool		check_here_doc(char **argv);
 #endif

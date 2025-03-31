@@ -44,4 +44,6 @@ int			check_ac(int ac);
 void		close_fd(int fd1, int fd2);
 void		reknew_fd(int (*p)[2]);
 t_bool		check_here_doc(char **argv);
+int			check_args(int argc, char **argv, t_pip *pip);
+void		clean_up(t_pip *pip);
 #endif

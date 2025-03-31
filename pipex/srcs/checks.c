@@ -21,7 +21,7 @@ int	check_ac(int ac)
 
 t_bool	check_here_doc(char **argv)
 {
-	if (ft_strncmp("here_doc", argv[1], ft_strlen(argv[1])) == 0)
+	if (argv[1] && ft_strncmp("here_doc", argv[1], ft_strlen(argv[1])) == 0)
 		return (TRUE);
 	return (FALSE);
 }
@@ -33,12 +33,13 @@ static int	open_here_doc(int argc, char **argv, t_pip *pip)
 	pip->in_fd[0] = open(".here_doc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (pip->in_fd[0] < 0)
 		return (err_p("Couldn not open ther file\n"), 0);
+	write(1, "heredoc> ", 9); 
 	while (1)
 	{
 		line = get_next_line(0);
 		if (!line)
 			break ;
-		if (ft_strncmp(line, argv[2], ft_strlen(argv[2])) == 0
+		if (ft_strncmp(line, argv[2], ft_strlen(argv[2]) + 1) == 0
 			&& line[ft_strlen(argv[2])] == '\n')
 		{
 			free(line);
@@ -46,6 +47,7 @@ static int	open_here_doc(int argc, char **argv, t_pip *pip)
 		}
 		ft_putstr_fd(line, pip->in_fd[0]);
 		free(line);
+		write(1, "heredoc> ", 9);
 	}
 	close(pip->in_fd[0]);
 	pip->in_fd[0] = open(".here_doc_tmp", O_RDONLY);

@@ -57,8 +57,8 @@ char	**parse_paths(int argc, char **argv, char *envp[])
 	paths = get_path(envp);
 	cmds = malloc(sizeof(char *) * ((argc - 2) + 1));
 	if (!cmds)
-		return (free_two_vals("Memory allocation for cmds failed", NULL,
-				paths, 0), NULL);
+		return (free_two_vals("Memory allocation for cmds failed", NULL, paths,
+				0), NULL);
 	i = 2;
 	while (i < argc - 1)
 	{
@@ -73,4 +73,29 @@ char	**parse_paths(int argc, char **argv, char *envp[])
 	free_cmd_path(paths);
 	cmds[i - 2] = NULL;
 	return (cmds);
+}
+
+t_pip	*populate_pip(int argc, char **argv, char *envp[])
+{
+	t_pip	*pip;
+
+	pip = init_pip();
+	if (!pip)
+		return (std_errors("Failed to initialize pip"), NULL);
+	pip->here_doc = check_here_doc(argv);
+	if (!check_args(argc, argv, pip))
+	{
+		ft_clean_up(pip);
+		return (std_errors("Checking args failed"), NULL);
+	}
+	pip->cmd_args = parse_args(argc, argv);
+	if (!pip->cmd_args)
+		return (std_errors("Failed to parse args"), NULL);
+	pip->cmd_path = parse_paths(argc, argv, envp);
+	if (!pip->cmd_path)
+	{
+		ft_clean_up(pip);
+		return (std_errors("Failed to parse cmds"), NULL);
+	}
+	return (pip);
 }

@@ -43,6 +43,7 @@ char		**get_path(char *env[]);
 void		free_arr_arr(char ***str, int i);
 int			free_two_vals(char *msg, char **arr1, char **arr2, int i);
 void		free_cmd_path(char **str);
+void		free_args(char ***str);
 void		free_arr(char **str, int i);
 int			std_errors(char *msg);
 int			ft_strcmp(const char *s1, const char *s2);
@@ -55,5 +56,6 @@ char		***parse_args(int argc, char **argv);
 char		**parse_paths(int argc, char **argv, char *envp[]);
 int			check_args(int argc, char **argv, t_pip *pip);
 char		*get_exe(char *cmd, char **paths);
+t_pip		*populate_pip(int argc, char **argv, char *envp[]);
 void		ft_clean_up(t_pip *pip);
 #endif

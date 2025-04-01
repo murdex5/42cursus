@@ -18,17 +18,9 @@ int	main(int argc, char **argv, char *envp[])
 
 	if (!check_ac(argc))
 		return (1);
-	pip = init_pip();
+	pip = populate_pip(argc, argv, envp);
 	if (!pip)
-		return (std_errors("Could not initialize the data type."), 1);
-	pip->cmd_args = parse_args(argc, argv);
-	pip->cmd_path = parse_paths(argc, argv, envp);
-	pip->here_doc = check_here_doc(argv);
-	if (!check_args(argc, argv, pip))
-	{
-		ft_clean_up(pip);
 		return (1);
-	}
 	// Execute commands here (you'll need to implement this part)
 	// execute_commands(pip, argc, argv);
 	if (pip->here_doc == TRUE)

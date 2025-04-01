@@ -50,7 +50,7 @@ void	free_arr_arr(char ***str, int i)
 	std_errors("Failed to allocate memory for args");
 }
 
-static void	free_cmd_path(char **str)
+void	free_cmd_path(char **str)
 {
 	int	i;
 
@@ -60,6 +60,17 @@ static void	free_cmd_path(char **str)
 		if (str[i])
 			free(str[i]);
 		i++;
+	}
+	free(str);
+}
+
+void	free_arr(char **str, int i)
+{
+	while (i > 0)
+	{
+		if (str[i])
+			free(str[i]);
+		i--;
 	}
 	free(str);
 }

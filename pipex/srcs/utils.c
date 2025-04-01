@@ -3,7 +3,8 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kadferna <marvin@42.fr>                     +#+  +:+
+	+#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:24:00 by kadferna          #+#    #+#             */
 /*   Updated: 2025/04/01 15:24:00 by kadferna         ###   ########.ch       */
@@ -31,4 +32,33 @@ int	ft_strcmp(const char *s1, const char *s2)
 		s2++;
 	}
 	return (*(unsigned char *)s1 - *(unsigned char *)s2);
+}
+
+char	*get_exe(char *cmd, char **paths)
+{
+	char	*path;
+
+	while (*paths)
+	{
+		path = ft_strjoin(*paths, "/");
+		path = ft_strjoin(path, cmd);
+		if (access(path, X_OK) == 0)
+			return (path);
+		path++;
+	}
+	return (NULL);
+}
+
+char	**get_path(char *env[])
+{
+	char **paths;
+
+	while (*env)
+	{
+		if (ft_strncmp(*env, "PATH", 4) == 0)
+			break ;
+		env++;
+	}
+	paths = ft_split(*env + 5, ':');
+	return (paths);
 }

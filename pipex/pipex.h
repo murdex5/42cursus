@@ -39,8 +39,10 @@ typedef struct s_pip
 }			t_pip;
 
 t_pip		*init_pip(void);
-char		***parse_args(int argc, char **argv);
+char		**get_path(char *env[]);
 void		free_arr_arr(char ***str, int i);
+void		free_cmd_path(char **str);
+void		free_arr(char **str, int i);
 int			std_errors(char *msg);
 int			ft_strcmp(const char *s1, const char *s2);
 int			err_p(char *msg);
@@ -48,6 +50,9 @@ int			check_ac(int ac);
 void		close_fd(int fd1, int fd2);
 void		reknew_fd(int (*p)[2]);
 t_bool		check_here_doc(char **argv);
+char		***parse_args(int argc, char **argv);
+char		**parse_paths(int argc, char **argv, char *envp[]);
 int			check_args(int argc, char **argv, t_pip *pip);
+char		*get_exe(char *cmd, char **paths);
 void		ft_clean_up(t_pip *pip);
 #endif

@@ -29,8 +29,8 @@ t_pip	*init_pip(void)
 }
 char	***parse_args(int argc, char **argv)
 {
-	char ***args;
-	int i;
+	char	***args;
+	int		i;
 
 	args = malloc(sizeof(char **) * ((argc - 2) + 1));
 	if (!args)
@@ -43,5 +43,33 @@ char	***parse_args(int argc, char **argv)
 			free_arr_arr(args, i - 2);
 		i++;
 	}
+	args[i - 2] = NULL;
 	return (args);
+}
+
+char	**parse_paths(int argc, char **argv, char *envp[])
+{
+	char	**cmds;
+	char	**paths;
+	int		i;
+
+	paths = get_path(envp);
+	if (!paths)
+		return (std_errors("Memory allocation for paths failed"), NULL);
+	cmds = malloc(sizeof(char *) * ((argc - 2) + 1));
+	if (!cmds)
+	{
+		free_cmd_path(paths);
+		return (std_errors("Memory allocation for cmds failed"), NULL);
+	}
+	i = 2;
+	while (i < argc - 1)
+	{
+		cmds[i - 1] = get_exe(ft_split(argv[i], ' ')[0], paths);
+		if (!cmds)
+			return (free_arr(cmds, i - 2), NULL);
+		i++;
+	}
+	cmds[i - 2] = NULL;
+	return (cmds);
 }

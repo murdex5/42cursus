@@ -3,10 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kadferna <marvin@42.fr>                     +#+  +:+
+	+#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/31 13:39:11 by kadferna          #+#    #+#             */
-/*   Updated: 2025/03/31 13:39:14 by kadferna         ###   ########.fr       */
+/*   Created: 2025/04/01 15:25:19 by kadferna          #+#    #+#             */
+/*   Updated: 2025/04/01 15:31:27 by kadferna         ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,35 +27,39 @@ t_bool	check_here_doc(char **argv)
 	return (FALSE);
 }
 
+// static int	compare_strs(char *str1, char *str2)
+// {
+// 	int	i;
+
+// 	if (!str1 || !str2)
+// 		return (1);
+// 	i = ft_strcmp(str1, str2);
+// 	return (i);
+// }
 static int	open_here_doc(int argc, char **argv, t_pip *pip)
 {
 	char	*line;
 
 	pip->in_fd[0] = open(".here_doc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (pip->in_fd[0] < 0)
-		return (err_p("Couldn not open ther file\n"), 0);
-	write(1, "heredoc> ", 9); 
+		return (perror("Failed to open .here_doc_tmp"), 0);
 	while (1)
 	{
 		line = get_next_line(0);
 		if (!line)
-			break ;
-		if (ft_strncmp(line, argv[2], ft_strlen(argv[2]) + 1) == 0
-			&& line[ft_strlen(argv[2])] == '\n')
+			return (std_errors("Memory allocation for line failed"), 0);
+		if (ft_strncmp(argv[2], line, ft_strlen(argv[2])) == 0)
 		{
 			free(line);
 			break ;
 		}
 		ft_putstr_fd(line, pip->in_fd[0]);
 		free(line);
-		write(1, "heredoc> ", 9);
 	}
-	close(pip->in_fd[0]);
-	pip->in_fd[0] = open(".here_doc_tmp", O_RDONLY);
-	if (pip->in_fd[0] < 0)
-		return (err_p("Couldn not open ther file\n"), 0);
 	pip->out_fd[0] = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
-	return (1);
+	if (pip->out_fd[0] < 0)
+        return (perror("Failed to reopen .here_doc_tmp"), 0);
+    return (1);
 }
 
 static int	open_reguar(t_pip *pip, int argc, char **argv)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kadferna <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/31 14:38:26 by kadferna          #+#    #+#             */
-/*   Updated: 2025/03/31 14:38:27 by kadferna         ###   ########.fr       */
+/*   Created: 2025/04/01 15:32:38 by kadferna          #+#    #+#             */
+/*   Updated: 2025/04/01 15:32:55 by kadferna         ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	clean_up(t_pip *pip)
 {
-    if (access(".here_doc_tmp", X_OK) == 0)
-		unlink(".here_doc_tmp");
 	if (!pip)
 		return ;
 }

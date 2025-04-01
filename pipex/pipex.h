@@ -3,10 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kadferna <marvin@42.fr>                     +#+  +:+
+	+#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 09:39:00 by kadferna          #+#    #+#             */
-/*   Updated: 2025/03/26 09:39:13 by kadferna         ###   ########.fr       */
+/*   Created: 2025/04/01 14:54:01 by kadferna          #+#    #+#             */
+/*   Updated: 2025/04/01 14:54:01 by kadferna         ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +40,7 @@ typedef struct s_pip
 
 t_pip		*init_pip(void);
 int			std_errors(char *msg);
+int			ft_strcmp(const char *s1, const char *s2);
 int			err_p(char *msg);
 int			check_ac(int ac);
 void		close_fd(int fd1, int fd2);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kadferna <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/31 13:49:04 by kadferna          #+#    #+#             */
-/*   Updated: 2025/03/31 13:49:07 by kadferna         ###   ########.fr       */
+/*   Created: 2025/04/01 15:24:35 by kadferna          #+#    #+#             */
+/*   Updated: 2025/04/01 15:24:35 by kadferna         ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,5 @@ t_pip	*init_pip(void)
 	pip->cmd_path = NULL;
 	pip->is_invalid_infile = FALSE;
 	pip->here_doc = FALSE;
-	reknew_fd(&pip->in_fd);
-	reknew_fd(&pip->out_fd);
 	return (pip);
 }

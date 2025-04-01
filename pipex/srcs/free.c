@@ -47,7 +47,7 @@ static void	free_cmd_path(char **str)
 	free(str);
 }
 
-void	clean_up(t_pip *pip)
+void	ft_clean_up(t_pip *pip)
 {
 	if (!pip)
 		return ;

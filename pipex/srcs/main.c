@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	pip->here_doc = check_here_doc(argv);
 	if (!check_args(argc, argv, pip))
 	{
-		clean_up(pip);
+		ft_clean_up(pip);
 		return (1);
 	}
 	// Execute commands here (you'll need to implement this part)
@@ -32,6 +32,6 @@ int	main(int argc, char **argv)
 	if (pip->here_doc == TRUE)
 		unlink(".here_doc_tmp");
 	close_fd(pip->in_fd[0], pip->out_fd[0]);
-	clean_up(pip);
+	ft_clean_up(pip);
 	return (0);
 }

@@ -3,7 +3,8 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kadferna <marvin@42.fr>                     +#+  +:+      
+	+#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:33:10 by kadferna          #+#    #+#             */
 /*   Updated: 2025/04/01 15:42:27 by kadferna         ###   ########.ch       */
@@ -46,5 +47,5 @@ void		close_fd(int fd1, int fd2);
 void		reknew_fd(int (*p)[2]);
 t_bool		check_here_doc(char **argv);
 int			check_args(int argc, char **argv, t_pip *pip);
-void		clean_up(t_pip *pip);
+void		ft_clean_up(t_pip *pip);
 #endif

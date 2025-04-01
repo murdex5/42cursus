@@ -74,11 +74,12 @@ char	**get_path(char *env[])
 
 int	free_two_vals(char *msg, char **arr1, char **arr2, int i)
 {
-	if (arr1)
+	if (arr1 != NULL)
 		free_arr(arr1, i - 2);
-	if (arr2)
+	if (arr2 != NULL)
 		free_cmd_path(arr2);
 	std_errors(msg);
-	free(msg);
+	if (msg != NULL)
+		free(msg);
 	return (1);
 }

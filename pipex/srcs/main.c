@@ -33,13 +33,6 @@ int	main(int argc, char **argv, char *envp[])
 	// execute_commands(pip, argc, argv);
 	if (pip->here_doc == TRUE)
 		unlink(".here_doc_tmp");
-	//int i = 0;
-	// while (pip->cmd_path[i] != NULL)
-	// {
-
-	// 	ft_printf("%s\n", pip->cmd_path[i]);
-	// 	i++;
-	// }
 	close_fd(pip->in_fd[0], pip->out_fd[0]);
 	ft_clean_up(pip);
 	return (0);

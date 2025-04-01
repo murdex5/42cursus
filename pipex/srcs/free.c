@@ -85,7 +85,10 @@ void	ft_clean_up(t_pip *pip)
 		free_args(pip->cmd_args);
 	if (pip->cmd_path)
 		free_cmd_path(pip->cmd_path);
-	close_fd(pip->in_fd[0], pip->in_fd[1]);
-	close_fd(pip->out_fd[0], pip->out_fd[1]);
+	if (pip->here_doc == TRUE)
+	{
+		close_fd(pip->in_fd[0], pip->out_fd[0]);
+		//close_fd(pip->out_fd[0], pip->out_fd[1]);
+	}
 	free(pip);
 }

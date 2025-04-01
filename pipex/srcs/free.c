@@ -32,6 +32,23 @@ static void	free_args(char ***str)
 	}
 	free(str);
 }
+void	free_arr_arr(char ***str, int i)
+{
+	int	j;
+
+	while (i > 0)
+	{
+		j = 0;
+		while (str[i][j] != NULL)
+		{
+			if (str[i][j])
+				free(str[i][j]);
+			j++;
+		}
+		i--;
+	}
+	std_errors("Failed to allocate memory for args");
+}
 
 static void	free_cmd_path(char **str)
 {

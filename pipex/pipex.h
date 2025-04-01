@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                     +#+  +:+      
+/*   By: kadferna <marvin@42.fr>                     +#+  +:+
 	+#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:33:10 by kadferna          #+#    #+#             */
@@ -39,6 +39,8 @@ typedef struct s_pip
 }			t_pip;
 
 t_pip		*init_pip(void);
+char		***parse_args(int argc, char **argv);
+void		free_arr_arr(char ***str, int i);
 int			std_errors(char *msg);
 int			ft_strcmp(const char *s1, const char *s2);
 int			err_p(char *msg);

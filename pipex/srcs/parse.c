@@ -3,7 +3,8 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kadferna <marvin@42.fr>                     +#+  +:+      
+	+#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:24:35 by kadferna          #+#    #+#             */
 /*   Updated: 2025/04/01 15:24:35 by kadferna         ###   ########.ch       */
@@ -25,4 +26,23 @@ t_pip	*init_pip(void)
 	pip->is_invalid_infile = FALSE;
 	pip->here_doc = FALSE;
 	return (pip);
+}
+char	***parse_args(int argc, char **argv)
+{
+	char ***args;
+	int i;
+	int j;
+
+	args = malloc(sizeof(char **) * ((argc - 2) + 1));
+	if (!args)
+		return (std_errors("Could not allocate memory for arggs"), NULL);
+	i = 2;
+	while (argc > i)
+	{
+		argv[i - 2] = ft_split(argv[i], ' ');
+		if (!argv[i - 2])
+			free_arr_arr(argv[i - 2], i - 2);
+		i++;
+	}
+	return (args);
 }

@@ -54,8 +54,6 @@ char	**parse_paths(int argc, char **argv, char *envp[])
 	int		i;
 
 	paths = get_path(envp);
-	if (!paths)
-		return (std_errors("Memory allocation for paths failed"), NULL);
 	cmds = malloc(sizeof(char *) * ((argc - 2) + 1));
 	if (!cmds)
 	{
@@ -65,11 +63,15 @@ char	**parse_paths(int argc, char **argv, char *envp[])
 	i = 2;
 	while (i < argc - 1)
 	{
-		cmds[i - 1] = get_exe(ft_split(argv[i], ' ')[0], paths);
+		cmds[i - 2] = get_exe(ft_split(argv[i], ' ')[0], paths);
 		if (!cmds)
-			return (free_arr(cmds, i - 2), NULL);
+		{
+			free_arr(cmds, i - 2);
+			return (std_errors("Memory allocation for cmds failed"), NULL);
+		}
 		i++;
 	}
+	free_cmd_path(paths);
 	cmds[i - 2] = NULL;
 	return (cmds);
 }

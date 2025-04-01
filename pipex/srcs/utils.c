@@ -44,8 +44,9 @@ char	*get_exe(char *cmd, char **paths)
 		path = ft_strjoin(path, cmd);
 		if (access(path, X_OK) == 0)
 			return (path);
-		path++;
+		paths++;
 	}
+	free(path);
 	return (NULL);
 }
 

@@ -45,9 +45,11 @@ void	free_arr_arr(char ***str, int i)
 				free(str[i][j]);
 			j++;
 		}
+		free(str[i]);
 		i--;
 	}
 	std_errors("Failed to allocate memory for args");
+	free(str);
 }
 
 void	free_cmd_path(char **str)

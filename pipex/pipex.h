@@ -41,6 +41,7 @@ typedef struct s_pip
 t_pip		*init_pip(void);
 char		**get_path(char *env[]);
 void		free_arr_arr(char ***str, int i);
+int			free_two_vals(char *msg, char **arr1, char **arr2, int i);
 void		free_cmd_path(char **str);
 void		free_arr(char **str, int i);
 int			std_errors(char *msg);

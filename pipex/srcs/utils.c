@@ -37,22 +37,30 @@ int	ft_strcmp(const char *s1, const char *s2)
 char	*get_exe(char *cmd, char **paths)
 {
 	char	*path;
+	char	*temp;
 
+	if (!cmd || !paths)
+		return (NULL);
 	while (*paths)
 	{
-		path = ft_strjoin(*paths, "/");
-		path = ft_strjoin(path, cmd);
+		temp = ft_strjoin(*paths, "/");
+		if (!temp)
+			return (NULL);
+		path = ft_strjoin(temp, cmd);
+		free(temp);
+		if (!path)
+			return (NULL);
 		if (access(path, X_OK) == 0)
 			return (path);
+		free(path);
 		paths++;
 	}
-	free(path);
 	return (NULL);
 }
 
 char	**get_path(char *env[])
 {
-	char **paths;
+	char	**paths;
 
 	while (*env)
 	{
@@ -62,4 +70,15 @@ char	**get_path(char *env[])
 	}
 	paths = ft_split(*env + 5, ':');
 	return (paths);
+}
+
+int	free_two_vals(char *msg, char **arr1, char **arr2, int i)
+{
+	if (arr1)
+		free_arr(arr1, i - 2);
+	if (arr2)
+		free_cmd_path(arr2);
+	std_errors(msg);
+	free(msg);
+	return (1);
 }

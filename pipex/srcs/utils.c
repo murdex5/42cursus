@@ -1,13 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checks.c                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                     +#+  +:+
-	+#+        */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 15:24:00 by kadferna          #+#    #+#             */
-/*   Updated: 2025/04/01 15:24:00 by kadferna         ###   ########.ch       */
+/*   Created: 2025/04/02 12:47:50 by kadferna          #+#    #+#             */
+/*   Updated: 2025/04/02 12:47:53 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +17,7 @@ void	close_fd(int fd1, int fd2)
 	close(fd1);
 	close(fd2);
 }
+
 void	reknew_fd(int (*p)[2])
 {
 	close_fd((*p)[0], (*p)[1]);
@@ -48,11 +48,13 @@ char	*get_exe(char *cmd, char **paths)
 			return (NULL);
 		path = ft_strjoin(temp, cmd);
 		free(temp);
+		temp = NULL;
 		if (!path)
 			return (NULL);
 		if (access(path, X_OK) == 0)
 			return (path);
 		free(path);
+		path = NULL;
 		paths++;
 	}
 	return (NULL);
@@ -70,16 +72,4 @@ char	**get_path(char *env[])
 	}
 	paths = ft_split(*env + 5, ':');
 	return (paths);
-}
-
-int	free_two_vals(char *msg, char **arr1, char **arr2, int i)
-{
-	if (arr1 != NULL)
-		free_arr(arr1, i - 2);
-	if (arr2 != NULL)
-		free_cmd_path(arr2);
-	std_errors(msg);
-	if (msg != NULL)
-		free(msg);
-	return (1);
 }

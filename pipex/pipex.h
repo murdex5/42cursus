@@ -15,11 +15,11 @@
 # define PIPEX_H
 
 # include "libft/libft.h"
-# include "sys/wait.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <wait.h>
 
 typedef enum e_bool
 {
@@ -29,8 +29,7 @@ typedef enum e_bool
 
 typedef struct s_pip
 {
-	int		in_fd[2];
-	int		out_fd[2];
+	int		fd[2];
 	t_bool	here_doc;
 	t_bool	is_invalid_infile;
 	char	**cmd_path;
@@ -41,7 +40,7 @@ typedef struct s_pip
 t_pip		*init_pip(void);
 char		**get_path(char *env[]);
 void		free_arr_arr(char ***str, int i);
-int			free_two_vals(char *msg, char **arr1, char **arr2, int i);
+int			free_two_vals(char **arr1, char **arr2, int i, char **path);
 void		free_cmd_path(char **str);
 void		free_args(char ***str);
 void		free_arr(char **str, int i);
@@ -53,7 +52,7 @@ void		close_fd(int fd1, int fd2);
 void		reknew_fd(int (*p)[2]);
 t_bool		check_here_doc(char **argv);
 char		***parse_args(int argc, char **argv);
-char		**parse_paths(int argc, char **argv, char *envp[]);
+char		**parse_paths(int argc, char **argv, char *envp[], int offset);
 int			check_args(int argc, char **argv, t_pip *pip);
 char		*get_exe(char *cmd, char **paths);
 t_pip		*populate_pip(int argc, char **argv, char *envp[]);

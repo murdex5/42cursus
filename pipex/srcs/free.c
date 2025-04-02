@@ -17,14 +17,15 @@ void	free_args(char ***str)
 	int	i;
 	int	j;
 
+	if (!str)
+		return ;
 	i = 0;
-	while (str[i] != NULL)
+	while (str[i])
 	{
 		j = 0;
-		while (str[i][j] != NULL)
+		while (str[i][j])
 		{
-			if (str[i][j])
-				free(str[i][j]);
+			free(str[i][j]);
 			j++;
 		}
 		free(str[i]);
@@ -32,14 +33,15 @@ void	free_args(char ***str)
 	}
 	free(str);
 }
+
 void	free_arr_arr(char ***str, int i)
 {
 	int	j;
 
-	while (i > 0)
+	while (i >= 0)
 	{
 		j = 0;
-		while (str[i][j] != NULL)
+		while (str[i][j])
 		{
 			if (str[i][j])
 				free(str[i][j]);
@@ -56,11 +58,12 @@ void	free_cmd_path(char **str)
 {
 	int	i;
 
+	if (!str)
+		return ;
 	i = 0;
-	while (str[i] != NULL)
+	while (str[i])
 	{
-		if (str[i])
-			free(str[i]);
+		free(str[i]);
 		i++;
 	}
 	free(str);
@@ -68,7 +71,9 @@ void	free_cmd_path(char **str)
 
 void	free_arr(char **str, int i)
 {
-	while (i > 0)
+	if (!str)
+		return ;
+	while (i >= 0)
 	{
 		if (str[i])
 			free(str[i]);
@@ -87,8 +92,10 @@ void	ft_clean_up(t_pip *pip)
 		free_cmd_path(pip->cmd_path);
 	if (pip->here_doc == TRUE)
 	{
-		close_fd(pip->in_fd[0], pip->out_fd[0]);
-		//close_fd(pip->out_fd[0], pip->out_fd[1]);
+		if (pip->fd[0] != -1)
+			close(pip->fd[0]);
+		if (pip->fd[1] != -1)
+			close(pip->fd[1]);
 	}
 	free(pip);
 }

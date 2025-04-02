@@ -20,6 +20,7 @@ t_pip	*init_pip(void)
 	pip = malloc(sizeof(t_pip));
 	if (!pip)
 		return (NULL);
+	ft_bzero(pip, sizeof(t_pip));
 	pip->cmd_args = NULL;
 	pip->cmd_count = 0;
 	pip->cmd_path = NULL;
@@ -27,12 +28,13 @@ t_pip	*init_pip(void)
 	pip->here_doc = FALSE;
 	return (pip);
 }
+
 char	***parse_args(int argc, char **argv)
 {
 	char	***args;
 	int		i;
 
-	args = malloc(sizeof(char **) * ((argc - 2) + 1));
+	args = ft_calloc(argc - 2, sizeof(char **));
 	if (!args)
 		return (std_errors("Could not allocate memory for arggs"), NULL);
 	i = 2;
@@ -47,7 +49,18 @@ char	***parse_args(int argc, char **argv)
 	return (args);
 }
 
-char	**parse_paths(int argc, char **argv, char *envp[])
+static void	free_if(char *msg, char **str1, char **str2)
+{
+	if (!str1 && str2)
+		free_cmd_path(str2);
+	else if (str1 && !str2)
+		free_cmd_path(str1);
+	else
+		return ;
+	std_errors(msg);
+}
+
+char	**parse_paths(int argc, char **argv, char *envp[], int offset)
 {
 	char	**cmds;
 	char	**paths;
@@ -55,34 +68,34 @@ char	**parse_paths(int argc, char **argv, char *envp[])
 	int		i;
 
 	paths = get_path(envp);
-	cmds = malloc(sizeof(char *) * ((argc - 2) + 1));
-	if (!cmds)
-		return (free_two_vals("Memory allocation for cmds failed", NULL, paths,
-				0), NULL);
-	i = 2;
+	cmds = ft_calloc(argc - offset, sizeof(char *));
+	if (!cmds || !paths)
+		return (free_if("Memory allocation for cmds failed", cmds, paths),
+			NULL);
+	i = offset;
 	while (i < argc - 1)
 	{
 		line = ft_split(argv[i], ' ');
-		cmds[i - 2] = get_exe(line[0], paths);
-		if (!cmds)
-			return (free_two_vals("Memory allocation for cmds failed", cmds,
-					line, i - 2), NULL);
+		cmds[i - offset] = get_exe(line[0], paths);
+		if (!cmds[i - offset])
+			return (free_two_vals(cmds, line, i - offset, paths), NULL);
 		free_cmd_path(line);
 		i++;
 	}
 	free_cmd_path(paths);
-	cmds[i - 2] = NULL;
 	return (cmds);
 }
 
 t_pip	*populate_pip(int argc, char **argv, char *envp[])
 {
 	t_pip	*pip;
+	int		offset;
 
 	pip = init_pip();
 	if (!pip)
 		return (std_errors("Failed to initialize pip"), NULL);
 	pip->here_doc = check_here_doc(argv);
+	offset = 2;
 	if (!check_args(argc, argv, pip))
 	{
 		ft_clean_up(pip);
@@ -91,7 +104,9 @@ t_pip	*populate_pip(int argc, char **argv, char *envp[])
 	pip->cmd_args = parse_args(argc, argv);
 	if (!pip->cmd_args)
 		return (std_errors("Failed to parse args"), NULL);
-	pip->cmd_path = parse_paths(argc, argv, envp);
+	if (pip->here_doc == TRUE)
+		offset = 3;
+	pip->cmd_path = parse_paths(argc, argv, envp, offset);
 	if (!pip->cmd_path)
 	{
 		ft_clean_up(pip);

@@ -21,8 +21,11 @@ int	main(int argc, char **argv, char *envp[])
 	pip = populate_pip(argc, argv, envp);
 	if (!pip)
 		return (1);
-	// Execute commands here (you'll need to implement this part)
-	// execute_commands(pip, argc, argv);
+	while (*pip->cmd_path)
+	{
+		ft_exec(pip, *pip->cmd_path, envp);
+		pip->cmd_path++;
+	}
 	if (pip->here_doc == TRUE)
 		unlink(".here_doc_tmp");
 	ft_clean_up(pip);

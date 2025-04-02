@@ -57,4 +57,5 @@ int			check_args(int argc, char **argv, t_pip *pip);
 char		*get_exe(char *cmd, char **paths);
 t_pip		*populate_pip(int argc, char **argv, char *envp[]);
 void		ft_clean_up(t_pip *pip);
+void		ft_exec(t_pip *pip, char *path, char *envp[]);
 #endif

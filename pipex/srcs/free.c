@@ -82,7 +82,7 @@ void	free_arr(char **str, int i)
 	free(str);
 }
 
-void	ft_clean_up(t_pip *pip)
+void	ft_clean_up(int fd[2], t_pip *pip)
 {
 	if (!pip)
 		return ;
@@ -92,10 +92,10 @@ void	ft_clean_up(t_pip *pip)
 		free_cmd_path(pip->cmd_path);
 	if (pip->here_doc == TRUE)
 	{
-		if (pip->fd[0] != -1)
-			close(pip->fd[0]);
-		if (pip->fd[1] != -1)
-			close(pip->fd[1]);
+		if (fd[0] != -1)
+			close(fd[0]);
+		if (fd[1] != -1)
+			close(fd[1]);
 	}
 	free(pip);
 }

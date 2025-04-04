@@ -86,7 +86,7 @@ char	**parse_paths(int argc, char **argv, char *envp[], int offset)
 	return (cmds);
 }
 
-t_pip	*populate_pip(int argc, char **argv, char *envp[])
+t_pip	*populate_pip(int fd[2], int argc, char **argv, char *envp[])
 {
 	t_pip	*pip;
 	int		offset;
@@ -96,11 +96,8 @@ t_pip	*populate_pip(int argc, char **argv, char *envp[])
 		return (std_errors("Failed to initialize pip"), NULL);
 	pip->here_doc = check_here_doc(argv);
 	offset = 2;
-	if (!check_args(argc, argv, pip))
-	{
-		ft_clean_up(pip);
-		return (std_errors("Checking args failed"), NULL);
-	}
+	if (!check_args(fd, argc, argv, pip))
+		return (std_error_free(fd, pip, "Checking args failed"), NULL);
 	pip->cmd_args = parse_args(argc, argv);
 	if (!pip->cmd_args)
 		return (std_errors("Failed to parse args"), NULL);
@@ -108,10 +105,7 @@ t_pip	*populate_pip(int argc, char **argv, char *envp[])
 		offset = 3;
 	pip->cmd_path = parse_paths(argc, argv, envp, offset);
 	if (!pip->cmd_path)
-	{
-		ft_clean_up(pip);
-		return (std_errors("Failed to parse cmds"), NULL);
-	}
+		return (std_error_free(fd, pip, "Failed to parse cmds"), NULL);
 	pip->cmd_count = get_command_count(pip->cmd_path);
 	return (pip);
 }

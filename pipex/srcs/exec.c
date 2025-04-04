@@ -23,21 +23,21 @@ static int	ft_fork(pid_t *pid)
 	return (1);
 }
 
-static void	first_child(char *path, t_pip *pip, char *envp[])
+static void	first_child(int fd[2], char *path, t_pip *pip, char *envp[])
 {
-	close(pip->fd[0]);
-	dup2(pip->fd[1], STDOUT_FILENO);
-	close(pip->fd[1]);
+	close(fd[0]);
+	dup2(fd[1], STDOUT_FILENO);
+	close(fd[1]);
 	execve(path, pip->cmd_args[0], envp);
 	perror("execve failed");
 	exit(EXIT_FAILURE);
 }
 
-static void	second_child(char *path, t_pip *pip, char *envp[])
+static void	second_child(int fd[2], char *path, t_pip *pip, char *envp[])
 {
-	close(pip->fd[1]);
-	dup2(pip->fd[0], STDIN_FILENO);
-	close(pip->fd[0]);
+	close(fd[1]);
+	dup2(fd[0], STDIN_FILENO);
+	close(fd[0]);
 	execve(path, pip->cmd_args[1], envp);
 	perror("execve failed");
 	exit(EXIT_FAILURE);
@@ -61,29 +61,29 @@ static int	ft_children_exited(int status1, int status2)
 	return (0);
 }
 
-int	ft_exec(t_pip *pip, char *path, char *envp[])
+int	ft_exec(int fd[2], t_pip *pip, char *path, char *envp[])
 {
 	pid_t	pid1;
 	pid_t	pid2;
 	int		status1;
 	int		status2;
 
-	if (pipe(pip->fd) == -1)
+	if (pipe(fd) == -1)
 		return (perror("pipe failed"), EXIT_FAILURE);
 	if (!ft_fork(&pid1))
 		return (EXIT_FAILURE);
 	if (pid1 == 0)
-		first_child(path, pip, envp);
+		first_child(fd, path, pip, envp);
 	if (!ft_fork(&pid2))
 	{
 		kill(pid1, SIGTERM);
-		close_fd(pip->fd[0], pip->fd[1]);
+		close_fd(fd[0], fd[1]);
 		waitpid(pid1, NULL, 0);
 		return (EXIT_FAILURE);
 	}
 	if (pid2 == 0)
-		second_child(path, pip, envp);
-	close_fd(pip->fd[0], pip->fd[1]);
+		second_child(fd, path, pip, envp);
+	close_fd(fd[0], fd[1]);
 	waitpid(pid2, &status2, 0);
 	waitpid(pid1, &status1, 0);
 	return (ft_children_exited(status1, status2));

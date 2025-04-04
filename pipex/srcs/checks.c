@@ -38,12 +38,12 @@ t_bool	check_here_doc(char **argv)
 	return (FALSE);
 }
 
-static int	open_here_doc(int argc, char **argv, t_pip *pip)
+static int	open_here_doc(int fd[2], int argc, char **argv)
 {
 	char	*line;
 
-	pip->fd[0] = open(".here_doc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	if (pip->fd[0] < 0)
+	fd[0] = open(".here_doc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (fd[0] < 0)
 		return (perror("Failed to open .here_doc_tmp"), 0);
 	while (1)
 	{
@@ -55,48 +55,48 @@ static int	open_here_doc(int argc, char **argv, t_pip *pip)
 			free(line);
 			break ;
 		}
-		ft_putstr_fd(line, pip->fd[0]);
+		ft_putstr_fd(line, fd[0]);
 		free(line);
 	}
-	close(pip->fd[0]);
-	pip->fd[0] = open(".here_doc_tmp", O_RDONLY);
-	if (pip->fd[0] < 0)
+	close(fd[0]);
+	fd[0] = open(".here_doc_tmp", O_RDONLY);
+	if (fd[0] < 0)
 		return (perror("Failed to reopen .here_doc_tmp"), 0);
-	pip->fd[1] = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
-	if (pip->fd[1] < 0)
+	fd[1] = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
+	if (fd[1] < 0)
 		return (perror("Failed to reopen .here_doc_tmp"), 0);
 	return (1);
 }
 
-static int	open_regular(t_pip *pip, int argc, char **argv)
+static int	open_regular(int fd[2], t_pip *pip, int argc, char **argv)
 {
 	if (ft_strcmp(argv[1], "/dev/urandom") == 0)
 	{
-		pip->fd[0] = open("/dev/urandom", O_RDONLY);
-		if (pip->fd[0] == -1)
+		fd[0] = open("/dev/urandom", O_RDONLY);
+		if (fd[0] == -1)
 			return (err_p("Cannot open /dev/urandom"));
 	}
 	else
 	{
-		pip->fd[0] = open(argv[1], O_RDONLY);
-		if (pip->fd[0] == -1)
+		fd[0] = open(argv[1], O_RDONLY);
+		if (fd[0] == -1)
 		{
 			pip->is_invalid_infile = TRUE;
 			ft_putstr_fd("pipex: ", STDERR_FILENO);
 			perror(argv[1]);
 		}
 	}
-	pip->fd[1] = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (pip->fd[1] == -1)
+	fd[1] = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (fd[1] == -1)
 	{
-		if (pip->fd[0] != -1)
-			close(pip->fd[0]);
+		if (fd[0] != -1)
+			close(fd[0]);
 		return (perror(argv[argc - 1]), 0);
 	}
 	return (1);
 }
 
-int	check_args(int argc, char **argv, t_pip *pip)
+int	check_args(int fd[2], int argc, char **argv, t_pip *pip)
 {
 	if (!pip)
 		return (err_p("Null pipex structure"));
@@ -108,16 +108,16 @@ int	check_args(int argc, char **argv, t_pip *pip)
 	// File opening
 	if (pip->here_doc == TRUE)
 	{
-		if (!open_here_doc(argc, argv, pip))
+		if (!open_here_doc(fd, argc, argv))
 			return (0);
 	}
 	else
 	{
-		if (!open_regular(pip, argc, argv))
+		if (!open_regular(fd, pip, argc, argv))
 			return (0);
 	}
 	// Final checks
-	if (pip->fd[1] == -1)
+	if (fd[1] == -1)
 		return (err_p("Output file error"));
 	return (1);
 }

@@ -51,7 +51,6 @@ char	*get_exe(char *cmd, char **paths)
 		temp = NULL;
 		if (!path)
 			return (NULL);
-		ft_printf("%s\n", path);
 		if (access(path, X_OK) == 0)
 			return (path);
 		free(path);

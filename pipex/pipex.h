@@ -58,6 +58,6 @@ int			check_args(int fd[2], int argc, char **argv, t_pip *pip);
 char		*get_exe(char *cmd, char **paths);
 t_pip		*populate_pip(int fd[2], int argc, char **argv, char *envp[]);
 void		ft_clean_up(int fd[2], t_pip *pip);
-int			ft_exec(int fd[2], t_pip *pip, char **path, int out_file,
+int			ft_exec(int fd[2], t_pip *pip, char **path, int out_fd[2],
 				char *envp[]);
 #endif

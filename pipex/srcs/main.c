@@ -25,11 +25,7 @@ int	main(int argc, char **argv, char *envp[])
 	pip = populate_pip(out_fd, argc, argv, envp);
 	if (!pip)
 		return (EXIT_FAILURE);
-	if (ft_exec(fd, pip, pip->cmd_path, out_fd[1], envp) == -1)
-	{
-		status = EXIT_FAILURE;
-		return (status);
-	}
+	status = ft_exec(fd, pip, pip->cmd_path, out_fd, envp);
 	if (pip->here_doc == TRUE)
 		unlink(".here_doc_tmp");
 	ft_clean_up(fd, pip);

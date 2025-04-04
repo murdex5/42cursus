@@ -23,9 +23,12 @@ static int	ft_fork(pid_t *pid)
 	return (1);
 }
 
-static void	first_child(int fd[2], char *path, char **cmd_args, char *envp[])
+static void	first_child(int fd[2], char *path, int in_fd, char **cmd_args,
+		char *envp[])
 {
 	close(fd[0]);
+	dup2(in_fd, STDIN_FILENO);
+	close(in_fd);
 	dup2(fd[1], STDOUT_FILENO);
 	close(fd[1]);
 	execve(path, cmd_args, envp);
@@ -64,7 +67,7 @@ static int	ft_children_exited(int status1, int status2)
 	return (0);
 }
 
-int	ft_exec(int fd[2], t_pip *pip, char **path, int out_file, char *envp[])
+int	ft_exec(int fd[2], t_pip *pip, char **path, int out_fd[2], char *envp[])
 {
 	pid_t	pid1;
 	pid_t	pid2;
@@ -74,9 +77,9 @@ int	ft_exec(int fd[2], t_pip *pip, char **path, int out_file, char *envp[])
 	if (pipe(fd) == -1)
 		return (perror("pipe failed"), EXIT_FAILURE);
 	if (!ft_fork(&pid1))
-		return (EXIT_FAILURE);
+		return (-1);
 	if (pid1 == 0)
-		first_child(fd, path[0], pip->cmd_args[0], envp);
+		first_child(fd, path[0], out_fd[0], pip->cmd_args[0], envp);
 	if (!ft_fork(&pid2))
 	{
 		kill(pid1, SIGTERM);
@@ -85,9 +88,9 @@ int	ft_exec(int fd[2], t_pip *pip, char **path, int out_file, char *envp[])
 		return (EXIT_FAILURE);
 	}
 	if (pid2 == 0)
-		second_child(fd, out_file, pip->cmd_args[1], path[1], envp);
+		second_child(fd, out_fd[1], pip->cmd_args[1], path[1], envp);
 	close_fd(fd[0], fd[1]);
-	close(out_file);
+	close_fd(out_fd[0], out_fd[1]);
 	waitpid(pid2, &status2, 0);
 	waitpid(pid1, &status1, 0);
 	return (ft_children_exited(status1, status2));

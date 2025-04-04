@@ -77,13 +77,13 @@ int	ft_exec(int fd[2], t_pip *pip, char **path, int out_fd[2], char *envp[])
 	if (pipe(fd) == -1)
 		return (perror("pipe failed"), EXIT_FAILURE);
 	if (!ft_fork(&pid1))
-		return (-1);
+		return (close_fd(fd[0], out_fd[1]), EXIT_FAILURE);
 	if (pid1 == 0)
 		first_child(fd, path[0], out_fd[0], pip->cmd_args[0], envp);
 	if (!ft_fork(&pid2))
 	{
 		kill(pid1, SIGTERM);
-		close_fd(fd[0], fd[1]);
+		close_fd(fd[0], out_fd[1]);
 		waitpid(pid1, NULL, 0);
 		return (EXIT_FAILURE);
 	}

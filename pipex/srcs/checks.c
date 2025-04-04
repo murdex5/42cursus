@@ -19,18 +19,6 @@ int	check_ac(int ac)
 	return (1);
 }
 
-int	get_command_count(char **str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i] != NULL)
-		i++;
-	return (i);
-}
-
 t_bool	check_here_doc(char **argv)
 {
 	if (argv[1] && ft_strncmp("here_doc", argv[1], ft_strlen(argv[1])) == 0)
@@ -47,14 +35,12 @@ static int	open_here_doc(int fd[2], int argc, char **argv)
 		return (perror("Failed to open .here_doc_tmp"), 0);
 	while (1)
 	{
+		ft_putstr_fd("> ", 1);
 		line = get_next_line(0);
 		if (!line)
 			return (std_errors("Memory allocation for line failed"), 0);
-		if (ft_strncmp(argv[2], line, ft_strlen(argv[2])) == 0)
-		{
-			free(line);
+		if (!check_strs(argv[2], line))
 			break ;
-		}
 		ft_putstr_fd(line, fd[0]);
 		free(line);
 	}
@@ -68,7 +54,7 @@ static int	open_here_doc(int fd[2], int argc, char **argv)
 	return (1);
 }
 
-static int	open_regular(int fd[2], t_pip *pip, int argc, char **argv)
+static int	open_regular(int fd[2], int argc, char **argv)
 {
 	if (ft_strcmp(argv[1], "/dev/urandom") == 0)
 	{
@@ -81,7 +67,6 @@ static int	open_regular(int fd[2], t_pip *pip, int argc, char **argv)
 		fd[0] = open(argv[1], O_RDONLY);
 		if (fd[0] == -1)
 		{
-			pip->is_invalid_infile = TRUE;
 			ft_putstr_fd("pipex: ", STDERR_FILENO);
 			perror(argv[1]);
 		}
@@ -96,27 +81,22 @@ static int	open_regular(int fd[2], t_pip *pip, int argc, char **argv)
 	return (1);
 }
 
-int	check_args(int fd[2], int argc, char **argv, t_pip *pip)
+int	check_args(int fd[2], int argc, char **argv, t_bool here_doc)
 {
-	if (!pip)
-		return (err_p("Null pipex structure"));
-	// Argument count validation
-	if (pip->here_doc == TRUE && argc < 6)
+	if (here_doc == TRUE && argc < 6)
 		return (err_p("here_doc requires 6 arguments"));
-	if (pip->here_doc == FALSE && argc < 5)
+	if (here_doc == FALSE && argc < 5)
 		return (err_p("Too few arguments"));
-	// File opening
-	if (pip->here_doc == TRUE)
+	if (here_doc == TRUE)
 	{
 		if (!open_here_doc(fd, argc, argv))
 			return (0);
 	}
 	else
 	{
-		if (!open_regular(fd, pip, argc, argv))
+		if (!open_regular(fd, argc, argv))
 			return (0);
 	}
-	// Final checks
 	if (fd[1] == -1)
 		return (err_p("Output file error"));
 	return (1);

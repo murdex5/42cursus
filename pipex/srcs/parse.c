@@ -63,44 +63,6 @@ static void	free_if(char *msg, char **str1, char **str2)
 	std_errors(msg);
 }
 
-// char	**parse_paths(int argc, char **argv, char *envp[], int offset)
-// {
-// 	char	**cmds;
-// 	char	**paths;
-// 	char	**line;
-// 	int		i;
-
-// 	paths = get_path(envp);
-// 	cmds = ft_calloc(argc - offset, sizeof(char *));
-// 	if (!cmds || !paths)
-// 		return (free_if("Memory allocation for cmds failed", cmds, paths),
-// 			NULL);
-// 	i = offset;
-// 	while (i < argc - 1)
-// 	{
-// 		line = ft_split(argv[i], ' ');
-// 		cmds[i - offset] = get_exe(line[0], paths);
-// 		if (!cmds[i - offset])
-// 			return (free_two_vals(cmds, line, i - offset, paths), NULL);
-// 		free_cmd_path(line);
-// 		i++;
-// 	}
-// 	free_cmd_path(paths);
-// 	return (cmds);
-// }
-
-static int	count_commands(char ***cmd_args)
-{
-	int	count;
-
-	count = 0;
-	if (!cmd_args)
-		return (0);
-	while (cmd_args[count] != NULL)
-		count++;
-	return (count);
-}
-
 char	**parse_paths(char ***cmd_args, char *envp[])
 {
 	char	**paths;
@@ -133,14 +95,16 @@ t_pip	*populate_pip(int fd[2], int argc, char **argv, char *envp[])
 {
 	t_pip	*pip;
 	int		offset;
+	t_bool	here_docd;
 
+	here_docd = check_here_doc(argv);
+	offset = 2;
+	if (!check_args(fd, argc, argv, here_docd))
+		return (std_error_free(fd, NULL, "Checking args failed"), NULL);
 	pip = init_pip();
 	if (!pip)
-		return (std_errors("Failed to initialize pip"), NULL);
-	pip->here_doc = check_here_doc(argv);
-	offset = 2;
-	if (!check_args(fd, argc, argv, pip))
-		return (std_error_free(fd, pip, "Checking args failed"), NULL);
+		return (std_error_free(fd, pip, "Failed to initialize pip"), NULL);
+	pip->here_doc = here_docd;
 	if (pip->here_doc == TRUE)
 		offset = 3;
 	pip->cmd_args = parse_args(argc, argv, offset);

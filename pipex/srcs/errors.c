@@ -29,8 +29,6 @@ int	std_errors(char *msg)
 	ft_putstr_fd("Pipex: ", STDERR_FILENO);
 	ft_putstr_fd(msg, STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
-	if (msg != NULL)
-		free(msg);
 	exit(EXIT_FAILURE);
 }
 

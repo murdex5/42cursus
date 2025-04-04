@@ -1,6 +1,7 @@
 CC = gcc
 SRC_PATH = ./srcs
 SRCS = ${SRC_PATH}/utils.c \
+		${SRC_PATH}/utils1.c \
 		${SRC_PATH}/checks.c \
 		${SRC_PATH}/errors.c \
 		${SRC_PATH}/parse.c \

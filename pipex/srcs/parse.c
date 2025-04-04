@@ -112,5 +112,6 @@ t_pip	*populate_pip(int argc, char **argv, char *envp[])
 		ft_clean_up(pip);
 		return (std_errors("Failed to parse cmds"), NULL);
 	}
+	pip->cmd_count = get_command_count(pip->cmd_path);
 	return (pip);
 }

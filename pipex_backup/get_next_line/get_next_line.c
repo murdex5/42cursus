@@ -2,19 +2,15 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
-	+:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+      
-	+#+        */
-/*                                                +#+#+#+#+#+  
-	+#+           */
-/*   Created: 2025/01/15 14:37:33 by kadferna          #+#    #+#             */
-/*   Updated: 2025/01/22 11:25:03 by kadferna         ###   ########.fr       */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/01 15:56:35 by kadferna          #+#    #+#             */
+/*   Updated: 2025/04/01 15:56:58 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
 
 static char	*get_line(int fd, char *buf, char *buffer)
 {

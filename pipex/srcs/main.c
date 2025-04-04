@@ -15,19 +15,27 @@
 int	main(int argc, char **argv, char *envp[])
 {
 	t_pip	*pip;
+	int		status;
+	int		i;
 
 	if (!check_ac(argc))
-		return (1);
+		return (EXIT_FAILURE);
+	status = 0;
+	i = 0;
 	pip = populate_pip(argc, argv, envp);
 	if (!pip)
-		return (1);
-	while (*pip->cmd_path)
+		return (EXIT_FAILURE);
+	while (pip->cmd_path[i] && pip->cmd_count > i)
 	{
-		ft_exec(pip, *pip->cmd_path, envp);
-		pip->cmd_path++;
+		if (ft_exec(pip, pip->cmd_path[i], envp) == -1)
+		{
+			status = EXIT_FAILURE;
+			break ;
+		}
+		i++;
 	}
 	if (pip->here_doc == TRUE)
 		unlink(".here_doc_tmp");
 	ft_clean_up(pip);
-	return (0);
+	return (status);
 }

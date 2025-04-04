@@ -16,11 +16,11 @@
 
 # include "libft/libft.h"
 # include <fcntl.h>
+# include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <wait.h>
-
 typedef enum e_bool
 {
 	TRUE,
@@ -46,6 +46,7 @@ void		free_args(char ***str);
 void		free_arr(char **str, int i);
 int			std_errors(char *msg);
 int			ft_strcmp(const char *s1, const char *s2);
+int			get_command_count(char **str);
 int			err_p(char *msg);
 int			check_ac(int ac);
 void		close_fd(int fd1, int fd2);
@@ -57,5 +58,5 @@ int			check_args(int argc, char **argv, t_pip *pip);
 char		*get_exe(char *cmd, char **paths);
 t_pip		*populate_pip(int argc, char **argv, char *envp[]);
 void		ft_clean_up(t_pip *pip);
-void		ft_exec(t_pip *pip, char *path, char *envp[]);
+int			ft_exec(t_pip *pip, char *path, char *envp[]);
 #endif

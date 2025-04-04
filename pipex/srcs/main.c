@@ -29,7 +29,7 @@ int	main(int argc, char **argv, char *envp[])
 		ft_clean_up(fd, pip);
 		return (EXIT_FAILURE);
 	}
-	status = ft_exec(fd, pip, pip->cmd_path, out_fd, envp);
+	status = ft_exec(fd, pip, pip->cmd_path, out_fd);
 	if (pip->here_doc == TRUE)
 		unlink(".here_doc_tmp");
 	ft_clean_up(fd, pip);

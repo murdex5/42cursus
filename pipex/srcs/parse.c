@@ -24,6 +24,7 @@ t_pip	*init_pip(void)
 	pip->cmd_args = NULL;
 	pip->cmd_count = 0;
 	pip->cmd_path = NULL;
+	pip->env = NULL;
 	pip->is_invalid_infile = FALSE;
 	pip->here_doc = FALSE;
 	return (pip);
@@ -114,5 +115,6 @@ t_pip	*populate_pip(int fd[2], int argc, char **argv, char *envp[])
 	if (!pip->cmd_path)
 		return (std_error_free(fd, pip, "Failed to parse cmds"), NULL);
 	pip->cmd_count = get_command_count(pip->cmd_path);
+	pip->env = envp;
 	return (pip);
 }

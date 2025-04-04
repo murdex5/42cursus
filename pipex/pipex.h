@@ -33,6 +33,7 @@ typedef struct s_pip
 	t_bool	is_invalid_infile;
 	char	**cmd_path;
 	char	***cmd_args;
+	char	**env;
 	int		cmd_count;
 }			t_pip;
 
@@ -61,6 +62,5 @@ int			check_args(int fd[2], int argc, char **argv, t_bool here_dco);
 char		*get_exe(char *cmd, char **paths);
 t_pip		*populate_pip(int fd[2], int argc, char **argv, char *envp[]);
 void		ft_clean_up(int fd[2], t_pip *pip);
-int			ft_exec(int fd[2], t_pip *pip, char **path, int out_fd[2],
-				char *envp[]);
+int			ft_exec(int fd[2], t_pip *pip, char **path, int out_fd[2]);
 #endif

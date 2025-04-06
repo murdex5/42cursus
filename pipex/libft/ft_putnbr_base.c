@@ -40,4 +40,3 @@ void	ft_putnbr_base(unsigned int nbr, char *base)
 	c = base[nbr % base_len];
 	write(1, &c, 1);
 }
-

@@ -14,8 +14,10 @@
 
 void	close_fd(int fd1, int fd2)
 {
-	close(fd1);
-	close(fd2);
+	if (fd1 >= 0)
+		close(fd1);
+	if (fd2 >= 0)
+		close(fd2);
 }
 
 void	reknew_fd(int (*p)[2])

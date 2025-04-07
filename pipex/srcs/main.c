@@ -27,6 +27,7 @@ int	main(int argc, char **argv, char *envp[])
 	if (!pip)
 	{
 		open_otfile_if_failed(out_fd[1], argv[argc - 1]);
+		state = out_fd[0];
 		close_fd(out_fd[0], out_fd[1]);
 		ft_clean_up(fd, pip);
 		return (state);

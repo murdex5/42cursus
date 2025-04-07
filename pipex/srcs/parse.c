@@ -62,7 +62,7 @@ static void	free_if(char *msg, char **str1, char **str2)
 	std_errors(msg);
 }
 
-char	**parse_paths(char ***cmd_args, char *envp[])
+char	**parse_paths(char ***cmd_args, char *envp[], int *state)
 {
 	char	**paths;
 	char	**exec_paths;
@@ -82,6 +82,7 @@ char	**parse_paths(char ***cmd_args, char *envp[])
 		{
 			free_cmd_path(paths);
 			free_cmd_path(exec_paths);
+			check_cmd(state, i);
 			return (NULL);
 		}
 		i++;
@@ -109,7 +110,7 @@ t_pip	*populate_pip(int fd[2], int argc, char **argv, char *envp[])
 		pip->is_invalid_infile = TRUE;
 	if (!pip->cmd_args)
 		return (NULL);
-	pip->cmd_path = parse_paths(pip->cmd_args, envp);
+	pip->cmd_path = parse_paths(pip->cmd_args, envp, &fd[0]);
 	if (!pip->cmd_path)
 		return (std_error_free(fd, pip, NULL), NULL);
 	pip->cmd_count = get_command_count(pip->cmd_path);

@@ -62,7 +62,7 @@ void		reknew_fd(int (*p)[2]);
 t_bool		check_here_doc(char **argv);
 void		ft_close_close(int fd1, int fd2, int fd3, int fd4);
 char		***parse_args(int argc, char **argv, int offset);
-char		**parse_paths(char ***cmd_args, char *envp[]);
+char		**parse_paths(char ***cmd_args, char *envp[], int *state);
 int			check_args(int fd[2], int argc, char **argv, t_bool here_dco);
 char		*get_exe(char *cmd, char **paths);
 t_pip		*populate_pip(int fd[2], int argc, char **argv, char *envp[]);

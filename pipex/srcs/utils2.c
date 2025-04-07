@@ -14,10 +14,8 @@
 
 void	ft_close_close(int fd1, int fd2, int fd3, int fd4)
 {
-	close(fd1);
-	close(fd2);
-	close(fd3);
-	close(fd4);
+	close_fd(fd1, fd2);
+	close_fd(fd3, fd4);
 }
 
 void	open_otfile_if_failed(int fd, char *str)
@@ -45,6 +43,7 @@ void	open_null_as_fallback(char *path)
 
 void	check_cmd(int *state, int i)
 {
+	close(*state);
 	*state = 0;
 	if (i == 1)
 		*state = 127;

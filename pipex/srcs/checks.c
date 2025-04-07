@@ -69,6 +69,7 @@ static int	open_regular(int fd[2], int argc, char **argv)
 		{
 			ft_putstr_fd("pipex: ", STDERR_FILENO);
 			perror(argv[1]);
+			return (0);
 		}
 	}
 	fd[1] = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);

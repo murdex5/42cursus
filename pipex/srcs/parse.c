@@ -98,20 +98,20 @@ t_pip	*populate_pip(int fd[2], int argc, char **argv, char *envp[])
 
 	here_docd = check_here_doc(argv);
 	offset = 2;
-	if (!check_args(fd, argc, argv, here_docd))
-		return (std_error_free(fd, NULL, "Checking args failed"), NULL);
+	check_args(fd, argc, argv, here_docd);
 	pip = init_pip();
 	if (!pip)
 		return (std_error_free(fd, pip, "Failed to initialize pip"), NULL);
-	pip->here_doc = here_docd;
-	if (pip->here_doc == TRUE)
+	if (here_docd == TRUE)
 		offset = 3;
 	pip->cmd_args = parse_args(argc, argv, offset);
+	if (fd[0] == -1)
+		pip->is_invalid_infile = TRUE;
 	if (!pip->cmd_args)
-		return (std_errors("Failed to parse args"), NULL);
+		return (NULL);
 	pip->cmd_path = parse_paths(pip->cmd_args, envp);
 	if (!pip->cmd_path)
-		return (std_error_free(fd, pip, "Failed to parse cmds"), NULL);
+		return (std_error_free(fd, pip, NULL), NULL);
 	pip->cmd_count = get_command_count(pip->cmd_path);
 	pip->env = envp;
 	return (pip);

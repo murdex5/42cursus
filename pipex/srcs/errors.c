@@ -35,8 +35,9 @@ int	std_errors(char *msg)
 int	std_error_free(int fd[2], t_pip *pip, char *msg)
 {
 	ft_clean_up(fd, pip);
-	std_errors(msg);
-	exit(EXIT_FAILURE);
+	if (msg)
+		std_errors(msg);
+	return (0);
 }
 
 int	err_p(char *msg)

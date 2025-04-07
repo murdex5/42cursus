@@ -46,10 +46,14 @@ int	count_commands(char ***cmd_args)
 	return (count);
 }
 
-void	ft_close_close(int fd1, int fd2, int fd3, int fd4)
+void	close_fd_exit(int fd1, int fd2, int exit_code)
 {
-	close(fd1);
-	close(fd2);
-	close(fd3);
-	close(fd4);
+	close_fd(fd1, fd2);
+	exit(exit_code);
+}
+
+void	perror_nd_exit(char *msg, int exit_code)
+{
+	perror(msg);
+	exit(exit_code);
 }

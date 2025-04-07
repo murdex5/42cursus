@@ -66,18 +66,15 @@ static int	open_regular(int fd[2], int argc, char **argv)
 	{
 		fd[0] = open(argv[1], O_RDONLY);
 		if (fd[0] == -1)
-		{
-			ft_putstr_fd("pipex: ", STDERR_FILENO);
-			perror(argv[1]);
-			return (0);
-		}
+			fd[0] = -1;
 	}
 	fd[1] = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd[1] == -1)
 	{
 		if (fd[0] != -1)
 			close(fd[0]);
-		return (perror(argv[argc - 1]), 0);
+		perror("outputfile: ");
+		return (0);
 	}
 	return (1);
 }
@@ -98,7 +95,5 @@ int	check_args(int fd[2], int argc, char **argv, t_bool here_doc)
 		if (!open_regular(fd, argc, argv))
 			return (0);
 	}
-	if (fd[1] == -1)
-		return (err_p("Output file error"));
 	return (1);
 }

@@ -35,7 +35,6 @@ int	main(int argc, char **argv, char *envp[])
 	status = ft_exec(fd, pip, pip->cmd_path, out_fd);
 	if (pip->here_doc == TRUE)
 		unlink(".here_doc_tmp");
-	ft_printf("%d\n", status);
 	ft_clean_up(fd, pip);
 	close_fd(out_fd[0], out_fd[1]);
 	return (status);

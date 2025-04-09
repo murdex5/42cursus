@@ -100,6 +100,8 @@ t_pip	*populate_pip(int fd[2], int argc, char **argv, char *envp[])
 	here_docd = check_here_doc(argv);
 	offset = 2;
 	check_args(fd, argc, argv, here_docd);
+	if (fd[1] == -2)
+		return (NULL);
 	pip = init_pip();
 	if (!pip)
 		return (std_error_free(fd, pip, "Failed to initialize pip"), NULL);

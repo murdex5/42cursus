@@ -50,8 +50,13 @@ static void	second_child(int fd[2], int outfile, t_pip *pip, char *path)
 	if (dup2(fd[0], STDIN_FILENO) == -1)
 		perror_nd_exit("dup2 failed on stdin", 1);
 	close(fd[0]);
+	if (outfile == -1)
+		perror_nd_exit("output file not properly opened", 1);
 	if (dup2(outfile, STDOUT_FILENO) == -1)
+	{
+		close(outfile);
 		perror_nd_exit("dup2 failed on stdout", 1);
+	}
 	close(outfile);
 	execve(path, pip->cmd_args[1], pip->env);
 	perror("execve failed");

@@ -12,6 +12,13 @@
 
 #include "../pipex.h"
 
+static int	check_state(int out_fd, int out_filefaidd)
+{
+	if (out_filefaidd == -2)
+		return (1);
+	return (out_fd);
+}
+
 int	main(int argc, char **argv, char *envp[])
 {
 	t_pip	*pip;
@@ -27,7 +34,7 @@ int	main(int argc, char **argv, char *envp[])
 	if (!pip)
 	{
 		open_otfile_if_failed(out_fd[1], argv[argc - 1]);
-		state = out_fd[0];
+		state = check_state(out_fd[0], out_fd[1]);
 		close_fd(out_fd[0], out_fd[1]);
 		ft_clean_up(fd, pip);
 		return (state);

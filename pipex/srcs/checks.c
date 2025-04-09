@@ -74,6 +74,7 @@ static int	open_regular(int fd[2], int argc, char **argv)
 		if (fd[0] != -1)
 			close(fd[0]);
 		perror("outputfile: ");
+		fd[1] = -2;
 		return (0);
 	}
 	return (1);

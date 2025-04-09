@@ -11,7 +11,8 @@
 # **************************************************************************** #
 
 CC			= gcc
-SRCS		= 
+SRCS_DIR = ./srcs
+SRCS		= ${SRCS_DIR}/main.c
 OBJS		= ${SRCS:.c=.o}
 CFLAGS		= -Wall -Werror -Wextra
 MLX_DIR		= ./mlx
@@ -42,7 +43,6 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) $(MLX_LIB) $(LIBFT_LIB) -o $(NAME)
 
 clean:
-	@make -C $(LIBFT_PATH) clean
 	rm -rf $(OBJS)
 
 fclean: clean

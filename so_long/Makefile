@@ -11,15 +11,7 @@
 # **************************************************************************** #
 
 CC			= gcc
-SRCS		= frees.c \
-				map_utils.c map_validation.c map_parsing_utils.c map.c \
-				errors.c \
-				animation.c \
-				player_utils.c player_move.c player.c \
-				utils1.c \
-				events.c \
-				game.c \
-				main.c 
+SRCS		= 
 OBJS		= ${SRCS:.c=.o}
 CFLAGS		= -Wall -Werror -Wextra
 MLX_DIR		= ./mlx

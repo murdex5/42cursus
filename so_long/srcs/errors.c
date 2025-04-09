@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 12:05:07 by kadferna          #+#    #+#             */
-/*   Updated: 2025/04/09 12:05:09 by kadferna         ###   ########.fr       */
+/*   Created: 2025/04/09 13:39:30 by kadferna          #+#    #+#             */
+/*   Updated: 2025/04/09 13:39:31 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	main(int argc, char **argv)
+int	err_msg_std(char *msg)
 {
-	t_map	*map;
-
-	if (argc != 2)
-		return (err_msg_std("./so_long <file>"), 1);
-	map = check_map(argv[1]);
-	if (!map)
-		return (1);
-	return (0);
+	ft_putstr_fd("So long: ", 1);
+	ft_putstr_fd(msg, 2);
+	ft_putstr_fd("\n", 1);
+	return (1);
 }

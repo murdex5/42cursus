@@ -41,5 +41,20 @@
 # define LEFT 4
 
 /* Structs */
+typedef struct s_map
+{
+	int		height;
+	int		widht;
+	int		player_pos[2];
+	char	**content;
+	int		collectibles;
+	int		exits;
+}			t_map;
 
+int			free_n_returnt(char **str, char *temp, char *msg);
+int			check_file_type(char *str);
+int			err_msg_std(char *msg);
+int			count_lines(char *file);
+int			read_map_files(t_map *map, char *file);
+t_map		*check_map(char *path);
 #endif

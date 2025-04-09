@@ -12,7 +12,12 @@
 
 CC			= gcc
 SRCS_DIR = ./srcs
-SRCS		= ${SRCS_DIR}/main.c
+SRCS		= ${SRCS_DIR}/utils0.c \
+			${SRCS_DIR}/frees.c \
+			${SRCS_DIR}/maps/maps.c \
+			${SRCS_DIR}/maps/map_utils.c \
+			${SRCS_DIR}/errors.c \
+			${SRCS_DIR}/main.c
 OBJS		= ${SRCS:.c=.o}
 CFLAGS		= -Wall -Werror -Wextra
 MLX_DIR		= ./mlx

@@ -12,18 +12,33 @@
 
 #include "../so_long.h"
 
+int	var_pop(t_vars **vars, char *path)
+{
+	*vars = init_vars();
+	if (!vars)
+		return (0);
+	if (!init_mlx(*vars))
+		return (0);
+	if (!make_window(*vars))
+		return (0);
+	if (!get_map(*vars, path))
+		return (0);
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
-	t_map	*map;
+	t_vars	*vars;
 
 	if (argc != 2)
 		return (err_msg_std("./so_long <file>"), 1);
-	map = parse_map(argv[1]);
-	if (!map)
+	vars = NULL;
+	if (!var_pop(&vars, argv[1]))
 	{
-		free_map(map);
+		free_vars(vars);
 		return (1);
 	}
-	free_map(map);
+	mlx_hook(vars->win, KeyPress, KeyPressMask, on_keypress, vars);
+	mlx_loop(vars->mlx);
 	return (0);
 }

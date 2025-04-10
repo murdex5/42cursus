@@ -52,6 +52,13 @@ typedef struct s_map
 	int		exits;
 }			t_map;
 
+typedef struct t_vars
+{
+	void	*mlx;
+	void	*win;
+	t_map	*map;
+}			t_vars;
+
 int			free_n_returnt(char **str, char *temp, char *msg);
 void		free_ifnot_null(char **str);
 void		free_content(char **str);
@@ -76,5 +83,10 @@ int			flood_filling(t_map *map, char **map_copy, int x, int y);
 int			flood_fill(char **map, int x, int y, int *collectibles);
 void		free_map(t_map *map);
 int			free_error(char *msg, t_map *map);
-
+t_vars		*init_vars(void);
+int			init_mlx(t_vars *vars);
+int			make_window(t_vars *vars);
+void		free_vars(t_vars *vars);
+int			on_keypress(int keysym, t_vars *vars);
+int			get_map(t_vars *vars, char *path);
 #endif

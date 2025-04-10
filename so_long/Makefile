@@ -21,6 +21,9 @@ SRCS		= ${SRCS_DIR}/utils0.c \
 			${SRCS_DIR}/maps/map_parse.c \
 			${SRCS_DIR}/maps/maps.c \
 			${SRCS_DIR}/errors.c \
+			${SRCS_DIR}/game/game_free.c \
+			${SRCS_DIR}/game/game.c \
+			${SRCS_DIR}/hooks.c \
 			${SRCS_DIR}/main.c
 OBJS		= ${SRCS:.c=.o}
 CFLAGS		= -Wall -Werror -Wextra

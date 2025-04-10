@@ -51,7 +51,7 @@ int	count_lines(char *file)
 	if (fd < 0)
 	{
 		perror("So long");
-		exit(0);
+		return (0);
 	}
 	lines = 0;
 	line = get_next_line(fd);

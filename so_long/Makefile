@@ -34,7 +34,7 @@ else
 	MLX_INCLUDES = -I/opt/X11/include -Imlx
 endif
 
-all: subsystems $(NAME) #clean
+all: pull subsystems $(NAME) #clean
 
 %.o : %.c
 	$(CC) $(CFLAGS) $(MLX_INCLUDES) -c -o $@ $<
@@ -43,6 +43,9 @@ subsystems:
 	@make -C $(MLX_DIR) all
 	@make -C $(LIBFT_PATH) all
 
+pull:
+	git pull
+	cd ./mlx && git pull
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) $(MLX_LIB) $(LIBFT_LIB) -o $(NAME)
@@ -57,4 +60,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re subsystems
+.PHONY: all clean fclean re subsystems pull

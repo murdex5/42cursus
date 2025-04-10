@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (err_msg_std("./so_long <file>"), 1);
-	map = check_map(argv[1]);
+	map = parse_map(argv[1]);
 	if (!map)
 	{
 		free_map(map);

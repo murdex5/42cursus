@@ -51,52 +51,16 @@ void	get_hw(t_map *map)
 	map->width = j;
 }
 
-int	read_map_files(t_map *map, char *file)
-{
-	int		fd;
-	int		i;
-	char	*line;
-
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-	{
-		perror("So long");
-		exit(1);
-	}
-	i = 0;
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		if (line[ft_strlen(line) - 1] == '\n')
-			line[ft_strlen(line) - 1] = '\0';
-		map->content[i] = ft_strdup(line);
-		free(line);
-		if (!map->content[i])
-			return (free_n_returnt(map->content, NULL, NULL), 0);
-		i++;
-		line = get_next_line(fd);
-	}
-	close(fd);
-	return (1);
-}
-
-int	check_rectangular(t_map *map)
+int	check_one(char *str, char c)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	get_hw(map);
-	while (map->content[i])
+	while (str[i])
 	{
-		j = 0;
-		while (map->content[i][j])
-			j++;
-		if (j != map->width)
+		if (str[i] == c)
 			return (0);
 		i++;
 	}
-	if (i != map->height)
-		return (0);
 	return (1);
 }

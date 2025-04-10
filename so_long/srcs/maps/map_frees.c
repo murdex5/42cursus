@@ -44,7 +44,8 @@ void	free_map(t_map *map)
 
 int	free_error(char *msg, t_map *map)
 {
-	err_msg_std(msg);
+	if (msg)
+		err_msg_std(msg);
 	free_map(map);
 	return (1);
 }

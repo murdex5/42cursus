@@ -12,6 +12,45 @@
 
 #include "../../so_long.h"
 
+int	count_lines(char *file)
+{
+	int		fd;
+	int		lines;
+	char	*line;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+	{
+		perror("So long");
+		return (0);
+	}
+	lines = 0;
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		lines++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (lines);
+}
+
+void	get_hw(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map->content[i])
+		i++;
+	j = 0;
+	while (map->content[i - 1][j])
+		j++;
+	map->height = i;
+	map->width = j;
+}
+
 int	read_map_files(t_map *map, char *file)
 {
 	int		fd;
@@ -41,25 +80,23 @@ int	read_map_files(t_map *map, char *file)
 	return (1);
 }
 
-int	count_lines(char *file)
+int	check_rectangular(t_map *map)
 {
-	int fd;
-	int lines;
-	char *line;
+	int	i;
+	int	j;
 
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
+	i = 0;
+	get_hw(map);
+	while (map->content[i])
 	{
-		perror("So long");
+		j = 0;
+		while (map->content[i][j])
+			j++;
+		if (j != map->width)
+			return (0);
+		i++;
+	}
+	if (i != map->height)
 		return (0);
-	}
-	lines = 0;
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		lines++;
-		free(line);
-		line = get_next_line(fd);
-	}
-	return (lines);
+	return (1);
 }

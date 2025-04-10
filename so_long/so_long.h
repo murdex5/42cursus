@@ -44,8 +44,9 @@
 typedef struct s_map
 {
 	int		height;
-	int		widht;
-	int		player_pos[2];
+	int		width;
+	int		player_x;
+	int		player_y;
 	char	**content;
 	int		collectibles;
 	int		exits;
@@ -55,6 +56,15 @@ int			free_n_returnt(char **str, char *temp, char *msg);
 int			check_file_type(char *str);
 int			err_msg_std(char *msg);
 int			count_lines(char *file);
+void		get_hw(t_map *map);
+t_map		*init_map(void);
+int			check_collectibles(t_map *map);
+int			check_rectangular(t_map *map);
+int			check_player(t_map *map);
+int			check_exits(t_map *map);
 int			read_map_files(t_map *map, char *file);
 t_map		*check_map(char *path);
+void		free_map(t_map *map);
+int			free_error(char *msg, t_map *map);
+
 #endif

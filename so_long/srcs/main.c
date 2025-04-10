@@ -20,6 +20,10 @@ int	main(int argc, char **argv)
 		return (err_msg_std("./so_long <file>"), 1);
 	map = check_map(argv[1]);
 	if (!map)
+	{
+		free_map(map);
 		return (1);
+	}
+	free_map(map);
 	return (0);
 }

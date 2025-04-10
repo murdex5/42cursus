@@ -53,6 +53,8 @@ typedef struct s_map
 }			t_map;
 
 int			free_n_returnt(char **str, char *temp, char *msg);
+void		free_ifnot_null(char **str);
+void		free_content(char **str);
 int			check_file_type(char *str);
 int			check_one(char *str, char c);
 int			err_msg_std(char *msg);
@@ -67,7 +69,11 @@ int			check_exits(t_map *map);
 int			read_map_files(t_map *map, char *file);
 t_map		*map_pop(t_map *map, char *path);
 int			check_map(t_map *map);
+int			check_path(t_map *map);
 t_map		*parse_map(char *path);
+char		**copy_map(t_map *map);
+int			flood_filling(t_map *map, char **map_copy, int x, int y);
+int			flood_fill(char **map, int x, int y, int *collectibles);
 void		free_map(t_map *map);
 int			free_error(char *msg, t_map *map);
 

@@ -12,7 +12,7 @@
 
 #include "../../so_long.h"
 
-static void	free_content(char **str)
+void	free_content(char **str)
 {
 	int	i;
 
@@ -24,6 +24,22 @@ static void	free_content(char **str)
 	}
 	free(str);
 	str = NULL;
+}
+
+void	free_ifnot_null(char **str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return ;
+	while (str[i])
+	{
+		if (str[i] != NULL)
+			free(str[i]);
+		i++;
+	}
+	free(str);
 }
 
 void	free_map(t_map *map)

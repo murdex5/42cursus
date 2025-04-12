@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_free.c                                        :+:      :+:    :+:   */
+/*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 14:51:04 by kadferna          #+#    #+#             */
-/*   Updated: 2025/04/10 14:51:05 by kadferna         ###   ########.fr       */
+/*   Created: 2025/04/12 13:57:48 by kadferna          #+#    #+#             */
+/*   Updated: 2025/04/12 13:57:51 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-void	free_vars(t_vars *vars)
+t_animation	*init_animation(void)
 {
-	if (!vars)
-		return ;
-	if (vars->mlx)
-		free(vars->mlx);
-	if (vars->map)
-		free_map(vars->map);
-	vars->mlx = NULL;
-	vars->win = NULL;
-	vars->map = NULL;
-	free(vars);
+	t_animation	*anim;
+
+	anim = ft_calloc(sizeof(t_animation), 1);
+	if (!anim)
+		return (NULL);
+	anim->img = NULL;
+	anim->next = NULL;
+	return (anim);
 }
 
+
+t_animation *load_animation(char *path)
+{
+    
+}

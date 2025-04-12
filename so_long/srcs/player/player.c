@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_free.c                                        :+:      :+:    :+:   */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 14:51:04 by kadferna          #+#    #+#             */
-/*   Updated: 2025/04/10 14:51:05 by kadferna         ###   ########.fr       */
+/*   Created: 2025/04/12 13:52:10 by kadferna          #+#    #+#             */
+/*   Updated: 2025/04/12 13:52:12 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-void	free_vars(t_vars *vars)
+t_player	*init_player(void)
 {
-	if (!vars)
-		return ;
-	if (vars->mlx)
-		free(vars->mlx);
-	if (vars->map)
-		free_map(vars->map);
-	vars->mlx = NULL;
-	vars->win = NULL;
-	vars->map = NULL;
-	free(vars);
+	t_player	*player;
+
+	player = ft_calloc(sizeof(t_player), 1);
+	if (!player)
+		return (NULL);
+	player->idle = NULL;
+	player->runing = NULL;
+	return (player);
 }
 

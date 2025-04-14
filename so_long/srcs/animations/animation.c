@@ -50,7 +50,25 @@ void	add_node(t_animation **head, t_animation *new_node)
 	}
 }
 
-t_animation	*load_animation(t_vars *vars, char *path, int h, int w)
+void	*get_img(t_vars *vars, char *path, int len, int i)
+{
+	char	*str1;
+	char	*str2;
+	char	*str3;
+	void	*img;
+
+	str3 = int_to_str(len, i);
+	str2 = ft_strjoin(str3, ".xpm");
+	str1 = ft_strjoin(path, str2);
+	img = mlx_xpm_file_to_image(vars->mlx, str1, &vars->player->width,
+			&vars->player->heigth);
+	free(str1);
+	free(str2);
+	free(str3);
+	return (img);
+}
+
+t_animation	*load_animation(t_vars *vars, char *path)
 {
 	int			i;
 	void		*img;
@@ -63,8 +81,7 @@ t_animation	*load_animation(t_vars *vars, char *path, int h, int w)
 	while (i < 60)
 	{
 		len = 0;
-		img = mlx_xpm_file_to_image(vars->mlx, ft_strjoin(path,
-					ft_strjoin(int_to_str(len, i), ".xpm")), &w, &h);
+		img = get_img(vars, path, len, i);
 		new_node = create_node(img);
 		if (!new_node)
 		{

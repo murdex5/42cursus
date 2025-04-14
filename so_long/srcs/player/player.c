@@ -33,10 +33,8 @@ t_player	*player_pop(t_vars *vars)
 	player = init_player();
 	if (!player)
 		return (NULL);
-	player->idle = load_animation(vars, "assets/player/player_idle/",
-			player->heigth, player->width);
-	player->runing = load_animation(vars, "assets/player/player_run/",
-			player->heigth, player->width);
+	player->idle = load_animation(vars, "assets/player/player_idle/");
+	player->runing = load_animation(vars, "assets/player/player_run/");
 	if (!player->idle || !player->runing)
 		return (free_player(vars, player), NULL);
 	return (player);

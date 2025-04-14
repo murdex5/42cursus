@@ -44,6 +44,7 @@ int	main(int argc, char **argv)
 	}
 	draw_map(vars);
 	mlx_hook(vars->win, KeyPress, KeyPressMask, on_keypress, vars);
+	mlx_loop_hook(vars->mlx, render_player, vars);
 	mlx_loop(vars->mlx);
 	return (0);
 }

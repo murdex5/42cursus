@@ -71,6 +71,7 @@ typedef struct s_player
 	int					width;
 	t_animation			*idle;
 	t_animation			*runing;
+	int					player_state;
 }						t_player;
 
 typedef struct t_vars
@@ -121,6 +122,9 @@ t_player				*player_pop(t_vars *vars);
 void					draw_texture(t_vars *vars, t_texture *texture, int x,
 							int y);
 int						make_window(t_vars *vars);
+int						render_player(t_vars *vars);
+int						render_player_frame(t_vars *vars, t_animation *anim);
+void					render_animation(t_vars *vars, t_animation *anim);
 void					free_vars(t_vars *vars);
 int						on_keypress(int keysym, t_vars *vars);
 int						get_map(t_vars *vars, char *path);

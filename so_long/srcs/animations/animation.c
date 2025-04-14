@@ -24,8 +24,56 @@ t_animation	*init_animation(void)
 	return (anim);
 }
 
-
-t_animation *load_animation(char *path)
+t_animation	*create_node(void *img)
 {
-    
+	t_animation	*new_node;
+
+	new_node = init_animation();
+	if (!new_node)
+		return (NULL);
+	new_node->img = img;
+	return (new_node);
+}
+
+void	add_node(t_animation **head, t_animation *new_node)
+{
+	t_animation	*current;
+
+	if (*head == NULL)
+		*head = new_node;
+	else
+	{
+		current = *head;
+		while (current->next != NULL)
+			current = current->next;
+		current->next = new_node;
+	}
+}
+
+t_animation	*load_animation(t_vars *vars, char *path, int h, int w)
+{
+	int			i;
+	void		*img;
+	int			len;
+	t_animation	*head;
+	t_animation	*new_node;
+
+	head = NULL;
+	i = 0;
+	while (i < 60)
+	{
+		len = 0;
+		img = mlx_xpm_file_to_image(vars->mlx, ft_strjoin(path,
+					ft_strjoin(int_to_str(len, i), ".xpm")), &w, &h);
+		new_node = create_node(img);
+		if (!new_node)
+		{
+			ft_printf("Failed to load the %s to the node.\n", ft_strjoin(path,
+					ft_strjoin(int_to_str(len, i), ".xpm")));
+			continue ;
+		}
+		add_node(&head, new_node);
+		i++;
+	}
+	return (head);
 }

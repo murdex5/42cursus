@@ -42,6 +42,13 @@
 
 /* Structs */
 
+typedef struct s_texture
+{
+	void				*img;
+	int					height;
+	int					widht;
+}						t_texture;
+
 typedef struct s_animation
 {
 	void				*img;
@@ -60,7 +67,7 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	int					heigt;
+	int					heigth;
 	int					width;
 	t_animation			*idle;
 	t_animation			*runing;
@@ -71,6 +78,8 @@ typedef struct t_vars
 	void				*mlx;
 	void				*win;
 	t_map				*map;
+	t_texture			*floor;
+	t_texture			*water;
 }						t_vars;
 
 int						free_n_returnt(char **str, char *temp, char *msg);
@@ -101,8 +110,20 @@ int						free_error(char *msg, t_map *map);
 t_vars					*init_vars(void);
 int						init_mlx(t_vars *vars);
 t_animation				*init_animation(void);
+t_texture				*init_txt(void);
+char					*int_to_str(int len, int num);
+t_animation				*load_animation(t_vars *vars, char *path, int h, int w);
+void					*load_texture(t_vars *vars, char *path, int h, int w);
+t_texture				*create_texture(t_vars *vars, char *path);
+t_player				*player_pop(t_vars *vars);
+void					draw_texture(t_vars *vars, t_texture *texture, int x,
+							int y);
 int						make_window(t_vars *vars);
 void					free_vars(t_vars *vars);
 int						on_keypress(int keysym, t_vars *vars);
 int						get_map(t_vars *vars, char *path);
+int						get_textures(t_vars *vars);
+void					free_texture(t_texture *texture);
+void					free_animation(t_animation *animation);
+void					draw_map(t_vars *vars);
 #endif

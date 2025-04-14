@@ -19,9 +19,11 @@ int	var_pop(t_vars **vars, char *path)
 		return (0);
 	if (!init_mlx(*vars))
 		return (0);
+	if (!get_map(*vars, path))
+		return (0);
 	if (!make_window(*vars))
 		return (0);
-	if (!get_map(*vars, path))
+	if (!get_textures(*vars))
 		return (0);
 	return (1);
 }
@@ -38,6 +40,7 @@ int	main(int argc, char **argv)
 		free_vars(vars);
 		return (1);
 	}
+	draw_map(vars);
 	mlx_hook(vars->win, KeyPress, KeyPressMask, on_keypress, vars);
 	mlx_loop(vars->mlx);
 	return (0);

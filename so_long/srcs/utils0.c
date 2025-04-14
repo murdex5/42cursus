@@ -32,3 +32,32 @@ int	check_file_type(char *str)
 	return (free_n_returnt(str2, temp, "This type of file is not supported!"),
 		0);
 }
+
+char	*int_to_str(int len, int num)
+{
+	char *str;
+	int temp;
+
+	len = 0;
+	temp = len;
+	if (temp == 0)
+		len = 1;
+	else
+	{
+		while (temp != 0)
+		{
+			len++;
+			temp /= 10;
+		}
+	}
+	str = (char *)malloc(len + 1);
+	if (!str)
+		return (NULL);
+	str[len] = '\0';
+	while (len--)
+	{
+		str[len] = (num % 10) + '0';
+		num /= 10;
+	}
+	return (str);
+}

@@ -20,9 +20,5 @@ void	free_vars(t_vars *vars)
 		free(vars->mlx);
 	if (vars->map)
 		free_map(vars->map);
-	vars->mlx = NULL;
-	vars->win = NULL;
-	vars->map = NULL;
 	free(vars);
 }
-

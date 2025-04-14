@@ -17,6 +17,8 @@ t_player	*init_player(void)
 	t_player	*player;
 
 	player = ft_calloc(sizeof(t_player), 1);
+	player->heigth = 192;
+	player->width = 192;
 	if (!player)
 		return (NULL);
 	player->idle = NULL;
@@ -24,3 +26,16 @@ t_player	*init_player(void)
 	return (player);
 }
 
+t_player	*player_pop(t_vars *vars)
+{
+	t_player *player;
+
+	player = init_player();
+	if (!player)
+		return (NULL);
+	player->idle = load_animation(vars, "../../assets/player/player_idle/",
+			player->heigth, player->width);
+	player->idle = load_animation(vars, "../../assets/player/player_run/",
+			player->heigth, player->width);
+	return (player);
+}

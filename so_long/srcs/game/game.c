@@ -22,6 +22,8 @@ t_vars	*init_vars(void)
 	vars->mlx = NULL;
 	vars->win = NULL;
 	vars->map = NULL;
+	vars->floor = NULL;
+	vars->water = NULL;
 	return (vars);
 }
 
@@ -49,7 +51,8 @@ int	make_window(t_vars *vars)
 		err_msg_std("Error");
 		return (0);
 	}
-	vars->win = mlx_new_window(vars->mlx, 600, 600, "Knight game");
+	vars->win = mlx_new_window(vars->mlx, vars->map->width * 16,
+			vars->map->height * 16, "Knight game");
 	if (!vars->win)
 	{
 		ft_putstr_fd("So long: ", 1);
@@ -62,7 +65,7 @@ int	make_window(t_vars *vars)
 
 int	get_map(t_vars *vars, char *path)
 {
-	if (!vars || !vars->mlx || !vars->win)
+	if (!vars || !vars->mlx)
 	{
 		err_msg_std("Error");
 		return (0);
@@ -70,11 +73,24 @@ int	get_map(t_vars *vars, char *path)
 	vars->map = parse_map(path);
 	if (!vars->map)
 	{
-        free_map(vars->map);
+		free_map(vars->map);
 		ft_putstr_fd("So long: ", 1);
 		ft_putstr_fd("Failed to create the window\n", 1);
-		mlx_destroy_display(vars->mlx);
 		return (0);
 	}
 	return (1);
+}
+
+int	get_textures(t_vars *vars)
+{
+	if (!vars || !vars->mlx || !vars->win)
+	{
+		err_msg_std("Error");
+		return (0);
+	}
+	vars->floor = create_texture(vars, "assets/textures/floor/Path_Tile.xpm");
+	vars->water = create_texture(vars, "assets/textures/water/Water_Tile.xpm");
+	if (vars->floor && vars->water)
+		return (1);
+	return (0);
 }

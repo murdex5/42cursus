@@ -16,9 +16,9 @@ void	free_vars(t_vars *vars)
 {
 	if (!vars)
 		return ;
-	if (vars->mlx)
-		free(vars->mlx);
 	if (vars->map)
 		free_map(vars->map);
+	if (vars->mlx)
+		free(vars->mlx);
 	free(vars);
 }

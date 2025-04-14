@@ -1,0 +1,9 @@
+{
+   MLX_xcb_writev_issue
+   Memcheck:Param
+   writev(vector[...])
+   fun:writev
+   obj:*/libxcb.so*
+   ...
+   fun:mlx_new_window
+}

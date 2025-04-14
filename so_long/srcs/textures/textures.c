@@ -16,7 +16,7 @@ t_texture	*init_txt(void)
 {
 	t_texture	*txt;
 
-	txt = ft_calloc(sizeof(txt), 1);
+	txt = ft_calloc(sizeof(t_texture), 1);
 	if (!txt)
 		return (err_msg_std("Texture initializing failed"), NULL);
 	txt->height = 16;

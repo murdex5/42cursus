@@ -80,6 +80,7 @@ typedef struct t_vars
 	t_map				*map;
 	t_texture			*floor;
 	t_texture			*water;
+	t_player			*player;
 }						t_vars;
 
 int						free_n_returnt(char **str, char *temp, char *msg);
@@ -123,7 +124,9 @@ void					free_vars(t_vars *vars);
 int						on_keypress(int keysym, t_vars *vars);
 int						get_map(t_vars *vars, char *path);
 int						get_textures(t_vars *vars);
-void					free_texture(t_texture *texture);
-void					free_animation(t_animation *animation);
+int						get_player(t_vars *vars);
+void					free_player(t_vars *vars, t_player *player);
+void					free_texture(t_vars *vars, t_texture *texture);
+void					free_animation(t_vars *vars, t_animation *animation);
 void					draw_map(t_vars *vars);
 #endif

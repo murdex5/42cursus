@@ -12,11 +12,11 @@
 
 #include "../../so_long.h"
 
-void	free_texture(t_texture *texture)
+void	free_texture(t_vars *vars, t_texture *texture)
 {
 	if (!texture)
 		return ;
 	if (texture->img)
-		free(texture->img);
+		mlx_destroy_image(vars->mlx, texture->img);
 	free(texture);
 }

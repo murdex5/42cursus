@@ -14,10 +14,15 @@
 
 void	on_key_press_exit(t_vars *vars)
 {
+	if (vars->player)
+	{
+		free_player(vars, vars->player);
+		vars->player = NULL;
+	}
 	if (vars->floor)
-	mlx_destroy_image(vars->mlx, vars->floor);
+		free_texture(vars, vars->floor);
 	if (vars->water)
-		mlx_destroy_image(vars->mlx, vars->water);
+		free_texture(vars, vars->water);
 	mlx_destroy_window(vars->mlx, vars->win);
 	mlx_destroy_display(vars->mlx);
 	free_vars(vars);

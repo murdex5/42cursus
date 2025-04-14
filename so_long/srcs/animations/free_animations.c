@@ -12,15 +12,19 @@
 
 #include "../../so_long.h"
 
-void	free_animation(t_animation *animation)
+void	free_animation(t_vars *vars, t_animation *animation)
 {
+	t_animation *current;
+	t_animation *next;
 	if (!animation)
 		return ;
-
-	while (animation->img)
+	current = animation;
+	while (current)
 	{
-		free(animation->img);
-		animation->img = animation->next;
+		next = current->next;
+		if (current->img)
+			mlx_destroy_image(vars->mlx, current->img);
+		free(current);
+		current = next;
 	}
-	free(animation);
 }

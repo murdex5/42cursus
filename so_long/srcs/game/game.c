@@ -24,6 +24,7 @@ t_vars	*init_vars(void)
 	vars->map = NULL;
 	vars->floor = NULL;
 	vars->water = NULL;
+	vars->player = NULL;
 	return (vars);
 }
 
@@ -93,4 +94,17 @@ int	get_textures(t_vars *vars)
 	if (vars->floor && vars->water)
 		return (1);
 	return (0);
+}
+
+int	get_player(t_vars *vars)
+{
+	if (!vars || !vars->mlx || !vars->win)
+	{
+		err_msg_std("Error");
+		return (0);
+	}
+	vars->player = player_pop(vars);
+	if (!vars->player)
+		return (0);
+	return (1);
 }

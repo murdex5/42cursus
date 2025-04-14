@@ -25,6 +25,8 @@ int	var_pop(t_vars **vars, char *path)
 		return (0);
 	if (!get_textures(*vars))
 		return (0);
+	if (!get_player(*vars))
+		return (0);
 	return (1);
 }
 

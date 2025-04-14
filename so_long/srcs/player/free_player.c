@@ -12,13 +12,20 @@
 
 #include "../../so_long.h"
 
-void	free_player(t_player *player)
+void	free_player(t_vars *vars, t_player *player)
 {
 	if (!player)
 		return ;
 	if (player->idle)
-		free_animation(player->idle);
-	if (player->heigth)
-		free_animation(player->runing);
+	{
+		free_animation(vars, player->idle);
+		player->idle = NULL;
+	}
+	if (player->runing)
+	{
+		free_animation(vars, player->runing);
+		player->runing = NULL;
+	}
 	free(player);
+	player = NULL;
 }

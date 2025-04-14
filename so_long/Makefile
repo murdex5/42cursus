@@ -23,6 +23,7 @@ SRCS		= ${SRCS_DIR}/utils0.c \
 			${SRCS_DIR}/errors.c \
 			${SRCS_DIR}/textures/textures.c \
 			${SRCS_DIR}/textures/free_textures.c \
+			${SRCS_DIR}/animations/animation_utils.c \
 			${SRCS_DIR}/animations/free_animations.c \
 			${SRCS_DIR}/animations/animation.c \
 			${SRCS_DIR}/player/free_player.c \

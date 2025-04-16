@@ -52,8 +52,8 @@ int	make_window(t_vars *vars)
 		err_msg_std("Error");
 		return (0);
 	}
-	vars->win = mlx_new_window(vars->mlx, vars->map->width * 16,
-			vars->map->height * 16, "Knight game");
+	vars->win = mlx_new_window(vars->mlx, vars->map->width * 64,
+			vars->map->height * 64, "Knight game");
 	if (!vars->win)
 	{
 		ft_putstr_fd("So long: ", 1);

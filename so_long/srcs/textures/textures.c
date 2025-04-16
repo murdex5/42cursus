@@ -19,8 +19,8 @@ t_texture	*init_txt(void)
 	txt = ft_calloc(sizeof(t_texture), 1);
 	if (!txt)
 		return (err_msg_std("Texture initializing failed"), NULL);
-	txt->height = 16;
-	txt->widht = 16;
+	txt->height = 64;
+	txt->widht = 64;
 	txt->img = NULL;
 	return (txt);
 }
@@ -68,8 +68,8 @@ void	draw_map(t_vars *vars)
 		x = 0;
 		while (x < vars->map->width)
 		{
-			pixel_x = x * 16;
-			pixel_y = y * 16;
+			pixel_x = x * 64;
+			pixel_y = y * 64;
 			if (vars->map->content[y][x] == '1')
 				draw_texture(vars, vars->water, pixel_x, pixel_y);
 			else if (vars->map->content[y][x] == '0')

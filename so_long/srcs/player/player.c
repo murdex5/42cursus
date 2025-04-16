@@ -19,8 +19,8 @@ t_player	*init_player(void)
 	player = ft_calloc(sizeof(t_player), 1);
 	if (!player)
 		return (NULL);
-	player->heigth = 16;
-	player->width = 16;
+	player->heigth = 64;
+	player->width = 64;
 	player->idle = NULL;
 	player->runing = NULL;
 	player->player_state = 0;

@@ -23,6 +23,8 @@ void	on_key_press_exit(t_vars *vars)
 		free_texture(vars, vars->floor);
 	if (vars->water)
 		free_texture(vars, vars->water);
+	if (vars->collectibles)
+		free_texture(vars, vars->collectibles);
 	mlx_destroy_window(vars->mlx, vars->win);
 	mlx_destroy_display(vars->mlx);
 	free_vars(vars);

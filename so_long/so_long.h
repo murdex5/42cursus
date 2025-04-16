@@ -81,6 +81,7 @@ typedef struct t_vars
 	t_map				*map;
 	t_texture			*floor;
 	t_texture			*water;
+	t_texture			*collectibles;
 	t_player			*player;
 }						t_vars;
 
@@ -114,6 +115,8 @@ int						init_mlx(t_vars *vars);
 t_texture				*init_txt(void);
 char					*int_to_str(int len, int num);
 char					*get_img(char *path, int len, int i);
+t_animation				*create_node(void *img);
+void					add_node(t_animation **head, t_animation *new_node);
 t_animation				*load_animation(t_vars *vars, char *path, int h, int w);
 void					*load_texture(t_vars *vars, char *path, int h, int w);
 t_texture				*create_texture(t_vars *vars, char *path);

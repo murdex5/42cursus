@@ -91,7 +91,8 @@ int	get_textures(t_vars *vars)
 	}
 	vars->floor = create_texture(vars, "assets/textures/floor/Path_Tile.xpm");
 	vars->water = create_texture(vars, "assets/textures/water/Water_Tile.xpm");
-	if (vars->floor && vars->water)
+	vars->collectibles = create_texture(vars, "assets/textures/collectibles/Collectible_Tile.xpm");
+	if (vars->floor && vars->water && vars->collectibles)
 		return (1);
 	return (0);
 }

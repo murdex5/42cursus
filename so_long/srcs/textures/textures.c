@@ -76,6 +76,8 @@ void	draw_map(t_vars *vars)
 				draw_texture(vars, vars->floor, pixel_x, pixel_y);
 			else if (vars->map->content[y][x] == 'C')
 				draw_texture(vars, vars->collectibles, pixel_x, pixel_y);
+			else if (vars->map->content[y][x] == 'E')
+				draw_texture(vars, vars->exit, pixel_x, pixel_y);
 			x++;
 		}
 		y++;

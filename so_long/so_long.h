@@ -82,6 +82,7 @@ typedef struct t_vars
 	t_texture			*floor;
 	t_texture			*water;
 	t_texture			*collectibles;
+	t_texture			*exit;
 	t_player			*player;
 }						t_vars;
 

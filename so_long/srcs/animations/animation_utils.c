@@ -43,10 +43,14 @@ int	render_player_frame(t_vars *vars, t_animation *anim)
 
 void	render_animation(t_vars *vars, t_animation *anim)
 {
+	int	pixel_x;
+	int	pixel_y;
+
 	if (!vars || !anim || !anim->img)
 		return ;
 	if (vars->map->player_x < 0 || vars->map->player_y < 0)
 		return ;
-	mlx_put_image_to_window(vars->mlx, vars->win, anim->img,
-		vars->map->player_x, vars->map->player_y);
+	pixel_x = vars->map->player_x * 64;
+	pixel_y = vars->map->player_y * 64;
+	mlx_put_image_to_window(vars->mlx, vars->win, anim->img, pixel_x, pixel_y);
 }

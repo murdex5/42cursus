@@ -35,7 +35,6 @@ int	render_game(t_vars *vars)
 	mlx_clear_window(vars->mlx, vars->win);
 	draw_map(vars);
 	render_player(vars);
-	mlx_do_sync(vars->mlx);
 	return (0);
 }
 

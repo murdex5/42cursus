@@ -67,6 +67,7 @@ typedef struct s_map
 	char				**content;
 	int					collectibles;
 	int					exits;
+	int					map_changed;
 }						t_map;
 
 typedef struct s_player

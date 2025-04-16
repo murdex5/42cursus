@@ -24,6 +24,7 @@ t_map	*init_map(void)
 	map->exits = 0;
 	map->height = 0;
 	map->width = 0;
+	map->map_changed = 0;
 	return (map);
 }
 

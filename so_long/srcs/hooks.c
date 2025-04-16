@@ -67,6 +67,7 @@ void	player_move(int keysym, t_vars *vars)
 		vars->map->player_y = new_y;
 		vars->player->player_state = 1; // Set to running state
 	}
+	vars->map->map_changed = 1;
 }
 
 int	on_keypress(int keysym, t_vars *vars)

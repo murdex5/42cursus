@@ -45,6 +45,10 @@
 typedef struct s_texture
 {
 	void				*img;
+	int					bpp;
+	int					line_len;
+	int					endian;
+	char				*addr;
 	int					height;
 	int					widht;
 }						t_texture;
@@ -83,6 +87,11 @@ typedef struct t_vars
 	t_texture			*water;
 	t_texture			*collectibles;
 	t_texture			*exit;
+	void				*buffer_map;
+	char				*buffer_addr;
+	int					buffer_bpp;
+	int					buffer_line_len;
+	int					buffer_endian;
 	t_player			*player;
 }						t_vars;
 

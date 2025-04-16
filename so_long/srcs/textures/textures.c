@@ -45,9 +45,13 @@ t_texture	*create_texture(t_vars *vars, char *path)
 	texture->img = load_texture(vars, path, texture->height, texture->widht);
 	if (!texture->img)
 		return (NULL);
+	texture->addr = mlx_get_data_addr(texture->img, &texture->bpp,
+			&texture->line_len, &texture->endian);
+	if (!texture->addr)
+		return (NULL);
 	return (texture);
 }
-
+/*
 void	draw_texture(t_vars *vars, t_texture *texture, int x, int y)
 {
 	if (!vars || !texture || !texture->img)
@@ -83,3 +87,4 @@ void	draw_map(t_vars *vars)
 		y++;
 	}
 }
+*/

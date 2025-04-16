@@ -27,6 +27,7 @@ void	on_key_press_exit(t_vars *vars)
 		free_texture(vars, vars->collectibles);
 	if (vars->exit)
 		free_texture(vars, vars->exit);
+	mlx_destroy_image(vars->mlx, vars->buffer_map);
 	mlx_destroy_window(vars->mlx, vars->win);
 	mlx_destroy_display(vars->mlx);
 	free_vars(vars);

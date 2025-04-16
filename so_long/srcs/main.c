@@ -30,6 +30,15 @@ int	var_pop(t_vars **vars, char *path)
 	return (1);
 }
 
+int	render_game(t_vars *vars)
+{
+	mlx_clear_window(vars->mlx, vars->win);
+	draw_map(vars);
+	render_player(vars);
+	mlx_do_sync(vars->mlx);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_vars	*vars;
@@ -42,9 +51,8 @@ int	main(int argc, char **argv)
 		free_vars(vars);
 		return (1);
 	}
-	draw_map(vars);
 	mlx_hook(vars->win, KeyPress, KeyPressMask, on_keypress, vars);
-	mlx_loop_hook(vars->mlx, render_player, vars);
+	mlx_loop_hook(vars->mlx, render_game, vars);
 	mlx_loop(vars->mlx);
 	return (0);
 }

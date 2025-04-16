@@ -31,13 +31,21 @@ char	*get_img(char *path, int len, int i)
 int	render_player_frame(t_vars *vars, t_animation *anim)
 {
 	static t_animation	*current_frame = NULL;
+	static int			frame_counter = 0;
+	int					frame_delay;
 
+	frame_delay = 10;
 	if (!current_frame)
 		current_frame = anim;
 	render_animation(vars, current_frame);
-	current_frame = current_frame->next;
-	if (!current_frame)
-		current_frame = anim;
+	frame_counter++;
+	if (frame_counter >= frame_delay)
+	{
+		frame_counter = 0;
+		current_frame = current_frame->next;
+		if (!current_frame)
+			current_frame = anim;
+	}
 	return (0);
 }
 
@@ -52,5 +60,8 @@ void	render_animation(t_vars *vars, t_animation *anim)
 		return ;
 	pixel_x = vars->map->player_x * 64;
 	pixel_y = vars->map->player_y * 64;
+	if (vars->floor && vars->floor->img)
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->floor->img, pixel_x,
+			pixel_y);
 	mlx_put_image_to_window(vars->mlx, vars->win, anim->img, pixel_x, pixel_y);
 }

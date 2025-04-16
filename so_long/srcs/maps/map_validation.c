@@ -70,6 +70,7 @@ int	check_player(t_map *map)
 			{
 				map->player_y = i;
 				map->player_x = j;
+				map->content[i][j] = '0'; 
 				return (1);
 			}
 			j++;

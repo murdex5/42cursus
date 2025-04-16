@@ -130,6 +130,7 @@ int						render_player_frame(t_vars *vars, t_animation *anim);
 void					render_animation(t_vars *vars, t_animation *anim);
 void					free_vars(t_vars *vars);
 int						on_keypress(int keysym, t_vars *vars);
+int						set_player_to_idle(int keysym, t_vars *vars);
 int						get_map(t_vars *vars, char *path);
 int						get_textures(t_vars *vars);
 int						get_player(t_vars *vars);

@@ -36,7 +36,7 @@ t_player	*player_pop(t_vars *vars)
 	player->width = vars->map->player_x;
 	player->idle = load_animation(vars, "assets/player/player_idle/left/", 64,
 			64);
-	player->runing = load_animation(vars, "assets/player/player_run/left/", 64,
+	player->runing = load_animation(vars, "assets/player/player_run/right/", 64,
 			64);
 	if (!player->idle || !player->runing)
 		return (free_player(vars, player), NULL);

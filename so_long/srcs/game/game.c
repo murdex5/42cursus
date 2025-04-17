@@ -89,7 +89,7 @@ int	get_textures(t_vars *vars)
 		err_msg_std("Error");
 		return (0);
 	}
-	vars->floor = create_texture(vars, "assets/textures/floor/Path_Tile.xpm");
+	vars->floor = create_texture(vars, "assets/textures/floor/briks_floor.xpm");
 	vars->water = create_texture(vars, "assets/textures/water/Water_Tile.xpm");
 	vars->collectibles = create_texture(vars, "assets/textures/collectibles/Collectible_Tile.xpm");
 	vars->exit = create_texture(vars, "assets/textures/exit/Exit.xpm");

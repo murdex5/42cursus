@@ -26,7 +26,7 @@ void	on_key_press_exit(t_vars *vars)
 	{
 		if (vars->buffer_map)
 			mlx_destroy_image(vars->mlx, vars->buffer_map);
-		vars->buffer_map = 	NULL;
+		vars->buffer_map = NULL;
 		if (vars->win)
 			mlx_destroy_window(vars->mlx, vars->win);
 		vars->win = NULL;
@@ -65,19 +65,21 @@ void	player_move(int keysym, t_vars *vars)
 	else if (keysym == D)
 		new_x += 1;
 	replace_tile(vars, new_x, new_y);
+	exited(vars, new_x, new_y);
 	if (vars->map->content[new_y][new_x] != '1')
 	{
 		vars->map->player_x = new_x;
 		vars->map->player_y = new_y;
 		vars->player->player_state = 1;
 	}
+	if (vars->map->content[new_y][new_x] == 'C')
+		vars->map->collectibles -= 1;
 	vars->map->map_changed = 1;
 }
 
 int	on_keypress(int keysym, t_vars *vars)
 {
-	if (keysym == ESC
-		|| vars->map->content[vars->map->player_y][vars->map->player_x] == 'E')
+	if (keysym == ESC)
 	{
 		on_key_press_exit(vars);
 		exit(0);
@@ -85,6 +87,7 @@ int	on_keypress(int keysym, t_vars *vars)
 	diter_dir(keysym, vars);
 	if (keysym == W || keysym == A || keysym == S || keysym == D)
 		player_move(keysym, vars);
+	ft_printf("Collectibles Remais: %d\n", vars->map->collectibles);
 	return (0);
 }
 

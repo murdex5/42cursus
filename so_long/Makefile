@@ -13,6 +13,7 @@
 CC			= gcc
 SRCS_DIR = ./srcs
 SRCS		= ${SRCS_DIR}/utils0.c \
+			${SRCS_DIR}/utils1.c \
 			${SRCS_DIR}/frees.c \
 			${SRCS_DIR}/maps/map_utils.c \
 			${SRCS_DIR}/maps/map_utils1.c \

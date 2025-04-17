@@ -160,5 +160,5 @@ void					on_key_press_exit(t_vars *vars);
 void					free_textures(t_vars *vars);
 void					run_ani(t_vars *vars, t_animation *animation);
 void					diter_dir(int keysym, t_vars *vars);
-
+void					exited(t_vars *vars, int new_x, int new_y);
 #endif

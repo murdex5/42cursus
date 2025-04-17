@@ -75,7 +75,10 @@ void	replace_tile(t_vars *vars, int new_x, int new_y)
 	if (new_x != x || new_y != y)
 	{
 		if (map->content[y][x] == 'C')
+		{
+			map->content[y][x] = '0';
 			texture = get_texture_for_tile(vars, '0');
+		}
 		else
 			texture = get_texture_for_tile(vars, map->content[y][x]);
 		if (texture && texture->img)

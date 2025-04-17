@@ -14,22 +14,26 @@
 
 void	on_key_press_exit(t_vars *vars)
 {
+	if (!vars)
+		return ;
 	if (vars->player)
 	{
 		free_player(vars, vars->player);
 		vars->player = NULL;
 	}
-	if (vars->floor)
-		free_texture(vars, vars->floor);
-	if (vars->water)
-		free_texture(vars, vars->water);
-	if (vars->collectibles)
-		free_texture(vars, vars->collectibles);
-	if (vars->exit)
-		free_texture(vars, vars->exit);
-	mlx_destroy_image(vars->mlx, vars->buffer_map);
-	mlx_destroy_window(vars->mlx, vars->win);
-	mlx_destroy_display(vars->mlx);
+	free_textures(vars);
+	if (vars->mlx)
+	{
+		if (vars->buffer_map)
+			mlx_destroy_image(vars->mlx, vars->buffer_map);
+		vars->buffer_map = 	NULL;
+		if (vars->win)
+			mlx_destroy_window(vars->mlx, vars->win);
+		vars->win = NULL;
+		mlx_destroy_display(vars->mlx);
+		free(vars->mlx);
+		vars->mlx = NULL;
+	}
 	free_vars(vars);
 }
 
@@ -65,7 +69,7 @@ void	player_move(int keysym, t_vars *vars)
 	{
 		vars->map->player_x = new_x;
 		vars->map->player_y = new_y;
-		vars->player->player_state = 1; // Set to running state
+		vars->player->player_state = 1;
 	}
 	vars->map->map_changed = 1;
 }
@@ -83,10 +87,11 @@ int	on_keypress(int keysym, t_vars *vars)
 	return (0);
 }
 
-int	on_destroy(int keysym, t_vars *vars)
+int	on_destroy(t_vars *vars)
 {
-	on_key_press_exit(vars);
-	exit(keysym * 0);
+	if (vars)
+		on_key_press_exit(vars);
+	exit(0);
 }
 
 int	set_player_to_idle(int keysym, t_vars *vars)

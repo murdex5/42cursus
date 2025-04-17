@@ -31,3 +31,27 @@ int	free_n_returnt(char **str, char *temp, char *msg)
 		err_msg_std(msg);
 	return (0);
 }
+
+void	free_textures(t_vars *vars)
+{
+	if (vars->floor)
+	{
+		free_texture(vars, vars->floor);
+		vars->floor = NULL;
+	}
+	if (vars->water)
+	{
+		free_texture(vars, vars->water);
+		vars->water = NULL;
+	}
+	if (vars->collectibles)
+	{
+		free_texture(vars, vars->collectibles);
+		vars->collectibles = NULL;
+	}
+	if (vars->exit)
+	{
+		free_texture(vars, vars->exit);
+		vars->exit = NULL;
+	}
+}

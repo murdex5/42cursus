@@ -74,10 +74,14 @@ void	replace_tile(t_vars *vars, int new_x, int new_y)
 	y = map->player_y;
 	if (new_x != x || new_y != y)
 	{
-		if (map->content[y][x] == 'C' || map->content[y][x] == '0')
+		if (map->content[y][x] == 'C')
 			texture = get_texture_for_tile(vars, '0');
 		else
 			texture = get_texture_for_tile(vars, map->content[y][x]);
-		copy_texture_to_buffer(texture, vars, x, y);
+		if (texture && texture->img)
+		{
+			mlx_put_image_to_window(vars->mlx, vars->win, texture->img, x * 64,
+				y * 64);
+		}
 	}
 }

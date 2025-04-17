@@ -52,6 +52,7 @@ int	main(int argc, char **argv)
 	draw_map(vars);
 	mlx_hook(vars->win, KeyPress, KeyPressMask, on_keypress, vars);
 	mlx_hook(vars->win, KeyRelease, KeyReleaseMask, set_player_to_idle, vars);
+	mlx_hook(vars->win, DestroyNotify, StructureNotifyMask, on_destroy, vars);
 	mlx_loop_hook(vars->mlx, render_game, vars);
 	mlx_loop(vars->mlx);
 	return (0);

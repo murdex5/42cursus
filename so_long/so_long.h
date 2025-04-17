@@ -137,8 +137,6 @@ t_animation				*load_animation(t_vars *vars, char *path, int h, int w);
 void					*load_texture(t_vars *vars, char *path, int h, int w);
 t_texture				*create_texture(t_vars *vars, char *path);
 t_player				*player_pop(t_vars *vars);
-void					draw_texture(t_vars *vars, t_texture *texture, int x,
-							int y);
 int						make_window(t_vars *vars);
 int						render_player(t_vars *vars);
 int						render_player_frame(t_vars *vars, t_animation *anim);
@@ -154,4 +152,5 @@ void					free_player(t_vars *vars, t_player *player);
 void					free_texture(t_vars *vars, t_texture *texture);
 void					free_animation(t_vars *vars, t_animation *animation);
 void					draw_map(t_vars *vars);
+int						on_destroy(int keysym, t_vars *vars);
 #endif

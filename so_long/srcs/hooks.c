@@ -72,7 +72,8 @@ void	player_move(int keysym, t_vars *vars)
 
 int	on_keypress(int keysym, t_vars *vars)
 {
-	if (keysym == ESC)
+	if (keysym == ESC
+		|| vars->map->content[vars->map->player_y][vars->map->player_x] == 'E')
 	{
 		on_key_press_exit(vars);
 		exit(0);
@@ -80,6 +81,12 @@ int	on_keypress(int keysym, t_vars *vars)
 	if (keysym == W || keysym == A || keysym == S || keysym == D)
 		player_move(keysym, vars);
 	return (0);
+}
+
+int	on_destroy(int keysym, t_vars *vars)
+{
+	on_key_press_exit(vars);
+	exit(keysym * 0);
 }
 
 int	set_player_to_idle(int keysym, t_vars *vars)

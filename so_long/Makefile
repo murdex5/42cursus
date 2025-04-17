@@ -34,7 +34,7 @@ SRCS		= ${SRCS_DIR}/utils0.c \
 			${SRCS_DIR}/hooks.c \
 			${SRCS_DIR}/main.c
 OBJS		= ${SRCS:.c=.o}
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra 
 MLX_DIR		= ./mlx
 MLX_LIB		= $(MLX_DIR)/libmlx.a
 LIBFT_PATH	= ./libft
@@ -52,7 +52,7 @@ endif
 all: subsystems $(NAME) #clean
 
 %.o : %.c
-	$(CC) $(CFLAGS) $(MLX_INCLUDES) -c -o $@ $<
+	$(CC) $(CFLAGS) $(MLX_INCLUDES) -O3 -c -o $@ $<
 
 subsystems:
 	@make -C $(MLX_DIR) all

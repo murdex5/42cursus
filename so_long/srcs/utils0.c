@@ -35,8 +35,8 @@ int	check_file_type(char *str)
 
 char	*int_to_str(int len, int num)
 {
-	char *str;
-	int temp;
+	char	*str;
+	int		temp;
 
 	len = 0;
 	temp = len;
@@ -60,4 +60,24 @@ char	*int_to_str(int len, int num)
 		num /= 10;
 	}
 	return (str);
+}
+
+void	replace_tile(t_vars *vars, int new_x, int new_y)
+{
+	int			x;
+	int			y;
+	t_map		*map;
+	t_texture	*texture;
+
+	map = vars->map;
+	x = map->player_x;
+	y = map->player_y;
+	if (new_x != x || new_y != y)
+	{
+		if (map->content[y][x] == 'C' || map->content[y][x] == '0')
+			texture = get_texture_for_tile(vars, '0');
+		else
+			texture = get_texture_for_tile(vars, map->content[y][x]);
+		copy_texture_to_buffer(texture, vars, x, y);
+	}
 }

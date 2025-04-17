@@ -60,7 +60,7 @@ void	player_move(int keysym, t_vars *vars)
 		new_y += 1;
 	else if (keysym == D)
 		new_x += 1;
-	// Check if the new position is valid (not a wall)
+	replace_tile(vars, new_x, new_y);
 	if (vars->map->content[new_y][new_x] != '1')
 	{
 		vars->map->player_x = new_x;

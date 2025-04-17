@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/time.h>
 # include <unistd.h>
 
 /* Variables */
@@ -104,6 +105,7 @@ int						check_one(char *str, char c);
 int						err_msg_std(char *msg);
 int						count_lines(char *file);
 void					get_hw(t_map *map);
+void					init_buffer(t_vars *vars);
 t_map					*init_map(void);
 int						check_collectibles(t_map *map);
 int						check_surrounded(t_map *map);
@@ -115,6 +117,8 @@ t_map					*map_pop(t_map *map, char *path);
 int						check_map(t_map *map);
 int						check_path(t_map *map);
 t_map					*parse_map(char *path);
+void					copy_texture_to_buffer(t_texture *tex, t_vars *vars,
+							int map_x, int map_y);
 char					**copy_map(t_map *map);
 int						flood_filling(t_map *map, char **map_copy, int x,
 							int y);
@@ -122,6 +126,7 @@ int						flood_fill(char **map, int x, int y, int *collectibles);
 void					free_map(t_map *map);
 int						free_error(char *msg, t_map *map);
 t_vars					*init_vars(void);
+t_texture				*get_texture_for_tile(t_vars *vars, char tile_char);
 int						init_mlx(t_vars *vars);
 t_texture				*init_txt(void);
 char					*int_to_str(int len, int num);
@@ -141,6 +146,7 @@ void					render_animation(t_vars *vars, t_animation *anim);
 void					free_vars(t_vars *vars);
 int						on_keypress(int keysym, t_vars *vars);
 int						set_player_to_idle(int keysym, t_vars *vars);
+void					replace_tile(t_vars *vars, int new_x, int new_y);
 int						get_map(t_vars *vars, char *path);
 int						get_textures(t_vars *vars);
 int						get_player(t_vars *vars);

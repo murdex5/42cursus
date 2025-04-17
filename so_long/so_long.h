@@ -97,6 +97,7 @@ typedef struct t_vars
 	int					buffer_bpp;
 	int					buffer_line_len;
 	int					buffer_endian;
+	int					moves;
 	t_player			*player;
 }						t_vars;
 

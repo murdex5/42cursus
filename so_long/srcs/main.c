@@ -48,6 +48,7 @@ int	main(int argc, char **argv)
 		on_key_press_exit(vars);
 		return (1);
 	}
+	vars->moves = 0;
 	init_buffer(vars);
 	draw_map(vars);
 	mlx_hook(vars->win, KeyPress, KeyPressMask, on_keypress, vars);

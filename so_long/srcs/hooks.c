@@ -71,6 +71,7 @@ void	player_move(int keysym, t_vars *vars)
 		vars->map->player_x = new_x;
 		vars->map->player_y = new_y;
 		vars->player->player_state = 1;
+		vars->moves++;
 	}
 	if (vars->map->content[new_y][new_x] == 'C')
 		vars->map->collectibles -= 1;
@@ -87,7 +88,7 @@ int	on_keypress(int keysym, t_vars *vars)
 	diter_dir(keysym, vars);
 	if (keysym == W || keysym == A || keysym == S || keysym == D)
 		player_move(keysym, vars);
-	ft_printf("Collectibles Remais: %d\n", vars->map->collectibles);
+	ft_printf("Collectibles Remais: %d\n", vars->moves);
 	return (0);
 }
 

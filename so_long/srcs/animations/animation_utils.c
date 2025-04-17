@@ -62,3 +62,9 @@ void	render_animation(t_vars *vars, t_animation *anim)
 	pixel_y = vars->map->player_y * 64;
 	mlx_put_image_to_window(vars->mlx, vars->win, anim->img, pixel_x, pixel_y);
 }
+
+void	run_ani(t_vars *vars, t_animation *animation)
+{
+	if (animation)
+		render_player_frame(vars, animation);
+}

@@ -75,9 +75,12 @@ typedef struct s_player
 {
 	int					heigth;
 	int					width;
-	t_animation			*idle;
-	t_animation			*runing;
+	t_animation			*idle_right;
+	t_animation			*idle_left;
+	t_animation			*runing_right;
+	t_animation			*runing_left;
 	int					player_state;
+	int					player_dir;
 }						t_player;
 
 typedef struct t_vars
@@ -155,4 +158,7 @@ void					draw_map(t_vars *vars);
 int						on_destroy(t_vars *vars);
 void					on_key_press_exit(t_vars *vars);
 void					free_textures(t_vars *vars);
+void					run_ani(t_vars *vars, t_animation *animation);
+void					diter_dir(int keysym, t_vars *vars);
+
 #endif

@@ -16,15 +16,25 @@ void	free_player(t_vars *vars, t_player *player)
 {
 	if (!player)
 		return ;
-	if (player->idle)
+	if (player->idle_left)
 	{
-		free_animation(vars, player->idle);
-		player->idle = NULL;
+		free_animation(vars, player->idle_left);
+		player->idle_left = NULL;
 	}
-	if (player->runing)
+	if (player->idle_right)
 	{
-		free_animation(vars, player->runing);
-		player->runing = NULL;
+		free_animation(vars, player->idle_right);
+		player->idle_right = NULL;
+	}
+	if (player->runing_left)
+	{
+		free_animation(vars, player->runing_left);
+		player->runing_left = NULL;
+	}
+	if (player->runing_right)
+	{
+		free_animation(vars, player->runing_right);
+		player->runing_right = NULL;
 	}
 	free(player);
 	player = NULL;

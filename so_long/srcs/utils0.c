@@ -85,3 +85,11 @@ void	replace_tile(t_vars *vars, int new_x, int new_y)
 		}
 	}
 }
+
+void	diter_dir(int keysym, t_vars *vars)
+{
+	if (keysym == D)
+		vars->player->player_dir = 0;
+	else if (keysym == A)
+		vars->player->player_dir = 1;
+}

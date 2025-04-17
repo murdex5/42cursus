@@ -46,17 +46,22 @@ int	render_player(t_vars *vars)
 	t_player	*player;
 
 	player = vars->player;
-	if (!player->idle || !player->runing)
+	if (!player->idle_left || !player->idle_right || !player->runing_left
+		|| !player->runing_right)
 		return (0);
 	if (player->player_state == 0)
 	{
-		if (player->idle)
-			render_player_frame(vars, player->idle);
+		if (player->player_dir == 0)
+			run_ani(vars, player->idle_right);
+		else
+			run_ani(vars, player->idle_left);
 	}
 	else
 	{
-		if (player->runing)
-			render_player_frame(vars, player->runing);
+		if (player->player_dir == 0)
+			run_ani(vars, player->runing_right);
+		else
+			run_ani(vars, player->runing_left);
 	}
 	return (0);
 }
@@ -67,11 +72,11 @@ t_animation	*load_animation(t_vars *vars, char *path, int h, int w)
 	void		*img;
 	t_animation	*head;
 	t_animation	*new_node;
-	char *filename;
+	char		*filename;
 
 	head = NULL;
 	i = 0;
-	while (i < 6)
+	while (i < 4)
 	{
 		filename = get_img(path, 0, i);
 		img = mlx_xpm_file_to_image(vars->mlx, filename, &h, &w);

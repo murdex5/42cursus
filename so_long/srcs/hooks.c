@@ -82,6 +82,7 @@ int	on_keypress(int keysym, t_vars *vars)
 		on_key_press_exit(vars);
 		exit(0);
 	}
+	diter_dir(keysym, vars);
 	if (keysym == W || keysym == A || keysym == S || keysym == D)
 		player_move(keysym, vars);
 	return (0);

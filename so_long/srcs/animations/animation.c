@@ -79,6 +79,7 @@ t_animation	*load_animation(t_vars *vars, char *path, int h, int w)
 		if (!new_node)
 		{
 			ft_printf("Failed to load the %s to the node.\n", path);
+			free(filename);
 			i++;
 			continue ;
 		}

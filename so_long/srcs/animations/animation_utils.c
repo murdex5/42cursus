@@ -60,8 +60,5 @@ void	render_animation(t_vars *vars, t_animation *anim)
 		return ;
 	pixel_x = vars->map->player_x * 64;
 	pixel_y = vars->map->player_y * 64;
-	if (vars->floor && vars->floor->img)
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->floor->img, pixel_x,
-			pixel_y);
 	mlx_put_image_to_window(vars->mlx, vars->win, anim->img, pixel_x, pixel_y);
 }

@@ -153,5 +153,6 @@ void					free_texture(t_vars *vars, t_texture *texture);
 void					free_animation(t_vars *vars, t_animation *animation);
 void					draw_map(t_vars *vars);
 int						on_destroy(t_vars *vars);
+void					on_key_press_exit(t_vars *vars);
 void					free_textures(t_vars *vars);
 #endif

@@ -45,7 +45,7 @@ int	main(int argc, char **argv)
 	vars = NULL;
 	if (!var_pop(&vars, argv[1]))
 	{
-		free_vars(vars);
+		on_key_press_exit(vars);
 		return (1);
 	}
 	init_buffer(vars);

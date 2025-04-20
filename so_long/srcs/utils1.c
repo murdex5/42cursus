@@ -22,6 +22,6 @@ void	exited(t_vars *vars, int new_x, int new_y)
 			exit(0);
 		}
 		else
-			ft_printf("Collect all the coins to Exit :)\n");
+			ft_printf("Collect all the coins to exit\n");
 	}
 }

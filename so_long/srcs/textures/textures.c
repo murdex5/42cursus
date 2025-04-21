@@ -51,6 +51,19 @@ t_texture	*create_texture(t_vars *vars, char *path)
 		return (NULL);
 	return (texture);
 }
+
+void	add_text_to_window(t_vars *vars, int x, int y, int number)
+{
+	int		colour;
+	char	*s_number;
+
+	s_number = ft_itoa(number);
+	if (!s_number)
+		return ;
+	colour = 0XFFFFFF;
+	mlx_string_put(vars->mlx, vars->win, x, y, colour, s_number);
+	free(s_number);
+}
 /*
 void	draw_texture(t_vars *vars, t_texture *texture, int x, int y)
 {

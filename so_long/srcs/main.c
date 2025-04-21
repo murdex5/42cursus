@@ -33,6 +33,10 @@ int	var_pop(t_vars **vars, char *path)
 int	render_game(t_vars *vars)
 {
 	render_player(vars);
+	if (vars->frames != 800)
+		vars->frames++;
+	else if (vars->frames <= 800)
+		vars->frames = 0;
 	return (0);
 }
 

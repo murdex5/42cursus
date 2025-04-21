@@ -98,6 +98,7 @@ typedef struct t_vars
 	int					buffer_line_len;
 	int					buffer_endian;
 	int					moves;
+	int					frames;
 	t_player			*player;
 }						t_vars;
 
@@ -162,4 +163,6 @@ void					free_textures(t_vars *vars);
 void					run_ani(t_vars *vars, t_animation *animation);
 void					diter_dir(int keysym, t_vars *vars);
 void					exited(t_vars *vars, int new_x, int new_y);
+void					add_text_to_window(t_vars *vars, int x, int y,
+							int number);
 #endif

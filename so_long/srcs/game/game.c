@@ -25,6 +25,7 @@ t_vars	*init_vars(void)
 	vars->floor = NULL;
 	vars->water = NULL;
 	vars->player = NULL;
+	vars->frames = 0;
 	return (vars);
 }
 

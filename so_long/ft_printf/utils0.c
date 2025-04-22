@@ -68,5 +68,3 @@ int	check_unsigned(va_list args)
 	ft_putnbr_fd_unsigned(n, 1);
 	return (count);
 }
-
-

@@ -22,6 +22,24 @@ void	exited(t_vars *vars, int new_x, int new_y)
 			exit(0);
 		}
 		else
-			ft_printf("Collect all the coins to exit\n");
+			ft_printf("Collect all the coins to exit!!!\n");
 	}
+}
+
+void	clear_text_area(t_vars *vars, int x, int y)
+{
+	t_texture	*background;
+	int			clear_x;
+	int			clear_width;
+	int			tile_size;
+
+	clear_x = x - 50;
+	clear_width = 100;
+	tile_size = 64;
+	background = get_texture_for_tile(vars, '1');
+	mlx_put_image_to_window(vars->mlx, vars->win, background->img, clear_x, y
+		- (y % tile_size));
+	if (clear_width > tile_size)
+		mlx_put_image_to_window(vars->mlx, vars->win, background->img, clear_x
+			+ tile_size, y - (y % tile_size));
 }

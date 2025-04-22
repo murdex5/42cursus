@@ -100,6 +100,7 @@ typedef struct t_vars
 	int					moves;
 	int					frames;
 	t_player			*player;
+	int					collected;
 }						t_vars;
 
 int						free_n_returnt(char **str, char *temp, char *msg);
@@ -163,6 +164,7 @@ void					free_textures(t_vars *vars);
 void					run_ani(t_vars *vars, t_animation *animation);
 void					diter_dir(int keysym, t_vars *vars);
 void					exited(t_vars *vars, int new_x, int new_y);
-void					add_text_to_window(t_vars *vars, int x, int y,
-							int number);
+int						add_text_to_window(t_vars *vars, char *str, int number,
+							int x, int y);
+void					clear_text_area(t_vars *vars, int x, int y);
 #endif

@@ -88,7 +88,6 @@ int	on_keypress(int keysym, t_vars *vars)
 	diter_dir(keysym, vars);
 	if (keysym == W || keysym == A || keysym == S || keysym == D)
 	{
-		ft_printf("Moves: %d\n", vars->moves);
 		player_move(keysym, vars);
 	}
 	return (0);

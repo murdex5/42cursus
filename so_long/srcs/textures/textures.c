@@ -52,17 +52,20 @@ t_texture	*create_texture(t_vars *vars, char *path)
 	return (texture);
 }
 
-void	add_text_to_window(t_vars *vars, int x, int y, int number)
+int	add_text_to_window(t_vars *vars, char *str, int number, int x, int y)
 {
 	int		colour;
 	char	*s_number;
-
+	
 	s_number = ft_itoa(number);
 	if (!s_number)
-		return ;
+		return (0);
 	colour = 0XFFFFFF;
+	clear_text_area(vars, x, y);
+	mlx_string_put(vars->mlx, vars->win, x - 45, y, colour, str);
 	mlx_string_put(vars->mlx, vars->win, x, y, colour, s_number);
 	free(s_number);
+	return (0);
 }
 /*
 void	draw_texture(t_vars *vars, t_texture *texture, int x, int y)

@@ -84,5 +84,4 @@ void	draw_map(t_vars *vars)
 		y++;
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->buffer_map, 0, 0);
-	add_text_to_window(vars, 600 * 64, 600 * 64, vars->moves);
 }

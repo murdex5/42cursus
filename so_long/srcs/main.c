@@ -38,9 +38,9 @@ int	render_game(t_vars *vars)
 	add_text_to_window(vars, "Moves:", vars->moves, 500, 350);
 	add_text_to_window(vars, "Coins:", (vars->collected
 			- vars->map->collectibles), 600, 350);
-	if (vars->frames != 800)
+	if (vars->frames != 1000)
 		vars->frames++;
-	else if (vars->frames <= 800)
+	else if (vars->frames <= 1000)
 		vars->frames = 0;
 	enemy_move(vars);
 	render_enemy(vars, vars->enemy->right);

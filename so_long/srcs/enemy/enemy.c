@@ -76,31 +76,48 @@ void	render_enemy(t_vars *vars, t_animation *anim)
 	mlx_put_image_to_window(vars->mlx, vars->win, anim->img, pixel_x, pixel_y);
 }
 
+void	draw_background_tile(t_vars *vars, int tile_x, int tile_y)
+{
+	t_texture	*floor_texture;
+	int			tile_size;
+
+	tile_size = 64;
+	if (!vars || tile_x < 0 || tile_y < 0 || tile_y >= vars->map->height
+		|| tile_x >= vars->map->width)
+		return ;
+	floor_texture = get_texture_for_tile(vars, '0');
+	if (vars->mlx && vars->win && floor_texture && floor_texture->img)
+	{
+		mlx_put_image_to_window(vars->mlx, vars->win, floor_texture->img, tile_x
+			* tile_size, tile_y * tile_size);
+	}
+}
+
 void	enemy_move(t_vars *vars)
 {
-	int	move_range_tiles;
 	int	target_y;
-	int	current_y;
+	int	old_y;
 
-	move_range_tiles = 5;
-	if (vars->frames != 800)
+	if (vars->frames != 1000)
 		return ;
-	target_y = vars->static_enem_loc + move_range_tiles;
+	old_y = vars->map->enemy_y;
+	target_y = vars->static_enem_loc + 5;
 	if (target_y >= vars->map->height)
 		target_y = vars->map->height - 2;
-	current_y = vars->map->enemy_y;
 	if (vars->have_visited == 1)
 	{
-		if (current_y > vars->static_enem_loc)
+		if (old_y > vars->static_enem_loc)
 			vars->map->enemy_y -= 1;
-		else if (current_y == vars->static_enem_loc)
+		else if (old_y == vars->static_enem_loc)
 			vars->have_visited = 0;
 	}
 	else
 	{
-		if (current_y < target_y)
+		if (old_y < target_y)
 			vars->map->enemy_y += 1;
-		else if (current_y == target_y)
+		else if (old_y == target_y)
 			vars->have_visited = 1;
 	}
+	if (old_y != vars->map->enemy_y)
+		draw_background_tile(vars, vars->map->enemy_x, old_y);
 }

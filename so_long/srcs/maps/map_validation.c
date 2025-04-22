@@ -80,6 +80,31 @@ int	check_player(t_map *map)
 	return (0);
 }
 
+int check_enemy(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map->content[i])
+	{
+		j = 0;
+		while (map->content[i][j])
+		{
+			if (map->content[i][j] == 'E')
+			{
+				map->enemy_y = i;
+				map->enemy_x = j;
+				map->content[i][j] = '0'; 
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	check_exits(t_map *map)
 {
 	int	i;
@@ -114,5 +139,7 @@ int	check_map(t_map *map)
 		return (err_msg_std("There should be atleast One collectible"), 0);
 	if (!check_player(map))
 		return (err_msg_std("Couldn't find the player in the map"), 0);
+	if (!check_enemy(map))
+		return (err_msg_std("Couldn't find the Enemy in the map"), 0);
 	return (1);
 }

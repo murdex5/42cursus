@@ -14,7 +14,7 @@
 
 int	err_msg_std(char *msg)
 {
-	ft_putstr_fd("So long: ", 1);
+	ft_putstr_fd("Error \n", 1);
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd("\n", 1);
 	return (1);

@@ -65,6 +65,8 @@ typedef struct s_map
 	int					width;
 	int					player_x;
 	int					player_y;
+	int					enemy_x;
+	int					enemy_y;
 	char				**content;
 	int					collectibles;
 	int					exits;
@@ -167,4 +169,5 @@ void					exited(t_vars *vars, int new_x, int new_y);
 int						add_text_to_window(t_vars *vars, char *str, int number,
 							int x, int y);
 void					clear_text_area(t_vars *vars, int x, int y);
+int						check_enemy(t_map *map);
 #endif

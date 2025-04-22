@@ -70,32 +70,7 @@ int	check_player(t_map *map)
 			{
 				map->player_y = i;
 				map->player_x = j;
-				map->content[i][j] = '0'; 
-				return (1);
-			}
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-int check_enemy(t_map *map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (map->content[i])
-	{
-		j = 0;
-		while (map->content[i][j])
-		{
-			if (map->content[i][j] == 'M')
-			{
-				map->enemy_y = i;
-				map->enemy_x = j;
-				map->content[i][j] = '0'; 
+				map->content[i][j] = '0';
 				return (1);
 			}
 			j++;

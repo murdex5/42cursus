@@ -52,55 +52,18 @@ t_texture	*create_texture(t_vars *vars, char *path)
 	return (texture);
 }
 
-int	add_text_to_window(t_vars *vars, char *str, int number, int x, int y)
+int	add_text_to_window(t_vars *vars, char *str, int number, int x)
 {
 	int		colour;
 	char	*s_number;
-	
+
 	s_number = ft_itoa(number);
 	if (!s_number)
 		return (0);
 	colour = 0XFFFFFF;
-	clear_text_area(vars, x, y);
-	mlx_string_put(vars->mlx, vars->win, x - 45, y, colour, str);
-	mlx_string_put(vars->mlx, vars->win, x, y, colour, s_number);
+	clear_text_area(vars, x, 350);
+	mlx_string_put(vars->mlx, vars->win, x - 45, 350, colour, str);
+	mlx_string_put(vars->mlx, vars->win, x, 350, colour, s_number);
 	free(s_number);
 	return (0);
 }
-/*
-void	draw_texture(t_vars *vars, t_texture *texture, int x, int y)
-{
-	if (!vars || !texture || !texture->img)
-		return ;
-	mlx_put_image_to_window(vars->mlx, vars->win, texture->img, x, y);
-}
-
-void	draw_map(t_vars *vars)
-{
-	int	x;
-	int	y;
-	int	pixel_x;
-	int	pixel_y;
-
-	y = 0;
-	while (y < vars->map->height)
-	{
-		x = 0;
-		while (x < vars->map->width)
-		{
-			pixel_x = x * 64;
-			pixel_y = y * 64;
-			if (vars->map->content[y][x] == '1')
-				draw_texture(vars, vars->water, pixel_x, pixel_y);
-			else if (vars->map->content[y][x] == '0')
-				draw_texture(vars, vars->floor, pixel_x, pixel_y);
-			else if (vars->map->content[y][x] == 'C')
-				draw_texture(vars, vars->collectibles, pixel_x, pixel_y);
-			else if (vars->map->content[y][x] == 'E')
-				draw_texture(vars, vars->exit, pixel_x, pixel_y);
-			x++;
-		}
-		y++;
-	}
-}
-*/

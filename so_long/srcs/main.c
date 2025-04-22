@@ -35,9 +35,9 @@ int	var_pop(t_vars **vars, char *path)
 int	render_game(t_vars *vars)
 {
 	render_player(vars);
-	add_text_to_window(vars, "Moves:", vars->moves, 500, 350);
+	add_text_to_window(vars, "Moves:", vars->moves, 500);
 	add_text_to_window(vars, "Coins:", (vars->collected
-			- vars->map->collectibles), 600, 350);
+			- vars->map->collectibles), 600);
 	if (vars->frames != 1000)
 		vars->frames++;
 	else if (vars->frames <= 1000)

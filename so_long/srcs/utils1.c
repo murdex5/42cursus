@@ -48,3 +48,16 @@ void	clear_text_area(t_vars *vars, int x, int y)
 		mlx_put_image_to_window(vars->mlx, vars->win, background->img, clear_x
 			+ tile_size, y - (y % tile_size));
 }
+
+int	on_destroy(t_vars *vars)
+{
+	if (vars)
+		on_key_press_exit(vars);
+	exit(0);
+}
+
+int	set_player_to_idle(int keysym, t_vars *vars)
+{
+	vars->player->player_state = 0;
+	return (keysym * 0);
+}

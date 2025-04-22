@@ -178,7 +178,7 @@ void					run_ani(t_vars *vars, t_animation *animation);
 void					diter_dir(int keysym, t_vars *vars);
 void					exited(t_vars *vars, int new_x, int new_y);
 int						add_text_to_window(t_vars *vars, char *str, int number,
-							int x, int y);
+							int x);
 void					clear_text_area(t_vars *vars, int x, int y);
 void					free_enemy(t_vars *vars, t_enemy *enemy);
 int						check_enemy(t_map *map);
@@ -186,4 +186,6 @@ void					render_enemy(t_vars *vars, t_animation *anim);
 int						render_enemy_frame(t_vars *vars, t_animation *anim);
 void					enemy_move(t_vars *vars);
 int						set_enemy(t_vars *vars);
+void					draw_background_tile(t_vars *vars, int tile_x,
+							int tile_y);
 #endif

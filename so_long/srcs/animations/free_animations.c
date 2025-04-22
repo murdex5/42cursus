@@ -14,8 +14,9 @@
 
 void	free_animation(t_vars *vars, t_animation *animation)
 {
-	t_animation *current;
-	t_animation *next;
+	t_animation	*current;
+	t_animation	*next;
+
 	if (!animation)
 		return ;
 	current = animation;

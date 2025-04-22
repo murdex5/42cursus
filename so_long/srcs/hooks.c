@@ -94,16 +94,3 @@ int	on_keypress(int keysym, t_vars *vars)
 	}
 	return (0);
 }
-
-int	on_destroy(t_vars *vars)
-{
-	if (vars)
-		on_key_press_exit(vars);
-	exit(0);
-}
-
-int	set_player_to_idle(int keysym, t_vars *vars)
-{
-	vars->player->player_state = 0;
-	return (keysym * 0);
-}

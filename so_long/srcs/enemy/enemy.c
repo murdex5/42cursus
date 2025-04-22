@@ -41,6 +41,7 @@ t_enemy	*pop_enemy(t_vars *vars)
 	}
 	return (enemy);
 }
+
 int	render_enemy_frame(t_vars *vars, t_animation *anim)
 {
 	static t_animation	*current_frame = NULL;
@@ -74,23 +75,6 @@ void	render_enemy(t_vars *vars, t_animation *anim)
 	pixel_x = vars->map->enemy_x * 64;
 	pixel_y = vars->map->enemy_y * 64;
 	mlx_put_image_to_window(vars->mlx, vars->win, anim->img, pixel_x, pixel_y);
-}
-
-void	draw_background_tile(t_vars *vars, int tile_x, int tile_y)
-{
-	t_texture	*floor_texture;
-	int			tile_size;
-
-	tile_size = 64;
-	if (!vars || tile_x < 0 || tile_y < 0 || tile_y >= vars->map->height
-		|| tile_x >= vars->map->width)
-		return ;
-	floor_texture = get_texture_for_tile(vars, '0');
-	if (vars->mlx && vars->win && floor_texture && floor_texture->img)
-	{
-		mlx_put_image_to_window(vars->mlx, vars->win, floor_texture->img, tile_x
-			* tile_size, tile_y * tile_size);
-	}
 }
 
 void	enemy_move(t_vars *vars)

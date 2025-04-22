@@ -28,10 +28,12 @@ SRCS		= ${SRCS_DIR}/utils0.c \
 			${SRCS_DIR}/animations/animation_utils.c \
 			${SRCS_DIR}/animations/free_animations.c \
 			${SRCS_DIR}/animations/animation.c \
+			${SRCS_DIR}/enemy/enemy_utils.c \
 			${SRCS_DIR}/enemy/free_enemy.c \
 			${SRCS_DIR}/enemy/enemy.c \
 			${SRCS_DIR}/player/free_player.c \
 			${SRCS_DIR}/player/player.c \
+			${SRCS_DIR}/game/game_utils1.c \
 			${SRCS_DIR}/game/game_free.c \
 			${SRCS_DIR}/game/game.c \
 			${SRCS_DIR}/hooks.c \

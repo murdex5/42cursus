@@ -24,6 +24,11 @@ void	exited(t_vars *vars, int new_x, int new_y)
 		else
 			ft_printf("Collect all the coins to exit!!!\n");
 	}
+	if ((new_x == vars->map->enemy_x) && (new_y == vars->map->enemy_y))
+	{
+		on_key_press_exit(vars);
+		exit(0);
+	}
 }
 
 void	clear_text_area(t_vars *vars, int x, int y)

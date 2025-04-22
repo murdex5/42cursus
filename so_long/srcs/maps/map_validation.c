@@ -91,7 +91,7 @@ int check_enemy(t_map *map)
 		j = 0;
 		while (map->content[i][j])
 		{
-			if (map->content[i][j] == 'E')
+			if (map->content[i][j] == 'M')
 			{
 				map->enemy_y = i;
 				map->enemy_x = j;

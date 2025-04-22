@@ -73,6 +73,12 @@ typedef struct s_map
 	int					map_changed;
 }						t_map;
 
+typedef struct s_enemy
+{
+	t_animation			*left;
+	t_animation			*right;
+	int					player_dir;
+}						t_enemy;
 typedef struct s_player
 {
 	int					heigth;
@@ -94,6 +100,7 @@ typedef struct t_vars
 	t_texture			*water;
 	t_texture			*collectibles;
 	t_texture			*exit;
+	t_enemy				*enemy;
 	void				*buffer_map;
 	char				*buffer_addr;
 	int					buffer_bpp;
@@ -102,6 +109,8 @@ typedef struct t_vars
 	int					moves;
 	int					frames;
 	t_player			*player;
+	int					have_visited;
+	int					static_enem_loc;
 	int					collected;
 }						t_vars;
 
@@ -134,6 +143,8 @@ int						flood_fill(char **map, int x, int y, int *collectibles);
 void					free_map(t_map *map);
 int						free_error(char *msg, t_map *map);
 t_vars					*init_vars(void);
+t_enemy					*pop_enemy(t_vars *vars);
+t_enemy					*init_enemy(void);
 t_texture				*get_texture_for_tile(t_vars *vars, char tile_char);
 int						init_mlx(t_vars *vars);
 t_texture				*init_txt(void);
@@ -169,5 +180,10 @@ void					exited(t_vars *vars, int new_x, int new_y);
 int						add_text_to_window(t_vars *vars, char *str, int number,
 							int x, int y);
 void					clear_text_area(t_vars *vars, int x, int y);
+void					free_enemy(t_vars *vars, t_enemy *enemy);
 int						check_enemy(t_map *map);
+void					render_enemy(t_vars *vars, t_animation *anim);
+int						render_enemy_frame(t_vars *vars, t_animation *anim);
+void					enemy_move(t_vars *vars);
+int						set_enemy(t_vars *vars);
 #endif

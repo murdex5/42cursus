@@ -90,9 +90,11 @@ int	get_textures(t_vars *vars)
 		err_msg_std("Error");
 		return (0);
 	}
-	vars->floor = create_texture(vars, "assets/textures/background/shadows.xpm");
+	vars->floor = create_texture(vars,
+			"assets/textures/background/shadows.xpm");
 	vars->water = create_texture(vars, "assets/textures/path/briks_floor.xpm");
-	vars->collectibles = create_texture(vars, "assets/textures/collectibles/collectible.xpm");
+	vars->collectibles = create_texture(vars,
+			"assets/textures/collectibles/collectible.xpm");
 	vars->exit = create_texture(vars, "assets/textures/exit/Exit.xpm");
 	if (vars->floor && vars->water && vars->collectibles && vars->exit)
 		return (1);
@@ -108,6 +110,19 @@ int	get_player(t_vars *vars)
 	}
 	vars->player = player_pop(vars);
 	if (!vars->player)
+		return (0);
+	return (1);
+}
+
+int	set_enemy(t_vars *vars)
+{
+	if (!vars || !vars->mlx || !vars->win)
+	{
+		err_msg_std("Error");
+		return (0);
+	}
+	vars->enemy = pop_enemy(vars);
+	if (!vars->enemy)
 		return (0);
 	return (1);
 }

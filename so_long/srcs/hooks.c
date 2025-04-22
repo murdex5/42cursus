@@ -21,6 +21,8 @@ void	on_key_press_exit(t_vars *vars)
 		free_player(vars, vars->player);
 		vars->player = NULL;
 	}
+	if (vars->enemy)
+		free_enemy(vars, vars->enemy);
 	free_textures(vars);
 	if (vars->mlx)
 	{

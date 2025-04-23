@@ -19,7 +19,6 @@ t_enemy	*init_enemy(void)
 	enemy = malloc(sizeof(t_enemy));
 	if (!enemy)
 		return (NULL);
-	enemy->left = NULL;
 	enemy->right = NULL;
 	return (enemy);
 }
@@ -31,10 +30,9 @@ t_enemy	*pop_enemy(t_vars *vars)
 	enemy = init_enemy();
 	if (!enemy)
 		return (NULL);
-	enemy->left = load_animation(vars, "assets/enemy/left/", 64, 64);
 	enemy->right = load_animation(vars, "assets/enemy/right/", 64, 64);
 	enemy->player_dir = 0;
-	if (!enemy->left || !enemy->right)
+	if (!enemy->right)
 	{
 		free_enemy(vars, enemy);
 		return (NULL);
@@ -48,7 +46,7 @@ int	render_enemy_frame(t_vars *vars, t_animation *anim)
 	static int			frame_counter = 0;
 	int					frame_delay;
 
-	frame_delay = 1000;
+	frame_delay = 10;
 	if (!current_frame)
 		current_frame = anim;
 	render_enemy(vars, current_frame);

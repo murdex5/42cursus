@@ -75,7 +75,6 @@ typedef struct s_map
 
 typedef struct s_enemy
 {
-	t_animation			*left;
 	t_animation			*right;
 	int					player_dir;
 }						t_enemy;

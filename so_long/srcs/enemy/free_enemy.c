@@ -16,11 +16,6 @@ void	free_enemy(t_vars *vars, t_enemy *enemy)
 {
 	if (!enemy)
 		return ;
-	if (enemy->left)
-	{
-		free_animation(vars, enemy->left);
-		enemy->left = NULL;
-	}
 	if (enemy->right)
 	{
 		free_animation(vars, enemy->right);

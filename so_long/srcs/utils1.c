@@ -29,6 +29,12 @@ void	exited(t_vars *vars, int new_x, int new_y)
 		on_key_press_exit(vars);
 		exit(0);
 	}
+	else if ((vars->map->player_x == vars->map->enemy_x)
+		&& (vars->map->player_y == vars->map->enemy_y))
+	{
+		on_key_press_exit(vars);
+		exit(0);
+	}
 }
 
 void	clear_text_area(t_vars *vars, int x, int y)

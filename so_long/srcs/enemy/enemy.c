@@ -46,7 +46,9 @@ int	render_enemy_frame(t_vars *vars, t_animation *anim)
 	static int			frame_counter = 0;
 	int					frame_delay;
 
-	frame_delay = 10;
+	frame_delay = 1000;
+	if (!anim)
+		return (0);
 	if (!current_frame)
 		current_frame = anim;
 	render_enemy(vars, current_frame);

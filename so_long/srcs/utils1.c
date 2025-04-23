@@ -18,6 +18,7 @@ void	exited(t_vars *vars, int new_x, int new_y)
 	{
 		if (vars->map->collectibles == 0)
 		{
+			ft_printf("Woohooo!! You win!!\n");
 			on_key_press_exit(vars);
 			exit(0);
 		}
@@ -26,12 +27,14 @@ void	exited(t_vars *vars, int new_x, int new_y)
 	}
 	if ((new_x == vars->map->enemy_x) && (new_y == vars->map->enemy_y))
 	{
+		ft_printf("You were slain by the Great SKELETORR!\n");
 		on_key_press_exit(vars);
 		exit(0);
 	}
 	else if ((vars->map->player_x == vars->map->enemy_x)
 		&& (vars->map->player_y == vars->map->enemy_y))
 	{
+		ft_printf("You were slain by the Great SKELETORR!\n");
 		on_key_press_exit(vars);
 		exit(0);
 	}

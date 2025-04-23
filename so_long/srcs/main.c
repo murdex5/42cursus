@@ -44,7 +44,7 @@ int	render_game(t_vars *vars)
 	else if (vars->frames <= 10000)
 		vars->frames = 0;
 	enemy_move(vars);
-	render_enemy(vars, vars->enemy->right);
+	render_enemy_frame(vars, vars->enemy->right);
 	mlx_do_sync(vars->mlx);
 	return (0);
 }

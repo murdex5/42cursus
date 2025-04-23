@@ -82,7 +82,7 @@ void	enemy_move(t_vars *vars)
 	int	target_y;
 	int	old_y;
 
-	if (vars->frames != 1000)
+	if (vars->frames != 10000)
 		return ;
 	old_y = vars->map->enemy_y;
 	target_y = vars->static_enem_loc + 5;

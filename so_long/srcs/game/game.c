@@ -23,8 +23,7 @@ int	make_window(t_vars *vars)
 			vars->map->height * 64, "Knight game");
 	if (!vars->win)
 	{
-		ft_putstr_fd("So long: ", 1);
-		ft_putstr_fd("Failed to create the window\n", 1);
+		err_msg_std("Failed to create a Window");
 		mlx_destroy_display(vars->mlx);
 		return (0);
 	}
@@ -42,8 +41,7 @@ int	get_map(t_vars *vars, char *path)
 	if (!vars->map)
 	{
 		free_map(vars->map);
-		ft_putstr_fd("So long: ", 1);
-		ft_putstr_fd("Failed to create the window\n", 1);
+		err_msg_std("Parsing map failed");
 		return (0);
 	}
 	return (1);

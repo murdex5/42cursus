@@ -115,6 +115,6 @@ int	check_map(t_map *map)
 	if (!check_player(map))
 		return (err_msg_std("Couldn't find the player in the map"), 0);
 	if (!check_enemy(map))
-		return (err_msg_std("Couldn't find the Enemy in the map"), 0);
+		return (err_msg_std("Couldn't find the Enemy in the map (optional)"), 1);
 	return (1);
 }

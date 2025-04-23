@@ -56,14 +56,17 @@ int	add_text_to_window(t_vars *vars, char *str, int number, int x)
 {
 	int		colour;
 	char	*s_number;
+	int		y;
 
+	y = vars->map->height * 64;
 	s_number = ft_itoa(number);
 	if (!s_number)
 		return (0);
 	colour = 0XFFFFFF;
-	clear_text_area(vars, x, 350);
-	mlx_string_put(vars->mlx, vars->win, x - 45, 350, colour, str);
-	mlx_string_put(vars->mlx, vars->win, x, 350, colour, s_number);
+	clear_text_area(vars, x, y - 30);
+	ft_printf("%d\n", y);
+	mlx_string_put(vars->mlx, vars->win, x - 45, y, colour, str);
+	mlx_string_put(vars->mlx, vars->win, x, y, colour, s_number);
 	free(s_number);
 	return (0);
 }

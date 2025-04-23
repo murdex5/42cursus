@@ -64,7 +64,6 @@ int	add_text_to_window(t_vars *vars, char *str, int number, int x)
 		return (0);
 	colour = 0XFFFFFF;
 	clear_text_area(vars, x, y - 30);
-	ft_printf("%d\n", y);
 	mlx_string_put(vars->mlx, vars->win, x - 45, y, colour, str);
 	mlx_string_put(vars->mlx, vars->win, x, y, colour, s_number);
 	free(s_number);

@@ -25,6 +25,7 @@ t_map	*init_map(void)
 	map->height = 0;
 	map->width = 0;
 	map->map_changed = 0;
+	map->enemy_present = 0;
 	return (map);
 }
 

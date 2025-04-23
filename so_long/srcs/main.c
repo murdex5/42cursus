@@ -34,7 +34,6 @@ int	var_pop(t_vars **vars, char *path)
 
 int	render_game(t_vars *vars)
 {
-	
 	render_player(vars);
 	add_text_to_window(vars, "Moves:", vars->moves, 500);
 	add_text_to_window(vars, "Coins:", (vars->collected
@@ -43,8 +42,11 @@ int	render_game(t_vars *vars)
 		vars->frames++;
 	else if (vars->frames <= 10000)
 		vars->frames = 0;
-	enemy_move(vars);
-	render_enemy_frame(vars, vars->enemy->right);
+	if (vars->map->enemy_present == 1)
+	{
+		enemy_move(vars);
+		render_enemy_frame(vars, vars->enemy->right);
+	}
 	mlx_do_sync(vars->mlx);
 	return (0);
 }

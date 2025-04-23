@@ -63,6 +63,7 @@ int	check_enemy(t_map *map)
 				map->enemy_y = i;
 				map->enemy_x = j;
 				map->content[i][j] = '0';
+				map->enemy_present = 1;
 				return (1);
 			}
 			j++;

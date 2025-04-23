@@ -71,6 +71,7 @@ typedef struct s_map
 	int					collectibles;
 	int					exits;
 	int					map_changed;
+	int					enemy_present;
 }						t_map;
 
 typedef struct s_enemy

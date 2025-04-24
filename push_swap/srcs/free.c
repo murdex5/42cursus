@@ -22,3 +22,25 @@ int	free_list(int **a, int len)
 	free(a);
 	return (1);
 }
+
+void	free_node(t_stack_node *node)
+{
+	if (!node)
+		return ;
+	free(node);
+}
+
+void	free_node_list(t_stack_node *node)
+{
+	t_stack_node *temp;
+
+	node = get_first_node(node);
+
+	while (node)
+	{
+		temp = node->next;
+		free_node(node);
+		node = NULL;
+		node = temp;
+	}
+}

@@ -13,14 +13,16 @@
 CC = gcc
 SRCS_DIR = ./srcs
 SRCS = ${SRCS_DIR}/utils0.c \
+		${SRCS_DIR}/utils1.c \
 		${SRCS_DIR}/free.c \
 		${SRCS_DIR}/checks.c \
 		${SRCS_DIR}/get_ints.c \
 		${SRCS_DIR}/swap_func.c \
+		${SRCS_DIR}/nodes.c \
 		${SRCS_DIR}/push_func.c \
 		${SRCS_DIR}/main.c
 
-FLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 OBJS = ${SRCS:.c=.o}
 LIBFT_PATH = ./libft
 LIBFT_LIB = $(LIBFT_PATH)/libft.a

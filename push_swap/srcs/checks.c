@@ -36,39 +36,38 @@ static int	check_params(int argc, char **argv)
 	return (1);
 }
 
-static int	check_doubles(int **arr, int len)
+static int	check_doubles(t_stack_node *node)
 {
-	int	temp;
-	int	i;
-	int	j;
+	t_stack_node	*temp;
 
-	i = 0;
-	while (i < len)
+	temp = NULL;
+	while (node)
 	{
-		j = i + 1;
-		temp = *arr[i];
-		while (j < len)
+		temp = node->next;
+		while (temp)
 		{
-			if (temp == *arr[j])
+			if (node->nbr == temp->nbr)
+			{
+				ft_printf("Error: \nDuplicates found\n");
 				return (0);
-			j++;
+			}
+			temp = temp->next;
 		}
-		i++;
+		node = node->next;
 	}
 	return (1);
 }
 
-
-int **checks(int argc, char **argv, int *len)
+t_stack_node	*checks(int argc, char **argv, int *len)
 {
-	int **ints;
+	t_stack_node	*node;
 
 	if (!check_params(argc, argv))
 		return (NULL);
-	ints = get_ints(argc, argv, len);
-	if (!ints)
+	node = create_list(argc, argv, len);
+	if (!node)
 		return (NULL);
-	if (!check_doubles(ints, *(len)))
-		return(NULL);
-	return (ints);
+	if (!check_doubles(node))
+		return (free_node_list(node), NULL);
+	return (node);
 }

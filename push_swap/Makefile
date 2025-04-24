@@ -11,14 +11,14 @@
 # **************************************************************************** #
 
 CC = gcc
-
-SRCS = utils0.c \
-		free.c \
-		checks.c \
-		get_ints.c \
-		swap_func.c \
-		push_func.c \
-		main.c
+SRCS_DIR = ./srcs
+SRCS = ${SRCS_DIR}/utils0.c \
+		${SRCS_DIR}/free.c \
+		${SRCS_DIR}/checks.c \
+		${SRCS_DIR}/get_ints.c \
+		${SRCS_DIR}/swap_func.c \
+		${SRCS_DIR}/push_func.c \
+		${SRCS_DIR}/main.c
 
 FLAGS = -Wall -Werror -Wextra
 OBJS = ${SRCS:.c=.o}

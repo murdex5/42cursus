@@ -12,3 +12,19 @@
 
 #include "../push_swap.h"
 
+int	sa(t_stack_node **stack_a)
+{
+	t_stack_node *first;
+	t_stack_node *second;
+	t_stack_node *third;
+
+	if (!stack_a || !(*stack_a) || !((*stack_a)->next))
+		return (0);
+	first = *stack_a;
+	second = first->next;
+	third = second->next;
+	second->next = first;
+	first->next = third;
+	*stack_a = second;
+	return (1);
+}

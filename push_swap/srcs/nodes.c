@@ -57,7 +57,7 @@ t_stack_node	*create_list(int argc, char **argv, int *len)
 	{
 		new_node = get_node(argv, i, head);
 		if (!new_node)
-			return (free_node_list(new_node), NULL);
+			return (free_node_list(head), NULL);
 		if (head == NULL)
 			head = new_node;
 		else

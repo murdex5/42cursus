@@ -12,34 +12,41 @@
 
 #include "../push_swap.h"
 
-/*
-int	pb(int *a, int *b)
+int	pa(t_stack_node **stack_a, t_stack_node **stack_b)
 {
-	int	*temp_b;
-	int	a_len;
-	int	b_len;
-	int	i;
-	int	i;
-	int	i;
-	int	i;
-	int	i;
+	t_stack_node	*node_to_move;
 
-	a_len = int_arr_len(a);
-	b_len = int_arr_len(b);
-	if ((sizeof(b) / sizeof(int)) >= 1)
-		b_len += 1;
-	temp_b = malloc(sizeof(int) * b_len);
-	if (!temp_b)
+	if (!stack_b || !(*stack_b))
 		return (0);
-	if ((sizeof(b) / sizeof(int)) >= 1)
-	{
-		temp_b[b_len] = a[a_len];
-		b_len--;
-	}
-	while (b_len > 0)
-	{
-		temp_b[b_len] = b[b_len];
-		b_len--;
-	}
+	node_to_move = *stack_b;
+	*stack_b = node_to_move->next;
+	if (*stack_b)
+		(*stack_b)->prev = NULL;
+	node_to_move->prev = NULL;
+	node_to_move->next = *stack_a;
+	if (*stack_a)
+		(*stack_a)->prev = node_to_move;
+	*stack_a = node_to_move;
+	if (*stack_a || *stack_b)
+		return (1);
+	return (0);
+}
+
+int	pb(t_stack_node **stack_a, t_stack_node **stack_b)
+{
+	t_stack_node *node_to_move;
+	if (!stack_a || (*stack_a))
+		return (0);
+	node_to_move = *stack_a;
+	*stack_a = node_to_move->next;
+	if (*stack_a)
+		(*stack_a)->prev = NULL;
+	node_to_move->prev = NULL;
+	node_to_move->next = *stack_b;
+	if (*stack_b)
+		(*stack_b)->prev = node_to_move;
+	*stack_b = node_to_move;
+	if (*stack_a || *stack_b)
+		return (1);
 	return (1);
-}*/
+}

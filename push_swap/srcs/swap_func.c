@@ -14,9 +14,9 @@
 
 int	sa(t_stack_node **stack_a)
 {
-	t_stack_node *first;
-	t_stack_node *second;
-	t_stack_node *third;
+	t_stack_node	*first;
+	t_stack_node	*second;
+	t_stack_node	*third;
 
 	if (!stack_a || !(*stack_a) || !((*stack_a)->next))
 		return (0);
@@ -27,4 +27,28 @@ int	sa(t_stack_node **stack_a)
 	first->next = third;
 	*stack_a = second;
 	return (1);
+}
+
+int	sb(t_stack_node **stack_b)
+{
+	t_stack_node	*first;
+	t_stack_node	*second;
+	t_stack_node	*third;
+
+	if (!stack_b || !(*stack_b) || !((*stack_b)->next))
+		return (0);
+	first = *stack_b;
+	second = first->next;
+	third = second->next;
+	second->next = first;
+	first->next = third;
+	*stack_b = second;
+	return (1);
+}
+
+int	ss(t_stack_node **stack_a, t_stack_node **stack_b)
+{
+	if (sa(stack_a) && sb(stack_b))
+		return (1);
+	return (0);
 }

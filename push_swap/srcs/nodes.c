@@ -35,6 +35,7 @@ t_stack_node	*get_node(char **argv, int i, t_stack_node *prev)
 		|| ft_strncmp(argv[i + 1], "-2147483648", ft_strlen(argv[i + 1])) == 0)
 		return (free_node(node), NULL);
 	node->nbr = ft_atoi(argv[i + 1]);
+	node->index = i;
 	node->prev = prev;
 	return (node);
 }

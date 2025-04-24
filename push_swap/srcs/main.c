@@ -23,6 +23,5 @@ int	main(int argc, char **argv)
 	stack_a = checks(argc, argv, &len);
 	if (!stack_a)
 		return (1);
-	ft_printf("sucesss!! %d\n", stack_a->nbr);
 	return (0);
 }

@@ -17,9 +17,10 @@ SRCS = ${SRCS_DIR}/utils0.c \
 		${SRCS_DIR}/free.c \
 		${SRCS_DIR}/checks.c \
 		${SRCS_DIR}/get_ints.c \
+		${SRCS_DIR}/rotate_func.c \
+		${SRCS_DIR}/push_func.c \
 		${SRCS_DIR}/swap_func.c \
 		${SRCS_DIR}/nodes.c \
-		${SRCS_DIR}/push_func.c \
 		${SRCS_DIR}/main.c
 
 CFLAGS = -Wall -Werror -Wextra

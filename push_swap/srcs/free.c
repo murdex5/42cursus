@@ -39,7 +39,7 @@ void	free_node_list(t_stack_node *node)
 	while (node)
 	{
 		temp = node->next;
-		free_node(node);
+		free(node);
 		node = NULL;
 		node = temp;
 	}

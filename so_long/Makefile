@@ -17,6 +17,7 @@ SRCS		= ${SRCS_DIR}/utils0.c \
 			${SRCS_DIR}/frees.c \
 			${SRCS_DIR}/maps/map_utils.c \
 			${SRCS_DIR}/maps/map_utils1.c \
+			${SRCS_DIR}/maps/map_utils2.c \
 			${SRCS_DIR}/maps/map_frees.c \
 			${SRCS_DIR}/maps/map_validation.c \
 			${SRCS_DIR}/maps/map_parse.c \

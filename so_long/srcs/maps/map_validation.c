@@ -108,6 +108,8 @@ int	check_map(t_map *map)
 		return (err_msg_std("The map should be rectangular"), 0);
 	if (!check_surrounded(map))
 		return (err_msg_std("The map is not surrounded"), 0);
+	if (!check_forbidden_chars(map))
+		return (0);
 	if (!check_exits(map))
 		return (err_msg_std("Couldn't find any exits in the map"), 0);
 	if (!check_collectibles(map))
@@ -115,7 +117,7 @@ int	check_map(t_map *map)
 	if (!check_player(map))
 		return (err_msg_std("Couldn't find the player in the map"), 0);
 	if (!check_enemy(map))
-		return (err_msg_std("Couldn't find the Enemy in the map (optional)"),
+		return (ft_printf("Couldn't find the Enemy in the map (optional)\n"),
 			1);
 	return (1);
 }

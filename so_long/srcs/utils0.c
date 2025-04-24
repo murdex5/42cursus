@@ -27,7 +27,7 @@ int	check_file_type(char *str)
 	temp = ft_strdup(str2[i - 1]);
 	if (!temp)
 		return (err_msg_std("Memory allocation failed for temo"), 0);
-	if (ft_strncmp(temp, "ber", ft_strlen("ber")) == 0)
+	if (ft_strncmp(temp, "ber", ft_strlen("ber") + 1) == 0)
 		return (free_n_returnt(str2, temp, NULL), 1);
 	return (free_n_returnt(str2, temp, "This type of file is not supported!"),
 		0);

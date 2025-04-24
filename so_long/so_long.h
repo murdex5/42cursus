@@ -188,4 +188,6 @@ void					enemy_move(t_vars *vars);
 int						set_enemy(t_vars *vars);
 void					draw_background_tile(t_vars *vars, int tile_x,
 							int tile_y);
+int						check_for(char *str);
+int						check_forbidden_chars(t_map *map);
 #endif

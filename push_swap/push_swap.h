@@ -44,6 +44,7 @@ t_stack_node			*get_node(char **argv, int i, t_stack_node *prev);
 t_stack_node			*get_first_node(t_stack_node *node);
 void					free_node_list(t_stack_node *node);
 t_stack_node			*create_list(int argc, char **argv, int *len);
+t_stack_node			*get_last_node(t_stack_node *node);
 int						pa(t_stack_node **stack_a, t_stack_node **stack_b);
 int						pb(t_stack_node **stack_a, t_stack_node **stack_b);
 int						sa(t_stack_node **stack_a);

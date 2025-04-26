@@ -18,3 +18,10 @@ t_stack_node	*get_first_node(t_stack_node *node)
 		node = node->prev;
 	return (node);
 }
+
+t_stack_node	*get_last_node(t_stack_node *node)
+{
+	while (node && (node->next != NULL))
+		node = node->next;
+	return (node);
+}

@@ -32,15 +32,20 @@ void	free_node(t_stack_node *node)
 
 void	free_node_list(t_stack_node *node)
 {
-	t_stack_node *temp;
+	t_stack_node	*temp;
 
+	if (!node)
+		return ;
+	if (node->next == NULL && node->prev == NULL)
+	{
+		free(node);
+		return ;
+	}
 	node = get_first_node(node);
-
 	while (node)
 	{
 		temp = node->next;
 		free(node);
-		node = NULL;
 		node = temp;
 	}
 }

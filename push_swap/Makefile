@@ -21,7 +21,7 @@ SRCS = ${SRCS_DIR}/utils0.c \
 		${SRCS_DIR}/push_func.c \
 		${SRCS_DIR}/swap_func.c \
 		${SRCS_DIR}/nodes.c \
-		${SRCS_DIR}/main.c
+		main.c
 
 CFLAGS = -Wall -Werror -Wextra
 OBJS = ${SRCS:.c=.o}

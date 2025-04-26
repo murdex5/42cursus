@@ -40,9 +40,25 @@ t_stack_node	*get_node(char **argv, int i, t_stack_node *prev)
 	return (node);
 }
 
+t_stack_node	*build_list(t_stack_node *node)
+{
+	t_stack_node	*new_list;
+	t_stack_node	*prev_list;
+
+	if (!node)
+		return (NULL);
+	prev_list = node;
+	while (prev_list->prev)
+	{
+		new_list = prev_list;
+		prev_list = prev_list->prev;
+		prev_list->next = new_list;
+	}
+	return (prev_list);
+}
+
 t_stack_node	*create_list(int argc, char **argv, int *len)
 {
-	t_stack_node	*head;
 	t_stack_node	*current;
 	t_stack_node	*new_node;
 	int				i;
@@ -50,21 +66,16 @@ t_stack_node	*create_list(int argc, char **argv, int *len)
 	i = 0;
 	if (argc <= 1)
 		return (NULL);
-	head = NULL;
 	current = NULL;
-	new_node = NULL;
 	while (i < argc - 1)
 	{
-		new_node = get_node(argv, i, head);
+		new_node = get_node(argv, i, current);
 		if (!new_node)
-			return (free_node_list(head), NULL);
-		if (head == NULL)
-			head = new_node;
-		else
-			current->next = new_node;
+			return (free_unbuilt_list(current), NULL);
 		current = new_node;
 		i++;
 	}
+	current = build_list(current);
 	*len = argc - 1;
-	return (head);
+	return (current);
 }

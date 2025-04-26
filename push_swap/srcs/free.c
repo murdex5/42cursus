@@ -49,3 +49,16 @@ void	free_node_list(t_stack_node *node)
 		node = temp;
 	}
 }
+
+void	free_unbuilt_list(t_stack_node *node)
+{
+	t_stack_node *temp;
+	if (!node)
+		return ;
+	while (node)
+	{
+		temp = node->prev;
+		free(node);
+		node = temp;
+	}
+}

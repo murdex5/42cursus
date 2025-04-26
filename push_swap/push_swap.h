@@ -49,6 +49,11 @@ int						pa(t_stack_node **stack_a, t_stack_node **stack_b);
 int						pb(t_stack_node **stack_a, t_stack_node **stack_b);
 int						sa(t_stack_node **stack_a);
 int						sb(t_stack_node **stack_b);
+int						ss(t_stack_node **stack_a, t_stack_node **stack_b);
 int						ra(t_stack_node **stack_a);
 int						rb(t_stack_node **stack_b);
+int						rr(t_stack_node **stack_a, t_stack_node **stack_b);
+int						rra(t_stack_node **stack_a);
+int						rrb(t_stack_node **stack_b);
+int						rrr(t_stack_node **stack_a, t_stack_node **stack_b);
 #endif

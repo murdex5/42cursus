@@ -49,4 +49,5 @@ int						pa(t_stack_node **stack_a, t_stack_node **stack_b);
 int						pb(t_stack_node **stack_a, t_stack_node **stack_b);
 int						sa(t_stack_node **stack_a);
 int						sb(t_stack_node **stack_b);
+int						ra(t_stack_node **stack_a);
 #endif

@@ -15,17 +15,16 @@
 int	ra(t_stack_node **stack_a)
 {
 	t_stack_node	*last_node;
-	t_stack_node	*next_last;
+	t_stack_node	*second_node;
 
 	if (!stack_a || !*stack_a || !(*stack_a)->next)
 		return (0);
 	last_node = get_last_node(*stack_a);
-	next_last = last_node->prev;
-	next_last->next = NULL;
-	last_node->prev = NULL;
-	last_node->next = (*stack_a);
+	second_node = (*stack_a)->next;
 	(*stack_a)->prev = last_node;
-	if ((*stack_a)->prev != NULL)
-		*stack_a = last_node;
+	(*stack_a)->next = NULL;
+	last_node->next = *stack_a;
+	second_node->prev = NULL;
+	*stack_a = second_node;
 	return (1);
 }

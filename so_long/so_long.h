@@ -72,6 +72,7 @@ typedef struct s_map
 	int					exits;
 	int					map_changed;
 	int					enemy_present;
+	int					player_count;
 }						t_map;
 
 typedef struct s_enemy

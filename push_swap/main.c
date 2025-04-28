@@ -25,12 +25,17 @@ int	main(int argc, char **argv)
 	stack_a = checks(argc, argv, &len);
 	if (!stack_a)
 		return (1);
-	stack_b = init_node();
-	rra(&stack_a);
-	current = stack_a;
+	stack_b = NULL;
+	sa(&stack_a);
+	pb(&stack_a, &stack_b);
+	pb(&stack_a, &stack_b);
+	pb(&stack_a, &stack_b);
+	pb(&stack_a, &stack_b);
+	current = stack_b;
 	while (current)
 	{
-		ft_printf("%d\n", current->nbr);
+		if (current->nbr)
+			ft_printf("%d\n", current->nbr);
 		current = current->next;
 	}
 	free_node_list(stack_a);

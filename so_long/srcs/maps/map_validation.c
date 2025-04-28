@@ -71,13 +71,15 @@ int	check_player(t_map *map)
 				map->player_y = i;
 				map->player_x = j;
 				map->content[i][j] = '0';
-				return (1);
+				map->player_count++;
 			}
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	if (map->player_count != 1)
+		return (0);
+	return (1);
 }
 
 int	check_exits(t_map *map)
@@ -97,7 +99,7 @@ int	check_exits(t_map *map)
 		}
 		i++;
 	}
-	if (map->exits == 0)
+	if (map->exits != 1)
 		return (0);
 	return (1);
 }
@@ -111,11 +113,11 @@ int	check_map(t_map *map)
 	if (!check_forbidden_chars(map))
 		return (0);
 	if (!check_exits(map))
-		return (err_msg_std("Couldn't find any exits in the map"), 0);
+		return (err_msg_std("Ther are no or one too many exits"), 0);
 	if (!check_collectibles(map))
 		return (err_msg_std("There should be atleast One collectible"), 0);
 	if (!check_player(map))
-		return (err_msg_std("Couldn't find the player in the map"), 0);
+		return (err_msg_std("There are no or too many players"), 0);
 	if (!check_enemy(map))
 		return (ft_printf("Couldn't find the Enemy in the map (optional)\n"),
 			1);

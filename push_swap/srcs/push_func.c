@@ -27,14 +27,12 @@ int	pa(t_stack_node **stack_a, t_stack_node **stack_b)
 	if (*stack_a)
 		(*stack_a)->prev = node_to_move;
 	*stack_a = node_to_move;
-	if (*stack_a || *stack_b)
-		return (1);
-	return (0);
+	return (1);
 }
 
 int	pb(t_stack_node **stack_a, t_stack_node **stack_b)
 {
-	t_stack_node *node_to_move;
+	t_stack_node	*node_to_move;
 
 	if (!stack_a || !(*stack_a))
 		return (0);
@@ -42,7 +40,6 @@ int	pb(t_stack_node **stack_a, t_stack_node **stack_b)
 	*stack_a = node_to_move->next;
 	if (*stack_a)
 		(*stack_a)->prev = NULL;
-
 	node_to_move->prev = NULL;
 	node_to_move->next = *stack_b;
 	if (*stack_b)

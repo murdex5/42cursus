@@ -73,7 +73,7 @@ int	check_enemy(t_map *map)
 	return (0);
 }
 
-int check_forbidden_chars(t_map *map)
+int	check_forbidden_chars(t_map *map)
 {
 	int	i;
 

@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
+# include <limits.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -26,6 +27,7 @@ typedef struct s_stack_node
 	int					push_cost;
 	bool				above_medium;
 	bool				cheapest;
+	struct s_stack_node	*target_node;
 	struct s_stack_node	*next;
 	struct s_stack_node	*prev;
 }						t_stack_node;
@@ -47,6 +49,7 @@ void					free_node_list(t_stack_node *node);
 void					free_unbuilt_list(t_stack_node *node);
 t_stack_node			*create_list(int argc, char **argv, int *len);
 t_stack_node			*get_last_node(t_stack_node *node);
+void					set_indexes(t_stack_node *node);
 int						pa(t_stack_node **stack_a, t_stack_node **stack_b);
 int						pb(t_stack_node **stack_a, t_stack_node **stack_b);
 int						sa(t_stack_node **stack_a);
@@ -60,4 +63,7 @@ int						rrb(t_stack_node **stack_b);
 int						rrr(t_stack_node **stack_a, t_stack_node **stack_b);
 t_stack_node			*get_max_node_from(t_stack_node *node);
 t_stack_node			*get_min_node_from(t_stack_node *node);
+int						count_stack(t_stack_node *node);
+bool					stack_sorted(t_stack_node *node);
+int						sort_three(t_stack_node **stack_a);
 #endif

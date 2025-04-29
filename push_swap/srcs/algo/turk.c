@@ -12,11 +12,44 @@
 
 #include "../../push_swap.h"
 
-int	turk(t_stack_node **stack_a, t_stack_node **stack_b)
+bool	stack_sorted(t_stack_node *node)
 {
-	if ((!stack_a || !(*stack_a)) || (!stack_b || !(*stack_b)))
+	t_stack_node	*current;
+
+	current = node;
+	while (current && current->next)
+	{
+		if (current->nbr < current->next->nbr)
+			return (false);
+		current = current->next;
+	}
+	return (true);
+}
+
+int	sort_three(t_stack_node **stack_a)
+{
+	
+	if (!stack_a || !(*stack_a) || !((*stack_a)->next))
 		return (0);
-	pb(&stack_a, &stack_b);
-	pb(&stack_a, &stack_b);
-    
+	if (get_max_node_from(stack_a)->index == 0
+		&& get_min_node_from(stack_a)->index == 2)
+	{
+		ra(&stack_a);
+		sa(&stack_a);
+		ft_printf("ra\nsa\n");
+	}
+	else if (get_max_node_from(stack_a)->index == 1
+		&& get_min_node_from(stack_a)->index == 0)
+	{
+		rra(&stack_a);
+		sa(&stack_a);
+		ft_printf("rra\nsa\n");
+	}
+	else if (get_max_node_from(stack_a)->index == 2
+		&& get_min_node_from(stack_a)->index == 1)
+	{
+		sa(&stack_a);
+		ft_printf("sa\n");
+	}
+		return (1);
 }

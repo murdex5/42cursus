@@ -76,6 +76,7 @@ t_stack_node	*create_list(int argc, char **argv, int *len)
 		i++;
 	}
 	current = build_list(current);
+	set_indexes(current);
 	*len = argc - 1;
 	return (current);
 }

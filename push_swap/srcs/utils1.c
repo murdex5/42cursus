@@ -21,10 +21,25 @@ t_stack_node	*get_first_node(t_stack_node *node)
 
 t_stack_node	*get_last_node(t_stack_node *node)
 {
-	t_stack_node *current;
+	t_stack_node	*current;
 
 	current = node;
 	while (current && (current->next != NULL))
 		current = current->next;
 	return (current);
+}
+
+void	set_indexes(t_stack_node *node)
+{
+	int i;
+	t_stack_node *current;
+
+	current = node;
+	i = 0;
+	while (current != NULL)
+	{
+		current->index = i;
+		current = current->next;
+		i++;
+	}
 }

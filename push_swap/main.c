@@ -20,23 +20,19 @@ int	main(int argc, char **argv)
 	t_stack_node	*current;
 
 	len = 0;
+	stack_a = NULL;
+	stack_b = NULL;
 	if (argc < 2)
 		return (error_msg(), 1);
 	stack_a = checks(argc, argv, &len);
 	if (!stack_a)
 		return (1);
-	stack_b = NULL;
-	sa(&stack_a);
-	pb(&stack_a, &stack_b);
-	pb(&stack_a, &stack_b);
-	pb(&stack_a, &stack_b);
-	pb(&stack_a, &stack_b);
-	current = stack_b;
-	while (current)
+	if (!stack_sorted(stack_a))
 	{
-		if (current->nbr)
-			ft_printf("%d\n", current->nbr);
-		current = current->next;
+		if (count_stack(stack_a) == 2)
+			sa(&stack_a);
+		else if (count_stack(stack_a) == 3)
+			sort_three(&stack_a);
 	}
 	free_node_list(stack_a);
 	free_node_list(stack_b);

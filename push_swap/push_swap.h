@@ -67,4 +67,6 @@ t_stack_node			*get_min_node_from(t_stack_node *node);
 int						count_stack(t_stack_node *node);
 bool					stack_sorted(t_stack_node *node);
 int						sort_three(t_stack_node **stack_a);
+int						sort_stack(t_stack_node **stack_a,
+							t_stack_node **stack_b);
 #endif

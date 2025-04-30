@@ -53,3 +53,14 @@ int	sort_three(t_stack_node **stack_a)
 		rra(stack_a, true);
 	return (1);
 }
+
+int	sort_stack(t_stack_node **stack_a, t_stack_node **stack_b)
+{
+	t_stack_node *max_current;
+	pb(stack_a, stack_b);
+	pb(stack_a, stack_b);
+
+	max_current = get_max_node_from(*stack_b);
+	
+	return (0);
+}

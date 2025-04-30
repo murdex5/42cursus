@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 			sa(&stack_a, true);
 		if (count_stack(stack_a) == 3)
 			sort_three(&stack_a);
-	
+	}
 	free_node_list(stack_a);
 	free_node_list(stack_b);
 	return (0);

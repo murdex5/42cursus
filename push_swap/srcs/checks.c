@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-static int	check_params(int argc, char **argv)
+int	check_params(int argc, char **argv)
 {
 	int	i;
 	int	j;
@@ -58,17 +58,17 @@ static int	check_doubles(t_stack_node *node)
 	return (1);
 }
 
-t_stack_node	*checks(int argc, char **argv, int *len)
+t_stack_node	*checks(char **numbers)
 {
 	t_stack_node	*node;
 
-	if (!check_params(argc, argv))
-		return (NULL);
-	node = create_list(argc, argv, len);
+	node = create_list(numbers);
 	if (!node)
 		return (NULL);
+	node = get_first_node(node);
 	if (!check_doubles(node))
 		return (free_node_list(node), NULL);
 	set_indexes(node);
+	free_str_list(numbers);
 	return (node);
 }

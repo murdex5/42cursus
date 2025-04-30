@@ -19,11 +19,20 @@ int	main(int argc, char **argv)
 	t_stack_node	*stack_b;
 	char			**numbers;
 
-	int i = 0;
-	numbers = get_ints(argc, argv, &len);
-	
-	stack_a = NULL;
 	stack_b = NULL;
+	numbers = get_ints(argc, argv, &len);
+	if (!numbers)
+		return (0);
+	stack_a = checks(numbers);
+	if (!stack_a)
+		return (0);
+	if (!stack_sorted(stack_a))
+	{
+		if (count_stack(stack_a) == 2)
+			sa(&stack_a, true);
+		if (count_stack(stack_a) == 3)
+			sort_three(&stack_a);
+	
 	free_node_list(stack_a);
 	free_node_list(stack_b);
 	return (0);

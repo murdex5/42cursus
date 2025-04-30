@@ -31,9 +31,9 @@ t_stack_node	*get_last_node(t_stack_node *node)
 
 void	set_indexes(t_stack_node *node)
 {
-	int i;
-	t_stack_node *current;
-	
+	int				i;
+	t_stack_node	*current;
+
 	current = get_first_node(node);
 	i = 0;
 	while (current != NULL)
@@ -42,4 +42,24 @@ void	set_indexes(t_stack_node *node)
 		current = current->next;
 		i++;
 	}
+}
+
+int	get_len_except(char *num)
+{
+	int len;
+	int i;
+
+	i = 0;
+	len = 0;
+	while (num[i] != '\0')
+	{
+		if (num[i] != '+' || num[i] != '-')
+		{
+			i++;
+			len++;
+		}
+		else
+			i++;
+	}
+	return (len);
 }

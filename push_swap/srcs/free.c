@@ -16,9 +16,14 @@ void	free_str_list(char **str)
 {
 	int	i;
 
+	if (!str)
+		return ;
 	i = 0;
 	while (str[i])
+	{
 		free(str[i]);
+		i++;
+	}
 	free(str);
 }
 

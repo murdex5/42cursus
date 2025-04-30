@@ -69,5 +69,6 @@ t_stack_node	*checks(int argc, char **argv, int *len)
 		return (NULL);
 	if (!check_doubles(node))
 		return (free_node_list(node), NULL);
+	set_indexes(node);
 	return (node);
 }

@@ -27,6 +27,7 @@ int	pa(t_stack_node **stack_a, t_stack_node **stack_b)
 	if (*stack_a)
 		(*stack_a)->prev = node_to_move;
 	*stack_a = node_to_move;
+	ft_printf("pa\n");
 	return (1);
 }
 
@@ -45,5 +46,6 @@ int	pb(t_stack_node **stack_a, t_stack_node **stack_b)
 	if (*stack_b)
 		(*stack_b)->prev = node_to_move;
 	*stack_b = node_to_move;
+	ft_printf("pb\n");
 	return (1);
 }

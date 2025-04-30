@@ -33,8 +33,8 @@ void	set_indexes(t_stack_node *node)
 {
 	int i;
 	t_stack_node *current;
-
-	current = node;
+	
+	current = get_first_node(node);
 	i = 0;
 	while (current != NULL)
 	{

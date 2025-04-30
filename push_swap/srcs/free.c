@@ -12,15 +12,14 @@
 
 #include "../push_swap.h"
 
-int	free_list(int **a, int len)
+void	free_str_list(char **str)
 {
-	while (len > 0)
-	{
-		free(a[len]);
-		len--;
-	}
-	free(a);
-	return (1);
+	int	i;
+
+	i = 0;
+	while (str[i])
+		free(str[i]);
+	free(str);
 }
 
 void	free_node(t_stack_node *node)

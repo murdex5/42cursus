@@ -17,23 +17,13 @@ int	main(int argc, char **argv)
 	int				len;
 	t_stack_node	*stack_a;
 	t_stack_node	*stack_b;
-	t_stack_node	*current;
+	char			**numbers;
 
-	len = 0;
+	int i = 0;
+	numbers = get_ints(argc, argv, &len);
+	
 	stack_a = NULL;
 	stack_b = NULL;
-	if (argc < 2)
-		return (error_msg(), 1);
-	stack_a = checks(argc, argv, &len);
-	if (!stack_a)
-		return (1);
-	if (!stack_sorted(stack_a))
-	{
-		if (count_stack(stack_a) == 2)
-			sa(&stack_a);
-		else if (count_stack(stack_a) == 3)
-			sort_three(&stack_a);
-	}
 	free_node_list(stack_a);
 	free_node_list(stack_b);
 	return (0);

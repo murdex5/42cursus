@@ -19,7 +19,7 @@ bool	stack_sorted(t_stack_node *node)
 	current = node;
 	while (current && current->next)
 	{
-		if (current->nbr < current->next->nbr)
+		if (current->nbr > current->next->nbr)
 			return (false);
 		current = current->next;
 	}
@@ -28,28 +28,28 @@ bool	stack_sorted(t_stack_node *node)
 
 int	sort_three(t_stack_node **stack_a)
 {
-	
+	t_stack_node	*min;
+	t_stack_node	*max;
+
 	if (!stack_a || !(*stack_a) || !((*stack_a)->next))
 		return (0);
-	if (get_max_node_from(stack_a)->index == 0
-		&& get_min_node_from(stack_a)->index == 2)
+	min = get_min_node_from(*stack_a);
+	max = get_max_node_from(*stack_a);
+	if (max->index == 0 && min->index == 2)
 	{
-		ra(&stack_a);
-		sa(&stack_a);
-		ft_printf("ra\nsa\n");
+		ra(stack_a, true);
+		sa(stack_a, true);
 	}
-	else if (get_max_node_from(stack_a)->index == 1
-		&& get_min_node_from(stack_a)->index == 0)
+	else if (max->index == 1 && min->index == 0)
 	{
-		rra(&stack_a);
-		sa(&stack_a);
-		ft_printf("rra\nsa\n");
+		rra(stack_a, true);
+		sa(stack_a, true);
 	}
-	else if (get_max_node_from(stack_a)->index == 2
-		&& get_min_node_from(stack_a)->index == 1)
-	{
-		sa(&stack_a);
-		ft_printf("sa\n");
-	}
-		return (1);
+	else if (max->index == 2 && min->index == 1)
+		sa(stack_a, true);
+	else if (max->index == 0 && min->index == 1)
+		ra(stack_a, true);
+	else if (max->index == 1 && min->index == 2)
+		rra(stack_a, true);
+	return (1);
 }

@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-int	ra(t_stack_node **stack_a)
+int	ra(t_stack_node **stack_a, bool to_print)
 {
 	t_stack_node	*last_node;
 	t_stack_node	*second_node;
@@ -26,10 +26,12 @@ int	ra(t_stack_node **stack_a)
 	last_node->next = *stack_a;
 	second_node->prev = NULL;
 	*stack_a = second_node;
+	if (to_print == true)
+		ft_printf("ra\n");
 	return (1);
 }
 
-int	rb(t_stack_node **stack_b)
+int	rb(t_stack_node **stack_b, bool to_print)
 {
 	t_stack_node	*last_node;
 	t_stack_node	*second_node;
@@ -43,12 +45,17 @@ int	rb(t_stack_node **stack_b)
 	last_node->next = *stack_b;
 	second_node->prev = NULL;
 	*stack_b = second_node;
+	if (to_print == true)
+		ft_printf("rb\n");
 	return (1);
 }
 
 int	rr(t_stack_node **stack_a, t_stack_node **stack_b)
 {
-	if (ra(stack_a) && rb(stack_b))
+	if (ra(stack_a, false) && rb(stack_b, false))
+	{
+		ft_printf("rr\n");
 		return (1);
+	}
 	return (0);
 }

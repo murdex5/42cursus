@@ -24,19 +24,16 @@ t_stack_node	*init_node(void)
 	return (node);
 }
 
-t_stack_node	*get_node(char **argv, int i, t_stack_node *prev)
+t_stack_node	*get_node(char *num, int i)
 {
 	t_stack_node	*node;
+	int i;
 
+	i = 0;
 	node = init_node();
 	if (!node)
 		return (NULL);
-	if (ft_strncmp(argv[i + 1], "2147483647", ft_strlen(argv[i + 1])) == 0
-		|| ft_strncmp(argv[i + 1], "-2147483648", ft_strlen(argv[i + 1])) == 0)
-		return (free_node(node), NULL);
-	node->nbr = ft_atoi(argv[i + 1]);
-	node->index = i;
-	node->prev = prev;
+	node->nbr = ft_atoi(num);
 	return (node);
 }
 
@@ -57,26 +54,20 @@ t_stack_node	*build_list(t_stack_node *node)
 	return (prev_list);
 }
 
-t_stack_node	*create_list(int argc, char **argv, int *len)
+t_stack_node	*create_list(int argc, char **argv, int len, char **numbers)
 {
 	t_stack_node	*current;
 	t_stack_node	*new_node;
 	int				i;
 
 	i = 0;
-	if (argc <= 1)
-		return (NULL);
 	current = NULL;
-	while (i < argc - 1)
+	while (numbers[i] != NULL)
 	{
-		new_node = get_node(argv, i, current);
-		if (!new_node)
-			return (free_unbuilt_list(current), NULL);
+		new_node = get_node(numbers[i], i);
+		if (current != NULL)
+			current->next = new_node;
 		current = new_node;
-		i++;
 	}
-	current = build_list(current);
-	set_indexes(current);
-	*len = argc - 1;
 	return (current);
 }

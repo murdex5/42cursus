@@ -52,5 +52,7 @@ int	count_stack(t_stack_node *node)
 		i++;
 		current = current->next;
 	}
+	ft_printf("%d\n", i);
 	return (i);
 }
+

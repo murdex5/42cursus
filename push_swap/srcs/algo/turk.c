@@ -56,11 +56,16 @@ int	sort_three(t_stack_node **stack_a)
 
 int	sort_stack(t_stack_node **stack_a, t_stack_node **stack_b)
 {
-	t_stack_node *max_current;
-	pb(stack_a, stack_b);
-	pb(stack_a, stack_b);
+	int len_a;
 
-	max_current = get_max_node_from(*stack_b);
-	
+	len_a = count_stack(*stack_a);
+	if (len_a-- > 3 && !stack_sorted(*stack_a))
+		pb(stack_a, stack_b);
+	if (len_a-- > 3 && !stack_sorted(*stack_a))
+		pb(stack_a, stack_b);
+	while (len_a-- > 3 && !stack_sorted(*stack_a))
+	{
+		init_nodes(*stack_a, *stack_b);
+	}
 	return (0);
 }

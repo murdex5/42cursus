@@ -33,6 +33,7 @@ typedef struct s_stack_node
 }						t_stack_node;
 
 int						error_msg(void);
+void					current_index(t_stack_node *node);
 void					free_node(t_stack_node *node);
 void					*ft_realloc(void *a, size_t new_size);
 t_stack_node			*init_node(void);
@@ -51,6 +52,9 @@ void					free_str_list(char **str);
 t_stack_node			*create_list(char **numbers);
 t_stack_node			*get_last_node(t_stack_node *node);
 void					set_indexes(t_stack_node *node);
+void					set_target_node_a(t_stack_node *stack_a,
+							t_stack_node *stack_b);
+void					set_cheapest(t_stack_node *stack);
 int						pa(t_stack_node **stack_a, t_stack_node **stack_b);
 int						pb(t_stack_node **stack_a, t_stack_node **stack_b);
 int						sa(t_stack_node **stack_a, bool to_print);
@@ -69,4 +73,6 @@ bool					stack_sorted(t_stack_node *node);
 int						sort_three(t_stack_node **stack_a);
 int						sort_stack(t_stack_node **stack_a,
 							t_stack_node **stack_b);
+void					init_nodes(t_stack_node *stack_a,
+							t_stack_node *stack_b);
 #endif

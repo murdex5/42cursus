@@ -46,8 +46,8 @@ void	set_indexes(t_stack_node *node)
 
 int	get_len_except(char *num)
 {
-	int len;
-	int i;
+	int	len;
+	int	i;
 
 	i = 0;
 	len = 0;
@@ -62,4 +62,20 @@ int	get_len_except(char *num)
 			i++;
 	}
 	return (len);
+}
+
+char	**malloc_and_set_null(int len)
+{
+	char **s;
+	int i;
+	s = malloc(sizeof(char *) * len);
+	if (!s)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		s[i] = NULL;
+		i++;
+	}
+	return (s);
 }

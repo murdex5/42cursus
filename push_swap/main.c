@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	numbers = get_ints(argc, argv, &len);
 	if (!numbers)
 		return (0);
-	stack_a = checks(numbers);
+	stack_a = checks(argc, numbers);
 	if (!stack_a)
 		return (0);
 	if (!stack_sorted(stack_a))

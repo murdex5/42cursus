@@ -41,7 +41,7 @@ char	**get_ints(int argc, char **argv, int *len)
 		(*len) = argc - 1;
 		return (str);
 	}
-	str = malloc(sizeof(char *) * (argc));
+	str = malloc_and_set_null(argc);
 	if (!str)
 		return (str);
 	while (i < argc)

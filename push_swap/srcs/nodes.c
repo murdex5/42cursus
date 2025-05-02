@@ -35,12 +35,12 @@ t_stack_node	*get_node(char *num)
 
 	nbr = ft_atoi(num);
 	len = get_len_except(num);
-	node = init_node();
 	if (len > 1)
 	{
 		if (nbr == 0 || nbr == -1)
 			return (NULL);
 	}
+	node = init_node();
 	if (!node)
 		return (NULL);
 	node->nbr = nbr;
@@ -68,22 +68,25 @@ t_stack_node	*create_list(char **numbers)
 {
 	t_stack_node	*current;
 	t_stack_node	*new_node;
+	t_stack_node	*head;
 	int				i;
 
 	i = 0;
 	current = NULL;
+	head = NULL;
 	while (numbers[i])
 	{
 		new_node = get_node(numbers[i]);
 		if (!new_node)
-			return (free_unbuilt_list(new_node), NULL);
+			return (free_unbuilt_list(head), NULL);
 		if (current != NULL)
 			current->next = new_node;
+		else
+			head = new_node;
 		new_node->prev = current;
 		new_node->next = NULL;
 		current = new_node;
 		i++;
 	}
-	current->next = NULL;
 	return (current);
 }

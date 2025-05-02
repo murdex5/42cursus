@@ -35,11 +35,12 @@ typedef struct s_stack_node
 int						error_msg(void);
 void					current_index(t_stack_node *node);
 void					free_node(t_stack_node *node);
+char					**malloc_and_set_null(int len);
 void					*ft_realloc(void *a, size_t new_size);
 t_stack_node			*init_node(void);
 int						int_arr_len(int *arr);
 int						check_numbers(char *c);
-t_stack_node			*checks(char **numbers);
+t_stack_node			*checks(int argc, char **numbers);
 t_stack_node			*build_list(t_stack_node *node);
 int						get_items(char const *s, char c);
 char					**get_ints(int argc, char **argv, int *len);

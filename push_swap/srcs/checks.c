@@ -58,17 +58,19 @@ static int	check_doubles(t_stack_node *node)
 	return (1);
 }
 
-t_stack_node	*checks(char **numbers)
+t_stack_node	*checks(int argc, char **numbers)
 {
 	t_stack_node	*node;
 
+	if (argc < 2)
+		return (NULL);
 	node = create_list(numbers);
 	if (!node)
-		return (NULL);
+		return (free_str_list(numbers), NULL);
+	free_str_list(numbers);
 	node = get_first_node(node);
 	if (!check_doubles(node))
 		return (free_node_list(node), NULL);
 	set_indexes(node);
-	free_str_list(numbers);
 	return (node);
 }

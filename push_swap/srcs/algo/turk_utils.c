@@ -43,18 +43,28 @@ void	cost_analysis(t_stack_node *stack_a, t_stack_node *stack_b)
 {
 	int	a_len;
 	int	b_len;
+	int	cost_a;
+	int	cost_b;
 
 	a_len = count_stack(stack_a);
 	b_len = count_stack(stack_b);
 	while (stack_a)
 	{
-		stack_a->push_cost = stack_a->index;
+		cost_a = stack_a->index;
 		if (!(stack_a->above_medium))
-			stack_a->push_cost = a_len - (stack_a->index);
-		if (stack_a->target_node->above_medium)
-			stack_a->push_cost += stack_a->target_node->index;
+			cost_a = a_len - stack_a->index;
+		cost_b = stack_a->target_node->index;
+		if (!(stack_a->target_node->above_medium))
+			cost_b = b_len - stack_a->target_node->index;
+		if (stack_a->above_medium == stack_a->target_node->above_medium)
+		{
+			if (cost_a > cost_b)
+				stack_a->push_cost = cost_a;
+			else
+				stack_a->push_cost = cost_b;
+		}
 		else
-			stack_a->push_cost += b_len - (stack_a->target_node->index);
+			stack_a->push_cost = cost_a + cost_b;
 		stack_a = stack_a->next;
 	}
 }

@@ -63,18 +63,27 @@ void	set_cheapest(t_stack_node *stack)
 {
 	long			cheapest_value;
 	t_stack_node	*cheapest_node;
+	t_stack_node	*current;
 
 	if (!stack)
 		return ;
-	cheapest_value = LONG_MIN;
-	while (stack)
+	current = stack;
+	while (current)
 	{
-		if (stack->push_cost < cheapest_value)
+		current->cheapest = false;
+		current = current->next;
+	}
+	cheapest_value = stack->push_cost;
+	cheapest_node = stack;
+	current = stack->next;
+	while (current)
+	{
+		if (current->push_cost < cheapest_value)
 		{
-			cheapest_value = stack->push_cost;
-			cheapest_node = stack;
+			cheapest_value = current->push_cost;
+			cheapest_node = current;
 		}
-		stack = stack->next;
+		current = current->next;
 	}
 	cheapest_node->cheapest = true;
 }

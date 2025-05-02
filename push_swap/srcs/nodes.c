@@ -21,6 +21,9 @@ t_stack_node	*init_node(void)
 		return (NULL);
 	node->next = NULL;
 	node->prev = NULL;
+	node->target_node = NULL;
+	node->cheapest = false;
+	node->push_cost = 0;
 	return (node);
 }
 

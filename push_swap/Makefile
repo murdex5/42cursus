@@ -22,8 +22,11 @@ SRCS = ${SRCS_DIR}/utils0.c \
 		${SRCS_DIR}/push_func.c \
 		${SRCS_DIR}/swap_func.c \
 		${SRCS_DIR}/nodes.c \
+		${SRCS_DIR}/algo/turk_utils3.c\
+		${SRCS_DIR}/algo/turk_utils2.c\
 		${SRCS_DIR}/algo/turk_utils1.c \
 		${SRCS_DIR}/algo/turk_utils.c \
+		${SRCS_DIR}/algo/ops.c\
 		${SRCS_DIR}/algo/turk.c \
 		main.c
 

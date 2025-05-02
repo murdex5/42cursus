@@ -68,6 +68,9 @@ int						rrb(t_stack_node **stack_b, bool to_print);
 int						rrr(t_stack_node **stack_a, t_stack_node **stack_b);
 t_stack_node			*get_max_node_from(t_stack_node *node);
 t_stack_node			*get_min_node_from(t_stack_node *node);
+t_stack_node			*get_cheapest_from(t_stack_node *node);
+void					move_a_to_b(t_stack_node **stack_a,
+							t_stack_node **stack_b);
 int						count_stack(t_stack_node *node);
 bool					stack_sorted(t_stack_node *node);
 int						sort_three(t_stack_node **stack_a);
@@ -75,4 +78,19 @@ int						sort_stack(t_stack_node **stack_a,
 							t_stack_node **stack_b);
 void					init_nodes(t_stack_node *stack_a,
 							t_stack_node *stack_b);
+void					init_nodes_b(t_stack_node *stack_a,
+							t_stack_node *stack_b);
+void					rotate_both_stacks(t_stack_node **stack_a,
+							t_stack_node **stack_b,
+							t_stack_node *cheapest_node);
+void					rev_rotate_both_stacks(t_stack_node **stack_a,
+							t_stack_node **stack_b,
+							t_stack_node *cheapest_node);
+void					prep_stacks(t_stack_node **stack,
+							t_stack_node *top_node, char stack_name);
+void					move_a_to_b(t_stack_node **stack_a,
+							t_stack_node **stack_b);
+void					move_b_to_a(t_stack_node **stack_a,
+							t_stack_node **stack_b);
+void					min_to_top(t_stack_node **stack);
 #endif

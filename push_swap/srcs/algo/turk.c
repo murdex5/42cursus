@@ -59,14 +59,15 @@ int	sort_stack(t_stack_node **stack_a, t_stack_node **stack_b)
 	int	len_a;
 
 	len_a = count_stack(*stack_a);
-	if (len_a-- > 3 && !stack_sorted(*stack_a))
-		pb(stack_a, stack_b);
-	if (len_a-- > 3 && !stack_sorted(*stack_a))
-		pb(stack_a, stack_b);
-	while (len_a-- > 3 && !stack_sorted(*stack_a))
+	// if (len_a-- > 3 && !stack_sorted(*stack_a))
+	// 	pb(stack_a, stack_b);
+	// if (len_a-- > 3 && !stack_sorted(*stack_a))
+	// 	pb(stack_a, stack_b);
+	while (len_a> 3 && !stack_sorted(*stack_a))
 	{
 		init_nodes(*stack_a, *stack_b);
 		move_a_to_b(stack_a, stack_b);
+		len_a--;
 	}
 	sort_three(stack_a);
 	while (*stack_b)

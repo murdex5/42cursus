@@ -32,6 +32,8 @@ typedef struct s_stack_node
 	struct s_stack_node	*prev;
 }						t_stack_node;
 
+void					std_errror(char *msg);
+void					free_list_error(char **numbers);
 int						error_msg(void);
 void					current_index(t_stack_node *node);
 void					free_node(t_stack_node *node);

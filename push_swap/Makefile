@@ -14,6 +14,7 @@ CC = gcc
 SRCS_DIR = ./srcs
 SRCS = ${SRCS_DIR}/utils0.c \
 		${SRCS_DIR}/utils1.c \
+		${SRCS_DIR}/errors.c \
 		${SRCS_DIR}/free.c \
 		${SRCS_DIR}/checks.c \
 		${SRCS_DIR}/get_ints.c \

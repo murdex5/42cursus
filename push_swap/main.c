@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	numbers = get_ints(argc, argv, &len);
 	if (!numbers)
-		return (0);
+		return (free_list_error(numbers), 0);
 	stack_a = checks(argc, numbers);
 	if (!stack_a)
 		return (0);
@@ -35,6 +35,8 @@ int	main(int argc, char **argv)
 		else
 			sort_stack(&stack_a, &stack_b);
 	}
+	if (!stack_sorted(stack_a))
+		ft_printf("stack is not sorted");
 	free_node_list(stack_a);
 	free_node_list(stack_b);
 	return (0);

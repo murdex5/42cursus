@@ -66,11 +66,14 @@ t_stack_node	*checks(int argc, char **numbers)
 		return (NULL);
 	node = create_list(numbers);
 	if (!node)
-		return (free_str_list(numbers), NULL);
+		return (free_list_error(numbers), NULL);
 	free_str_list(numbers);
 	node = get_first_node(node);
 	if (!check_doubles(node))
+	{
+		std_errror("Duplicates were found");
 		return (free_node_list(node), NULL);
+	}
 	set_indexes(node);
 	return (node);
 }

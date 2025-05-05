@@ -90,7 +90,6 @@ int	check_spaces(char *str)
 	{
 		if (str[i] == 32 && str[i + 1] == 32)
 			return (0);
-		ft_printf("i execured\n");
 		i++;
 	}
 	return (1);

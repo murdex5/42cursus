@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	char			**numbers;
 
 	stack_b = NULL;
-	numbers = get_ints(argc, argv, &len);
+	numbers = get_int_checks(argc, argv, &len);
 	if (!numbers)
 		return (free_list_error(numbers), 0);
 	stack_a = checks(argc, numbers);

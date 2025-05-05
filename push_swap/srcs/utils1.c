@@ -66,8 +66,9 @@ int	get_len_except(char *num)
 
 char	**malloc_and_set_null(int len)
 {
-	char **s;
-	int i;
+	char	**s;
+	int		i;
+
 	s = malloc(sizeof(char *) * len);
 	if (!s)
 		return (NULL);
@@ -78,4 +79,19 @@ char	**malloc_and_set_null(int len)
 		i++;
 	}
 	return (s);
+}
+
+int	check_spaces(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == 32 && str[i + 1] == 32)
+			return (0);
+		ft_printf("i execured\n");
+		i++;
+	}
+	return (1);
 }

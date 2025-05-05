@@ -35,8 +35,8 @@ int	main(int argc, char **argv)
 		else
 			sort_stack(&stack_a, &stack_b);
 	}
-	if (!stack_sorted(stack_a))
-		ft_printf("stack is not sorted");
+	// if (!stack_sorted(stack_a))
+	// 	ft_printf("stack is not sorted");
 	free_node_list(stack_a);
 	free_node_list(stack_b);
 	return (0);

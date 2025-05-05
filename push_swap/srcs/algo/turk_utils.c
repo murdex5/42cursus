@@ -22,6 +22,7 @@ void	set_target_node_a(t_stack_node *stack_a, t_stack_node *stack_b)
 	{
 		best_match = LONG_MIN;
 		current_b = stack_b;
+		target_node = NULL;
 		while (current_b)
 		{
 			if (current_b->nbr < stack_a->nbr && current_b->nbr > best_match)
@@ -31,7 +32,7 @@ void	set_target_node_a(t_stack_node *stack_a, t_stack_node *stack_b)
 			}
 			current_b = current_b->next;
 		}
-		if (best_match == LONG_MIN)
+		if (best_match == LONG_MIN && stack_b)
 			stack_a->target_node = get_max_node_from(stack_b);
 		else
 			stack_a->target_node = target_node;
@@ -47,7 +48,7 @@ void	cost_analysis(t_stack_node *stack_a, t_stack_node *stack_b)
 	int	cost_b;
 
 	a_len = count_stack(stack_a);
-	b_len = count_stack(stack_b); // Will be 0 if stack_b is NULL
+	b_len = count_stack(stack_b);
 	while (stack_a)
 	{
 		cost_a = stack_a->index;
@@ -115,5 +116,6 @@ void	init_nodes(t_stack_node *stack_a, t_stack_node *stack_b)
 	current_index(stack_a);
 	current_index(stack_b);
 	set_target_node_a(stack_a, stack_b);
+	cost_analysis(stack_a, stack_b);
 	set_cheapest(stack_a);
 }

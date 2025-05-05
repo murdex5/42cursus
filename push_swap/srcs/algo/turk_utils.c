@@ -47,24 +47,36 @@ void	cost_analysis(t_stack_node *stack_a, t_stack_node *stack_b)
 	int	cost_b;
 
 	a_len = count_stack(stack_a);
-	b_len = count_stack(stack_b);
+	b_len = count_stack(stack_b); // Will be 0 if stack_b is NULL
 	while (stack_a)
 	{
 		cost_a = stack_a->index;
 		if (!(stack_a->above_medium))
 			cost_a = a_len - stack_a->index;
-		cost_b = stack_a->target_node->index;
-		if (!(stack_a->target_node->above_medium))
-			cost_b = b_len - stack_a->target_node->index;
-		if (stack_a->above_medium == stack_a->target_node->above_medium)
+		// Check if target_node exists (it might not if stack_b is empty)
+		if (stack_a->target_node)
 		{
-			if (cost_a > cost_b)
-				stack_a->push_cost = cost_a;
+			cost_b = stack_a->target_node->index;
+			if (!(stack_a->target_node->above_medium))
+				cost_b = b_len - stack_a->target_node->index;
+					// b_len is needed here
+			if (stack_a->above_medium == stack_a->target_node->above_medium)
+			{
+				if (cost_a > cost_b)
+					stack_a->push_cost = cost_a;
+				else
+					stack_a->push_cost = cost_b;
+			}
 			else
-				stack_a->push_cost = cost_b;
+			{
+				stack_a->push_cost = cost_a + cost_b;
+			}
 		}
-		else
-			stack_a->push_cost = cost_a + cost_b;
+		else // stack_b is empty, target_node is NULL
+		{
+			// Cost is just the cost to bring the node to the top of A
+			stack_a->push_cost = cost_a;
+		}
 		stack_a = stack_a->next;
 	}
 }

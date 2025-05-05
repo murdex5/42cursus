@@ -12,6 +12,36 @@
 
 #include "../../push_swap.h"
 
+static void	cost_analysis_b(t_stack_node *stack_a, t_stack_node *stack_b)
+{
+	int	a_len;
+	int	b_len;
+	int	cost_a;
+	int	cost_b;
+
+	a_len = count_stack(stack_a);
+	b_len = count_stack(stack_b);
+	while (stack_b)
+	{
+		cost_b = stack_b->index;
+		if (!(stack_b->above_medium))
+			cost_b = b_len - stack_b->index;
+		if (stack_b->target_node)
+		{
+			cost_a = stack_b->target_node->index;
+			if (!(stack_b->target_node->above_medium))
+				cost_a = a_len - stack_b->target_node->index;
+			if (stack_b->above_medium == stack_b->target_node->above_medium)
+				stack_b->push_cost = (cost_a > cost_b) ? cost_a : cost_b;
+			else
+				stack_b->push_cost = cost_a + cost_b;
+		}
+		else
+			stack_b->push_cost = cost_b;
+		stack_b = stack_b->next;
+	}
+}
+
 static void	set_target_b(t_stack_node *stack_a, t_stack_node *stack_b)
 {
 	t_stack_node	*current_a;
@@ -45,11 +75,22 @@ void	init_nodes_b(t_stack_node *stack_a, t_stack_node *stack_b)
 	current_index(stack_a);
 	current_index(stack_b);
 	set_target_b(stack_a, stack_b);
+	cost_analysis_b(stack_a, stack_b);
+	set_cheapest(stack_b);
 }
 
 void	move_b_to_a(t_stack_node **stack_a, t_stack_node **stack_b)
 {
-	prep_stacks(stack_a, (*stack_b)->target_node, 'a');
+	t_stack_node	*cheapest_node;
+
+	cheapest_node = get_cheapest_from(*stack_b);
+	if (cheapest_node->above_medium && cheapest_node->target_node->above_medium)
+		rotate_both_stacks(stack_a, stack_b, cheapest_node);
+	else if (!(cheapest_node->above_medium)
+		&& !(cheapest_node->target_node->above_medium))
+		rev_rotate_both_stacks(stack_a, stack_b, cheapest_node);
+	prep_stacks(stack_b, cheapest_node, 'b');
+	prep_stacks(stack_a, cheapest_node->target_node, 'a');
 	pa(stack_a, stack_b);
 }
 

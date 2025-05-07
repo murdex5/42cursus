@@ -14,14 +14,13 @@
 
 bool	stack_sorted(t_stack_node *node)
 {
-	t_stack_node	*current;
-
-	current = node;
-	while (current && current->next)
+	if (!node)
+		return (true);
+	while (node->next)
 	{
-		if (current->nbr > current->next->nbr)
+		if (node->nbr > node->next->nbr)
 			return (false);
-		current = current->next;
+		node = node->next;
 	}
 	return (true);
 }
@@ -59,18 +58,13 @@ int	sort_stack(t_stack_node **stack_a, t_stack_node **stack_b)
 	int	len_a;
 
 	len_a = count_stack(*stack_a);
-	while (len_a > 3 && !stack_sorted(*stack_a))
+	while (len_a > 3)
 	{
 		init_nodes(*stack_a, *stack_b);
-		move_a_to_b(stack_a, stack_b);
+		if (!stack_sorted(*stack_a))
+			move_a_to_b(stack_a, stack_b);
 		len_a--;
 	}
-
-    while (len_a > 3)
-    {
-        pb(stack_a, stack_b); // Push remaining top elements (less optimal)
-        len_a--;
-    }
 	sort_three(stack_a);
 	while (*stack_b)
 	{
@@ -81,9 +75,3 @@ int	sort_stack(t_stack_node **stack_a, t_stack_node **stack_b)
 	min_to_top(stack_a);
 	return (0);
 }
-
-
-// if (len_a-- > 3 && !stack_sorted(*stack_a))
-// 		pb(stack_a, stack_b);
-// 	if (len_a-- > 3 && !stack_sorted(*stack_a))
-// 		pb(stack_a, stack_b);

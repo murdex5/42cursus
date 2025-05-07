@@ -12,30 +12,30 @@
 
 #include "../../push_swap.h"
 
-static void	set_target_b(t_stack_node *stack_a, t_stack_node *stack_b)
+void	set_target_b(t_stack_node *stack_a, t_stack_node *stack_b)
 {
 	t_stack_node	*current_a;
-	t_stack_node	*target_node;
+	t_stack_node	*target;
 	long			best_match_index;
 
 	while (stack_b)
 	{
 		best_match_index = LONG_MAX;
 		current_a = stack_a;
+		target = NULL;
 		while (current_a)
 		{
+			// Find the smallest number in A that is larger than B's number
 			if (current_a->nbr > stack_b->nbr
 				&& current_a->nbr < best_match_index)
 			{
 				best_match_index = current_a->nbr;
-				target_node = current_a;
+				target = current_a;
 			}
 			current_a = current_a->next;
 		}
-		if (best_match_index == LONG_MAX)
-			stack_b->target_node = get_min_node_from(stack_a);
-		else
-			stack_b->target_node = target_node;
+		// If no larger number found, target the smallest number in A
+		stack_b->target_node = (best_match_index == LONG_MAX) ? get_min_node_from(stack_a) : target;
 		stack_b = stack_b->next;
 	}
 }
@@ -45,11 +45,25 @@ void	init_nodes_b(t_stack_node *stack_a, t_stack_node *stack_b)
 	current_index(stack_a);
 	current_index(stack_b);
 	set_target_b(stack_a, stack_b);
+	cost_analysis(stack_a, stack_b);
 }
 
 void	move_b_to_a(t_stack_node **stack_a, t_stack_node **stack_b)
 {
-	prep_stacks(stack_a, (*stack_b)->target_node, 'a');
+	t_stack_node	*target;
+
+	if (!*stack_b)
+		return ;
+	target = (*stack_b)->target_node;
+	if ((*stack_b)->above_medium && target->above_medium)
+		rotate_both_stacks(stack_a, stack_b, *stack_b);
+	else if (!(*stack_b)->above_medium && !target->above_medium)
+		rev_rotate_both_stacks(stack_a, stack_b, *stack_b);
+	else
+	{
+		prep_stacks(stack_a, target, 'a');
+		prep_stacks(stack_b, *stack_b, 'b');
+	}
 	pa(stack_a, stack_b);
 }
 

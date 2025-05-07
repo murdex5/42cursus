@@ -77,6 +77,8 @@ t_stack_node			*get_cheapest_from(t_stack_node *node);
 void					move_a_to_b(t_stack_node **stack_a,
 							t_stack_node **stack_b);
 int						count_stack(t_stack_node *node);
+void					cost_analysis(t_stack_node *stack_a,
+							t_stack_node *stack_b);
 bool					stack_sorted(t_stack_node *node);
 int						sort_three(t_stack_node **stack_a);
 int						sort_stack(t_stack_node **stack_a,

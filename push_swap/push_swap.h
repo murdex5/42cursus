@@ -60,6 +60,7 @@ void					set_indexes(t_stack_node *node);
 void					set_target_node_a(t_stack_node *stack_a,
 							t_stack_node *stack_b);
 void					set_cheapest(t_stack_node *stack);
+void	cost_analysis(t_stack_node *stack_a, t_stack_node *stack_b);
 int						pa(t_stack_node **stack_a, t_stack_node **stack_b);
 int						pb(t_stack_node **stack_a, t_stack_node **stack_b);
 int						sa(t_stack_node **stack_a, bool to_print);

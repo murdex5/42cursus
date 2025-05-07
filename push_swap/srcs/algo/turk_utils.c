@@ -36,6 +36,10 @@ void	set_target_node_a(t_stack_node *stack_a, t_stack_node *stack_b)
 			stack_a->target_node = get_max_node_from(stack_b);
 		else
 			stack_a->target_node = target_node;
+#ifdef DEBUG // Add this preprocessor directive
+		printf("Stack A Nbr: %d, Target Nbr: %d\n", stack_a->nbr,
+			stack_a->target_node ? stack_a->target_node->nbr : -1);
+#endif
 		stack_a = stack_a->next;
 	}
 }
@@ -60,7 +64,7 @@ void	cost_analysis(t_stack_node *stack_a, t_stack_node *stack_b)
 			cost_b = stack_a->target_node->index;
 			if (!(stack_a->target_node->above_medium))
 				cost_b = b_len - stack_a->target_node->index;
-					// b_len is needed here
+			// b_len is needed here
 			if (stack_a->above_medium == stack_a->target_node->above_medium)
 			{
 				if (cost_a > cost_b)
@@ -78,6 +82,10 @@ void	cost_analysis(t_stack_node *stack_a, t_stack_node *stack_b)
 			// Cost is just the cost to bring the node to the top of A
 			stack_a->push_cost = cost_a;
 		}
+#ifdef DEBUG // Add this preprocessor directive
+		printf("Stack A Nbr: %d, Push Cost: %d\n", stack_a->nbr,
+			stack_a->push_cost);
+#endif
 		stack_a = stack_a->next;
 	}
 }
@@ -113,9 +121,30 @@ void	set_cheapest(t_stack_node *stack)
 
 void	init_nodes(t_stack_node *stack_a, t_stack_node *stack_b)
 {
+	
+
 	current_index(stack_a);
 	current_index(stack_b);
 	set_target_node_a(stack_a, stack_b);
 	cost_analysis(stack_a, stack_b);
 	set_cheapest(stack_a);
+#ifdef DEBUG // Add this preprocessor directive
+	t_stack_node	*current;
+	current = stack_a;
+	printf("Stack A (init_nodes):\n");
+	while (current)
+	{
+		printf("Index: %d, Above_medium: %d, Nbr: %d\n", current->index,
+			current->above_medium, current->nbr);
+		current = current->next;
+	}
+	current = stack_b;
+	printf("Stack B (init_nodes):\n");
+	while (current)
+	{
+		printf("Index: %d, Above_medium: %d, Nbr: %d\n", current->index,
+			current->above_medium, current->nbr);
+		current = current->next;
+	}
+#endif
 }

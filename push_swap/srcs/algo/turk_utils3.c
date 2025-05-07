@@ -36,15 +36,39 @@ static void	set_target_b(t_stack_node *stack_a, t_stack_node *stack_b)
 			stack_b->target_node = get_min_node_from(stack_a);
 		else
 			stack_b->target_node = target_node;
+#ifdef DEBUG // Add this preprocessor directive
+		printf("Stack B Nbr: %d, Target Nbr: %d\n", stack_b->nbr,
+			stack_b->target_node ? stack_b->target_node->nbr : -1);
+#endif
 		stack_b = stack_b->next;
 	}
 }
 
 void	init_nodes_b(t_stack_node *stack_a, t_stack_node *stack_b)
 {
+
 	current_index(stack_a);
 	current_index(stack_b);
 	set_target_b(stack_a, stack_b);
+#ifdef DEBUG // Add this preprocessor directive
+	t_stack_node	*current;
+	current = stack_a;
+	printf("Stack A (init_nodes_b):\n");
+	while (current)
+	{
+		printf("Index: %d, Above_medium: %d, Nbr: %d\n", current->index,
+			current->above_medium, current->nbr);
+		current = current->next;
+	}
+	current = stack_b;
+	printf("Stack B (init_nodes_b):\n");
+	while (current)
+	{
+		printf("Index: %d, Above_medium: %d, Nbr: %d\n", current->index,
+			current->above_medium, current->nbr);
+		current = current->next;
+	}
+#endif
 }
 
 void	move_b_to_a(t_stack_node **stack_a, t_stack_node **stack_b)

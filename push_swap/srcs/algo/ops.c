@@ -30,21 +30,22 @@ void	rev_rotate_both_stacks(t_stack_node **stack_a, t_stack_node **stack_b,
 	current_index(*stack_b);
 }
 
-void	prep_stacks(t_stack_node **stack, t_stack_node *top_node, char stack_name)
+void	prep_stacks(t_stack_node **stack, t_stack_node *top_node,
+		char stack_name)
 {
 	while (*stack != top_node)
 	{
-		if (top_node->above_medium)
+		if (stack_name == 'a')
 		{
-			if (stack_name == 'a')
+			if (top_node->above_medium)
 				ra(stack, true);
 			else
-				rb(stack, true);
-		}
-		else
-		{
-			if (stack_name == 'a')
 				rra(stack, true);
+		}
+		else if (stack_name == 'b')
+		{
+			if (top_node->above_medium)
+				rb(stack, true);
 			else
 				rrb(stack, true);
 		}

@@ -32,8 +32,7 @@ void	set_target_node_a(t_stack_node *stack_a, t_stack_node *stack_b)
 			}
 			current_b = current_b->next;
 		}
-		// Change this if statement
-		if (target_node == NULL && stack_b)
+		if (best_match == LONG_MIN && stack_b)
 			stack_a->target_node = get_max_node_from(stack_b);
 		else
 			stack_a->target_node = target_node;
@@ -61,7 +60,7 @@ void	cost_analysis(t_stack_node *stack_a, t_stack_node *stack_b)
 			cost_b = stack_a->target_node->index;
 			if (!(stack_a->target_node->above_medium))
 				cost_b = b_len - stack_a->target_node->index;
-			// b_len is needed here
+					// b_len is needed here
 			if (stack_a->above_medium == stack_a->target_node->above_medium)
 			{
 				if (cost_a > cost_b)
@@ -85,11 +84,10 @@ void	cost_analysis(t_stack_node *stack_a, t_stack_node *stack_b)
 
 void	set_cheapest(t_stack_node *stack)
 {
+	long			cheapest_value;
 	t_stack_node	*cheapest_node;
 	t_stack_node	*current;
 
-	long cheapest_value = LONG_MAX; // Initialize to max value
-	cheapest_node = NULL;
 	if (!stack)
 		return ;
 	current = stack;
@@ -98,7 +96,9 @@ void	set_cheapest(t_stack_node *stack)
 		current->cheapest = false;
 		current = current->next;
 	}
-	current = stack;
+	cheapest_value = stack->push_cost;
+	cheapest_node = stack;
+	current = stack->next;
 	while (current)
 	{
 		if (current->push_cost < cheapest_value)
@@ -108,8 +108,7 @@ void	set_cheapest(t_stack_node *stack)
 		}
 		current = current->next;
 	}
-	if (cheapest_node) // Check if a cheapest node was found
-		cheapest_node->cheapest = true;
+	cheapest_node->cheapest = true;
 }
 
 void	init_nodes(t_stack_node *stack_a, t_stack_node *stack_b)

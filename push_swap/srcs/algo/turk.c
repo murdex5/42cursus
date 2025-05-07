@@ -16,8 +16,10 @@ bool	stack_sorted(t_stack_node *node)
 {
 	t_stack_node	*current;
 
+	if (node == NULL || node->next == NULL)
+		return (true); // Empty or single-node stack is considered sorted
 	current = node;
-	while (current && current->next)
+	while (current->next != NULL)
 	{
 		if (current->nbr > current->next->nbr)
 			return (false);
@@ -51,7 +53,7 @@ int	sort_three(t_stack_node **stack_a)
 		ra(stack_a, true);
 	else if (max->index == 1 && min->index == 2)
 		rra(stack_a, true);
-	else if (!stack_sorted(*stack_a)) // Fallback for unhandled cases
+	else if (!stack_sorted(*stack_a))
 		sa(stack_a, true);
 	return (1);
 }

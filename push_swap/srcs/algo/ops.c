@@ -15,8 +15,15 @@
 void	rotate_both_stacks(t_stack_node **stack_a, t_stack_node **stack_b,
 		t_stack_node *cheapest_node)
 {
-	while (*stack_b != cheapest_node->target_node && *stack_a != cheapest_node)
-		rr(stack_a, stack_b);
+	while (*stack_b != cheapest_node->target_node || *stack_a != cheapest_node)
+	{
+		if (*stack_b != cheapest_node->target_node && *stack_a != cheapest_node)
+			rr(stack_a, stack_b);
+		else if (*stack_b != cheapest_node->target_node)
+			rb(stack_b, true);
+		else
+			ra(stack_a, true);
+	}
 	current_index(*stack_a);
 	current_index(*stack_b);
 }
@@ -24,8 +31,15 @@ void	rotate_both_stacks(t_stack_node **stack_a, t_stack_node **stack_b,
 void	rev_rotate_both_stacks(t_stack_node **stack_a, t_stack_node **stack_b,
 		t_stack_node *cheapest_node)
 {
-	while (*stack_b != cheapest_node->target_node && *stack_a != cheapest_node)
-		rrr(stack_a, stack_b);
+	while (*stack_b != cheapest_node->target_node || *stack_a != cheapest_node)
+	{
+		if (*stack_b != cheapest_node->target_node && *stack_a != cheapest_node)
+			rrr(stack_a, stack_b);
+		else if (*stack_b != cheapest_node->target_node)
+			rrb(stack_b, true);
+		else
+			rra(stack_a, true);
+	}
 	current_index(*stack_a);
 	current_index(*stack_b);
 }

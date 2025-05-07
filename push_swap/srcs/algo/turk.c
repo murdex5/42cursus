@@ -31,10 +31,10 @@ int	sort_three(t_stack_node **stack_a)
 	t_stack_node	*min;
 	t_stack_node	*max;
 
-	if (!stack_a || !(*stack_a) || !((*stack_a)->next))
-		return (0);
 	min = get_min_node_from(*stack_a);
 	max = get_max_node_from(*stack_a);
+	if (!stack_a || !(*stack_a) || !((*stack_a)->next))
+		return (0);
 	if (max->index == 0 && min->index == 2)
 	{
 		ra(stack_a, true);
@@ -51,6 +51,8 @@ int	sort_three(t_stack_node **stack_a)
 		ra(stack_a, true);
 	else if (max->index == 1 && min->index == 2)
 		rra(stack_a, true);
+	else if (!stack_sorted(*stack_a)) // Fallback for unhandled cases
+		sa(stack_a, true);
 	return (1);
 }
 
@@ -75,7 +77,6 @@ int	sort_stack(t_stack_node **stack_a, t_stack_node **stack_b)
 	min_to_top(stack_a);
 	return (0);
 }
-
 
 // if (len_a-- > 3 && !stack_sorted(*stack_a))
 // 		pb(stack_a, stack_b);

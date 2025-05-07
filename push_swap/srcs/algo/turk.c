@@ -65,12 +65,6 @@ int	sort_stack(t_stack_node **stack_a, t_stack_node **stack_b)
 		move_a_to_b(stack_a, stack_b);
 		len_a--;
 	}
-
-    while (len_a > 3)
-    {
-        pb(stack_a, stack_b); // Push remaining top elements (less optimal)
-        len_a--;
-    }
 	sort_three(stack_a);
 	while (*stack_b)
 	{

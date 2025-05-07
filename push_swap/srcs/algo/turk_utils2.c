@@ -16,11 +16,14 @@ t_stack_node	*get_cheapest_from(t_stack_node *node)
 {
 	t_stack_node	*cheapest_node;
 
-	cheapest_node = node;
+	cheapest_node = NULL;
 	while (node)
 	{
 		if (node->cheapest == true)
+		{
 			cheapest_node = node;
+			break ; // Return the FIRST cheapest node
+		}
 		node = node->next;
 	}
 	return (cheapest_node);
@@ -31,11 +34,6 @@ void	move_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b)
 	t_stack_node	*cheapest_node;
 
 	cheapest_node = get_cheapest_from(*stack_a);
-#ifdef DEBUG // Add this preprocessor directive
-	printf("Cheapest node nbr: %d, Target node nbr: %d\n",
-		cheapest_node ? cheapest_node->nbr : -1, cheapest_node
-		&& cheapest_node->target_node ? cheapest_node->target_node->nbr : -1);
-#endif
 	if (cheapest_node && cheapest_node->target_node)
 	{
 		if (cheapest_node->above_medium
@@ -48,10 +46,5 @@ void	move_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b)
 	prep_stacks(stack_a, cheapest_node, 'a');
 	if (cheapest_node && cheapest_node->target_node)
 		prep_stacks(stack_b, cheapest_node->target_node, 'b');
-#ifdef DEBUG // Add this preprocessor directive
-	printf("After prep_stacks, Cheapest node nbr: %d, Target node nbr: %d\n",
-		cheapest_node ? cheapest_node->nbr : -1, cheapest_node
-		&& cheapest_node->target_node ? cheapest_node->target_node->nbr : -1);
-#endif
 	pb(stack_a, stack_b);
 }

@@ -11,8 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#ifdef DEBUG
-#endif
+
 int	main(int argc, char **argv)
 {
 	int				len;

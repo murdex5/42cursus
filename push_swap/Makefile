@@ -31,7 +31,7 @@ SRCS = ${SRCS_DIR}/utils0.c \
 		${SRCS_DIR}/algo/turk.c \
 		main.c
 
-CFLAGS = -DDEBUG -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 OBJS = ${SRCS:.c=.o}
 LIBFT_PATH = ./libft
 LIBFT_LIB = $(LIBFT_PATH)/libft.a

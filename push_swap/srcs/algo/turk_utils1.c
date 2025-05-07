@@ -20,7 +20,7 @@ void	current_index(t_stack_node *node)
 	i = 0;
 	if (!node)
 		return ;
-	median = count_stack(node) / 2;
+	median = (count_stack(node) - 1) / 2; // Corrected median calculation
 	while (node)
 	{
 		node->index = i;

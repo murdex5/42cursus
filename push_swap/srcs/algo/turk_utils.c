@@ -32,7 +32,8 @@ void	set_target_node_a(t_stack_node *stack_a, t_stack_node *stack_b)
 			}
 			current_b = current_b->next;
 		}
-		if (best_match == LONG_MIN && stack_b)
+		// Change this if statement
+		if (target_node == NULL && stack_b)
 			stack_a->target_node = get_max_node_from(stack_b);
 		else
 			stack_a->target_node = target_node;
@@ -121,7 +122,7 @@ void	set_cheapest(t_stack_node *stack)
 
 void	init_nodes(t_stack_node *stack_a, t_stack_node *stack_b)
 {
-	
+	t_stack_node	*current;
 
 	current_index(stack_a);
 	current_index(stack_b);
@@ -129,7 +130,6 @@ void	init_nodes(t_stack_node *stack_a, t_stack_node *stack_b)
 	cost_analysis(stack_a, stack_b);
 	set_cheapest(stack_a);
 #ifdef DEBUG // Add this preprocessor directive
-	t_stack_node	*current;
 	current = stack_a;
 	printf("Stack A (init_nodes):\n");
 	while (current)

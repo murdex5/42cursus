@@ -27,24 +27,50 @@ t_stack_node	*init_node(void)
 	return (node);
 }
 
-t_stack_node	*get_node(char *num)
+t_stack_node	*get_node(char *num_str)
 {
-	t_stack_node	*node;
-	int				len;
-	int				nbr;
+    t_stack_node	*node_ptr;
+    long long		val;
+    int				i;
+    int				sign;
+    int				digit_count;
 
-	nbr = ft_atoi(num);
-	len = get_len_except(num);
-	if (len > 1)
-	{
-		if (nbr == 0 || nbr == -1)
-			return (NULL);
-	}
-	node = init_node();
-	if (!node)
-		return (NULL);
-	node->nbr = nbr;
-	return (node);
+    if (!num_str || !*num_str)
+        return (NULL);
+    i = 0;
+    sign = 1;
+    digit_count = 0;
+    if (num_str[i] == '+')
+        i++;
+    else if (num_str[i] == '-')
+    {
+        sign = -1;
+        i++;
+    }
+    if (!num_str[i]) /* String was only a sign or empty after sign */
+        return (NULL);
+    val = 0;
+    while (num_str[i])
+    {
+        if (!ft_isdigit(num_str[i])) /* Invalid character */
+            return (NULL);
+        val = val * 10 + (num_str[i] - '0');
+        digit_count++;
+        if ((sign == 1 && val > INT_MAX) || \
+            (sign == -1 && val > (long long)INT_MAX + 1)) /* Check against absolute INT_MIN */
+            return (NULL); 
+        i++;
+    }
+    if (digit_count == 0) 
+        return (NULL);
+    val *= sign;
+    if (val > INT_MAX || val < INT_MIN)
+        return (NULL);
+    node_ptr = init_node();
+    if (!node_ptr)
+        return (NULL);
+    node_ptr->nbr = (int)val;
+    return (node_ptr);
 }
 
 t_stack_node	*build_list(t_stack_node *node)

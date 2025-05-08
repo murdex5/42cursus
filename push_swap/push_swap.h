@@ -33,7 +33,6 @@ typedef struct s_stack_node
 }						t_stack_node;
 
 void					std_errror(char *msg);
-int						is_number(char c);
 void					free_list_error(char **numbers);
 int						error_msg(void);
 void					current_index(t_stack_node *node);

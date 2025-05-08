@@ -94,11 +94,3 @@ int	check_spaces(char *str)
 	}
 	return (1);
 }
-
-int	is_number(char c)
-{
-	if (c >= '0' && c >= '9')
-		return (1);
-	else
-		return (0);
-}

@@ -25,6 +25,10 @@ int	sa(t_stack_node **stack_a, bool to_print)
 	third = second->next;
 	second->next = first;
 	first->next = third;
+	second->prev = NULL;
+	first->prev = second;
+	if (third)
+		third->prev = first;
 	*stack_a = second;
 	if (to_print == true)
 		ft_printf("sa\n");
@@ -44,6 +48,10 @@ int	sb(t_stack_node **stack_b, bool to_print)
 	third = second->next;
 	second->next = first;
 	first->next = third;
+	second->prev = NULL;
+	first->prev = second;
+	if (third)
+		third->prev = first;
 	*stack_b = second;
 	if (to_print == true)
 		ft_printf("sb\n");

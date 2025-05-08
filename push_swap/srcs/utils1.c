@@ -83,7 +83,7 @@ char	**malloc_and_set_null(int len)
 
 int	check_spaces(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -93,4 +93,12 @@ int	check_spaces(char *str)
 		i++;
 	}
 	return (1);
+}
+
+int	is_number(char c)
+{
+	if (c >= '0' && c >= '9')
+		return (1);
+	else
+		return (0);
 }

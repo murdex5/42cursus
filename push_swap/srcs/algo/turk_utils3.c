@@ -14,9 +14,8 @@
 
 static void set_target_b(t_stack_node *stack_a, t_stack_node *stack_b)
 {
-    if (!stack_a) // Early exit if stack_a is empty
+    if (!stack_a)
         return;
-
     while (stack_b)
     {
         t_stack_node *current_a = stack_a;

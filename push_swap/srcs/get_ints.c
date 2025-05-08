@@ -74,6 +74,7 @@ char	**get_int_checks(int argc, char **argv, int *len)
 			return (0);
 		i++;
 	}
+
 	str = get_ints(argc, argv, len);
 	if (!str)
 		return (NULL);

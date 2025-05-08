@@ -25,6 +25,7 @@ t_stack_node	*get_cheapest_from(t_stack_node *node)
 	}
 	return (cheapest_node);
 }
+
 void move_a_to_b(t_stack_node **stack_a, t_stack_node **stack_b)
 {
     t_stack_node *cheapest_node = get_cheapest_from(*stack_a);

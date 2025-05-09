@@ -24,7 +24,7 @@ void	std_errror(char *msg)
 	ft_printf("%s\n", msg);
 }
 
-void free_duplicate(char *msg, t_stack_node *node)
+void	free_duplicate(char *msg, t_stack_node *node)
 {
 	std_errror(msg);
 	free_node_list(node);

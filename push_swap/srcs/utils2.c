@@ -30,29 +30,28 @@ char	**add_numbers(int argc, char **argv, int *len)
 	}
 	str_arr[argc - 1] = NULL;
 	*len = argc - 1;
-    return (str_arr);
+	return (str_arr);
 }
 
-
-static int val_accumulator_func(long long *val_accumulator, int i,
-        const char *num_str, int *sign)
+static int	val_accumulator_func(long long *val_accumulator, int i,
+		const char *num_str, int *sign)
 {
-    int digit_count;
+	int	digit_count;
 
-    digit_count = 0;
-    while (num_str[i])
-    {
-        if (!ft_isdigit(num_str[i]))
-            return (0);
-        *val_accumulator = *val_accumulator * 10 + (num_str[i] - '0');
-        digit_count++;
-        if (*sign == 1 && *val_accumulator > INT_MAX)
-            return (0);
-        if (*sign == -1 && *val_accumulator > (long long)INT_MAX + 1)
-            return (0);
-        i++;
-    }
-    return (digit_count);
+	digit_count = 0;
+	while (num_str[i])
+	{
+		if (!ft_isdigit(num_str[i]))
+			return (0);
+		*val_accumulator = *val_accumulator * 10 + (num_str[i] - '0');
+		digit_count++;
+		if (*sign == 1 && *val_accumulator > INT_MAX)
+			return (0);
+		if (*sign == -1 && *val_accumulator > (long long)INT_MAX + 1)
+			return (0);
+		i++;
+	}
+	return (digit_count);
 }
 
 int	ft_parse_and_validate_long(const char *num_str, long long *out_val)

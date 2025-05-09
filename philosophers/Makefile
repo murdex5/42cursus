@@ -11,3 +11,27 @@
 # **************************************************************************** #
 
 
+CC = gcc
+SRCS_DIR = ./srcs
+CFLAGS = -Wall -Werror -Wextra
+SRCS = main.c
+OBJS = ${SRCS:.c=.o}
+NAME = philo
+
+all : $(NAME)
+
+%.o : %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+clean:
+	rm -rf $(OBJS)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re

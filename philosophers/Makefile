@@ -13,7 +13,7 @@
 
 CC = gcc
 SRCS_DIR = ./srcs
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -pthread
 SRCS = main.c
 OBJS = ${SRCS:.c=.o}
 NAME = philo

@@ -1,21 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 12:01:02 by kadferna          #+#    #+#             */
-/*   Updated: 2025/05/09 12:01:05 by kadferna         ###   ########.fr       */
+/*   Created: 2025/05/09 14:08:46 by kadferna          #+#    #+#             */
+/*   Updated: 2025/05/09 14:08:47 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
-# include <pthread.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <time.h>
-# include <unistd.h>
 
-#endif

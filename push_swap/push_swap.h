@@ -34,6 +34,7 @@ typedef struct s_stack_node
 
 void					std_errror(char *msg);
 void					free_list_error(char **numbers);
+void					free_duplicate(char *msg, t_stack_node *node);
 int						error_msg(void);
 void					current_index(t_stack_node *node);
 void					free_node(t_stack_node *node);
@@ -48,6 +49,15 @@ t_stack_node			*build_list(t_stack_node *node);
 int						get_items(char const *s, char c);
 char					**get_ints(int argc, char **argv, int *len);
 char					**get_int_checks(int argc, char **argv, int *len);
+t_stack_node			*get_target_min(long best_match,
+							t_stack_node *target_node, t_stack_node *node);
+t_stack_node			*get_target_max(long best_match,
+							t_stack_node *target_node, t_stack_node *node);
+void					check_above_medium(t_stack_node **stack, int len,
+							int *cost_a, int *cost_b);
+char					**add_numbers(int argc, char **argv, int *len);
+int						ft_parse_and_validate_long(const char *num_str,
+							long long *out_val);
 int						get_len_except(char *num);
 t_stack_node			*get_node(char *num);
 t_stack_node			*get_first_node(t_stack_node *node);
@@ -71,6 +81,8 @@ int						rr(t_stack_node **stack_a, t_stack_node **stack_b);
 int						rra(t_stack_node **stack_a, bool to_print);
 int						rrb(t_stack_node **stack_b, bool to_print);
 int						rrr(t_stack_node **stack_a, t_stack_node **stack_b);
+void					rra_sa(t_stack_node **stack);
+void					do_sort_three(t_stack_node **stack);
 t_stack_node			*get_max_node_from(t_stack_node *node);
 t_stack_node			*get_min_node_from(t_stack_node *node);
 t_stack_node			*get_cheapest_from(t_stack_node *node);

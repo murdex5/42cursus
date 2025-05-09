@@ -47,10 +47,7 @@ static int	check_doubles(t_stack_node *node)
 		while (temp)
 		{
 			if (node->nbr == temp->nbr)
-			{
-				ft_printf("Error: \nDuplicates found\n");
 				return (0);
-			}
 			temp = temp->next;
 		}
 		node = node->next;
@@ -70,10 +67,7 @@ t_stack_node	*checks(int argc, char **numbers)
 	free_str_list(numbers);
 	node = get_first_node(node);
 	if (!check_doubles(node))
-	{
-		std_errror("Duplicates were found");
-		return (free_node_list(node), NULL);
-	}
+		return (free_duplicate("Duplicates were found", node), NULL);
 	set_indexes(node);
 	return (node);
 }

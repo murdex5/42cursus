@@ -12,29 +12,32 @@
 
 #include "../../push_swap.h"
 
-static void set_target_b(t_stack_node *stack_a, t_stack_node *stack_b)
+static void	set_target_b(t_stack_node *stack_a, t_stack_node *stack_b)
 {
-    if (!stack_a)
-        return;
-    while (stack_b)
-    {
-        t_stack_node *current_a = stack_a;
-        t_stack_node *target_node = NULL;
-        long best_match = LONG_MAX;
+	t_stack_node	*current_a;
+	t_stack_node	*target_node;
+	long			best_match;
 
-        while (current_a)
-        {
-            if (current_a->nbr > stack_b->nbr && current_a->nbr < best_match)
-            {
-                best_match = current_a->nbr;
-                target_node = current_a;
-            }
-            current_a = current_a->next;
-        }
-        stack_b->target_node = (best_match == LONG_MAX) ? get_min_node_from(stack_a) : target_node;
-        stack_b = stack_b->next;
-    }
-}  
+	if (!stack_a)
+		return ;
+	while (stack_b)
+	{
+		current_a = stack_a;
+		target_node = NULL;
+		best_match = LONG_MAX;
+		while (current_a)
+		{
+			if (current_a->nbr > stack_b->nbr && current_a->nbr < best_match)
+			{
+				best_match = current_a->nbr;
+				target_node = current_a;
+			}
+			current_a = current_a->next;
+		}
+		stack_b->target_node = get_target_max(best_match, target_node, stack_a);
+		stack_b = stack_b->next;
+	}
+}
 
 void	init_nodes_b(t_stack_node *stack_a, t_stack_node *stack_b)
 {

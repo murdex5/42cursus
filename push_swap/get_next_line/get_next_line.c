@@ -2,24 +2,20 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
-	+:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+      
-	+#+        */
-/*                                                +#+#+#+#+#+  
-	+#+           */
-/*   Created: 2025/01/15 14:37:33 by kadferna          #+#    #+#             */
-/*   Updated: 2025/01/22 11:25:03 by kadferna         ###   ########.fr       */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/22 18:05:14 by kadferna          #+#    #+#             */
+/*   Updated: 2025/04/22 18:05:15 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-
 static char	*get_line(int fd, char *buf, char *buffer)
 {
-	int read_count;
-	char *temp;
+	int		read_count;
+	char	*temp;
 
 	read_count = 1;
 	while (read_count != 0)
@@ -44,8 +40,8 @@ static char	*get_line(int fd, char *buf, char *buffer)
 
 static char	*clean_up(char *line)
 {
-	int count;
-	char *buf;
+	int		count;
+	char	*buf;
 
 	if (!line)
 		return (NULL);
@@ -71,9 +67,9 @@ static char	*clean_up(char *line)
 
 char	*get_next_line(int fd)
 {
-	static char *buffer;
-	char *buf;
-	char *line;
+	static char	*buffer;
+	char		*buf;
+	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);

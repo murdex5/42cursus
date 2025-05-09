@@ -77,7 +77,7 @@ void	*ft_realloc(void *a, size_t new_size)
 	if (!a)
 	{
 		new_ptr = malloc(new_size);
-		return(new_ptr);
+		return (new_ptr);
 	}
 	if (new_size == 0)
 	{

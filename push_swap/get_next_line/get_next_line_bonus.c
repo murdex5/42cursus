@@ -56,7 +56,7 @@ static char	*clean_up(char *line)
 		line[count + 1] = '\0';
 		return (NULL);
 	}
-	if ( *buf == '\0')
+	if (*buf == '\0')
 	{
 		free(buf);
 		buf = NULL;

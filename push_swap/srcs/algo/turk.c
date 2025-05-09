@@ -43,10 +43,7 @@ int	sort_three(t_stack_node **stack_a)
 		sa(stack_a, true);
 	}
 	else if (max->index == 1 && min->index == 0)
-	{
-		rra(stack_a, true);
-		sa(stack_a, true);
-	}
+		rra_sa(stack_a);
 	else if (max->index == 2 && min->index == 1)
 		sa(stack_a, true);
 	else if (max->index == 0 && min->index == 1)
@@ -72,10 +69,7 @@ int	sort_stack(t_stack_node **stack_a, t_stack_node **stack_b)
 		len_a = count_stack(*stack_a);
 	}
 	if (len_a == 3 && !stack_sorted(*stack_a))
-	{
-		current_index(*stack_a);
-		sort_three(stack_a);
-	}
+		do_sort_three(stack_a);
 	while (*stack_b)
 	{
 		init_nodes_b(*stack_a, *stack_b);

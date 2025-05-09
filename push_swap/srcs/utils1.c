@@ -80,17 +80,3 @@ char	**malloc_and_set_null(int len)
 	}
 	return (s);
 }
-
-int	check_spaces(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == 32 && str[i + 1] == 32)
-			return (0);
-		i++;
-	}
-	return (1);
-}

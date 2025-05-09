@@ -12,56 +12,54 @@
 
 #include "../../push_swap.h"
 
-void set_target_node_a(t_stack_node *stack_a, t_stack_node *stack_b)
+void	set_target_node_a(t_stack_node *stack_a, t_stack_node *stack_b)
 {
-    if (!stack_b) // Early exit if stack_b is empty
-        return;
+	t_stack_node	*current_b;
+	t_stack_node	*target_node;
+	long			best_match;
 
-    while (stack_a)
-    {
-        t_stack_node *current_b = stack_b;
-        t_stack_node *target_node = NULL;
-        long best_match = LONG_MIN;
-
-        while (current_b)
-        {
-            if (current_b->nbr < stack_a->nbr && current_b->nbr > best_match)
-            {
-                best_match = current_b->nbr;
-                target_node = current_b;
-            }
-            current_b = current_b->next;
-        }
-        stack_a->target_node = (best_match == LONG_MIN) ? get_max_node_from(stack_b) : target_node;
-        stack_a = stack_a->next;
-    }
+	if (!stack_b)
+		return ;
+	while (stack_a)
+	{
+		current_b = stack_b;
+		target_node = NULL;
+		best_match = LONG_MIN;
+		while (current_b)
+		{
+			if (current_b->nbr < stack_a->nbr && current_b->nbr > best_match)
+			{
+				best_match = current_b->nbr;
+				target_node = current_b;
+			}
+			current_b = current_b->next;
+		}
+		stack_a->target_node = get_target_min(best_match, target_node, stack_b);
+		stack_a = stack_a->next;
+	}
 }
 
-void cost_analysis(t_stack_node *stack_a, t_stack_node *stack_b)
+void	cost_analysis(t_stack_node *stack_a, t_stack_node *stack_b)
 {
-    int a_len = count_stack(stack_a);
-    int b_len = count_stack(stack_b);
+	int	a_len;
+	int	b_len;
+	int	cost_a;
+	int	cost_b;
 
-    while (stack_a)
-    {
-        int cost_a = stack_a->above_medium ? stack_a->index : a_len - stack_a->index;
-
-        if (stack_a->target_node)
-        {
-            int cost_b = stack_a->target_node->above_medium 
-                ? stack_a->target_node->index 
-                : b_len - stack_a->target_node->index;
-
-            if (stack_a->above_medium == stack_a->target_node->above_medium)
-                stack_a->push_cost = (cost_a > cost_b) ? cost_a : cost_b;
-            else
-                stack_a->push_cost = cost_a + cost_b;
-        }
-        else
-            stack_a->push_cost = cost_a; // Only move in stack_a if no target
-
-        stack_a = stack_a->next;
-    }
+	a_len = count_stack(stack_a);
+	b_len = count_stack(stack_b);
+	while (stack_a)
+	{
+		if (stack_a->above_medium)
+			cost_a = stack_a->index;
+		else
+			cost_a = a_len - stack_a->index;
+		if (stack_a->target_node)
+			check_above_medium(&stack_a, b_len, &cost_a, &cost_b);
+		else
+			stack_a->push_cost = cost_a;
+		stack_a = stack_a->next;
+	}
 }
 
 void	set_cheapest(t_stack_node *stack)

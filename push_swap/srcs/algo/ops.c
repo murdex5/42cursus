@@ -65,3 +65,15 @@ void	prep_stacks(t_stack_node **stack, t_stack_node *top_node,
 		}
 	}
 }
+
+void	rra_sa(t_stack_node **stack)
+{
+	rra(stack, true);
+	sa(stack, true);
+}
+
+void	do_sort_three(t_stack_node **stack)
+{
+	current_index(*stack);
+	sort_three(stack);
+}

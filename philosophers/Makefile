@@ -14,7 +14,8 @@
 CC = gcc
 SRCS_DIR = ./srcs
 CFLAGS = -Wall -Werror -Wextra -pthread
-SRCS = main.c
+SRCS = $(SRCS_DIR)/utils.c \ 
+		main.c 
 OBJS = ${SRCS:.c=.o}
 NAME = philo
 

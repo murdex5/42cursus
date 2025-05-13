@@ -18,4 +18,9 @@
 # include <time.h>
 # include <unistd.h>
 
+typedef struct s_philosopher
+{
+	int	time_to_eat;
+}		t_philosopher;
+
 #endif

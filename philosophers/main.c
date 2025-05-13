@@ -12,11 +12,13 @@
 
 #include "philosophers.h"
 
-int     main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
+	t_philosopher	*philosopher;
 	pthread_t *restrict thread;
 	const pthread_t *restrict att;
-	void *restrict arg;
+	void *rcstrict arg;
+
 	if (argc < 2)
 		return (1);
 	if (!pthread_create(thread, att, start_routine(), arg))

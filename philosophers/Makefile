@@ -12,16 +12,11 @@
 
 CC = gcc
 SRCS_DIR = ./srcs
-<<<<<<< HEAD
-CFLAGS = -Wall -Werror -Wextra -pthread
-SRCS = $(SRCS_DIR)/utils.c \
-=======
 CFLAGS = -Wall -Werror -Wextra -lpthread
 SRCS = $(SRCS_DIR)/utils.c \
 		$(SRCS_DIR)/errors.c \
 		$(SRCS_DIR)/checks.c \
 		$(SRCS_DIR)/parsing.c \
->>>>>>> 058fa30 (checks)
 		main.c 
 OBJS = ${SRCS:.c=.o}
 NAME = philo

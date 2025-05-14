@@ -12,12 +12,8 @@
 
 #include "philosophers.h"
 
-int main()
+int main(int argc, char **argv)
 {
-<<<<<<< HEAD
-=======
-	if (!checks(argc, argv))
-		return (1);
->>>>>>> 058fa30 (checks)
+	if(!checks(argc, argv))
 	return (0);
 }

@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kadferna <marvin.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 12:01:13 by kadferna          #+#    #+#             */
-/*   Updated: 2025/05/09 12:01:35 by kadferna         ###   ########.fr       */
+/*   Created: 2025/05/14 13:54:43 by kadferna          #+#    #+#             */
+/*   Updated: 2025/05/14 13:54:46 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../philosophers.h"
 
-int main()
+
+void std_error(char *msg)
 {
-<<<<<<< HEAD
-=======
-	if (!checks(argc, argv))
-		return (1);
->>>>>>> 058fa30 (checks)
-	return (0);
+    printf("%s\n", msg);
 }

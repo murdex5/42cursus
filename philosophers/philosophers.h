@@ -48,4 +48,7 @@ typedef struct s_program
 	t_philo			*philos;
 }					t_program;
 
+void				std_error(char *msg);
+int					check_args(int argc);
+int					checks(int argc, char **argv);
 #endif

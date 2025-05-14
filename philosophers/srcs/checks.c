@@ -12,20 +12,6 @@
 
 #include "../philosophers.h"
 
-int	has_letters(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] >= '0' && str[i] <= '9')
-			i++;
-		else
-			return (0);
-	}
-	return (1);
-}
 int	check_each_arg(int argc, char **argv)
 {
 	int	i;
@@ -33,6 +19,9 @@ int	check_each_arg(int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
+		if (!check_numbers(argv[i]))
+			return (printf("the number must be in range of int min to int max"),
+				0);
 		if (!has_letters(argv[i]))
 			return (std_error("must not contain any letters"), 0);
 		i++;

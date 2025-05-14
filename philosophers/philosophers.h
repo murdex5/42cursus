@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <time.h>
 # include <unistd.h>
+# include <limits.h>
 
 typedef struct s_philo
 {
@@ -49,5 +50,7 @@ typedef struct s_program
 }					t_program;
 
 void				std_error(char *msg);
+int					has_letters(char *str);
+int					check_numbers(char *c);
 int					checks(int argc, char **argv);
 #endif

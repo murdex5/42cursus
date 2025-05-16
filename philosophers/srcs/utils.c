@@ -36,7 +36,8 @@ int	has_letters(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] >= '0' && str[i] <= '9')
+		if ((str[i] >= '0' && str[i] <= '9') || (str[i] == '+'
+				|| str[i] == '-'))
 			i++;
 		else
 			return (0);
@@ -44,61 +45,58 @@ int	has_letters(char *str)
 	return (1);
 }
 
-int	check_numbers(char *c)
+int	str_len(char *str)
 {
 	int	i;
-	int	len;
-	int	j;
 
-	i = 0;
-	len = ft_strlen(c);
-	j = 0;
-	while (i < len)
-	{
-		if (c[i] == ' ' || (c[i] >= 9 && c[i] <= 13))
-			j = 0;
-		if (c[i] >= '0' && c[i] <= '9')
-			j = 0;
-		j++;
-		i++;
-	}
-	if (j >= 2)
+	if (!str)
 		return (0);
-	else
-		return (1);
+	i = 0;
+	while (str[i] != '\n')
+		i++;
+	return (i);
 }
 
-void	update_sign(const char *str, int *i, int *sign)
+static int	is_valid_number(const char *str)
 {
-	if (str[(*i)] == '+' || str[(*i)] == '-')
-	{
-		if (str[(*i)] == '-')
-			(*sign) = -1;
-		(*i)++;
-	}
-}
-
-int	is_valid_int(const char *str)
-{
-	int			i;
-	int			sign;
-	long long	num;
+	long	num;
+	int		sign;
+	int		i;
 
 	i = 0;
 	sign = 1;
 	num = 0;
-    update_sign(str, &i, &sign);
-	if (!str[i] || !ft_isdigit(str[i]))
-		return (0);
-	while (str[i] && ft_isdigit(str[i]))
+	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
 	{
 		num = num * 10 + (str[i] - '0');
-		if ((sign == 1 && num > INT_MAX) || (sign == -1
-				&& num > (long long)INT_MAX + 1))
+		if ((sign == 1 && num > INT_MAX) || (sign == -1 && (-num) < INT_MIN))
 			return (0);
 		i++;
 	}
 	if (str[i] != '\0')
 		return (0);
-	return ((int)num);
+	return (1);
+}
+
+int	check_numbers(int *nums, int argc, char **argv)
+{
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		if (!is_valid_number(argv[i]))
+			return (std_error("Must be in range of INT_MIN and INT_MAX"), 0);
+		nums[i - 1] = ft_atoi(argv[i]);
+		i++;
+	}
+	return (1);
 }

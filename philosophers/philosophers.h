@@ -49,9 +49,9 @@ typedef struct s_program
 	t_philo			*philos;
 }					t_program;
 
+int					ft_atoi(const char *nptr);
 void				std_error(char *msg);
 int					has_letters(char *str);
-int					check_numbers(char *c);
-int					is_valid_int(const char *str);
-int					checks(int argc, char **argv);
+int					check_numbers(int *nums, int argc, char **argv);
+int					checks(int *nums, int argc, char **argv);
 #endif

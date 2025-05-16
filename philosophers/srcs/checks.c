@@ -21,20 +21,19 @@ int	check_each_arg(int argc, char **argv)
 	{
 		if (!has_letters(argv[i]))
 			return (std_error("must not contain any letters"), 0);
-		if (!check_numbers(argv[i]))
-			return (std_error("the number must be in range of int min to int max"),
-				0);
 		i++;
 	}
 	return (1);
 }
 
-int	checks(int argc, char **argv)
+int	checks(int *nums, int argc, char **argv)
 {
 	if (argc != 6)
 		return (std_error("There must be 5 args.\n./philo <num of philos> <time will die if does not eat> <eat time> <sleep time> <num of times to eat>\n"),
 			0);
 	if (!check_each_arg(argc, argv))
+		return (0);
+	if (!check_numbers(nums, argc, argv))
 		return (0);
 	return (1);
 }

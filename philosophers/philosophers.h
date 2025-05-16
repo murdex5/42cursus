@@ -55,3 +55,6 @@ int					check_numbers(char *c);
 int					is_valid_int(const char *str);
 int					checks(int argc, char **argv);
 #endif
+
+
+https://vscode.dev/tunnel/malshaprabtoh-virtua/home/malshapraboth/42cursus/philosophers

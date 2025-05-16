@@ -12,12 +12,12 @@
 
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
+# include <limits.h>
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <time.h>
 # include <unistd.h>
-# include <limits.h>
 
 typedef struct s_philo
 {
@@ -52,5 +52,6 @@ typedef struct s_program
 void				std_error(char *msg);
 int					has_letters(char *str);
 int					check_numbers(char *c);
+int					is_valid_int(const char *str);
 int					checks(int argc, char **argv);
 #endif

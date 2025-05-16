@@ -14,8 +14,10 @@
 # define PHILOSOPHERS_H
 # include <limits.h>
 # include <pthread.h>
+# include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/types.h>
 # include <time.h>
 # include <unistd.h>
 
@@ -23,38 +25,41 @@
 
 typedef struct s_philo
 {
-	pthread_t		thread;
+	struct s_data	*data;
+	pthread_t		t1;
 	int				id;
+	int				eat_cont;
+	int				status;
 	int				eating;
-	int				meals_eaten;
-	size_t			last_meal;
-	size_t			time_to_die;
-	size_t			time_to_eat;
-	size_t			time_to_sleep;
-	size_t			start_time;
-	int				num_of_philos;
-	int				num_times_to_eat;
-	int				*dead;
+	uint64_t		time_to_die;
+	pthread_mutex_t	lock;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
-	pthread_mutex_t	*write_lock;
-	pthread_mutex_t	*dead_lock;
-	pthread_mutex_t	*meal_lock;
 }					t_philo;
 
-typedef struct s_program
+typedef struct s_data
 {
-	int				dead_flag;
-	pthread_mutex_t	dead_lock;
-	pthread_mutex_t	meal_lock;
-	pthread_mutex_t	write_lock;
+	pthread_t		*tid;
+	int				philo_num;
+	int				meals_nb;
+	int				dead;
+	int				finished;
 	t_philo			*philos;
-}					t_program;
+	u_int64_t		death_time;
+	u_int64_t		eat_time;
+	u_int64_t		sleep_time;
+	u_int64_t		start_time;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	lock;
+	pthread_mutex_t	write;
+}					t_data;
 
+void				free_data_struct(t_data *data);
 int					ft_atoi(const char *nptr);
 void				std_error(char *msg);
 int					has_letters(char *str);
 int					check_numbers(int *nums, int argc, char **argv);
 int					checks(int *nums, int argc, char **argv);
 int					check_num_values(int *nums);
+t_data				*init_data(int *nums);
 #endif

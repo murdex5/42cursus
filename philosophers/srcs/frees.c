@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin.42.fr>                    +#+  +:+       +#+        */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 13:53:05 by kadferna          #+#    #+#             */
-/*   Updated: 2025/05/14 13:53:06 by kadferna         ###   ########.fr       */
+/*   Created: 2025/05/16 14:52:20 by kadferna          #+#    #+#             */
+/*   Updated: 2025/05/16 14:52:35 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-t_data	*init_data(int *nums)
+void	free_data_struct(t_data *data)
 {
-	t_data *data;
-
-	data = malloc(sizeof(t_data));
 	if (!data)
-		return (NULL);
-	data->philo_num = nums[0];
-	data->death_time = nums[1];
-	data->eat_time = nums[2];
-	data->sleep_time = nums[3];
-	data->meals_nb = nums[4];
-	return (data);
+		return ;
+	free(data);
 }

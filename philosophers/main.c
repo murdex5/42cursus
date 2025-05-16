@@ -15,7 +15,6 @@
 int main(int argc, char **argv)
 {
 	if(!checks(argc, argv))
-		return (0);
-	int he = 343;
-	char
+		return (1);
+	return (0);
 }

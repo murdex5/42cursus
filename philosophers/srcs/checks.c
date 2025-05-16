@@ -37,3 +37,11 @@ int	checks(int *nums, int argc, char **argv)
 		return (0);
 	return (1);
 }
+
+int	check_num_values(int *nums)
+{
+	if (nums[0] > MAX_PHILOS)
+		return (printf("Error\nMaximum nums of philosophers is %d\n",
+				MAX_PHILOS), 0);
+	return (1);
+}

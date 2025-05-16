@@ -19,6 +19,8 @@
 # include <time.h>
 # include <unistd.h>
 
+# define MAX_PHILOS 300
+
 typedef struct s_philo
 {
 	pthread_t		thread;
@@ -54,4 +56,5 @@ void				std_error(char *msg);
 int					has_letters(char *str);
 int					check_numbers(int *nums, int argc, char **argv);
 int					checks(int *nums, int argc, char **argv);
+int					check_num_values(int *nums);
 #endif

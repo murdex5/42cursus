@@ -18,5 +18,7 @@ int	main(int argc, char **argv)
 
 	if (!checks(nums, argc, argv))
 		return (1);
+	if (!check_num_values(nums))
+		return (1);
 	return (0);
 }

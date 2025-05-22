@@ -24,8 +24,6 @@ t_data	*init_data(int *nums)
 	data->eat_time = nums[2];
 	data->sleep_time = nums[3];
 	data->meals_nb = nums[4];
-	if (data->eat_time < 0 || data->death_time < 0 || data->sleep_time < 0)
-		return (NULL);
 	data->dead = 0;
 	data->finished = 0;
 	pthread_mutex_init(&data->write, NULL);
@@ -78,10 +76,17 @@ int	get_mem(t_data *data)
 		return (std_error("Memory allocation for tid failed"), 0);
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->philo_num);
 	if (!data->forks)
+	{
+		free(data->tid);
 		return (std_error("Memory allocation for forks failed"), 0);
+	}
 	data->philos = malloc(sizeof(t_philo) * data->philo_num);
 	if (!data->philos)
+	{
+		free(data->tid);
+		free(data->forks);
 		return (std_error("Memory allocation for philosopers failed"), 0);
+	}
 	return (1);
 }
 
@@ -93,10 +98,16 @@ t_data	*init(int *nums)
 	if (!data)
 		return (NULL);
 	if (!get_mem(data))
+	{
+		free(data);
 		return (NULL);
+	}
 	if (!init_forks(data))
 	{
-		free_data_struct(data);
+		free(data->tid);
+		free(data->forks);
+		free(data->philos);
+		free(data);
 		return (NULL);
 	}
 	init_philos(data);

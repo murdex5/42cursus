@@ -45,5 +45,7 @@ int	check_num_values(int *nums)
 				MAX_PHILOS), 0);
 	else if (nums[0] < 1)
 		return (std_error("There should be atleast 1 philosopher"), 0);
+	else if (nums[1] < 0 || nums[2] < 0 || nums[3] < 0)
+		return (std_error("deat time, sleep time and eat time must always be greater than zero"), 0);
 	return (1);
 }

@@ -27,7 +27,6 @@ int	main(int argc, char **argv)
 {
 	int	nums[argc - 1];
 	t_data *data;
-	pthread_t *tid;
 
 	if (!checks(nums, argc, argv))
 		return (1);
@@ -36,7 +35,7 @@ int	main(int argc, char **argv)
 	data = init(nums);
 	if (!data)
 		return (1);
-	pthread_create(&tid, NULL, &routine, NULL);
-	free_data_struct(data);
+	if (data)
+		free_data_struct(data);
 	return (0);
 }

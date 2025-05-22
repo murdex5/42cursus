@@ -17,7 +17,20 @@ void	free_philos(t_philo *philo)
 	if (!philo)
 		return ;
 	pthread_mutex_destroy(&philo->lock);
-	free(philo);
+}
+
+void	free_tid(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->philo_num)
+	{
+		if (data->tid[i])
+			pthread_join(data->tid[i], NULL);
+		i++;
+	}
+	free(data->tid);
 }
 
 void	free_data_struct(t_data *data)
@@ -28,20 +41,18 @@ void	free_data_struct(t_data *data)
 		return ;
 	i = -1;
 	if (data->tid)
+		free_tid(data);
+	i = 0;
+	while (i < data->philo_num)
 	{
-		while (++i < data->philo_num)
-		{
-			if (data->tid[i])
-				pthread_join(data->tid[i], NULL);
-		}
-	}
-	i = -1;
-	while (++i < data->philo_num)
 		free_philos(&data->philos[i]);
+		i++;
+	}
+	free(data->philos);
 	i = -1;
 	if (data->forks)
 	{
-		while (++i > data->philo_num)
+		while (++i < data->philo_num)
 			pthread_mutex_destroy(&data->forks[i]);
 		free(data->forks);
 	}

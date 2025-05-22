@@ -43,5 +43,7 @@ int	check_num_values(int *nums)
 	if (nums[0] > MAX_PHILOS)
 		return (printf("Error\nMaximum nums of philosophers is %d\n",
 				MAX_PHILOS), 0);
+	else if (nums[0] < 1)
+		return (std_error("There should be atleast 1 philosopher"), 0);
 	return (1);
 }

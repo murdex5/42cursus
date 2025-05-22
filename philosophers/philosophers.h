@@ -21,8 +21,9 @@
 # include <time.h>
 # include <unistd.h>
 
-# define MAX_PHILOS 300
+# define MAX_PHILOS 200
 
+struct s_data;
 typedef struct s_philo
 {
 	struct s_data	*data;
@@ -62,4 +63,8 @@ int					check_numbers(int *nums, int argc, char **argv);
 int					checks(int *nums, int argc, char **argv);
 int					check_num_values(int *nums);
 t_data				*init_data(int *nums);
+void				init_philos(t_data *data);
+int					init_forks(t_data *data);
+int					get_mem(t_data *data);
+t_data				*init(int *nums);
 #endif

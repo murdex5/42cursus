@@ -51,10 +51,15 @@ u_int64_t get_time(void)
 int ft_usleep(useconds_t time)
 {
 	u_int64_t start;
+	u_int64_t current_time;
 
 	start = get_time();
-	while (get_time() - start) < time)
+	current_time = get_time();
+	while (current_time - start < time)
+	{
+		current_time = get_time();
 		usleep(time / 10);
+	}
 	return (0);
 
 }

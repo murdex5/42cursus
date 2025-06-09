@@ -44,7 +44,7 @@ u_int64_t get_time(void)
 	struct timeval tv;
 
 	if (gettimeofday(&tv, NULL))
-		return (std_error("gettimeofdat failed\n"), NULL);
+		return (std_error("gettimeofdat failed\n"), 0);
 	return ((tv.tv_sec * (u_int64_t)1000) + (tv.tv_sec / 1000));
 }
 

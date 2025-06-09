@@ -15,46 +15,39 @@
 # include <limits.h>
 # include <pthread.h>
 # include <stdbool.h>
+# include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
+# include <sys/types.h>
 # include <unistd.h>
-#include <sys/types.h>
-#include <stdint.h>
 
 # define MAX_PHILOS 200
 
-struct s_data;
-typedef struct s_philo
-{
-	struct s_data	*data;
-	pthread_t		t1;
-	int				id;
-	int				eat_cont;
-	int				status;
-	int				eating;
-	uint64_t		time_to_die;
-	pthread_mutex_t	lock;
-	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	*l_fork;
-}					t_philo;
-
 typedef struct s_data
 {
-	pthread_t		*tid;
-	int				philo_num;
-	int				meals_nb;
-	int				dead;
-	int				finished;
-	t_philo			*philos;
-	u_int64_t		death_time;
-	u_int64_t		eat_time;
-	u_int64_t		sleep_time;
-	u_int64_t		start_time;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	lock;
-	pthread_mutex_t	write;
+	int				num_philos;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				max_meals;
+	bool			death_flag;
+	pthread_mutex_t *forks;
+	pthread_mutex_t	death_mutex;
+	pthread_mutex_t	write_mutex;
+	long			start_time;
 }					t_data;
+
+typedef struct s_philo
+{
+	int				id;
+	pthread_t		thread;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
+	long			last_meal_time;
+	int				meals_eaten;
+	t_data			*data;
+}					t_philo;
 
 void				free_data_struct(t_data *data);
 int					ft_atoi(const char *nptr);
@@ -67,5 +60,6 @@ t_data				*init_data(int *nums);
 void				init_philos(t_data *data);
 int					init_forks(t_data *data);
 int					get_mem(t_data *data);
+u_int64_t			get_time(void);
 t_data				*init(int *nums);
 #endif

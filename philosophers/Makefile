@@ -15,6 +15,7 @@ SRCS_DIR = ./srcs
 CFLAGS = -Wall -Werror -Wextra -pthread 
 SRCS = $(SRCS_DIR)/utils.c \
 		$(SRCS_DIR)/utils1.c \
+		$(SRCS_DIR)/utils2.c \
 		$(SRCS_DIR)/frees.c  \
 		$(SRCS_DIR)/errors.c \
 		$(SRCS_DIR)/checks.c \

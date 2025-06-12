@@ -47,6 +47,7 @@ int	init_philos(t_data *data, t_philo **philos)
 
 	if (!data)
 		return (0);
+	
 	*philos = malloc(sizeof(t_philo) * data->num_philos);
 	if (!*philos)
 		return (0);
@@ -55,10 +56,10 @@ int	init_philos(t_data *data, t_philo **philos)
 	{
 		(*philos)[i].id = i + 1;
 		(*philos)[i].meals_eaten = 0;
-		(*philos)[i].last_meal_time = get_time();
+		(*philos)[i].last_meal_time = data->start_time;
 		(*philos)[i].data = data;
-		(*philos)[i].left_fork = &data->forks[i];
-		(*philos)[i].right_fork = &data->forks[(i + 1) % data->num_philos];
+		(*philos)[i].left_fork = NULL;
+		(*philos)[i].right_fork = NULL;
 	}
 	return (1);
 }
@@ -85,7 +86,7 @@ int	init_forks(t_data *data, t_philo **philos)
 t_data	*init(int *nums, t_philo **philos)
 {
 	t_data	*data;
-
+	philos = NULL;
 	data = init_data(nums);
 	if (!data)
 		return (std_error("Inisializing data failed"), NULL);

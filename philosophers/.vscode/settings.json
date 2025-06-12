@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.html": "html",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "philosophers.h": "c"
     }
 }

@@ -49,3 +49,14 @@ int	check_num_values(int *nums)
 		return (std_error("deat time, sleep time and eat time must always be greater than zero"), 0);
 	return (1);
 }
+
+t_data *do_checks_and_parse(t_philo **philos, int *nums)
+{
+	t_data *data;
+	if (!check_num_values(nums))
+		return (NULL);
+	data = init(nums, philos);
+	if (!data)
+		return (NULL);
+	return (data);
+}

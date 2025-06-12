@@ -52,6 +52,7 @@ typedef struct s_philo
 bool				if_odd(int n);
 void				free_data_struct(t_data *data, t_philo **philos);
 int					ft_atoi(const char *nptr);
+void				log_action(t_data *data, int philo_id, char *msg);
 void				std_error(char *msg);
 int					has_letters(char *str);
 int					check_numbers(int *nums, int argc, char **argv);
@@ -62,4 +63,5 @@ int					init_philos(t_data *data, t_philo **philos);
 int					init_forks(t_data *data, t_philo **philos);
 u_int64_t			get_time(void);
 t_data				*init(int *nums, t_philo **philos);
+t_data *do_checks_and_parse(t_philo **philos, int *nums);
 #endif

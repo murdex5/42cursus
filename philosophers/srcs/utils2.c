@@ -25,6 +25,6 @@ void	log_action(t_data *data, int philo_id, char *msg)
 	long timestamp;
 	pthread_mutex_lock(&data->write_mutex);
 	timestamp = get_time() - data->start_time;
-	printf("%ld %d %s", timestamp, philo_id, msg);
+	printf("%ld %d %s\n", timestamp, philo_id, msg);
 	pthread_mutex_unlock(&data->write_mutex);
 }

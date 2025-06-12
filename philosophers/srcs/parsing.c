@@ -47,7 +47,6 @@ int	init_philos(t_data *data, t_philo **philos)
 
 	if (!data)
 		return (0);
-	
 	*philos = malloc(sizeof(t_philo) * data->num_philos);
 	if (!*philos)
 		return (0);
@@ -56,7 +55,7 @@ int	init_philos(t_data *data, t_philo **philos)
 	{
 		(*philos)[i].id = i + 1;
 		(*philos)[i].meals_eaten = 0;
-		(*philos)[i].last_meal_time = data->start_time;
+		(*philos)[i].last_meal_time = get_time();
 		(*philos)[i].data = data;
 		(*philos)[i].left_fork = NULL;
 		(*philos)[i].right_fork = NULL;
@@ -72,7 +71,11 @@ int	init_forks(t_data *data, t_philo **philos)
 	while (++i < data->num_philos)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
+		{
+			while (--i >= 0)
+				pthread_mutex_destroy(&data->forks[i]);
 			return (0);
+		}
 	}
 	i = -1;
 	while (++i < data->num_philos)
@@ -86,16 +89,34 @@ int	init_forks(t_data *data, t_philo **philos)
 t_data	*init(int *nums, t_philo **philos)
 {
 	t_data	*data;
-	philos = NULL;
+
 	data = init_data(nums);
 	if (!data)
-		return (std_error("Inisializing data failed"), NULL);
-	if (!init_philos(data, philos))
-		return (std_error("Initializing philosophers failed"), NULL);
+		return (std_error("Initializing data failed"), NULL);
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->num_philos);
 	if (!data->forks)
+	{
+		pthread_mutex_destroy(&data->death_mutex);
+		pthread_mutex_destroy(&data->write_mutex);
+		free(data);
 		return (std_error("could not allocate memory for Forks"), NULL);
+	}
+	if (!init_philos(data, philos))
+	{
+		free(data->forks);
+		pthread_mutex_destroy(&data->death_mutex);
+		pthread_mutex_destroy(&data->write_mutex);
+		free(data);
+		return (std_error("Initializing philosophers failed"), NULL);
+	}
 	if (!init_forks(data, philos))
-		return (std_error("Inisizlizing forks failed"), NULL);
+	{
+		free_philos(philos);
+		free(data->forks);
+		pthread_mutex_destroy(&data->death_mutex);
+		pthread_mutex_destroy(&data->write_mutex);
+		free(data);
+		return (std_error("Initializing forks failed"), NULL);
+	}
 	return (data);
 }

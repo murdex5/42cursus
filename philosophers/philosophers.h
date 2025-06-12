@@ -63,5 +63,6 @@ int					init_philos(t_data *data, t_philo **philos);
 int					init_forks(t_data *data, t_philo **philos);
 u_int64_t			get_time(void);
 t_data				*init(int *nums, t_philo **philos);
-t_data *do_checks_and_parse(t_philo **philos, int *nums);
+void				free_philos(t_philo **philos);
+t_data				*do_checks_and_parse(t_philo **philos, int *nums);
 #endif

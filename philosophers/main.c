@@ -33,8 +33,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (!check_num_values(nums))
 		return (1);
-	data = NULL;
-	data = init(nums, data, &philos);
+	data = init(nums, &philos);
 	if (!data)
 		return (1);
 	pthread_mutex_lock(&data->write_mutex);
@@ -48,7 +47,7 @@ int	main(int argc, char **argv)
 	}
 	pthread_mutex_unlock(&data->death_mutex);
 	if (data)
-		free_data_struct(data);
+		free_data_struct(data, &philos);
 	return (0);
 }
 

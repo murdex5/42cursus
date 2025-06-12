@@ -12,18 +12,31 @@
 
 #include "../philosophers.h"
 
-
-
-void	free_data_struct(t_data *data)
+void	free_philos(t_philo **philos)
 {
-	int	i;
+	if (!philos || !*philos)
+		return ;
+	free(*philos);
+	*philos = NULL;
+}
+
+void	free_data_struct(t_data *data, t_philo **philos)
+{
+	int i;
 
 	if (!data)
 		return ;
-	i = -1;
-	while (++i < data->num_philos)
-		pthread_mutex_destroy(&data->forks[i]);
+	if (data->forks)
+	{
+		i = -1;
+		while (++i < data->num_philos)
+			pthread_mutex_destroy(&data->forks[i]);
+		free(data->forks);
+		data->forks = NULL;
+	}
 	pthread_mutex_destroy(&data->death_mutex);
 	pthread_mutex_destroy(&data->write_mutex);
+	free_philos(philos);
+
 	free(data);
 }

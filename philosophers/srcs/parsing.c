@@ -72,13 +72,18 @@ int	init_forks(t_data *data, t_philo **philos)
 	return (1);
 }
 
-t_data	*init(int *nums, t_data *data, t_philo **philos)
+t_data	*init(int *nums, t_philo **philos)
 {
+	t_data	*data;
+
 	data = init_data(nums);
 	if (!data)
 		return (std_error("Inisializing data failed"), NULL);
 	if (!init_philos(data, philos))
 		return (std_error("Initializing philosophers failed"), NULL);
+	data->forks = malloc(sizeof(pthread_mutex_t) * data->num_philos);
+	if (!data->forks)
+		return (std_error("could not allocate memory for Forks"), NULL);
 	if (!init_forks(data, philos))
 		return (std_error("Inisizlizing forks failed"), NULL);
 	return (data);

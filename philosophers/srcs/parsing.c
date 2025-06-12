@@ -26,7 +26,7 @@ t_data	*init_data(int *nums)
 	data->max_meals = nums[4];
 	data->forks = NULL;
 	data->death_flag = false;
-	data->start_time = 0;
+	data->start_time = get_time();
 	if (pthread_mutex_init(&data->death_mutex, NULL) != 0)
 	{
 		free(data);

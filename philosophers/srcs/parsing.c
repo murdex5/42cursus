@@ -16,7 +16,7 @@ t_data	*init_data(int *nums)
 {
 	t_data	*data;
 
-	data = malloc(sizeof(t_data) * 1);
+	data = malloc(sizeof(t_data));
 	if (!data)
 		return (NULL);
 	data->num_philos = nums[0];
@@ -24,10 +24,20 @@ t_data	*init_data(int *nums)
 	data->time_to_eat = nums[2];
 	data->time_to_sleep = nums[3];
 	data->max_meals = nums[4];
+	data->forks = NULL;
+	data->death_flag = false;
+	data->start_time = 0;
 	if (pthread_mutex_init(&data->death_mutex, NULL) != 0)
+	{
+		free(data);
 		return (NULL);
+	}
 	if (pthread_mutex_init(&data->write_mutex, NULL) != 0)
+	{
+		pthread_mutex_destroy(&data->death_mutex);
+		free(data);
 		return (NULL);
+	}
 	return (data);
 }
 

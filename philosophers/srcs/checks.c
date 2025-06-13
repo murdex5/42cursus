@@ -28,8 +28,8 @@ int	check_each_arg(int argc, char **argv)
 
 int	checks(int *nums, int argc, char **argv)
 {
-	if (argc != 6)
-		return (std_error("There must be 5 args.\n./philo <num of philos> <time will die if does not eat> <eat time> <sleep time> <num of times to eat>\n"),
+	if (!(argc == 5 || argc == 6))
+		return (std_error("Expected 4 or 5 arguments (excluding program name).\n./philo <num of philos> <time will die if does not eat> <eat time> <sleep time> *num of times to eat*"),
 			0);
 	if (!check_each_arg(argc, argv))
 		return (0);
@@ -50,9 +50,10 @@ int	check_num_values(int *nums)
 	return (1);
 }
 
-t_data *do_checks_and_parse(t_philo **philos, int *nums)
+t_data	*do_checks_and_parse(t_philo **philos, int *nums)
 {
-	t_data *data;
+	t_data	*data;
+
 	if (!check_num_values(nums))
 		return (NULL);
 	data = init(nums, philos);

@@ -12,8 +12,6 @@
 
 #include "../philosophers.h"
 
-
-
 int	ft_atoi(const char *nptr)
 {
 	int	i;
@@ -39,19 +37,22 @@ int	ft_atoi(const char *nptr)
 	return (result * sign);
 }
 
-u_int64_t get_time(void)
+time_t	get_time(void)
 {
-	struct timeval tv;
+	struct timeval	tv;
 
-	if (gettimeofday(&tv, NULL))
-		return (std_error("gettimeofdat failed\n"), 0);
-	return ((tv.tv_sec * (u_int64_t)1000) + (tv.tv_sec / 1000));
+	if (gettimeofday(&tv, NULL) != 0)
+	{
+		std_error("gettimeofday failed");
+		return ((time_t)0);
+	}
+	return ((tv.tv_sec * (time_t)1000) + (tv.tv_usec / 1000));
 }
 
-int ft_usleep(__useconds_t time)
+int	ft_usleep(__useconds_t time)
 {
-	u_int64_t start;
-	u_int64_t current_time;
+	time_t	start;
+	time_t	current_time;
 
 	start = get_time();
 	current_time = get_time();
@@ -61,5 +62,4 @@ int ft_usleep(__useconds_t time)
 		usleep(time / 10);
 	}
 	return (0);
-
 }

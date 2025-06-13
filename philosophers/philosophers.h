@@ -27,15 +27,15 @@
 typedef struct s_data
 {
 	int				num_philos;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
+	time_t			time_to_die;
+	time_t			time_to_eat;
+	time_t			time_to_sleep;
 	int				max_meals;
 	bool			death_flag;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	death_mutex;
 	pthread_mutex_t	write_mutex;
-	long			start_time;
+	time_t			start_time;
 }					t_data;
 
 typedef struct s_philo
@@ -44,7 +44,7 @@ typedef struct s_philo
 	pthread_t		thread;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	long			last_meal_time;
+	time_t			last_meal_time;
 	int				meals_eaten;
 	t_data			*data;
 }					t_philo;
@@ -61,7 +61,7 @@ int					check_num_values(int *nums);
 t_data				*init_data(int *nums);
 int					init_philos(t_data *data, t_philo **philos);
 int					init_forks(t_data *data, t_philo **philos);
-u_int64_t			get_time(void);
+time_t				get_time(void);
 t_data				*init(int *nums, t_philo **philos);
 void				free_philos(t_philo **philos);
 t_data				*do_checks_and_parse(t_philo **philos, int *nums);

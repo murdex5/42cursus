@@ -39,17 +39,17 @@ void	*routine(void *arg)
 	while (1)
 	{
 		if (check_death(data))
-			return (NULL);
-		log_action(data, philo->id, "is thinking.");
-		pthread_mutex_lock(first_fork_to_pick);
-		log_action(data, philo->id, "has taken fork.");
-		if (check_death(data))
-		{
-			pthread_mutex_unlock(first_fork_to_pick);
-			return (NULL);
-		}
-		pthread_mutex_lock(second_fork_to_pick);
-		log_action(data, philo->id, "has taken fork.");
+            return (NULL);
+        log_action(data, philo->id, "is thinking.");
+        if (check_death(data))
+            return (NULL);
+        pthread_mutex_lock(first_fork_to_pick);
+        if (check_death(data))
+        {
+            pthread_mutex_unlock(first_fork_to_pick);
+            return (NULL);
+        }
+        log_action(data, philo->id, "has taken fork.");
 		pthread_mutex_lock(&data->death_mutex);
 		philo->last_meal_time = get_time();
 		philo->meals_eaten++;
@@ -106,7 +106,7 @@ void monitor(t_philo **philos, t_data *data)
             pthread_mutex_unlock(&data->death_mutex);
             return;
         }
-        usleep(1000);
+        usleep(500);
     }
 }
 

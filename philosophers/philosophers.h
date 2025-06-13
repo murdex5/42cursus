@@ -49,6 +49,15 @@ typedef struct s_philo
 	t_data			*data;
 }					t_philo;
 
+void				destroy_mutex(t_data *data);
+int					only_one(t_data *data, t_philo *philo);
+void				set_forks(t_philo *philo,
+						pthread_mutex_t **first_fork_to_pick,
+						pthread_mutex_t **second_fork_to_pick);
+int					pick_forks(t_data *data, t_philo *philo,
+						pthread_mutex_t *first_fork_to_pick,
+						pthread_mutex_t *second_fork_to_pick);
+void				update_meals(t_data *data, t_philo *philo);
 bool				check_death(t_data *data);
 void				ft_usleep(time_t milliseconds, t_data *data);
 bool				if_odd(int n);

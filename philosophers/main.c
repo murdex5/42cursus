@@ -21,40 +21,14 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	data = philo->data;
-	if (data->num_philos == 1)
-	{
-		pthread_mutex_lock(philo->left_fork);
-		log_action(data, philo->id, "has taken a fork");
-		usleep(data->time_to_die * 1000);
-		pthread_mutex_unlock(philo->left_fork);
+	if (only_one(data, philo))
 		return (NULL);
-	}
-	first_fork_to_pick = philo->right_fork;
-	second_fork_to_pick = philo->left_fork;
-	if (if_odd(philo->id))
-	{
-		first_fork_to_pick = philo->left_fork;
-		second_fork_to_pick = philo->right_fork;
-	}
+	set_forks(philo, &first_fork_to_pick, &second_fork_to_pick);
 	while (1)
 	{
-		if (check_death(data))
+		if (!pick_forks(data, philo, first_fork_to_pick, second_fork_to_pick))
 			return (NULL);
-		log_action(data, philo->id, "is thinking");
-		if (check_death(data))
-			return (NULL);
-		pthread_mutex_lock(first_fork_to_pick);
-		log_action(data, philo->id, "has taken a fork");
-		if (check_death(data))
-		{
-			pthread_mutex_unlock(first_fork_to_pick);
-			break ;
-		}
-		log_action(data, philo->id, "has taken a fork");
-		pthread_mutex_lock(&data->death_mutex);
-		philo->last_meal_time = get_time();
-		philo->meals_eaten++;
-		pthread_mutex_unlock(&data->death_mutex);
+		update_meals(data, philo);
 		log_action(data, philo->id, "is eating");
 		ft_usleep(data->time_to_eat, data);
 		pthread_mutex_unlock(first_fork_to_pick);

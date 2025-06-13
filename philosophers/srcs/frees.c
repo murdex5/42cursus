@@ -22,7 +22,7 @@ void	free_philos(t_philo **philos)
 
 void	free_data_struct(t_data *data, t_philo **philos)
 {
-	int i;
+	int	i;
 
 	if (!data)
 		return ;
@@ -37,6 +37,13 @@ void	free_data_struct(t_data *data, t_philo **philos)
 	pthread_mutex_destroy(&data->death_mutex);
 	pthread_mutex_destroy(&data->write_mutex);
 	free_philos(philos);
+	free(data);
+}
 
+void	destroy_mutex(t_data *data)
+{
+	free(data->forks);
+	pthread_mutex_destroy(&data->death_mutex);
+	pthread_mutex_destroy(&data->write_mutex);
 	free(data);
 }

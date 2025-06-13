@@ -39,6 +39,64 @@ bool	check_death(t_data *data)
 	pthread_mutex_unlock(&data->death_mutex);
 	return (ret);
 }
+int	only_one(t_data *data, t_philo *philo)
+{
+	if (data->num_philos == 1)
+	{
+		pthread_mutex_lock(philo->left_fork);
+		log_action(data, philo->id, "has taken a fork");
+		usleep(data->time_to_die * 1000);
+		pthread_mutex_unlock(philo->left_fork);
+		return (1);
+	}
+	return (0);
+}
+
+void	set_forks(t_philo *philo, pthread_mutex_t **first_fork_to_pick,
+		pthread_mutex_t **second_fork_to_pick)
+{
+	*first_fork_to_pick = philo->right_fork;
+	*second_fork_to_pick = philo->left_fork;
+	if (if_odd(philo->id))
+	{
+		*first_fork_to_pick = philo->left_fork;
+		*second_fork_to_pick = philo->right_fork;
+	}
+}
+
+int	pick_forks(t_data *data, t_philo *philo,
+		pthread_mutex_t *first_fork_to_pick,
+		pthread_mutex_t *second_fork_to_pick)
+{
+	if (check_death(data))
+		return (0);
+	log_action(data, philo->id, "is thinking");
+	if (check_death(data))
+		return (0);
+	pthread_mutex_lock(first_fork_to_pick);
+	log_action(data, philo->id, "has taken a fork");
+	if (check_death(data))
+	{
+		pthread_mutex_unlock(first_fork_to_pick);
+		return (0);
+	}
+	pthread_mutex_lock(second_fork_to_pick);
+	log_action(data, philo->id, "has taken a fork");
+	if (check_death(data))
+	{
+		pthread_mutex_unlock(first_fork_to_pick);
+		pthread_mutex_unlock(second_fork_to_pick);
+		return (0);
+	}
+	return (1);
+}
+void	update_meals(t_data *data, t_philo *philo)
+{
+	pthread_mutex_lock(&data->death_mutex);
+	philo->last_meal_time = get_time();
+	philo->meals_eaten++;
+	pthread_mutex_unlock(&data->death_mutex);
+}
 
 int	check_death_loop(time_t current_time, t_philo **philos, t_data *data,
 		bool *all_philos_eaten)
@@ -68,3 +126,5 @@ int	check_death_loop(time_t current_time, t_philo **philos, t_data *data,
 	}
 	return (1);
 }
+
+

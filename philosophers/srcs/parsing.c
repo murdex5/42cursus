@@ -103,19 +103,13 @@ t_data	*init(int *nums, t_philo **philos)
 	}
 	if (!init_philos(data, philos))
 	{
-		free(data->forks);
-		pthread_mutex_destroy(&data->death_mutex);
-		pthread_mutex_destroy(&data->write_mutex);
-		free(data);
+		destroy_mutex(data);
 		return (std_error("Initializing philosophers failed"), NULL);
 	}
 	if (!init_forks(data, philos))
 	{
 		free_philos(philos);
-		free(data->forks);
-		pthread_mutex_destroy(&data->death_mutex);
-		pthread_mutex_destroy(&data->write_mutex);
-		free(data);
+		destroy_mutex(data);
 		return (std_error("Initializing forks failed"), NULL);
 	}
 	return (data);

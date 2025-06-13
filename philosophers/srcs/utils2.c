@@ -40,28 +40,31 @@ bool	check_death(t_data *data)
 	return (ret);
 }
 
-int	check_death_loop(time_t current_time, t_philo **philos,
-		bool *all_philos_eaten, int i)
+int	check_death_loop(time_t current_time, t_philo **philos, t_data *data,
+		bool *all_philos_eaten)
 {
-	t_data	*data;
+	int	i;
 
-	data = (*philos)[i].data;
-	pthread_mutex_lock(&data->death_mutex);
-	if ((current_time - (*philos)[i].last_meal_time) > data->time_to_die
-		&& !data->death_flag)
+	i = -1;
+	while (++i < data->num_philos)
 	{
-		data->death_flag = true;
-		log_action(data, (*philos)[i].id, "died");
+		pthread_mutex_lock(&data->death_mutex);
+		if ((current_time - (*philos)[i].last_meal_time) > data->time_to_die
+			&& !data->death_flag)
+		{
+			data->death_flag = true;
+			log_action(data, (*philos)[i].id, "died");
+			pthread_mutex_unlock(&data->death_mutex);
+			return (0);
+		}
+		if (data->max_meals != -1 && (*philos)[i].meals_eaten < data->max_meals)
+			*all_philos_eaten = false;
+		if (data->death_flag)
+		{
+			pthread_mutex_unlock(&data->death_mutex);
+			return (0);
+		}
 		pthread_mutex_unlock(&data->death_mutex);
-		return (0);
 	}
-	if (data->max_meals != -1 && (*philos)[i].meals_eaten < data->max_meals)
-		*all_philos_eaten = false;
-	if (data->death_flag)
-	{
-		pthread_mutex_unlock(&data->death_mutex);
-		return (0);
-	}
-	pthread_mutex_unlock(&data->death_mutex);
 	return (1);
 }

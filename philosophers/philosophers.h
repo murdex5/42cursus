@@ -67,5 +67,6 @@ time_t				get_time(void);
 t_data				*init(int *nums, t_philo **philos);
 void				free_philos(t_philo **philos);
 t_data				*do_checks_and_parse(t_philo **philos, int *nums);
-int					check_death_loop(time_t current_time, t_philo **philos, bool *all_philos_eaten, int i);
+int					check_death_loop(time_t current_time, t_philo **philos,
+						t_data *data, bool *all_philos_eaten);
 #endif

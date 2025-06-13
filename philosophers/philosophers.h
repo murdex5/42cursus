@@ -49,6 +49,8 @@ typedef struct s_philo
 	t_data			*data;
 }					t_philo;
 
+bool				check_death(t_data *data);
+void				ft_usleep(time_t milliseconds, t_data *data);
 bool				if_odd(int n);
 void				free_data_struct(t_data *data, t_philo **philos);
 int					ft_atoi(const char *nptr);

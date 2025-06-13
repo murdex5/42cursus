@@ -49,17 +49,21 @@ time_t	get_time(void)
 	return ((tv.tv_sec * (time_t)1000) + (tv.tv_usec / 1000));
 }
 
-int	ft_usleep(__useconds_t time)
+void	ft_usleep(time_t milliseconds, t_data *data)
 {
 	time_t	start;
-	time_t	current_time;
 
 	start = get_time();
-	current_time = get_time();
-	while (current_time - start < time)
+	while (get_time() - start < milliseconds)
 	{
-		current_time = get_time();
-		usleep(time / 10);
+		usleep(100);
+		pthread_mutex_lock(&data->death_mutex);
+		if (data->death_flag)
+		{
+			pthread_mutex_unlock(&data->death_mutex);
+			return ;
+		}
+		pthread_mutex_unlock(&data->death_mutex);
 	}
-	return (0);
+	return ;
 }

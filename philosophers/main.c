@@ -31,92 +31,83 @@ void	*routine(void *arg)
 	}
 	first_fork_to_pick = philo->right_fork;
 	second_fork_to_pick = philo->left_fork;
-	if (if_odd(philo->id) == true)
+	if (if_odd(philo->id))
 	{
 		first_fork_to_pick = philo->left_fork;
 		second_fork_to_pick = philo->right_fork;
 	}
 	while (1)
 	{
-		pthread_mutex_lock(&data->death_mutex);
-		if (data->death_flag == true)
-		{
-			pthread_mutex_unlock(&data->death_mutex);
-			break ;
-		}
-		pthread_mutex_unlock(&data->death_mutex);
-		log_action(data, philo->id, "is thinking");
+		if (check_death(data))
+			return (NULL);
+		log_action(data, philo->id, "is thinking.");
 		pthread_mutex_lock(first_fork_to_pick);
-		log_action(data, philo->id, "has taken a fork");
-		pthread_mutex_lock(&data->death_mutex);
-		if (data->death_flag == true)
+		log_action(data, philo->id, "has taken fork.");
+		if (check_death(data))
 		{
-			pthread_mutex_unlock(&data->death_mutex);
 			pthread_mutex_unlock(first_fork_to_pick);
-			break ;
+			return (NULL);
 		}
-		pthread_mutex_unlock(&data->death_mutex);
 		pthread_mutex_lock(second_fork_to_pick);
-		log_action(data, philo->id, "has taken a fork");
-		log_action(data, philo->id, "is eating");
+		log_action(data, philo->id, "has taken fork.");
 		pthread_mutex_lock(&data->death_mutex);
 		philo->last_meal_time = get_time();
 		philo->meals_eaten++;
 		pthread_mutex_unlock(&data->death_mutex);
-		usleep(data->time_to_eat * 1000);
+		log_action(data, philo->id, "is eating.");
+		ft_usleep(data->time_to_eat, data);
 		pthread_mutex_unlock(first_fork_to_pick);
 		pthread_mutex_unlock(second_fork_to_pick);
-		usleep(data->time_to_sleep * 1000);
-		log_action(data, philo->id, "is sleeping");
+		if (check_death(data))
+			return (NULL);
+		log_action(data, philo->id, "is sleeping.");
+		ft_usleep(data->time_to_sleep, data);
 	}
 	return (NULL);
 }
 
-void	monitor(t_philo **philos, t_data *data)
+void monitor(t_philo **philos, t_data *data)
 {
-	bool	all_philos_eaten;
-	long	current_time;
-	int		i;
+    bool all_philos_eaten;
+    long current_time;
+    int i;
 
-	all_philos_eaten = false;
-	while (1)
-	{
-		i = -1;
-		all_philos_eaten = true;
-		current_time = get_time();
-		while (++i < data->num_philos)
-		{
-			pthread_mutex_lock(&data->death_mutex);
-			if ((current_time - (*philos)[i].last_meal_time) > data->time_to_die
-				&& !data->death_flag)
-			{
-				data->death_flag = true;
-				pthread_mutex_unlock(&data->death_mutex);
-				log_action(data, (*philos)[i].id, "has died");
-				return ;
-			}
-			if (data->max_meals != 1
-				&& data->max_meals > (*philos)[i].meals_eaten)
-				all_philos_eaten = false;
-			if (data->death_flag == true)
-			{
-				pthread_mutex_unlock(&data->death_mutex);
-				goto end_monitor_loop;
-			}
-			pthread_mutex_unlock(&data->death_mutex);
-		}
-		if (data->max_meals != -1 && all_philos_eaten == true)
-		{
-			pthread_mutex_lock(&data->death_mutex);
-			if (data->death_flag == false)
-				data->death_flag = true;
-			pthread_mutex_unlock(&data->death_mutex);
-			goto end_monitor_loop;
-		}
-		usleep(1000);
-	}
-end_monitor_loop:
-	return ;
+    while (1)
+    {
+        i = -1;
+        all_philos_eaten = true;
+        current_time = get_time();
+        
+        while (++i < data->num_philos)
+        {
+            pthread_mutex_lock(&data->death_mutex);
+            if ((current_time - (*philos)[i].last_meal_time) > data->time_to_die && !data->death_flag)
+            {
+                data->death_flag = true;
+                log_action(data, (*philos)[i].id, "has died");
+                pthread_mutex_unlock(&data->death_mutex);
+                return;
+            }
+            if (data->max_meals != -1 && (*philos)[i].meals_eaten < data->max_meals)
+                all_philos_eaten = false;
+                
+            if (data->death_flag)
+            {
+                pthread_mutex_unlock(&data->death_mutex);
+                return;
+            }
+            pthread_mutex_unlock(&data->death_mutex);
+        }
+        if (data->max_meals != -1 && all_philos_eaten)
+        {
+            pthread_mutex_lock(&data->death_mutex);
+            if (!data->death_flag)
+                data->death_flag = true;
+            pthread_mutex_unlock(&data->death_mutex);
+            return;
+        }
+        usleep(1000);
+    }
 }
 
 int	main(int argc, char **argv)

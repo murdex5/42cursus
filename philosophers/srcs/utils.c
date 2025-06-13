@@ -98,7 +98,9 @@ int	check_numbers(int *nums, int argc, char **argv)
 		nums[i - 1] = ft_atoi(argv[i]);
 		i++;
 	}
-	if (argc == 5)
-		nums[5] = 0;
+	if (argc == 6)
+		nums[4] = ft_atoi(argv[5]);
+	else if (argc == 5)
+		nums[4] = -1;
 	return (1);
 }

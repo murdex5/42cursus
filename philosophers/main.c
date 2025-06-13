@@ -24,7 +24,7 @@ void	*routine(void *arg)
 	if (data->num_philos == 1)
 	{
 		pthread_mutex_lock(philo->left_fork);
-		log_action(data, philo->id, "has taken the fork");
+		log_action(data, philo->id, "has taken a fork");
 		usleep(data->time_to_die * 1000);
 		pthread_mutex_unlock(philo->left_fork);
 		return (NULL);
@@ -40,27 +40,28 @@ void	*routine(void *arg)
 	{
 		if (check_death(data))
             return (NULL);
-        log_action(data, philo->id, "is thinking.");
+        log_action(data, philo->id, "is thinking");
         if (check_death(data))
             return (NULL);
         pthread_mutex_lock(first_fork_to_pick);
+		log_action(data, philo->id, "has taken a fork");
         if (check_death(data))
         {
             pthread_mutex_unlock(first_fork_to_pick);
-            return (NULL);
+            break ;
         }
-        log_action(data, philo->id, "has taken fork.");
+        log_action(data, philo->id, "has taken a fork");
 		pthread_mutex_lock(&data->death_mutex);
 		philo->last_meal_time = get_time();
 		philo->meals_eaten++;
 		pthread_mutex_unlock(&data->death_mutex);
-		log_action(data, philo->id, "is eating.");
+		log_action(data, philo->id, "is eating");
 		ft_usleep(data->time_to_eat, data);
 		pthread_mutex_unlock(first_fork_to_pick);
 		pthread_mutex_unlock(second_fork_to_pick);
 		if (check_death(data))
 			return (NULL);
-		log_action(data, philo->id, "is sleeping.");
+		log_action(data, philo->id, "is sleeping");
 		ft_usleep(data->time_to_sleep, data);
 	}
 	return (NULL);
@@ -84,7 +85,7 @@ void monitor(t_philo **philos, t_data *data)
             if ((current_time - (*philos)[i].last_meal_time) > data->time_to_die && !data->death_flag)
             {
                 data->death_flag = true;
-                log_action(data, (*philos)[i].id, "has died");
+                log_action(data, (*philos)[i].id, "died");
                 pthread_mutex_unlock(&data->death_mutex);
                 return;
             }
@@ -119,12 +120,9 @@ int	main(int argc, char **argv)
 	int		i;
 
 	i = -1;
-
 	_philo_array_head = NULL;
 	philos = &_philo_array_head;
 	if (!checks(nums, argc, argv))
-		return (1);
-	if (!check_num_values(nums))
 		return (1);
 	data = init(nums, philos);
 	if (!data)

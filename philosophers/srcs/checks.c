@@ -35,6 +35,8 @@ int	checks(int *nums, int argc, char **argv)
 		return (0);
 	if (!check_numbers(nums, argc, argv))
 		return (0);
+	if (!check_num_values(nums))
+		return (0);
 	return (1);
 }
 

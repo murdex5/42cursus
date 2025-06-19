@@ -41,27 +41,32 @@ void	*routine(void *arg)
 	return (NULL);
 }
 
-void	monitor(t_philo **philos, t_data *data)
+void	*monitor(void *arg)
 {
 	bool	all_philos_eaten;
 	long	current_time;
+	t_philo	**philos;
+	t_data	*data;
 
+	philos = (t_philo **)arg;
+	(*philos)->data = data;
 	while (1)
 	{
 		all_philos_eaten = true;
 		current_time = get_time();
 		if (!check_death_loop(current_time, philos, data, &all_philos_eaten))
-			return ;
+			return (NULL);
 		if (data->max_meals != -1 && all_philos_eaten)
 		{
 			pthread_mutex_lock(&data->death_mutex);
 			if (!data->death_flag)
 				data->death_flag = true;
 			pthread_mutex_unlock(&data->death_mutex);
-			return ;
+			return (NULL);
 		}
 		usleep(500);
 	}
+	return (NULL);
 }
 
 int	main(int argc, char **argv)
@@ -84,7 +89,6 @@ int	main(int argc, char **argv)
 		return (free_data_struct(data, NULL), 1);
 	while (++i < data->num_philos)
 		pthread_create(&(*philos)[i].thread, NULL, routine, &(*philos)[i]);
-	monitor(philos, data);
 	i = -1;
 	while (++i < data->num_philos)
 		pthread_join((*philos)[i].thread, NULL);

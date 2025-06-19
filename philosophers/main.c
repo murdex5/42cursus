@@ -14,58 +14,20 @@
 
 void	*routine(void *arg)
 {
-	t_philo			*philo;
-	t_data			*data;
-	pthread_mutex_t	*first_fork_to_pick;
-	pthread_mutex_t	*second_fork_to_pick;
+	t_philo *philo;
+	t_data *data;
 
 	philo = (t_philo *)arg;
 	data = philo->data;
-	if (only_one(data, philo))
-		return (NULL);
-	set_forks(philo, &first_fork_to_pick, &second_fork_to_pick);
-	while (1)
+	if (data->num_philos == 1)
 	{
-		if (!pick_forks(data, philo, first_fork_to_pick, second_fork_to_pick))
-			return (NULL);
-		update_meals(data, philo);
-		log_action(data, philo->id, "is eating");
-		ft_usleep(data->time_to_eat, data);
-		pthread_mutex_unlock(first_fork_to_pick);
-		pthread_mutex_unlock(second_fork_to_pick);
-		if (check_death(data))
-			return (NULL);
-		log_action(data, philo->id, "is sleeping");
-		ft_usleep(data->time_to_sleep, data);
+		
 	}
 	return (NULL);
 }
 
 void	*monitor(void *arg)
 {
-	bool	all_philos_eaten;
-	long	current_time;
-	t_philo	**philos;
-	t_data	*data;
-
-	philos = (t_philo **)arg;
-	data = (*philos)->data;
-	while (1)
-	{
-		all_philos_eaten = true;
-		current_time = get_time();
-		if (!check_death_loop(current_time, philos, data, &all_philos_eaten))
-			return (NULL);
-		if (data->max_meals != -1 && all_philos_eaten)
-		{
-			pthread_mutex_lock(&data->death_mutex);
-			if (!data->death_flag)
-				data->death_flag = true;
-			pthread_mutex_unlock(&data->death_mutex);
-			return (NULL);
-		}
-		usleep(50);
-	}
 	return (NULL);
 }
 
@@ -89,10 +51,11 @@ int	main(int argc, char **argv)
 	if (!philos || !*philos)
 		return (free_data_struct(data, NULL), 1);
 	while (++i < data->num_philos)
-    {
-        if (pthread_create(&(*philos)[i].thread, NULL, routine, &(*philos)[i]) != 0)
-            return (1);
-    }
+	{
+		if (pthread_create(&(*philos)[i].thread, NULL, routine,
+				&(*philos)[i]) != 0)
+			return (1);
+	}
 	pthread_create(&monitor_thread, NULL, monitor, philos);
 	i = -1;
 	while (++i < data->num_philos)

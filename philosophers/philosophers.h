@@ -35,6 +35,7 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	death_mutex;
 	pthread_mutex_t	write_mutex;
+	pthread_mutex_t meal_mutex;
 	time_t			start_time;
 }					t_data;
 

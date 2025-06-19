@@ -64,65 +64,11 @@ void	set_forks(t_philo *philo, pthread_mutex_t **first_fork_to_pick,
 	}
 }
 
-int	pick_forks(t_data *data, t_philo *philo,
-		pthread_mutex_t *first_fork_to_pick,
-		pthread_mutex_t *second_fork_to_pick)
-{
-	if (check_death(data))
-		return (0);
-	log_action(data, philo->id, "is thinking");
-	if (check_death(data))
-		return (0);
-	pthread_mutex_lock(first_fork_to_pick);
-	log_action(data, philo->id, "has taken a fork");
-	if (check_death(data))
-	{
-		pthread_mutex_unlock(first_fork_to_pick);
-		return (0);
-	}
-	pthread_mutex_lock(second_fork_to_pick);
-	log_action(data, philo->id, "has taken a fork");
-	if (check_death(data))
-	{
-		pthread_mutex_unlock(first_fork_to_pick);
-		pthread_mutex_unlock(second_fork_to_pick);
-		return (0);
-	}
-	return (1);
-}
+
 void	update_meals(t_data *data, t_philo *philo)
 {
-	pthread_mutex_lock(&data->death_mutex);
+	pthread_mutex_lock(&data->write_mutex);
 	philo->last_meal_time = get_time();
 	philo->meals_eaten++;
-	pthread_mutex_unlock(&data->death_mutex);
-}
-
-int	check_death_loop(time_t current_time, t_philo **philos, t_data *data,
-		bool *all_philos_eaten)
-{
-	int	i;
-
-	i = -1;
-	while (++i < data->num_philos)
-	{
-		pthread_mutex_lock(&data->death_mutex);
-		if ((current_time - (*philos)[i].last_meal_time) > data->time_to_die
-			&& !data->death_flag)
-		{
-			data->death_flag = true;
-			log_action(data, (*philos)[i].id, "died");
-			pthread_mutex_unlock(&data->death_mutex);
-			return (0);
-		}
-		if (data->max_meals != -1 && (*philos)[i].meals_eaten < data->max_meals)
-			*all_philos_eaten = false;
-		if (data->death_flag)
-		{
-			pthread_mutex_unlock(&data->death_mutex);
-			return (0);
-		}
-		pthread_mutex_unlock(&data->death_mutex);
-	}
-	return (1);
+	pthread_mutex_unlock(&data->write_mutex);
 }

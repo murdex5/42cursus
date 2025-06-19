@@ -28,15 +28,17 @@ t_data	*init_data(int *nums)
 	data->death_flag = false;
 	data->start_time = get_time();
 	if (pthread_mutex_init(&data->death_mutex, NULL) != 0)
-	{
-		free(data);
 		return (NULL);
-	}
 	if (pthread_mutex_init(&data->write_mutex, NULL) != 0)
 	{
 		pthread_mutex_destroy(&data->death_mutex);
-		free(data);
-		return (NULL);
+		return (free(data), NULL);
+	}
+	if (pthread_mutex_init(&data->meal_mutex, NULL) != 0)
+	{
+		pthread_mutex_destroy(&data->write_mutex);
+		pthread_mutex_destroy(&data->death_mutex);
+		return (free(data), NULL);
 	}
 	return (data);
 }

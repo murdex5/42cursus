@@ -126,5 +126,3 @@ int	check_death_loop(time_t current_time, t_philo **philos, t_data *data,
 	}
 	return (1);
 }
-
-

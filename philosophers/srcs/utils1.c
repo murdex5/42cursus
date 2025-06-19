@@ -56,14 +56,8 @@ void	ft_usleep(time_t milliseconds, t_data *data)
 	start = get_time();
 	while (get_time() - start < milliseconds)
 	{
-		usleep(100);
-		pthread_mutex_lock(&data->death_mutex);
-		if (data->death_flag)
-		{
-			pthread_mutex_unlock(&data->death_mutex);
+		usleep(50);
+		if (check_death(data) == true)
 			return ;
-		}
-		pthread_mutex_unlock(&data->death_mutex);
 	}
-	return ;
 }

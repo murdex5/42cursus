@@ -41,12 +41,8 @@ time_t	get_time(void)
 {
 	struct timeval	tv;
 
-	if (gettimeofday(&tv, NULL) != 0)
-	{
-		std_error("gettimeofday failed");
-		return ((time_t)0);
-	}
-	return ((tv.tv_sec * (time_t)1000) + (tv.tv_usec / 1000));
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
 void	ft_usleep(time_t milliseconds, t_data *data)
@@ -57,7 +53,11 @@ void	ft_usleep(time_t milliseconds, t_data *data)
 	while (get_time() - start < milliseconds)
 	{
 		usleep(50);
-		if (check_death(data) == true)
+		pthread_mutex_lock(&data->death_mutex);
+		if (data->death_flag == true)
+		{
+			pthread_mutex_unlock(&data->death_mutex);
 			return ;
+		}
 	}
 }

@@ -51,6 +51,13 @@ typedef struct s_philo
 	t_data			*data;
 }					t_philo;
 
+int					check_philos(t_data *data, t_philo **philos,
+						int *all_philos_have_eaten);
+int					check_death_flag(t_data *data, t_philo **philos,
+						long time_since_last_meal, int i);
+int					pick_forks_and_eat(t_philo *philo,
+						pthread_mutex_t *first_fork,
+						pthread_mutex_t *second_fork);
 void				print_status(t_philo *philo, char *status);
 int					is_valid_number(const char *str);
 void				destroy_mutex(t_data *data);

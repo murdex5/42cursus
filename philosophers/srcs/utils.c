@@ -57,7 +57,7 @@ int	str_len(char *str)
 	return (i);
 }
 
-static int	is_valid_number(const char *str)
+int	is_valid_number(const char *str)
 {
 	long	num;
 	int		sign;
@@ -83,24 +83,5 @@ static int	is_valid_number(const char *str)
 	}
 	if (str[i] != '\0')
 		return (0);
-	return (1);
-}
-
-int	check_numbers(int *nums, int argc, char **argv)
-{
-	int	i;
-
-	i = 1;
-	while (i < argc)
-	{
-		if (!is_valid_number(argv[i]))
-			return (std_error("Must be in range of INT_MIN and INT_MAX"), 0);
-		nums[i - 1] = ft_atoi(argv[i]);
-		i++;
-	}
-	if (argc == 6)
-		nums[4] = ft_atoi(argv[5]);
-	else if (argc == 5)
-		nums[4] = -1;
 	return (1);
 }

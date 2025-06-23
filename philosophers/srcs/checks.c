@@ -29,8 +29,7 @@ int	check_each_arg(int argc, char **argv)
 int	checks(int *nums, int argc, char **argv)
 {
 	if (!(argc == 5 || argc == 6))
-		return (std_error("Expected 4 or 5 arguments (excluding program name).\n./philo <num of philos> <time will die if does not eat> <eat time> <sleep time> *num of times to eat*"),
-			0);
+		return (std_error(WRONG_INPUT), 0);
 	if (!check_each_arg(argc, argv))
 		return (0);
 	if (!check_numbers(nums, argc, argv))
@@ -48,7 +47,7 @@ int	check_num_values(int *nums)
 	else if (nums[0] < 1)
 		return (std_error("There should be atleast 1 philosopher"), 0);
 	else if (nums[1] < 0 || nums[2] < 0 || nums[3] < 0)
-		return (std_error("deat time, sleep time and eat time must always be greater than zero"), 0);
+		return (std_error(NOT_GREATER_0), 0);
 	return (1);
 }
 

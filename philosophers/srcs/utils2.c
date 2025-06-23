@@ -20,4 +20,11 @@ bool	if_odd(int n)
 		return (true);
 }
 
-
+void	print_status(t_philo *philo, char *status)
+{
+	pthread_mutex_lock(&philo->data->write_mutex);
+	if (!philo->data->death_flag)
+		printf("%ld %d %s\n", get_time() - philo->data->start_time, philo->id,
+			status);
+	pthread_mutex_unlock(&philo->data->write_mutex);
+}

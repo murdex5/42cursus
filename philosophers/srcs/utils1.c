@@ -37,12 +37,23 @@ int	ft_atoi(const char *nptr)
 	return (result * sign);
 }
 
-time_t	get_time(void)
+int	check_numbers(int *nums, int argc, char **argv)
 {
-	struct timeval	tv;
+	int	i;
 
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+	i = 1;
+	while (i < argc)
+	{
+		if (!is_valid_number(argv[i]))
+			return (std_error("Must be in range of INT_MIN and INT_MAX"), 0);
+		nums[i - 1] = ft_atoi(argv[i]);
+		i++;
+	}
+	if (argc == 6)
+		nums[4] = ft_atoi(argv[5]);
+	else if (argc == 5)
+		nums[4] = -1;
+	return (1);
 }
 
 void	ft_usleep(time_t milliseconds, t_data *data)
@@ -60,4 +71,12 @@ void	ft_usleep(time_t milliseconds, t_data *data)
 			return ;
 		}
 	}
+}
+
+time_t	get_time(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }

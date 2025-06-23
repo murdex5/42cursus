@@ -25,8 +25,6 @@ t_data	*init_data(int *nums)
 	data->time_to_sleep = nums[3];
 	data->max_meals = nums[4];
 	data->forks = NULL;
-	data->death_flag = false;
-	data->start_time = get_time();
 	if (pthread_mutex_init(&data->death_mutex, NULL) != 0)
 		return (NULL);
 	if (pthread_mutex_init(&data->write_mutex, NULL) != 0)
@@ -70,6 +68,8 @@ int	init_forks(t_data *data, t_philo **philos)
 	int	i;
 
 	i = -1;
+	data->death_flag = false;
+	data->start_time = get_time();
 	while (++i < data->num_philos)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)

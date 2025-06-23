@@ -23,7 +23,8 @@
 # include <unistd.h>
 
 # define MAX_PHILOS 200
-
+# define WRONG_INPUT "Expected 4 or 5 arguments (excluding program name).\n./philo <num of philos> <time will die if does not eat> <eat time> <sleep time> *num of times to eat*"
+# define NOT_GREATER_0 "sleep and eat time must always be greater than zero"
 typedef struct s_data
 {
 	int				num_philos;
@@ -50,6 +51,8 @@ typedef struct s_philo
 	t_data			*data;
 }					t_philo;
 
+void				print_status(t_philo *philo, char *status);
+int					is_valid_number(const char *str);
 void				destroy_mutex(t_data *data);
 void				ft_usleep(time_t milliseconds, t_data *data);
 bool				if_odd(int n);

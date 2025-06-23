@@ -41,15 +41,19 @@ t_data	*init_data(int *nums)
 	return (data);
 }
 
-int	init_philos(t_data *data, t_philo **philos)
+t_philo	**init_philos(t_data *data)
 {
-	int	i;
+	int		i;
+	t_philo	**philos;
+	t_philo	*_philo_array_head;
 
 	if (!data)
-		return (0);
+		return (NULL);
+	_philo_array_head = NULL;
+	philos = &_philo_array_head;
 	*philos = malloc(sizeof(t_philo) * data->num_philos);
 	if (!*philos)
-		return (0);
+		return (NULL);
 	i = -1;
 	while (++i < data->num_philos)
 	{
@@ -60,7 +64,7 @@ int	init_philos(t_data *data, t_philo **philos)
 		(*philos)[i].left_fork = NULL;
 		(*philos)[i].right_fork = NULL;
 	}
-	return (1);
+	return (philos);
 }
 
 int	init_forks(t_data *data, t_philo **philos)
@@ -88,10 +92,12 @@ int	init_forks(t_data *data, t_philo **philos)
 	return (1);
 }
 
-t_data	*init(int *nums, t_philo **philos)
+t_data	*init(int *nums, void *arg)
 {
 	t_data	*data;
+	t_philo **philos;
 
+	philos = (t_philo **)arg;
 	data = init_data(nums);
 	if (!data)
 		return (std_error("Initializing data failed"), NULL);
@@ -103,11 +109,9 @@ t_data	*init(int *nums, t_philo **philos)
 		free(data);
 		return (std_error("could not allocate memory for Forks"), NULL);
 	}
-	if (!init_philos(data, philos))
-	{
-		destroy_mutex(data);
-		return (std_error("Initializing philosophers failed"), NULL);
-	}
+	philos = init_philos(data);
+	if (!philos || !*philos)
+		return (free_data_struct(data, NULL), NULL);
 	if (!init_forks(data, philos))
 	{
 		free_philos(philos);

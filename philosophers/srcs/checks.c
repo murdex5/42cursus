@@ -29,7 +29,7 @@ int	check_each_arg(int argc, char **argv)
 int	checks(int *nums, int argc, char **argv)
 {
 	if (!(argc == 5 || argc == 6))
-		return (std_error(WRONG_INPUT), 0);
+		return (cust_error(), 0);
 	if (!check_each_arg(argc, argv))
 		return (0);
 	if (!check_numbers(nums, argc, argv))

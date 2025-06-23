@@ -2,6 +2,7 @@
     "files.associations": {
         "*.html": "html",
         "cstdlib": "c",
-        "philosophers.h": "c"
+        "philosophers.h": "c",
+        "limits.h": "c"
     }
 }

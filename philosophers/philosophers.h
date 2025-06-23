@@ -23,8 +23,8 @@
 # include <unistd.h>
 
 # define MAX_PHILOS 200
-# define WRONG_INPUT "Expected 4 or 5 arguments (excluding program name).\n./philo <num of philos> <time will die if does not eat> <eat time> <sleep time> *num of times to eat*"
 # define NOT_GREATER_0 "sleep and eat time must always be greater than zero"
+
 typedef struct s_data
 {
 	int				num_philos;
@@ -51,6 +51,8 @@ typedef struct s_philo
 	t_data			*data;
 }					t_philo;
 
+int					create_philos_routine(t_philo **philos,
+						void *routine(void *arg), int i);
 int					check_philos(t_data *data, t_philo **philos,
 						int *all_philos_have_eaten);
 int					check_death_flag(t_data *data, t_philo **philos,
@@ -65,16 +67,17 @@ void				ft_usleep(time_t milliseconds, t_data *data);
 bool				if_odd(int n);
 void				free_data_struct(t_data *data, t_philo **philos);
 int					ft_atoi(const char *nptr);
+void				cust_error(void);
 void				std_error(char *msg);
 int					has_letters(char *str);
 int					check_numbers(int *nums, int argc, char **argv);
 int					checks(int *nums, int argc, char **argv);
 int					check_num_values(int *nums);
 t_data				*init_data(int *nums);
-int					init_philos(t_data *data, t_philo **philos);
+t_philo				**init_philos(t_data *data);
 int					init_forks(t_data *data, t_philo **philos);
 time_t				get_time(void);
-t_data				*init(int *nums, t_philo **philos);
+t_data	*init(int *nums, void *arg);
 void				free_philos(t_philo **philos);
 t_data				*do_checks_and_parse(t_philo **philos, int *nums);
 #endif

@@ -67,23 +67,18 @@ void	*monitor(void *arg)
 
 int	main(int argc, char **argv)
 {
-	int			nums[argc - 1];
+	int			nums[MAX_PHILOS];
 	t_data		*data;
-	t_philo		*_philo_array_head;
 	t_philo		**philos;
 	int			i;
-	pthread_t	monitor_thread;
+		pthread_t	monitor_thread;
 
 	i = -1;
-	_philo_array_head = NULL;
-	philos = &_philo_array_head;
 	if (!checks(nums, argc, argv))
 		return (1);
 	data = init(nums, philos);
 	if (!data)
 		return (1);
-	if (!philos || !*philos)
-		return (free_data_struct(data, NULL), 1);
 	while (++i < data->num_philos)
 	{
 		if (pthread_create(&(*philos)[i].thread, NULL, routine,

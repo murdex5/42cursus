@@ -34,3 +34,10 @@ int	check_philos(t_data *data, t_philo **philos, int *all_philos_have_eaten)
 	}
 	return (1);
 }
+
+int	create_philos_routine(t_philo **philos, void *routine(void *), int i)
+{
+	if (pthread_create(&(*philos)[i].thread, NULL, routine, &(*philos)[i]) != 0)
+		return (0);
+	return (1);
+}

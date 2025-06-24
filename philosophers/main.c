@@ -71,7 +71,7 @@ int	main(int argc, char **argv)
 	t_data		*data;
 	t_philo		**philos;
 	int			i;
-		pthread_t	monitor_thread;
+	pthread_t	monitor_thread;
 
 	i = -1;
 	if (!checks(nums, argc, argv))

@@ -41,3 +41,15 @@ int	create_philos_routine(t_philo **philos, void *routine(void *), int i)
 		return (0);
 	return (1);
 }
+
+t_data	*check_init(int argc, char **argv, int *nums, t_philo **philos)
+{
+	t_data	*data;
+
+	if (!checks(nums, argc, argv))
+		return (NULL);
+	data = init(nums, philos);
+	if (!data)
+		return (NULL);
+	return (data);
+}

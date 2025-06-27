@@ -73,16 +73,15 @@ int	main(int argc, char **argv)
 	int			i;
 	pthread_t	monitor_thread;
 
+	philos = NULL;
 	i = -1;
-	if (!checks(nums, argc, argv))
-		return (1);
-	data = init(nums, philos);
+	data = check_init(argc, argv, nums, philos);
 	if (!data)
 		return (1);
 	while (++i < data->num_philos)
 	{
 		if (pthread_create(&(*philos)[i].thread, NULL, routine,
-				&(*philos)[i]) != 0)
+			&(*philos)[i]) != 0)
 			return (1);
 	}
 	pthread_create(&monitor_thread, NULL, monitor, philos);

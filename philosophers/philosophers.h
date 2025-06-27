@@ -51,6 +51,7 @@ typedef struct s_philo
 	t_data			*data;
 }					t_philo;
 
+t_data	*check_init(int argc, char **argv, int *nums, t_philo **philos);
 int					create_philos_routine(t_philo **philos,
 						void *routine(void *arg), int i);
 int					check_philos(t_data *data, t_philo **philos,
@@ -77,7 +78,7 @@ t_data				*init_data(int *nums);
 t_philo				**init_philos(t_data *data);
 int					init_forks(t_data *data, t_philo **philos);
 time_t				get_time(void);
-t_data	*init(int *nums, void *arg);
+t_data				*init(int *nums, void *arg);
 void				free_philos(t_philo **philos);
 t_data				*do_checks_and_parse(t_philo **philos, int *nums);
 #endif

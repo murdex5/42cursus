@@ -44,11 +44,11 @@ void	*routine(void *arg)
 void	*monitor(void *arg)
 {
 	t_data	*data;
-	t_philo	**philos;
+	t_philo	*philos;
 	int		all_philos_have_eaten;
 
-	philos = (t_philo **)arg;
-	data = philos[0]->data;
+	philos = (t_philo *)arg;
+	data = philos[0].data;
 	while (1)
 	{
 		all_philos_have_eaten = 1;
@@ -69,27 +69,19 @@ int	main(int argc, char **argv)
 {
 	int			nums[MAX_PHILOS];
 	t_data		*data;
-	t_philo		**philos;
-	int			i;
-	pthread_t	monitor_thread;
+	t_philo *philos;
+	// int			i;
+	// pthread_t	monitor_thread;
 
+	//i = -1;
 	philos = NULL;
-	i = -1;
-	data = check_init(argc, argv, nums, philos);
+	if (!checks(nums, argc, argv))
+		return (1);
+	data = init(nums, &philos);
 	if (!data)
 		return (1);
-	while (++i < data->num_philos)
-	{
-		if (pthread_create(&(*philos)[i].thread, NULL, routine,
-			&(*philos)[i]) != 0)
-			return (1);
-	}
-	pthread_create(&monitor_thread, NULL, monitor, philos);
-	i = -1;
-	while (++i < data->num_philos)
-		pthread_join((*philos)[i].thread, NULL);
-	pthread_join(monitor_thread, NULL);
 	if (data)
 		free_data_struct(data, philos);
+	// free(philos);
 	return (0);
 }

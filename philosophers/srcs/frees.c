@@ -12,15 +12,14 @@
 
 #include "../philosophers.h"
 
-void	free_philos(t_philo **philos)
+void	free_philos(t_philo *philos)
 {
-	if (!philos || !*philos)
+	if (!philos)
 		return ;
-	free(*philos);
-	*philos = NULL;
+	free(philos);
 }
 
-void	free_data_struct(t_data *data, t_philo **philos)
+void	free_data_struct(t_data *data, t_philo *philos)
 {
 	int	i;
 

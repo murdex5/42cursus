@@ -51,13 +51,13 @@ int	check_num_values(int *nums)
 	return (1);
 }
 
-t_data	*do_checks_and_parse(t_philo **philos, int *nums)
+t_data	*do_checks_and_parse(t_philo *philos, int *nums)
 {
 	t_data	*data;
 
 	if (!check_num_values(nums))
 		return (NULL);
-	data = init(nums, philos);
+	data = init(nums, &philos);
 	if (!data)
 		return (NULL);
 	return (data);

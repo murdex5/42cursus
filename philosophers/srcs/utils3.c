@@ -12,7 +12,7 @@
 
 #include "../philosophers.h"
 
-int	check_philos(t_data *data, t_philo **philos, int *all_philos_have_eaten)
+int	check_philos(t_data *data, t_philo *philos, int *all_philos_have_eaten)
 {
 	int		i;
 	long	time_since_last_meal;
@@ -22,8 +22,8 @@ int	check_philos(t_data *data, t_philo **philos, int *all_philos_have_eaten)
 	while (i < data->num_philos)
 	{
 		pthread_mutex_lock(&data->meal_mutex);
-		time_since_last_meal = get_time() - (*philos)[i].last_meal_time;
-		philo_meals_eaten = (*philos)[i].meals_eaten;
+		time_since_last_meal = get_time() - philos[i].last_meal_time;
+		philo_meals_eaten = philos[i].meals_eaten;
 		pthread_mutex_unlock(&data->meal_mutex);
 		if (check_death_flag(data, philos, time_since_last_meal, i) == 0)
 			return (0);
@@ -35,21 +35,38 @@ int	check_philos(t_data *data, t_philo **philos, int *all_philos_have_eaten)
 	return (1);
 }
 
-int	create_philos_routine(t_philo **philos, void *routine(void *), int i)
+int	create_philos_routine(t_philo *philos, void *routine(void *), int i)
 {
-	if (pthread_create(&(*philos)[i].thread, NULL, routine, &(*philos)[i]) != 0)
+	if (pthread_create(&philos[i].thread, NULL, routine, &philos[i]) != 0)
 		return (0);
 	return (1);
 }
 
-t_data	*check_init(int argc, char **argv, int *nums, t_philo **philos)
+t_data	*check_init(int argc, char **argv, int *nums, t_philo *philos)
 {
 	t_data	*data;
 
 	if (!checks(nums, argc, argv))
 		return (NULL);
-	data = init(nums, philos);
+	data = init(nums, &philos);
 	if (!data)
 		return (NULL);
 	return (data);
+}
+
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char	*p;
+	size_t			i;
+
+	if (n == 0)
+		return (s);
+	i = 0;
+	p = (unsigned char *)s;
+	while (i < n)
+	{
+		p[i] = (unsigned char)c;
+		i++;
+	}
+	return (s);
 }

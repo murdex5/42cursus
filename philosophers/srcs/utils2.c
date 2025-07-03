@@ -53,7 +53,7 @@ int	pick_forks_and_eat(t_philo *philo, pthread_mutex_t *first_fork,
 	return (1);
 }
 
-int	check_death_flag(t_data *data, t_philo **philos, long time_since_last_meal,
+int	check_death_flag(t_data *data, t_philo *philos, long time_since_last_meal,
 		int i)
 {
 	if (time_since_last_meal > data->time_to_die)
@@ -64,7 +64,7 @@ int	check_death_flag(t_data *data, t_philo **philos, long time_since_last_meal,
 			data->death_flag = true;
 			pthread_mutex_lock(&data->write_mutex);
 			printf("%ld %d died\n", get_time() - data->start_time,
-				(*philos)[i].id);
+				philos[i].id);
 			pthread_mutex_unlock(&data->write_mutex);
 		}
 		pthread_mutex_unlock(&data->death_mutex);

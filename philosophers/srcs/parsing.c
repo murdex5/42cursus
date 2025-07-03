@@ -98,7 +98,7 @@ int	init_forks(t_data *data, t_philo *philos)
 t_data	*init(int *nums, t_philo **philos)
 {
 	t_data	*data;
-	
+
 	data = init_data(nums);
 	if (!data)
 		return (std_error("Initializing data failed"), NULL);

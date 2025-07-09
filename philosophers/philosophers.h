@@ -54,10 +54,10 @@ typedef struct s_philo
 t_data				*check_init(int argc, char **argv, int *nums,
 						t_philo *philos);
 int					create_philos_routine(t_philo *philos,
-						void *routine(void *arg), int i);
+						void *routine(void *), int i);
 void				check_forks(t_philo *philo, pthread_mutex_t *first_fork,
 						pthread_mutex_t *second_fork);
-int					check_philos(t_data *data, t_philo *philos, int *all_ate);
+int					check_philos(t_data *d, t_philo *philos, int *all_ate);
 int					check_death_flag(t_data *data, t_philo *philos,
 						long time_since_last_meal, int i);
 int					pick_forks_and_eat(t_philo *philo,

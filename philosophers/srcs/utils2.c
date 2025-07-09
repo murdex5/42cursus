@@ -49,7 +49,7 @@ int	pick_forks_and_eat(t_philo *philo, pthread_mutex_t *first_fork,
 	pthread_mutex_unlock(&philo->data->meal_mutex);
 	usleep(philo->data->time_to_eat * 1000);
 	pthread_mutex_unlock(second_fork);
-	pthread_mutex_unlock(first_fork); 
+	pthread_mutex_unlock(first_fork);
 	return (1);
 }
 

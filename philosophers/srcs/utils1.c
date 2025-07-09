@@ -56,13 +56,17 @@ int	check_numbers(int *nums, int argc, char **argv)
 	return (1);
 }
 
-void ft_usleep(time_t milliseconds, t_data *data) {
-    time_t start = get_time();
-    while (get_time() - start < milliseconds) {
-        usleep(100);
-        if (data->death_flag)
-            return;
-    }
+void	ft_usleep(time_t milliseconds, t_data *data)
+{
+	time_t	start;
+
+	start = get_time();
+	while (get_time() - start < milliseconds)
+	{
+		usleep(100);
+		if (data->death_flag)
+			return ;
+	}
 }
 
 time_t	get_time(void)

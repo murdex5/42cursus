@@ -76,3 +76,25 @@ void	*ft_memset(void *s, int c, size_t n)
 	}
 	return (s);
 }
+
+void	check_forks(t_philo *philo, pthread_mutex_t *first_fork,
+		pthread_mutex_t *second_fork)
+{
+	int left_fork_id;
+	int right_fork_id;
+
+	left_fork_id = philo->id - 1;
+	right_fork_id = philo->id % philo->data->num_philos;
+	first_fork = second_fork;
+	second_fork = first_fork;
+	if (left_fork_id < right_fork_id)
+	{
+		first_fork = philo->left_fork;
+		second_fork = philo->right_fork;
+	}
+	else
+	{
+		first_fork = philo->right_fork;
+		second_fork = philo->left_fork;
+	}
+}

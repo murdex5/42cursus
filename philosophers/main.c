@@ -21,6 +21,7 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	first_fork = philo->left_fork;
 	second_fork = philo->right_fork;
+	check_forks(philo, first_fork, second_fork);
 	if (philo->id % 2 == 0)
 		usleep(1000);
 	while (1)

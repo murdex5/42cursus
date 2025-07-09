@@ -15,26 +15,28 @@
 int	check_philos(t_data *data, t_philo *philos, int *all_ate)
 {
 	int		i;
-	long	now;
 	long	tslm;
-	int		ate;
+	int		pme;
+	long	current_time;
+	long	safety_margin;
 
+	safety_margin = data->time_to_eat / 10;
 	i = -1;
 	while (++i < data->num_philos)
 	{
-		now = get_time();
+		current_time = get_time();
 		pthread_mutex_lock(&data->meal_mutex);
-		tslm = now - philos[i].last_meal_time;
-		ate = philos[i].meals_eaten;
+		tslm = current_time - philos[i].last_meal_time;
+		pme = philos[i].meals_eaten;
 		pthread_mutex_unlock(&data->meal_mutex);
-		if (tslm > data->time_to_die - (data->time_to_eat / 5))
+		if (tslm > (data->time_to_eat + data->time_to_sleep + safety_margin))
 		{
 			if (!check_death_flag(data, philos, tslm, i))
 				return (0);
 			usleep(30);
 			continue ;
 		}
-		if (data->max_meals != -1 && ate < data->max_meals)
+		if (data->max_meals != -1 && pme < data->max_meals)
 			*all_ate = 0;
 		usleep(50);
 	}

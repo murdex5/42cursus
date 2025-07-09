@@ -17,33 +17,33 @@ tslm = time =_since_last_meal
 d = data
 pme = philo_meals_eaten
 */
-int	check_philos(t_data *d, t_philo *philos, int *all_ate)
+int check_philos(t_data *d, t_philo *philos, int *all_ate)
 {
-	int		i;
-	long	tslm;
-	int		pme;
-	long	current_time;
+    int     i;
+    long    tslm;
+    int     pme;
+    long    current_time;
 
-	i = -1;
-	while (++i < d->num_philos)
-	{
-		current_time = get_time();
-		pthread_mutex_lock(&d->meal_mutex);
-		tslm = current_time - philos[i].last_meal_time;
-		pme = philos[i].meals_eaten;
-		pthread_mutex_unlock(&d->meal_mutex);
-		if (tslm > (d->time_to_eat + d->time_to_sleep + d->time_to_eat / 10))
-		{
-			if (!check_death_flag(d, philos, tslm, i))
-				return (0);
-			usleep(30);
-			continue ;
-		}
-		if (d->max_meals != -1 && pme < d->max_meals)
-			*all_ate = 0;
-		usleep(50);
-	}
-	return (1);
+    i = -1;
+    *all_ate = 1;
+    while (++i < d->num_philos)
+    {
+        current_time = get_time();
+        pthread_mutex_lock(&d->meal_mutex);
+        tslm = current_time - philos[i].last_meal_time;
+        pme = philos[i].meals_eaten;
+        pthread_mutex_unlock(&d->meal_mutex);
+        if (tslm >= d->time_to_die - 2)
+        {
+            if (!check_death_flag(d, philos, tslm, i))
+                return (0);
+            continue;
+        }
+        if (d->max_meals != -1 && pme < d->max_meals)
+            *all_ate = 0;
+        usleep(500);
+    }
+    return (1);
 }
 
 int	create_philos_routine(t_philo *philos, void *routine(void *), int i)

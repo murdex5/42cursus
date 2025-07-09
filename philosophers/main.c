@@ -15,28 +15,26 @@
 void	*routine(void *arg)
 {
 	t_philo			*philo;
-	pthread_mutex_t	*first_fork_pick;
-	pthread_mutex_t	*second_fork_pick;
+	pthread_mutex_t	*first_fork;
+	pthread_mutex_t	*second_fork;
 
 	philo = (t_philo *)arg;
-	first_fork_pick = philo->left_fork;
-	second_fork_pick = philo->right_fork;
+	first_fork = philo->left_fork;
+	second_fork = philo->right_fork;
 	if (philo->id % 2 == 0)
-	{
-		first_fork_pick = philo->right_fork;
-		second_fork_pick = philo->left_fork;
-	}
+		usleep(1000);
 	while (1)
 	{
 		pthread_mutex_lock(&philo->data->death_mutex);
 		if (philo->data->death_flag)
 			return (pthread_mutex_unlock(&philo->data->death_mutex), NULL);
 		pthread_mutex_unlock(&philo->data->death_mutex);
-		if (pick_forks_and_eat(philo, first_fork_pick, second_fork_pick) == 0)
+		if (!pick_forks_and_eat(philo, first_fork, second_fork))
 			break ;
 		print_status(philo, "is sleeping");
 		usleep(philo->data->time_to_sleep * 1000);
 		print_status(philo, "is thinking");
+		usleep(100);
 	}
 	return (NULL);
 }

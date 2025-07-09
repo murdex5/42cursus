@@ -56,21 +56,15 @@ int	check_numbers(int *nums, int argc, char **argv)
 	return (1);
 }
 
-void	ft_usleep(time_t milliseconds, t_data *data)
+void ft_usleep(time_t milliseconds, t_data *data)
 {
-	time_t	start;
-
-	start = get_time();
-	while (get_time() - start < milliseconds)
-	{
-		usleep(50);
-		pthread_mutex_lock(&data->death_mutex);
-		if (data->death_flag == true)
-		{
-			pthread_mutex_unlock(&data->death_mutex);
-			return ;
-		}
-	}
+    time_t start = get_time();
+    while (get_time() - start < milliseconds)
+    {
+        usleep(milliseconds / 10);
+        if (data->death_flag)
+            return;
+    }
 }
 
 time_t	get_time(void)

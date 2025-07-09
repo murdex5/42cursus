@@ -37,7 +37,7 @@ int	pick_forks_and_eat(t_philo *philo, pthread_mutex_t *first_fork,
 	if (philo->data->num_philos == 1)
 	{
 		usleep(philo->data->time_to_die * 1000);
-		pthread_mutex_unlock(philo->left_fork);
+		pthread_mutex_unlock(first_fork);
 		return (0);
 	}
 	pthread_mutex_lock(second_fork);
@@ -48,8 +48,8 @@ int	pick_forks_and_eat(t_philo *philo, pthread_mutex_t *first_fork,
 	philo->meals_eaten++;
 	pthread_mutex_unlock(&philo->data->meal_mutex);
 	usleep(philo->data->time_to_eat * 1000);
-	pthread_mutex_unlock(philo->right_fork);
-	pthread_mutex_unlock(philo->left_fork);
+	pthread_mutex_unlock(second_fork);
+	pthread_mutex_unlock(first_fork); 
 	return (1);
 }
 

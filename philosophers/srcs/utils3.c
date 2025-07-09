@@ -23,6 +23,12 @@ int	check_philos(t_data *data, t_philo *philos, int *all_philos_have_eaten)
 	{
 		pthread_mutex_lock(&data->meal_mutex);
 		time_since_last_meal = get_time() - philos[i].last_meal_time;
+		if (time_since_last_meal > data->time_to_die - 10)
+		{
+			pthread_mutex_unlock(&data->meal_mutex);
+			usleep(50);
+			continue ;
+		}
 		philo_meals_eaten = philos[i].meals_eaten;
 		pthread_mutex_unlock(&data->meal_mutex);
 		if (check_death_flag(data, philos, time_since_last_meal, i) == 0)

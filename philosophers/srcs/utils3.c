@@ -17,26 +17,28 @@ int	check_philos(t_data *data, t_philo *philos, int *all_philos_have_eaten)
 	int		i;
 	long	time_since_last_meal;
 	int		philo_meals_eaten;
+	long	current_time;
 
-	i = 0;
-	while (i < data->num_philos)
+	long safety_margin = data->time_to_eat / 10; 
+	i = -1;
+	while (++i < data->num_philos)
 	{
+		current_time = get_time();
 		pthread_mutex_lock(&data->meal_mutex);
-		time_since_last_meal = get_time() - philos[i].last_meal_time;
-		if (time_since_last_meal > data->time_to_die - 10)
-		{
-			pthread_mutex_unlock(&data->meal_mutex);
-			usleep(50);
-			continue ;
-		}
+		time_since_last_meal = current_time - philos[i].last_meal_time;
 		philo_meals_eaten = philos[i].meals_eaten;
 		pthread_mutex_unlock(&data->meal_mutex);
-		if (check_death_flag(data, philos, time_since_last_meal, i) == 0)
-			return (0);
+		if (time_since_last_meal > (data->time_to_eat + data->time_to_sleep
+				+ safety_margin))
+		{
+			if (!check_death_flag(data, philos, time_since_last_meal, i))
+				return (0);
+			usleep(30);
+			continue ;
+		}
 		if (data->max_meals != -1 && philo_meals_eaten < data->max_meals)
 			*all_philos_have_eaten = 0;
-		i++;
-		usleep(100);
+		usleep(50);
 	}
 	return (1);
 }
@@ -80,8 +82,8 @@ void	*ft_memset(void *s, int c, size_t n)
 void	check_forks(t_philo *philo, pthread_mutex_t *first_fork,
 		pthread_mutex_t *second_fork)
 {
-	int left_fork_id;
-	int right_fork_id;
+	int	left_fork_id;
+	int	right_fork_id;
 
 	left_fork_id = philo->id - 1;
 	right_fork_id = philo->id % philo->data->num_philos;

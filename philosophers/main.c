@@ -21,9 +21,8 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	first_fork = philo->left_fork;
 	second_fork = philo->right_fork;
-	check_forks(philo, first_fork, second_fork);
 	if (philo->id % 2 == 0)
-		usleep(1000);
+		usleep(500);
 	while (1)
 	{
 		pthread_mutex_lock(&philo->data->death_mutex);
@@ -35,7 +34,8 @@ void	*routine(void *arg)
 		print_status(philo, "is sleeping");
 		usleep(philo->data->time_to_sleep * 1000);
 		print_status(philo, "is thinking");
-		usleep(100);
+		if (philo->data->num_philos % 2 == 1)
+			usleep(50);
 	}
 	return (NULL);
 }

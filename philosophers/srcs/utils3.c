@@ -12,32 +12,30 @@
 
 #include "../philosophers.h"
 
-int	check_philos(t_data *data, t_philo *philos, int *all_philos_have_eaten)
+int	check_philos(t_data *data, t_philo *philos, int *all_ate)
 {
 	int		i;
-	long	time_since_last_meal;
-	int		philo_meals_eaten;
-	long	current_time;
+	long	now;
+	long	tslm;
+	int		ate;
 
-	long safety_margin = data->time_to_eat / 10; 
 	i = -1;
 	while (++i < data->num_philos)
 	{
-		current_time = get_time();
+		now = get_time();
 		pthread_mutex_lock(&data->meal_mutex);
-		time_since_last_meal = current_time - philos[i].last_meal_time;
-		philo_meals_eaten = philos[i].meals_eaten;
+		tslm = now - philos[i].last_meal_time;
+		ate = philos[i].meals_eaten;
 		pthread_mutex_unlock(&data->meal_mutex);
-		if (time_since_last_meal > (data->time_to_eat + data->time_to_sleep
-				+ safety_margin))
+		if (tslm > data->time_to_die - (data->time_to_eat / 5))
 		{
-			if (!check_death_flag(data, philos, time_since_last_meal, i))
+			if (!check_death_flag(data, philos, tslm, i))
 				return (0);
 			usleep(30);
 			continue ;
 		}
-		if (data->max_meals != -1 && philo_meals_eaten < data->max_meals)
-			*all_philos_have_eaten = 0;
+		if (data->max_meals != -1 && ate < data->max_meals)
+			*all_ate = 0;
 		usleep(50);
 	}
 	return (1);

@@ -20,18 +20,25 @@ bool	if_odd(int n)
 		return (true);
 }
 
-void	print_status(t_philo *philo, char *status)
+void print_status(t_philo *philo, char *status) 
 {
-	pthread_mutex_lock(&philo->data->write_mutex);
-	if (!philo->data->death_flag)
-		printf("%ld %d %s\n", get_time() - philo->data->start_time, philo->id,
-			status);
-	pthread_mutex_unlock(&philo->data->write_mutex);
+    pthread_mutex_lock(&philo->data->death_mutex);
+    if (!philo->data->death_flag) {
+        pthread_mutex_lock(&philo->data->write_mutex);
+        printf("%ld %d %s\n", get_time() - philo->data->start_time, philo->id, status);
+        pthread_mutex_unlock(&philo->data->write_mutex);
+    }
+    pthread_mutex_unlock(&philo->data->death_mutex);
 }
 
 int	pick_forks_and_eat(t_philo *philo, pthread_mutex_t *first_fork,
 		pthread_mutex_t *second_fork)
 {
+	if (philo->id % 2 != 0)
+	{
+		first_fork = philo->right_fork;
+		second_fork = philo->left_fork;
+	}
 	pthread_mutex_lock(first_fork);
 	print_status(philo, "has taken a fork");
 	if (philo->data->num_philos == 1)

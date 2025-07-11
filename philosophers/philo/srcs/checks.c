@@ -33,7 +33,7 @@ int	checks(int *nums, int argc, char **argv)
 	if (!check_each_arg(argc, argv))
 		return (0);
 	if (!check_numbers(nums, argc, argv))
-		return (0);
+		return (std_error("All the inputs must be greater than 0"), 0);
 	if (!check_num_values(nums))
 		return (0);
 	return (1);

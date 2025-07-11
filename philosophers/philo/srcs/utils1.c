@@ -50,7 +50,11 @@ int	check_numbers(int *nums, int argc, char **argv)
 		i++;
 	}
 	if (argc == 6)
+	{
 		nums[4] = ft_atoi(argv[5]);
+		if (nums[4] < 0)
+			return (0);
+	}
 	else if (argc == 5)
 		nums[4] = -1;
 	return (1);

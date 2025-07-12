@@ -13,24 +13,26 @@
 CC = gcc
 SRCS_DIR = ./srcs
 SRCS = ${SRCS_DIR}/utils0.c \
-		main.c
+        main.c
 
-CFLAGS = -Wall -Werror -Wextra -lreadline -lncurses
+CFLAGS = -Wall -Werror -Wextra
+LDFLAGS = -lreadline -lncurses
 OBJS = ${SRCS:.c=.o}
 LIBFT_PATH = ./libft
 LIBFT_LIB = $(LIBFT_PATH)/libft.a
+HEADER = minishell.h
 NAME = minishell
 
 all: subsystems $(NAME) 
 
-%.o : %.c
+%.o : %.c $(HEADER)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 subsystems:
 	@make -C $(LIBFT_PATH) all
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) $(LDFLAGS) -o $(NAME)
 
 clean:
 	rm -rf $(OBJS)

@@ -12,9 +12,23 @@
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char *envp[])
+// int	main(int argc, char **argv, char *envp[])
+// {
+// 	int i = ft_atoi(argv[1]);
+// 	printf("%d\n", i);
+// 	return (argc);
+// }
+
+int	main(void)
 {
-	int i = ft_atoi(argv[1]);
-	printf("%d\n", i);
-	return (argc);
+	char *r1;
+
+	while (1)
+	{
+		r1 = readline("Prompt > ");
+		printf("%s\n", r1);
+        if (ft_strncmp(r1, "exit", ft_strlen(r1)) == 0)
+            break ;
+	}
+	return (0);
 }

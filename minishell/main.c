@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char *envp[])
 {
 	int i = ft_atoi(argv[1]);
 	printf("%d\n", i);

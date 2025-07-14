@@ -30,4 +30,5 @@
 # include <unistd.h>
 
 void	free_r1(char *r1);
+void	ft_exit(char *r1);
 #endif

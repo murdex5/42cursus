@@ -21,7 +21,7 @@ int	main(void)
 		r1 = NULL;
 		r1 = readline("minishell> ");
 		if (r1 == NULL)
-			return (free_r1(r1), 1);
+			return (ft_exit(r1), 1);
 		printf("%s\n", r1);
 		free(r1);
 	}

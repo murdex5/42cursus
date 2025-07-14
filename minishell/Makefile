@@ -13,6 +13,7 @@
 CC = gcc
 SRCS_DIR = ./srcs
 SRCS = ${SRCS_DIR}/utils0.c \
+		${SRCS_DIR}/frees.c \
         main.c
 
 CFLAGS = -Wall -Werror -Wextra

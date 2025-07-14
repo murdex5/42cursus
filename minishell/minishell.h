@@ -26,7 +26,8 @@
 # include <sys/ioctl.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
-# include <term.h>
 # include <termios.h>
 # include <unistd.h>
+
+void	free_r1(char *r1);
 #endif

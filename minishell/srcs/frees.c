@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/12 17:32:23 by kadferna          #+#    #+#             */
-/*   Updated: 2025/07/12 17:32:26 by kadferna         ###   ########.fr       */
+/*   Created: 2025/07/14 10:31:48 by kadferna          #+#    #+#             */
+/*   Updated: 2025/07/14 10:31:50 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-int	main(void)
+void	free_r1(char *r1)
 {
-	char	*r1;
-
-	while (1)
-	{
-		r1 = NULL;
-		r1 = readline("minishell> ");
-		if (r1 == NULL)
-			return (free_r1(r1), 1);
-		printf("%s\n", r1);
-		free(r1);
-	}
-	return (0);
+	if (r1 == NULL)
+		return ;
+	free(r1);
 }

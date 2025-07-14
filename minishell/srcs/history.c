@@ -11,10 +11,3 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-int add_history(char *line)
-{
-    static char *buffer;
-
-    
-}

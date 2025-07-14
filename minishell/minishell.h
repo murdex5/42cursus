@@ -29,6 +29,7 @@
 # include <termios.h>
 # include <unistd.h>
 
-void	free_r1(char *r1);
-void	ft_exit(char *r1);
+void		free_r1(char *r1);
+void		ft_exit(char *r1);
+void		*ft_realloc(void *a, size_t old_size, size_t new_size);
 #endif

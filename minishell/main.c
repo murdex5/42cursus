@@ -14,16 +14,18 @@
 
 int	main(void)
 {
-	char					*line;
-	volatile sig_atomic_t	g_signal_recieved;
+	char	*line;
 
 	while (1)
 	{
-		line = NULL;
 		line = readline("minishell> ");
 		if (line == NULL)
-			return (ft_exit(line), 1);
-		printf("%s\n", line);
+			return (ft_exit(line), 0);
+		if (*line)
+		{
+			add_history(line);
+			printf("%s\n", line);
+		}
 		free(line);
 	}
 	return (0);

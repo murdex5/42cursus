@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/12 17:32:23 by kadferna          #+#    #+#             */
-/*   Updated: 2025/07/12 17:32:26 by kadferna         ###   ########.fr       */
+/*   Created: 2025/07/14 11:03:24 by kadferna          #+#    #+#             */
+/*   Updated: 2025/07/14 11:03:42 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-int	main(void)
+int add_history(char *line)
 {
-	char					*line;
-	volatile sig_atomic_t	g_signal_recieved;
+    static char *buffer;
 
-	while (1)
-	{
-		line = NULL;
-		line = readline("minishell> ");
-		if (line == NULL)
-			return (ft_exit(line), 1);
-		printf("%s\n", line);
-		free(line);
-	}
-	return (0);
+    
 }

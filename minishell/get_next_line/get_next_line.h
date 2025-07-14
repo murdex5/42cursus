@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/12 17:32:23 by kadferna          #+#    #+#             */
-/*   Updated: 2025/07/12 17:32:26 by kadferna         ###   ########.fr       */
+/*   Created: 2025/03/06 12:27:23 by kadferna          #+#    #+#             */
+/*   Updated: 2025/03/06 12:28:40 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int	main(void)
-{
-	char					*line;
-	volatile sig_atomic_t	g_signal_recieved;
+# include "../libft/libft.h"
 
-	while (1)
-	{
-		line = NULL;
-		line = readline("minishell> ");
-		if (line == NULL)
-			return (ft_exit(line), 1);
-		printf("%s\n", line);
-		free(line);
-	}
-	return (0);
-}
+char	*get_next_line(int fd);
+char	*get_next_line_bonus(int fd);
+
+#endif

@@ -12,6 +12,14 @@
 
 #include "../minishell.h"
 
-
-
-
+int	process_signals(struct sigaction *sa)
+{
+	sigemptyset(&sa->sa_mask);
+	sa->sa_flags = 0;
+	if (sigaction(SIGINT, sa, NULL) == -1)
+	{
+		perror("sigaction");
+		return (0);
+	}
+	return (1);
+}

@@ -28,13 +28,8 @@ int	main(void)
 	struct sigaction	sa;
 
 	sa.sa_handler = signal_handler;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
-	if (sigaction(SIGINT, &sa, NULL) == -1)
-	{
-		perror("sigaction");
+	if (!process_signals(&sa))
 		exit(1);
-	}
 	while (1)
 	{
 		if (g_signal_recieved)

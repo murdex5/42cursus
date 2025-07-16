@@ -29,9 +29,9 @@
 # include <termios.h>
 # include <unistd.h>
 
-
 void	free_r1(char *r1);
 void	ft_exit(char *r1);
 void	*ft_realloc(void *a, size_t old_size, size_t new_size);
 void	signal_handler(int sig);
+int		process_signals(struct sigaction *sa);
 #endif

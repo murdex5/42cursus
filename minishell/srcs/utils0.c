@@ -39,3 +39,34 @@ void	*ft_realloc(void *a, size_t old_size, size_t new_size)
 	}
 	return (new_ptr);
 }
+
+// int	chec_char(char *c)
+// {
+// 	if (line[i] != ' ')
+// 	{
+// 		if (line)
+// 	}
+// }
+
+// void	go_until(char *line, int *i)
+// {
+// 	if ()
+// }
+
+// int	get_count(char *line)
+// {
+// 	int	i;
+// 	int	count;
+
+// 	count = 0;
+// 	i = 0;
+// 	while (line[i] != '\0')
+// 	{
+// 		{
+// 			while (((line[i] >= 'A' && line[i] <= 'Z') || (line[i] >= 'a'
+// 						&& line[i] <= 'z')))
+// 				i++;
+// 			count++;
+// 		}
+// 	}
+// }

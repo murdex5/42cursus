@@ -26,6 +26,8 @@ int	main(void)
 {
 	char				*line;
 	struct sigaction	sa;
+	char				**tokens;
+	int					i;
 
 	sa.sa_handler = signal_handler;
 	if (!process_signals(&sa))
@@ -41,8 +43,17 @@ int	main(void)
 		{
 			add_history(line);
 			printf("%s\n", line);
+			tokens = construct_tokens(line);
+			break ;
 		}
 		free(line);
 	}
+	i = 0;
+	while (tokens[i] != NULL)
+	{
+		printf("%s\n", tokens[i]);
+		i++;
+	}
+	free(tokens);
 	return (0);
 }

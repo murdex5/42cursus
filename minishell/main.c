@@ -12,8 +12,7 @@
 
 #include "minishell.h"
 
-
-volatile sig_atomic_t	g_signal_recieved = 0;
+static volatile sig_atomic_t	g_signal_recieved = 0;
 
 void	signal_handler(int sig)
 {
@@ -45,7 +44,6 @@ int	main(void)
 			add_history(line);
 			printf("%s\n", line);
 			tokens = construct_tokens(line);
-
 			break ;
 		}
 		free(line);

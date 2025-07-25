@@ -12,100 +12,86 @@
 
 #include "../minishell.h"
 
-int	is_separator(char c, char sep1, char sep2, char sep3)
+static int	is_separator(char c)
 {
-	return (c == sep1 || c == sep2 || c == sep3 || c == '\0');
+	return (c == ' ');
 }
-
-int	separator(char c, char c1, char c3)
+static int	count_words_shell(const char *s)
 {
-	return (c == c1 || c == c3);
-}
+	int		count;
+	char	quote_state;
 
-void	update_counts(char c, char separators[2], char c2, int *counts)
-{
-	if (c == c2)
+	count = 0;
+	quote_state = 0;
+	while (*s)
 	{
-		counts[1] = !counts[1];
-		if (!counts[1])
-			counts[0]++;
-	}
-	else
-	{
-		if (!counts[1])
+		while (*s && is_separator(*s))
+			s++;
+		if (*s)
+			count++;
+		while (*s && (!is_separator(*s) || quote_state))
 		{
-			if (separator(c, separators[0], separators[1]))
-				counts[2] = 0;
-			else if (!counts[2])
-			{
-				counts[2] = 1;
-				counts[0]++;
-			}
+			if (!quote_state && (*s == '\'' || *s == '"'))
+				quote_state = *s;
+			else if (quote_state == *s)
+				quote_state = 0;
+			s++;
 		}
 	}
+	return (count);
 }
 
-int	ft_split_words(char **result, char const *s, char seps[3])
+static char	*get_next_word(const char **s)
 {
-	int	i;
-	int	word_index;
-	int	word_start;
+	char		quote_state;
+	const char	*start;
+	int			len;
+	char		*word;
 
-	i = 0;
-	word_index = 0;
-	word_start = 0;
-	while (s[i])
+	quote_state = 0;
+	len = 0;
+	while (**s && is_separator(**s))
+		(*s)++;
+	start = *s;
+	while ((*s)[len] && (!is_separator((*s)[len]) || quote_state))
 	{
-		if (is_separator(s[i], seps[0], seps[1], seps[2]))
-			word_start = i + 1;
-		if (!is_separator(s[i], seps[0], seps[1], seps[2]) && is_separator(s[i
-				+ 1], seps[0], seps[1], seps[2]))
-		{
-			result[word_index] = malloc(sizeof(char) * (i - word_start + 2));
-			if (!result[word_index])
-				return (free_on_error(result, word_index));
-			ft_strlcpy(result[word_index], (s + word_start), i - word_start
-				+ 2);
-			word_index++;
-		}
-		i++;
+		if (!quote_state && ((*s)[len] == '\'' || (*s)[len] == '"'))
+			quote_state = (*s)[len];
+		else if (quote_state == (*s)[len])
+			quote_state = 0;
+		len++;
 	}
-	result[word_index] = NULL;
-	return (1);
-}
-
-int	numwords(char const *s, char c1, char c2, char c3)
-{
-	int		i;
-	int		counts[3];
-	char	separators[2];
-
-	i = 0;
-	counts[0] = 0;
-	counts[1] = 0;
-	counts[2] = 0;
-	separators[0] = c1;
-	separators[1] = c3;
-	while (s[i])
-	{
-		update_counts(s[i], separators, c2, counts);
-		i++;
-	}
-	return (counts[0]);
+	word = malloc(sizeof(char) * (len + 1));
+	if (!word)
+		return (NULL);
+	ft_strlcpy(word, start, len + 1);
+	*s += len;
+	return (word);
 }
 
 char	**construct_tokens(char *line)
 {
-	char	**tokens;
-	char	seps[3] = {' ', '"', 55};
+	char		**tokens;
+	int			word_count;
+	int			i;
+	const char	*line_ptr;
 
 	if (!line)
 		return (NULL);
-	tokens = malloc(sizeof(char *) * (numwords(line, seps[0], seps[1], seps[2])
-				+ 1));
+	line_ptr = line;
+	word_count = count_words_shell(line_ptr);
+	tokens = malloc(sizeof(char *) * (word_count + 1));
 	if (!tokens)
 		return (NULL);
-	if (!ft_split_words(tokens, line, seps))
-		return (NULL);
+	i = 0;
+	line_ptr = line;
+	while (i < word_count)
+	{
+		tokens[i] = get_next_word(&line_ptr);
+		if (!tokens[i])
+			return (free_on_error(tokens, i), NULL);
+		i++;
+	}
+	tokens[i] = NULL;
 	return (tokens);
 }

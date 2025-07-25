@@ -29,6 +29,13 @@
 # include <termios.h>
 # include <unistd.h>
 
+int		is_separator(char c, char sep1, char sep2, char sep3);
+int		separator(char c, char c1, char c3);
+void	update_counts(char c, char separators[2], char c2, int *counts);
+int		free_on_error(char **result, int word_count);
+int		ft_split_words(char **result, char const *s, char seps[3]);
+int		numwords(char const *s, char c1, char c2, char c3);
+void	free_tokens(char **tokens);
 char	**construct_tokens(char *line);
 void	free_r1(char *r1);
 void	ft_exit(char *r1);

@@ -44,6 +44,7 @@ int	main(void)
 			add_history(line);
 			printf("%s\n", line);
 			tokens = construct_tokens(line);
+
 			break ;
 		}
 		free(line);
@@ -54,6 +55,7 @@ int	main(void)
 		printf("%s\n", tokens[i]);
 		i++;
 	}
-	free(tokens);
+	free(line);
+	free_tokens(tokens);
 	return (0);
 }

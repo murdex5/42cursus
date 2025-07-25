@@ -12,6 +12,7 @@
 
 #include "minishell.h"
 
+
 volatile sig_atomic_t	g_signal_recieved = 0;
 
 void	signal_handler(int sig)

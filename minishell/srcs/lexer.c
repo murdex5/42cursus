@@ -11,10 +11,12 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
-int	is_separator(char c, char c1, char c3) 
-            return (c == c1 || c == c3);
+int is_separator(char c, char c1, char c3)
+{
+	return (c == c1 || c == c3);
+}
 
-static void	update_counts(char c, char separators[2], char c2, int *counts)
+static void update_counts(char c, char separators[2], char c2, int *counts)
 {
 	if (c == c2)
 	{
@@ -36,7 +38,7 @@ static void	update_counts(char c, char separators[2], char c2, int *counts)
 		}
 	}
 }
-static int	free_on_error(char **result, int word_count)
+static int free_on_error(char **result, int word_count)
 {
 	while (word_count > 0)
 	{
@@ -46,11 +48,11 @@ static int	free_on_error(char **result, int word_count)
 	return (0);
 }
 
-static int	ft_split_words(char **result, char const *s, char seps[3])
+static int ft_split_words(char **result, char const *s, char seps[3])
 {
-	int	i;
-	int	word_index;
-	int	word_start;
+	int i;
+	int word_index;
+	int word_start;
 
 	i = 0;
 	word_index = 0;
@@ -59,14 +61,12 @@ static int	ft_split_words(char **result, char const *s, char seps[3])
 	{
 		if (is_separator(s[i], seps[0], seps[1], seps[2]))
 			word_start = i + 1;
-		if (!is_separator(s[i], seps[0], seps[1], seps[2]) && is_separator(s[i
-				+ 1], seps[0], seps[1], seps[2]))
+		if (!is_separator(s[i], seps[0], seps[1], seps[2]) && is_separator(s[i + 1], seps[0], seps[1], seps[2]))
 		{
 			result[word_index] = malloc(sizeof(char) * (i - word_start + 2));
 			if (!result[word_index])
 				return (free_on_error(result, word_index));
-			ft_strlcpy(result[word_index], (s + word_start), i - word_start
-				+ 2);
+			ft_strlcpy(result[word_index], (s + word_start), i - word_start + 2);
 			word_index++;
 		}
 		i++;
@@ -75,11 +75,11 @@ static int	ft_split_words(char **result, char const *s, char seps[3])
 	return (1);
 }
 
-int	numwords(char const *s, char c1, char c2, char c3)
+int numwords(char const *s, char c1, char c2, char c3)
 {
-	int		i;
-	int		counts[3];
-	char	separators[2];
+	int i;
+	int counts[3];
+	char separators[2];
 
 	i = 0;
 	counts[0] = 0;
@@ -95,15 +95,15 @@ int	numwords(char const *s, char c1, char c2, char c3)
 	return (counts[0]);
 }
 
-char	**construct_tokens(char *line)
+char **construct_tokens(char *line)
 {
-	char	**tokens;
+	char **tokens;
 	if (!line)
 		return (NULL);
 	tokens = malloc(sizeof(char *) * numwords(line, ' ', '"', 55) + 1);
 	if (!tokens)
 		return (NULL);
-    if (!ft_split_words(tokens, line, [' ', '"', 55]))
-        return (NULL);
+	if (!ft_split_words(tokens, line, [ ' ', '"', 55 ]))
+		return (NULL);
 	return (tokens);
 }

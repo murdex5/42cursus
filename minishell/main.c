@@ -27,6 +27,8 @@ int	main(char **envp)
 	char				*line;
 	struct sigaction	sa;
 	char				**tokens;
+	int					fd[2];
+	int					out_fd[2];
 
 	sa.sa_handler = signal_handler;
 	if (!process_signals(&sa))

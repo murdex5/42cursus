@@ -16,6 +16,7 @@ static int	is_separator(char c)
 {
 	return (c == ' ');
 }
+
 static int	count_words_shell(const char *s)
 {
 	int		count;

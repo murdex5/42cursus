@@ -22,12 +22,11 @@ void	signal_handler(int sig)
 	rl_replace_line("", 0);
 	rl_redisplay();
 }
-int	main(void)
+int	main(char **envp)
 {
 	char				*line;
 	struct sigaction	sa;
 	char				**tokens;
-	int					i;
 
 	sa.sa_handler = signal_handler;
 	if (!process_signals(&sa))
@@ -42,17 +41,9 @@ int	main(void)
 		if (*line)
 		{
 			add_history(line);
-			printf("%s\n", line);
 			tokens = construct_tokens(line);
-			break ;
 		}
 		free(line);
-	}
-	i = 0;
-	while (tokens[i] != NULL)
-	{
-		printf("%s\n", tokens[i]);
-		i++;
 	}
 	free(line);
 	free_tokens(tokens);

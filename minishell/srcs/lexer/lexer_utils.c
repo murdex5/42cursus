@@ -70,17 +70,6 @@ char	*get_next_word(const char **s)
 	return (word);
 }
 
-int	get_array_len(char **tokens)
-{
-	int	i;
-
-	i = 0;
-	if (!tokens)
-		return (i);
-	while (tokens[i] != NULL)
-		i++;
-	return (i);
-}
 
 void	specify_tokens(t_token *token)
 {

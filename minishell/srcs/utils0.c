@@ -42,6 +42,17 @@ void	*ft_realloc(void *a, size_t old_size, size_t new_size)
 	}
 	return (new_ptr);
 }
+int	get_array_len(char **tokens)
+{
+	int	i;
+
+	i = 0;
+	if (!tokens)
+		return (i);
+	while (tokens[i] != NULL)
+		i++;
+	return (i);
+}
 
 // int	chec_char(char *c)
 // {

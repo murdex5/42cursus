@@ -32,8 +32,7 @@
 typedef enum e_tokentype
 {
 	TOKEN_WORD,
-	TOKEN,
-	PIPE,
+	TOKEN_PIPE,
 	TOKEN_REDIR_IN,
 	TOKEN_REDIR_OUT,
 	TOLEN_REDIR_APPEND,
@@ -48,6 +47,9 @@ typedef struct s_token
 	struct s_token	*next;
 }					t_token;
 
+t_token	*init_tokens(char *line);
+t_token				*get_tokens(char **tokens);
+void				specify_tokens(t_token *token);
 int					get_array_len(char **tokens);
 int					is_separator(char c);
 int					count_words_shell(const char *s);

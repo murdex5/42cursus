@@ -64,5 +64,20 @@ t_token	*get_tokens(char **tokens)
 			current->next = NULL;
 		i++;
 	}
+	specify_tokens(token);
+	return (token);
+}
+
+t_token	*init_tokens(char *line)
+{
+	char **tokens;
+	t_token *token;
+
+	tokens = construct_tokens(line);
+	if (!tokens)
+		return (NULL);
+	token = get_tokens(tokens);
+	if (!token)
+		return (NULL);
 	return (token);
 }

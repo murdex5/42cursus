@@ -81,3 +81,32 @@ int	get_array_len(char **tokens)
 		i++;
 	return (i);
 }
+
+void	specify_tokens(t_token *token)
+{
+	t_token	*head;
+	t_token	*next;
+
+	head = token;
+	while (token != NULL)
+	{
+		token->next = next;
+		if (ft_strncmp(token->value, "|", ft_strlen(token->value)) == 0)
+			token->type = TOKEN_PIPE;
+		else if (ft_strncmp(token->value, "here_doc",
+				ft_strlen(token->value)) == 0)
+			token->type = TOKEN_HEREDOC;
+		else if (ft_strncmp(token->value, "EOF", ft_strlen(token->value)) == 0)
+			token->type = TOKEN_EOF;
+		else if (ft_strncmp(token->value, ">", ft_strlen(token->value)) == 0)
+			token->type = TOKEN_REDIR_IN;
+		else if (ft_strncmp(token->value, "<", ft_strlen(token->value)) == 0)
+			token->type = TOKEN_REDIR_OUT;
+		else if (ft_strncmp(token->value, ">>", ft_strlen(token->value)) == 0)
+			token->type = TOKEN_APPEND;
+		else
+			token->type = TOKEN_WORD;
+		token = next;
+	}
+	token = head;
+}

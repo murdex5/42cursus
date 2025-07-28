@@ -27,7 +27,7 @@ int	main()
 {
 	char				*line;
 	struct sigaction	sa;
-	char				**tokens;
+	t_token *token;
 	// int					fd[2];
 	// int					out_fd[2];
 
@@ -44,7 +44,7 @@ int	main()
 		if (*line)
 		{
 			add_history(line);
-			tokens = construct_tokens(line);
+			token= init_tokens(line);
 			break ;
 		}
 		free(line);

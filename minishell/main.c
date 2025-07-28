@@ -23,13 +23,11 @@ void	signal_handler(int sig)
 	rl_redisplay();
 }
 
-int	main()
+int	main(void)
 {
 	char				*line;
 	struct sigaction	sa;
-	t_token *token;
-	// int					fd[2];
-	// int					out_fd[2];
+	t_token				*token;
 
 	sa.sa_handler = signal_handler;
 	if (!process_signals(&sa))
@@ -44,12 +42,12 @@ int	main()
 		if (*line)
 		{
 			add_history(line);
-			token= init_tokens(line);
+			token = init_tokens(line);
 			break ;
 		}
 		free(line);
 	}
 	free(line);
-	free_tokens(tokens);
+	free_on_exiting_list(token);
 	return (0);
 }

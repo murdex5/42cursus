@@ -90,7 +90,7 @@ void	specify_tokens(t_token *token)
 	head = token;
 	while (token != NULL)
 	{
-		token->next = next;
+		next = token->next;
 		if (ft_strncmp(token->value, "|", ft_strlen(token->value)) == 0)
 			token->type = TOKEN_PIPE;
 		else if (ft_strncmp(token->value, "here_doc",
@@ -103,7 +103,7 @@ void	specify_tokens(t_token *token)
 		else if (ft_strncmp(token->value, "<", ft_strlen(token->value)) == 0)
 			token->type = TOKEN_REDIR_OUT;
 		else if (ft_strncmp(token->value, ">>", ft_strlen(token->value)) == 0)
-			token->type = TOKEN_APPEND;
+			token->type = TOKEN_REDIR_APPEND;
 		else
 			token->type = TOKEN_WORD;
 		token = next;

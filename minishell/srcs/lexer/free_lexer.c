@@ -19,11 +19,13 @@ void	free_on_exiting_list(t_token *tokens)
 
 	if (tokens == NULL)
 		return ;
+
 	current = tokens;
-	while (tokens != NULL)
+	while (current != NULL)
 	{
 		next = current->next;
-		free(current->value);
+		if (current->value != NULL)
+			free(current->value);
 		free(current);
 		current = next;
 	}

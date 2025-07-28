@@ -14,7 +14,9 @@ CC = gcc
 SRCS_DIR = ./srcs
 SRCS = ${SRCS_DIR}/utils0.c \
 		${SRCS_DIR}/exec.c \
-		${SRCS_DIR}/lexer.c \
+		${SRCS_DIR}/lexer/free_lexer.c \
+		${SRCS_DIR}/lexer/lexer_utils.c \
+		${SRCS_DIR}/lexer/lexer.c \
 		${SRCS_DIR}/signals.c \
 		${SRCS_DIR}/frees.c \
         main.c

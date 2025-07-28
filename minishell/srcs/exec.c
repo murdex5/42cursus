@@ -12,10 +12,10 @@
 
 #include "../minishell.h"
 
-int	ft_exec(int fd[2], char **path, int out_fd[2])
-{
-	pid_t	pid1;
-	pid_t	pid2;
-	int		status1;
-	int		status2;
-}
+// int	ft_exec(int fd[2], char **path, int out_fd[2])
+// {
+// 	pid_t	pid1;
+// 	pid_t	pid2;
+// 	int		status1;
+// 	int		status2;
+// }

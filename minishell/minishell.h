@@ -29,13 +29,36 @@
 # include <termios.h>
 # include <unistd.h>
 
+typedef enum e_tokentype
+{
+	TOKEN_WORD,
+	TOKEN,
+	PIPE,
+	TOKEN_REDIR_IN,
+	TOKEN_REDIR_OUT,
+	TOLEN_REDIR_APPEND,
+	TOKEN_HEREDOC,
+	TOKEN_EOF,
+}					t_tokentype;
 
-int		free_on_error(char **result, int word_count);
-void	free_tokens(char **tokens);
-char	**construct_tokens(char *line);
-void	free_r1(char *r1);
-void	ft_exit(char *r1);
-void	*ft_realloc(void *a, size_t old_size, size_t new_size);
-void	signal_handler(int sig);
-int		process_signals(struct sigaction *sa);
+typedef struct s_token
+{
+	char			*value;
+	t_tokentype		type;
+	struct s_token	*next;
+}					t_token;
+
+int					get_array_len(char **tokens);
+int					is_separator(char c);
+int					count_words_shell(const char *s);
+char				*get_next_word(const char **s);
+int					free_on_error(char **result, int word_count);
+void				free_tokens(char **tokens);
+char				**construct_tokens(char *line);
+void				free_on_exiting_list(t_token *tokens);
+void				free_r1(char *r1);
+void				ft_exit(char *r1);
+void				*ft_realloc(void *a, size_t old_size, size_t new_size);
+void				signal_handler(int sig);
+int					process_signals(struct sigaction *sa);
 #endif

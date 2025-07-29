@@ -23,6 +23,37 @@ void	signal_handler(int sig)
 	rl_redisplay();
 }
 
+void print_tokens(t_token *head)
+{
+    t_token *current = head;
+    int count = 0;
+
+    printf("=== TOKEN LIST ===\n");
+    while (current != NULL)
+    {
+        printf("[%d] Value: '%s'\n", count, current->value);
+        printf("     Type:  ");
+        
+        switch (current->type)
+        {
+            case TOKEN_WORD:        printf("WORD"); break;
+            case TOKEN_PIPE:        printf("PIPE"); break;
+            case TOKEN_REDIR_IN:   printf("REDIR_IN"); break;
+            case TOKEN_REDIR_OUT:  printf("REDIR_OUT"); break;
+            case TOKEN_REDIR_APPEND: printf("REDIR_APPEND"); break;
+            case TOKEN_HEREDOC:     printf("HEREDOC"); break;
+            case TOKEN_EOF:         printf("EOF"); break;
+            default:                printf("UNKNOWN (%d)", current->type);
+        }
+        printf("\n\n");
+        
+        current = current->next;
+        count++;
+    }
+    printf("=== TOTAL: %d tokens ===\n", count);
+}
+
+
 int	main(void)
 {
 	char				*line;
@@ -38,12 +69,13 @@ int	main(void)
 			g_signal_recieved = 0;
 		line = readline("minishell> ");
 		if (line == NULL)
-			return (ft_exit(line), 0);
+			return (ft_exit(line, token), 0);
 		if (*line)
 		{
 			add_history(line);
 			token = init_tokens(line);
-			break ;
+			print_tokens(token);
+			free_on_exiting_list(token);
 		}
 		free(line);
 	}

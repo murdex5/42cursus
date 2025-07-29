@@ -70,7 +70,6 @@ char	*get_next_word(const char **s)
 	return (word);
 }
 
-
 void	specify_tokens(t_token *token)
 {
 	t_token	*head;
@@ -82,15 +81,14 @@ void	specify_tokens(t_token *token)
 		next = token->next;
 		if (ft_strncmp(token->value, "|", ft_strlen(token->value)) == 0)
 			token->type = TOKEN_PIPE;
-		else if (ft_strncmp(token->value, "here_doc",
-				ft_strlen(token->value)) == 0)
-			token->type = TOKEN_HEREDOC;
 		else if (ft_strncmp(token->value, "EOF", ft_strlen(token->value)) == 0)
 			token->type = TOKEN_EOF;
 		else if (ft_strncmp(token->value, ">", ft_strlen(token->value)) == 0)
 			token->type = TOKEN_REDIR_IN;
 		else if (ft_strncmp(token->value, "<", ft_strlen(token->value)) == 0)
 			token->type = TOKEN_REDIR_OUT;
+		else if (ft_strncmp(token->value, "<<", ft_strlen(token->value)) == 0)
+			token->type = TOKEN_HEREDOC;
 		else if (ft_strncmp(token->value, ">>", ft_strlen(token->value)) == 0)
 			token->type = TOKEN_REDIR_APPEND;
 		else

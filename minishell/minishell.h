@@ -59,7 +59,7 @@ void				free_tokens(char **tokens);
 char				**construct_tokens(char *line);
 void				free_on_exiting_list(t_token *tokens);
 void				free_r1(char *r1);
-void				ft_exit(char *r1);
+void				ft_exit(char *r1, t_token *token);
 void				*ft_realloc(void *a, size_t old_size, size_t new_size);
 void				signal_handler(int sig);
 int					process_signals(struct sigaction *sa);

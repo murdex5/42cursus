@@ -15,7 +15,8 @@
 void	ft_exit(char *r1, t_token *token)
 {
 	printf("exit\n");
-	free_on_exiting_list(token);
+	if (token)
+		free_on_exiting_list(token);
 	free_r1(r1);
 }
 

@@ -61,13 +61,14 @@ int	main(void)
 	t_token				*token;
 
 	sa.sa_handler = signal_handler;
+	token = NULL;
 	if (!process_signals(&sa))
 		exit(1);
 	while (1)
 	{
 		if (g_signal_recieved)
 			g_signal_recieved = 0;
-		line = readline("minishell> ");
+		line = readline("minishell:~/42cursus/minishell$ ");
 		if (line == NULL)
 			return (ft_exit(line, token), 0);
 		if (*line)
@@ -76,6 +77,7 @@ int	main(void)
 			token = init_tokens(line);
 			print_tokens(token);
 			free_on_exiting_list(token);
+			token = NULL;
 		}
 		free(line);
 	}

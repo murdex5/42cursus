@@ -72,28 +72,23 @@ char	*get_next_word(const char **s)
 
 void	specify_tokens(t_token *token)
 {
-	t_token	*head;
-	t_token	*next;
+	t_token	*current;
 
-	head = token;
-	while (token != NULL)
+	current = token;
+	while (current != NULL)
 	{
-		next = token->next;
-		if (ft_strncmp(token->value, "|", ft_strlen(token->value)) == 0)
-			token->type = TOKEN_PIPE;
-		else if (ft_strncmp(token->value, "EOF", ft_strlen(token->value)) == 0)
-			token->type = TOKEN_EOF;
-		else if (ft_strncmp(token->value, ">", ft_strlen(token->value)) == 0)
-			token->type = TOKEN_REDIR_IN;
-		else if (ft_strncmp(token->value, "<", ft_strlen(token->value)) == 0)
-			token->type = TOKEN_REDIR_OUT;
-		else if (ft_strncmp(token->value, "<<", ft_strlen(token->value)) == 0)
-			token->type = TOKEN_HEREDOC;
-		else if (ft_strncmp(token->value, ">>", ft_strlen(token->value)) == 0)
-			token->type = TOKEN_REDIR_APPEND;
+		if (ft_strncmp(current->value, "|", 2) == 0)
+			current->type = TOKEN_PIPE;
+		else if (ft_strncmp(current->value, "<", 2) == 0)
+			current->type = TOKEN_REDIR_IN;
+		else if (ft_strncmp(current->value, ">", 2) == 0)
+			current->type = TOKEN_REDIR_OUT;
+		else if (ft_strncmp(current->value, "<<", 3) == 0)
+			current->type = TOKEN_HEREDOC;
+		else if (ft_strncmp(current->value, ">>", 3) == 0)
+			current->type = TOKEN_REDIR_APPEND;
 		else
-			token->type = TOKEN_WORD;
-		token = next;
+			current->type = TOKEN_WORD;
+		current = current->next;
 	}
-	token = head;
 }

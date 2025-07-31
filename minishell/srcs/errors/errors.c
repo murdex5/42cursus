@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 16:50:34 by kadferna          #+#    #+#             */
-/*   Updated: 2025/07/16 16:50:38 by kadferna         ###   ########.fr       */
+/*   Created: 2025/07/31 10:42:06 by kadferna          #+#    #+#             */
+/*   Updated: 2025/07/31 10:42:07 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
-
-t_ast_node *parse_command(t_token *tokens)
+void	std_err_msg(char *msg)
 {
-    char **list;
-
-    
-}
-
-
-t_ast_node	*parse_command_line(t_token *tokens)
-{
-	return (NULL);
+	printf("Error\n %s\n", msg);
 }

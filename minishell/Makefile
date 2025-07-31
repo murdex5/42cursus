@@ -56,8 +56,11 @@ SRCS        := \
 	$(SRCS_DIR)/lexer/free_lexer.c \
 	$(SRCS_DIR)/lexer/lexer_utils.c \
 	$(SRCS_DIR)/lexer/lexer.c \
+	$(SRCS_DIR)/parsing/parse_helper.c \
+	$(SRCS_DIR)/parsing/parse_utils.c \
 	$(SRCS_DIR)/parsing/parsing.c \
 	$(SRCS_DIR)/signals/signals.c \
+	$(SRCS_DIR)/errors/errors.c \
 	$(SRCS_DIR)/frees.c \
 	main.c
 

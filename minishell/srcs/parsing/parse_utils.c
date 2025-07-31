@@ -1,26 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 16:50:34 by kadferna          #+#    #+#             */
-/*   Updated: 2025/07/16 16:50:38 by kadferna         ###   ########.fr       */
+/*   Created: 2025/07/31 11:14:42 by kadferna          #+#    #+#             */
+/*   Updated: 2025/07/31 11:14:44 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-t_ast_node *parse_command(t_token *tokens)
+char	**create_list(t_token *token)
 {
-    char **list;
+	char	**list;
+	int		i;
+	int		token_len;
+	int		j;
+	t_token	*current;
 
-    
-}
-
-
-t_ast_node	*parse_command_line(t_token *tokens)
-{
-	return (NULL);
+	token_len = list_len();
+	current = token;
+	list = malloc(sizeof(char *) * (word_len(token) + 1));
+	if (!list)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (i < token_len)
+	{
+		switch (current->type)
+		{
+		case TOKEN_WORD:
+			list[j] = current->value;
+			j++;
+			break ;
+		}
+		i++;
+	}
+	return (list);
 }

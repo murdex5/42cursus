@@ -1,26 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parse_helper.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 16:50:34 by kadferna          #+#    #+#             */
-/*   Updated: 2025/07/16 16:50:38 by kadferna         ###   ########.fr       */
+/*   Created: 2025/07/31 12:01:39 by kadferna          #+#    #+#             */
+/*   Updated: 2025/07/31 12:01:41 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-t_ast_node *parse_command(t_token *tokens)
+int	word_len(t_token *token)
 {
-    char **list;
+	int		len;
+	t_token	*current;
 
-    
+	len = 0;
+	current = token;
+	while (current != NULL)
+	{
+		switch (current->type)
+		{
+		case TOKEN_WORD:
+			len++;
+			break ;
+		}
+		current = current->next;
+	}
+	return (len);
 }
 
-
-t_ast_node	*parse_command_line(t_token *tokens)
+int	list_len(t_token *token)
 {
-	return (NULL);
+	int len;
+	t_token *current;
+
+	current = token;
+	while (current != NULL)
+	{
+		i++;
+		current = current->next
+	}
+	return (i);
 }

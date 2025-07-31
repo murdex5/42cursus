@@ -14,7 +14,8 @@
 
 int	is_separator(char c)
 {
-	return (c == ' ');
+	return (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
+		|| c == '\r');
 }
 
 int	count_words_shell(const char *s)

@@ -77,6 +77,7 @@ t_token	*init_tokens(char *line)
 	if (!tokens)
 		return (NULL);
 	token = get_tokens(tokens);
+	free(tokens);
 	if (!token)
 		return (NULL);
 	return (token);

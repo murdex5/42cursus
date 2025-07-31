@@ -45,3 +45,4 @@ int	list_len(t_token *token)
 	}
 	return (i);
 }
+

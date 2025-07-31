@@ -90,6 +90,8 @@ typedef struct s_token
 	struct s_token		*next;
 }						t_token;
 
+void					report_syntax_error(char *msg, t_token *token);
+int						is_redirection(t_token *token);
 char					**create_list(t_token *token);
 int						list_len(t_token *token);
 int						word_len(t_token *token);

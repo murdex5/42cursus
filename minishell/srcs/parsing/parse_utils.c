@@ -12,6 +12,14 @@
 
 #include "../../minishell.h"
 
+int	is_redirection(t_token *token)
+{
+	if (!token)
+		return (0);
+	return (token->type == TOKEN_REDIR_IN || token->type == TOKEN_REDIR_OUT
+		|| token->type == TOKEN_REDIR_APPEND || token->type == TOKEN_HEREDOC);
+}
+
 char	**create_list(t_token *token)
 {
 	char	**list;

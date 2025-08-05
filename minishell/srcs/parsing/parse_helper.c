@@ -12,37 +12,5 @@
 
 #include "../../minishell.h"
 
-int	word_len(t_token *token)
-{
-	int		len;
-	t_token	*current;
 
-	len = 0;
-	current = token;
-	while (current != NULL)
-	{
-		switch (current->type)
-		{
-		case TOKEN_WORD:
-			len++;
-			break ;
-		}
-		current = current->next;
-	}
-	return (len);
-}
-
-int	list_len(t_token *token)
-{
-	int len;
-	t_token *current;
-
-	current = token;
-	while (current != NULL)
-	{
-		i++;
-		current = current->next
-	}
-	return (i);
-}
 

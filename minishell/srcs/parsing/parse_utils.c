@@ -12,39 +12,3 @@
 
 #include "../../minishell.h"
 
-int	is_redirection(t_token *token)
-{
-	if (!token)
-		return (0);
-	return (token->type == TOKEN_REDIR_IN || token->type == TOKEN_REDIR_OUT
-		|| token->type == TOKEN_REDIR_APPEND || token->type == TOKEN_HEREDOC);
-}
-
-char	**create_list(t_token *token)
-{
-	char	**list;
-	int		i;
-	int		token_len;
-	int		j;
-	t_token	*current;
-
-	token_len = list_len();
-	current = token;
-	list = malloc(sizeof(char *) * (word_len(token) + 1));
-	if (!list)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (i < token_len)
-	{
-		switch (current->type)
-		{
-		case TOKEN_WORD:
-			list[j] = current->value;
-			j++;
-			break ;
-		}
-		i++;
-	}
-	return (list);
-}

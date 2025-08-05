@@ -20,6 +20,7 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <signal.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -34,7 +35,8 @@ typedef enum e_redirect_type
 	REDIR_IN,
 	REDIR_OUT,
 	REDIR_APPEND,
-	REDIR_HEREDOC
+	REDIR_HEREDOC,
+	REDIR_NONE
 }						t_redirect_type;
 
 typedef enum e_tokentype
@@ -55,8 +57,6 @@ typedef enum e_node_type
 	NODE_SUBSHELL
 }						t_node_type;
 
-typedef struct			s_ast_node;
-
 typedef struct s_redirect
 {
 	t_redirect_type		type;
@@ -74,13 +74,20 @@ typedef struct s_command_node
 	t_node_type			type;
 	char				**argv;
 	t_redirect			*redirections;
-}						t_command_type;
+}						t_command_node;
 
-typdef struct s_subshell_node
+typedef struct s_pipe_node
 {
-	t_node_type type;
-	struct s_ast_node *child;
-	t_redirect *redirections;
+	t_node_type			type;
+	t_ast_node			*left;
+	t_ast_node			*right;
+}						t_pipe_node;
+
+typedef struct s_subshell_node
+{
+	t_node_type			type;
+	struct s_ast_node	*child;
+	t_redirect			*redirections;
 }						t_subshell_node;
 
 typedef struct s_token
@@ -90,12 +97,14 @@ typedef struct s_token
 	struct s_token		*next;
 }						t_token;
 
-char					**convert_list_to_argv(t_list *words);
-void					report_syntax_error(char *msg, t_token *token);
-int						is_redirection(t_token *token);
-char					**create_list(t_token *token);
-int						list_len(t_token *token);
-int						word_len(t_token *token);
+t_redirect_type			get_redir_type(t_tokentype token_type);
+void					free_ast(t_ast_node *node);
+char					**list_to_array(t_list *lst);
+t_pipe_node				*create_pipe_node(t_ast_node *left, t_ast_node *right);
+bool					is_redirection(t_token *token);
+void					advance_token(t_token **token);
+t_redirect				*create_redirect(t_redirect_type type, char *filename);
+void					add_redirect(t_redirect **list, t_redirect *new);
 void					std_err_msg(char *msg);
 t_token					*init_tokens(char *line);
 t_token					*get_tokens(char **tokens);

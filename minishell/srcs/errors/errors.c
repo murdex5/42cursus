@@ -18,6 +18,6 @@ void	std_err_msg(char *msg)
 }
 
 void report_syntax_error(char *msg, t_token *token)
-[
+{
 	printf("%s: %s\n", msg, token->value);
-]
+}

@@ -12,5 +12,53 @@
 
 #include "../../minishell.h"
 
+t_redirect	*create_redirect_node(t_redirect_type type, char *filename)
+{
+	t_redirect	*new;
 
+	new = malloc(sizeof(t_redirect));
+	if (!new)
+		return (NULL);
+	new->type = type;
+	new->filename = strdup(filename);
+	new->next = NULL;
+	return (new);
+}
 
+char	**list_to_array(t_list *lst)
+{
+	char	**array;
+	int		len;
+	int		i;
+	t_list	*tmp;
+
+	if (!lst)
+		return (NULL);
+	len = 0;
+	tmp = lst;
+	while (tmp)
+	{
+		len++;
+		tmp = tmp->next;
+	}
+	array = malloc(sizeof(char *) * (len + 1));
+	if (!array)
+		return (NULL);
+	i = 0;
+	tmp = lst;
+	while (tmp)
+	{
+		array[i] = ft_strdup((char *)tmp->content);
+		if (!array[i])
+		{
+			while (i-- > 0)
+				free(array[i]);
+			free(array);
+			return (NULL);
+		}
+		i++;
+		tmp = tmp->next;
+	}
+	array[i] = NULL;
+	return (array);
+}

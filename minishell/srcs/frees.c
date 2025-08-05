@@ -44,3 +44,26 @@ void	free_tokens(char **tokens)
 	free(tokens);
 	tokens = NULL;
 }
+
+void	free_ast(t_ast_node *node)
+{
+	if (!node)
+		return ;
+	free(node);
+}
+
+void	free_on_exiting_list(t_token *tokens)
+{
+	t_token *current;
+	t_token *next;
+
+	current = tokens;
+	while (current != NULL)
+	{
+		next = current->next;
+		if (current->value != NULL)
+			free(current->value);
+		free(current);
+		current = next;
+	}
+}

@@ -12,21 +12,30 @@
 
 #include "../../minishell.h"
 
-void	free_on_exiting_list(t_token *tokens)
+t_redirect	*create_redirect(t_redirect_type type, char *filename)
 {
-	t_token *current;
-	t_token *next;
+	t_redirect	*new;
 
-	if (tokens == NULL)
-		return ;
+	new = malloc(sizeof(t_redirect));
+	if (!new)
+		return (NULL);
+	new->type = type;
+	new->filename = ft_strdup(filename);
+	new->next = NULL;
+	return (new);
+}
 
-	current = tokens;
-	while (current != NULL)
+void	add_redirect(t_redirect **list, t_redirect *new)
+{
+	t_redirect *curr;
+
+	if (!*list)
 	{
-		next = current->next;
-		if (current->value != NULL)
-			free(current->value);
-		free(current);
-		current = next;
+		*list = new;
+		return ;
 	}
+	curr = *list;
+	while (curr->next)
+		curr = curr->next;
+	curr->next = new;
 }

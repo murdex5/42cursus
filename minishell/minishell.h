@@ -97,7 +97,7 @@ typedef struct s_token
 	struct s_token		*next;
 }						t_token;
 
-int					put_content(t_list *tmp, char **array, int *i);
+int						put_content(t_list *tmp, char **array, int *i);
 t_redirect_type			get_redir_type(t_tokentype token_type);
 void					free_ast(t_ast_node *node);
 char					**list_to_array(t_list *lst);

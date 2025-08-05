@@ -46,19 +46,8 @@ char	**list_to_array(t_list *lst)
 		return (NULL);
 	i = 0;
 	tmp = lst;
-	while (tmp)
-	{
-		array[i] = ft_strdup((char *)tmp->content);
-		if (!array[i])
-		{
-			while (i-- > 0)
-				free(array[i]);
-			free(array);
-			return (NULL);
-		}
-		i++;
-		tmp = tmp->next;
-	}
+	if (!put_content(tmp, array, &i))
+		return (NULL);
 	array[i] = NULL;
 	return (array);
 }

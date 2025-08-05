@@ -50,7 +50,6 @@ t_redirect_type	get_redir_type(t_tokentype token_type)
 	}
 }
 
-
 bool	is_redirection(t_token *token)
 {
 	if (!token)
@@ -58,3 +57,21 @@ bool	is_redirection(t_token *token)
 	return (token->type == TOKEN_REDIR_IN || token->type == TOKEN_REDIR_OUT
 		|| token->type == TOKEN_REDIR_APPEND || token->type == TOKEN_HEREDOC);
 };
+
+int	put_content(t_list *tmp, char **array, int *i)
+{
+	while (tmp)
+	{
+		array[*i] = ft_strdup((char *)tmp->content);
+		if (!array[*i])
+		{
+			while ((*i)-- > 0)
+				free(array[*i]);
+			free(array);
+			return (0);
+		}
+		(*i)++;
+		tmp = tmp->next;
+	}
+	return (1);
+}

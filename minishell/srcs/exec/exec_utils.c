@@ -1,34 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/25 11:06:46 by kadferna          #+#    #+#             */
-/*   Updated: 2025/07/25 11:06:47 by kadferna         ###   ########.fr       */
+/*   Created: 2025/08/05 17:11:49 by kadferna          #+#    #+#             */
+/*   Updated: 2025/08/05 17:11:52 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	ft_exec( t_ast_node *node)
-{
-	pid_t	pid1;
-	pid_t	pid2;
-	int		status1;
-	int		status2;
-}
-
-
-int run_pip(t_ast_node *node, char *envp[])
-{
-    t_pip *pip;
-    int status;
-    int fd[2];
-    int out_fd[2];
-    int state;
-
-    status = 0;
-
-}

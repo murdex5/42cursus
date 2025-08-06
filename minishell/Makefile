@@ -52,7 +52,8 @@ HEADER      := minishell.h
 SRCS_DIR    := ./srcs
 SRCS        := \
 	$(SRCS_DIR)/utils0.c \
-	$(SRCS_DIR)/exec.c \
+	$(SRCS_DIR)/exec/exec_utils.c \
+	$(SRCS_DIR)/exec/exec.c \
 	$(SRCS_DIR)/lexer/free_lexer.c \
 	$(SRCS_DIR)/lexer/lexer_utils.c \
 	$(SRCS_DIR)/lexer/lexer.c \

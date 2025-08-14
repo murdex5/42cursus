@@ -54,13 +54,17 @@ void print_tokens(t_token *head)
 }
 
 
-int	main(void)
+int	main(int argc, char **argv, char *envp[])
 {
 	char				*line;
 	struct sigaction	sa;
 	t_token				*token;
+	t_ast_node *pipe;
 
+	(void)argc;
+	(void)argv;
 	sa.sa_handler = signal_handler;
+	pipe = NULL;
 	token = NULL;
 	if (!process_signals(&sa))
 		exit(1);
@@ -68,15 +72,15 @@ int	main(void)
 	{
 		if (g_signal_recieved)
 			g_signal_recieved = 0;
-		line = readline("minishell:~/42cursus/minishell$ ");
+		line = readline("minishell: ");
 		if (line == NULL)
 			return (ft_exit(line, token), 0);
 		if (*line)
 		{
 			add_history(line);
 			token = init_tokens(line);
-			print_tokens(token);
-			free_on_exiting_list(token);
+			pipe = parse(token);
+			execute_ast_pipeline(pipe, envp);
 			token = NULL;
 		}
 		free(line);

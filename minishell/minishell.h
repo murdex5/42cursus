@@ -97,17 +97,8 @@ typedef struct s_token
 	struct s_token		*next;
 }						t_token;
 
-typedef struct s_pip
-{
-	t_bool				here_doc;
-	t_bool				is_invalid_infile;
-	t_bool				is_invalid_outfile;
-	char				**cmd_path;
-	char				***cmd_args;
-	char				**env;
-	int					cmd_count;
-}						t_pip;
-
+t_ast_node				*parse(t_token *token);
+int						execute_ast_pipeline(t_ast_node *node, char **envp);
 int						put_content(t_list *tmp, char **array, int *i);
 t_redirect_type			get_redir_type(t_tokentype token_type);
 void					free_ast(t_ast_node *node);

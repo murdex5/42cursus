@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   closes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/31 10:42:06 by kadferna          #+#    #+#             */
-/*   Updated: 2025/07/31 10:42:07 by kadferna         ###   ########.fr       */
+/*   Created: 2025/08/18 20:44:15 by kadferna          #+#    #+#             */
+/*   Updated: 2025/08/18 20:44:18 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
-void	std_err_msg(char *msg)
+void	close2_fd(int fd1, int fd2)
 {
-	printf("Error\n %s\n", msg);
+	close(fd1);
+	close(fd2);
 }
 
-void	report_syntax_error(char *msg, t_token *token)
-{
-	printf("%s: %s\n", msg, token->value);
-}
-
-int	perror_ret(char *msg, int i)
+void	perror_exit(char *msg, int i)
 {
 	perror(msg);
-	return (i);
+	exit(i);
 }

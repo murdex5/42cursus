@@ -97,6 +97,9 @@ typedef struct s_token
 	struct s_token		*next;
 }						t_token;
 
+void printf_err(char *msg, t_node_type type);
+void					execve_error(t_command_node *cmd);
+void					command_not_found(t_command_node *cmd);
 void					perror_exit(char *msg, int i);
 void					handle_left_child(int *pipe_fd, t_ast_node *node,
 							char **envp);

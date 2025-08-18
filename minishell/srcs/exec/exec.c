@@ -25,9 +25,7 @@ int	exec_ast(t_ast_node *node, char **envp)
 		return (exec_simple_command((t_command_node *)node, envp));
 	if (node->type == NODE_PIPE)
 		return (exec_pipe_node((t_pipe_node *)node, envp));
-	// if (node->type == NODE_SUBSHELL)
-	// 	return (exec_subshell_node((t_subshell_node *)node, envp));
-	fprintf(stderr, "minishell: Unrecognized node type %d\n", node->type);
+	printf_err("minishell: Unrecognized node type", node->type);
 	return (127);
 }
 
@@ -46,11 +44,11 @@ int	exec_simple_command(t_command_node *cmd, char **envp)
 		cmd_path = resolve_command_path(cmd->argv[0], envp);
 		if (!cmd_path)
 		{
-			fprintf(stderr, "minishell: %s: command not found\n", cmd->argv[0]);
+			command_not_found(cmd);
 			exit(127);
 		}
 		execve(cmd_path, cmd->argv, envp);
-		fprintf(stderr, "minishell: %s: %s\n", cmd->argv[0], strerror(errno));
+		execve_error(cmd);
 		free(cmd_path);
 		exit(126);
 	}
@@ -102,7 +100,7 @@ void	handle_redirections(t_redirect *redir_list)
 		else if (curr->type == REDIR_APPEND)
 			fd = open(curr->filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
 		else
-			fd = -1; // Placeholder for HEREDOC or other types
+			fd = -1;
 		if (fd == -1)
 			perror_exit(curr->filename, 1);
 		if (curr->type == REDIR_IN)

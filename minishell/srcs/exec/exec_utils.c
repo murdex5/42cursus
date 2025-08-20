@@ -12,24 +12,12 @@
 
 #include "../../minishell.h"
 
-char	*resolve_command_path(const char *cmd_name, char **envp)
+char	*process_path(char **paths, const char *cmd_name)
 {
-	char	**paths;
-	char	*full_path;
-	char	*tmp;
 	int		i;
+	char	*tmp;
+	char	*full_path;
 
-	if (!cmd_name || !*cmd_name)
-		return (NULL);
-	if (ft_strchr(cmd_name, '/'))
-	{
-		if (access(cmd_name, X_OK) == 0)
-			return (ft_strdup(cmd_name));
-		return (NULL);
-	}
-	paths = get_path(envp);
-	if (!paths)
-		return (NULL);
 	i = 0;
 	while (paths[i])
 	{
@@ -44,6 +32,28 @@ char	*resolve_command_path(const char *cmd_name, char **envp)
 		free(full_path);
 		i++;
 	}
+	return (NULL);
+}
+
+char	*resolve_command_path(const char *cmd_name, char **envp)
+{
+	char	**paths;
+	char	*full_path;
+
+	if (!cmd_name || !*cmd_name)
+		return (NULL);
+	if (ft_strchr(cmd_name, '/'))
+	{
+		if (access(cmd_name, X_OK) == 0)
+			return (ft_strdup(cmd_name));
+		return (NULL);
+	}
+	paths = get_path(envp);
+	if (!paths)
+		return (NULL);
+	full_path = process_path(paths, cmd_name);
+	if (full_path != NULL)
+		return (full_path);
 	free_paths(paths);
 	return (NULL);
 }
@@ -74,8 +84,8 @@ void	handle_right_child(int *pipe_fd, t_ast_node *node, char **envp)
 
 char	**get_path(char *env[])
 {
-	char	**paths;
-	char	*path_env;
+	char **paths;
+	char *path_env;
 
 	path_env = NULL;
 	while (*env)

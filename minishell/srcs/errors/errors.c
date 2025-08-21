@@ -12,16 +12,6 @@
 
 #include "../../minishell.h"
 
-void	std_err_msg(char *msg)
-{
-	printf("Error\n %s\n", msg);
-}
-
-void	report_syntax_error(char *msg, t_token *token)
-{
-	printf("%s: %s\n", msg, token->value);
-}
-
 int	perror_ret(char *msg, int i)
 {
 	perror(msg);
@@ -42,7 +32,8 @@ void	execve_error(t_command_node *cmd)
 	write(2, strerror(errno), ft_strlen(strerror(errno)));
 	write(2, "\n", ft_strlen("\n"));
 }
-void printf_err(char *msg, t_node_type type)
+
+void	printf_err(char *msg, t_node_type type)
 {
 	write(2, msg, ft_strlen(msg));
 	write(2, " - Type: ", 9);

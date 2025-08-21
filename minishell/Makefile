@@ -62,6 +62,7 @@ SRCS        := \
 	$(SRCS_DIR)/parsing/parsing.c \
 	$(SRCS_DIR)/signals/signals.c \
 	$(SRCS_DIR)/errors/errors.c \
+	$(SRCS_DIR)/errors/errors1.c \
 	$(SRCS_DIR)/closes.c \
 	$(SRCS_DIR)/frees.c \
 	main.c

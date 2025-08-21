@@ -111,5 +111,3 @@ void	handle_redirections(t_redirect *redir_list)
 		curr = curr->next;
 	}
 }
-
-

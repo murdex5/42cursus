@@ -84,8 +84,8 @@ void	handle_right_child(int *pipe_fd, t_ast_node *node, char **envp)
 
 char	**get_path(char *env[])
 {
-	char **paths;
-	char *path_env;
+	char	**paths;
+	char	*path_env;
 
 	path_env = NULL;
 	while (*env)

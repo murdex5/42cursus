@@ -65,6 +65,9 @@ SRCS        := \
 	$(SRCS_DIR)/errors/errors1.c \
 	$(SRCS_DIR)/closes.c \
 	$(SRCS_DIR)/frees.c \
+	$(SRCS_DIR)/check_bltn.c \
+	$(SRCS_DIR)/bltn_funcs/echo/echo.c \
+	$(SRCS_DIR)/bltn_funcs/cd/cd.c \
 	main.c
 
 OBJS        := $(SRCS:.c=.o)

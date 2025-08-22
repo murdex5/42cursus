@@ -22,7 +22,9 @@ int	execute_ast_pipeline(t_ast_node *node, char **envp)
 int	exec_ast(t_ast_node *node, char **envp)
 {
 	if (node->type == NODE_COMMAND)
+	{
 		return (exec_simple_command((t_command_node *)node, envp));
+	}
 	if (node->type == NODE_PIPE)
 		return (exec_pipe_node((t_pipe_node *)node, envp));
 	printf_err("minishell: Unrecognized node type", node->type);

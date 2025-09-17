@@ -3,21 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   utils0.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anjbaiju <anjbaiju@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 17:32:34 by kadferna          #+#    #+#             */
-/*   Updated: 2025/07/12 17:32:35 by kadferna         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:41:48 by anjbaiju         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_exit(char *r1, t_token *token)
+void	ft_exit(char *r1, t_token *token, char **envp_ptr, t_ast_node *pipe)
 {
 	printf("exit\n");
+	if (envp_ptr != NULL)
+		free_environment(envp_ptr);
 	if (token)
-		free_on_exiting_list(token);
-	free_r1(r1);
+		free_token(token);
+	if (pipe)
+		free_ast(pipe);
+	if (r1)
+		free(r1);
+}
+
+int	is_single_quoted(const char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '\'' && str[strlen(str) - 1] == '\'')
+		return (1);
+	return (0);
 }
 
 void	*ft_realloc(void *a, size_t old_size, size_t new_size)
@@ -44,6 +59,7 @@ void	*ft_realloc(void *a, size_t old_size, size_t new_size)
 	}
 	return (new_ptr);
 }
+
 int	get_array_len(char **tokens)
 {
 	int	i;
@@ -54,33 +70,4 @@ int	get_array_len(char **tokens)
 	while (tokens[i] != NULL)
 		i++;
 	return (i);
-}
-
-char	**copy_environment(char *envp[])
-{
-	int		count;
-	char	**new_envp;
-	int		i;
-
-	count = 0;
-	while (envp[count])
-		count++;
-	new_envp = (char **)malloc(sizeof(char *) * (count + 1));
-	if (!new_envp)
-		return (NULL);
-	i = 0;
-	while (i < count)
-	{
-		new_envp[i] = ft_strdup(envp[i]);
-		if (!new_envp[i])
-		{
-			while (i-- > 0)
-				free(new_envp[i]);
-			free(new_envp);
-			return (NULL);
-		}
-		i++;
-	}
-	new_envp[count] = NULL;
-	return (new_envp);
 }

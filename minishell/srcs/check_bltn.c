@@ -12,26 +12,26 @@
 
 #include "../minishell.h"
 
-// int	is_builtin(t_command_node *node)
-// {
-// 	char	*cmd_name;
+int	is_builtin(t_command_node *node)
+{
+	char	*cmd_name;
 
-// 	if (!node || !node->argv || !node->argv[0])
-// 		return (0);
-// 	cmd_name = node->argv[0];
-// 	if (ft_strncmp(cmd_name, "echo") == 0)
-// 		return (1);
-// 	if (ft_strncmp(cmd_name, "cd") == 0)
-// 		return (2);
-// 	if (ft_strncmp(cmd_name, "pwd") == 0)
-// 		return (3);
-// 	if (ft_strncmp(cmd_name, "export") == 0)
-// 		return (4);
-// 	if (ft_strncmp(cmd_name, "unset") == 0)
-// 		return (5);
-// 	if (ft_strncmp(cmd_name, "env") == 0)
-// 		return (6);
-// 	if (ft_strncmp(cmd_name, "exit") == 0)
-// 		return (7);
-// 	return (0);
-// }
+	if (!node || !node->argv || !node->argv[0])
+		return (0);
+	cmd_name = node->argv[0];
+	if (ft_strncmp(cmd_name, "echo", ft_strlen(cmd_name) + 1) == 0)
+		return (1);
+	if (ft_strncmp(cmd_name, "cd", ft_strlen(cmd_name) + 1) == 0)
+		return (2);
+	if (ft_strncmp(cmd_name, "pwd", ft_strlen(cmd_name) + 1) == 0)
+		return (3);
+	if (ft_strncmp(cmd_name, "export", ft_strlen(cmd_name) + 1) == 0)
+		return (4);
+	if (ft_strncmp(cmd_name, "unset", ft_strlen(cmd_name) + 1) == 0)
+		return (5);
+	if (ft_strncmp(cmd_name, "env", ft_strlen(cmd_name) + 1) == 0)
+		return (6);
+	if (ft_strncmp(cmd_name, "exit", ft_strlen(cmd_name) + 1) == 0)
+		return (7);
+	return (0);
+}

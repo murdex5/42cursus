@@ -32,6 +32,7 @@ t_redirect	*parse_redirections(t_token **token)
 	advance_token(token);
 	return (redir);
 }
+
 t_ast_node	*parse_cmds(t_token **token)
 {
 	t_command_node	*cmd;
@@ -39,7 +40,8 @@ t_ast_node	*parse_cmds(t_token **token)
 	t_redirect		*redirs;
 
 	words = NULL;
-	redirs = NULL, cmd = malloc(sizeof(t_command_node));
+	redirs = NULL;
+	cmd = malloc(sizeof(t_command_node));
 	if (!cmd)
 		return (NULL);
 	cmd->type = NODE_COMMAND;
@@ -78,6 +80,8 @@ t_ast_node	*parse_pipe(t_token **token)
 			return (NULL);
 		}
 		pipe_node = create_pipe_node(left, right);
+		if (!pipe_node)
+			return (free_ast(left), free_ast(right), NULL);
 		left = (t_ast_node *)pipe_node;
 	}
 	return (left);
@@ -85,8 +89,8 @@ t_ast_node	*parse_pipe(t_token **token)
 
 t_ast_node	*parse(t_token *token)
 {
-	t_token *current;
-	t_ast_node *ast;
+	t_token		*current;
+	t_ast_node	*ast;
 
 	current = token;
 	ast = parse_pipe(&current);
@@ -95,6 +99,7 @@ t_ast_node	*parse(t_token *token)
 	if (current && current->type != TOKEN_EOF)
 	{
 		ft_putstr_fd("Syntax error: unexpected token\n", 2);
+		free_token(token);
 		free_ast(ast);
 		return (NULL);
 	}

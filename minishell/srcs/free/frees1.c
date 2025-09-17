@@ -1,62 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   frees.c                                            :+:      :+:    :+:   */
+/*   frees1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/14 10:31:48 by kadferna          #+#    #+#             */
-/*   Updated: 2025/07/14 10:31:50 by kadferna         ###   ########.fr       */
+/*   Created: 2025/09/16 22:30:24 by kadferna          #+#    #+#             */
+/*   Updated: 2025/09/16 22:30:27 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-void	free_r1(char *r1)
-{
-	if (r1 == NULL)
-		return ;
-	free(r1);
-}
-
-int	free_on_error(char **result, int word_count)
-{
-	while (word_count > 0)
-	{
-		word_count--;
-		free(result[word_count]);
-	}
-	return (0);
-}
-
-void	free_tokens(char **tokens)
+void	free_environment(char **msh_envp)
 {
 	int	i;
 
-	if (!tokens)
+	if (!msh_envp)
 		return ;
 	i = 0;
-	while (tokens[i] != NULL)
+	while (msh_envp[i])
+	{
+		free(msh_envp[i]);
+		i++;
+	}
+	free(msh_envp);
+}
+
+void	free_tokens_array(char **tokens)
+{
+	int	i;
+
+	if ((!tokens) || !(*tokens))
+		return ;
+	i = 0;
+	while (tokens[i])
 	{
 		free(tokens[i]);
 		i++;
 	}
 	free(tokens);
-	tokens = NULL;
-}
-
-void	free_ast(t_ast_node *node)
-{
-	if (!node)
-		return ;
-	free(node);
 }
 
 void	free_on_exiting_list(t_token *tokens)
 {
-	t_token *current;
-	t_token *next;
+	t_token	*current;
+	t_token	*next;
 
+	if (!tokens)
+		return ;
 	current = tokens;
 	while (current != NULL)
 	{
@@ -83,17 +75,20 @@ void	free_paths(char **paths)
 	free(paths);
 }
 
-void	free_environment(char **msh_envp)
+void	free_pipe(t_ast_node *node)
 {
-	int	i;
+	t_pipe_node	*pipe;
 
-	if (!msh_envp)
-		return;
-	i = 0;
-	while (msh_envp[i])
+	pipe = (t_pipe_node *)node;
+	if (pipe->left)
 	{
-		free(msh_envp[i]);
-		i++;
+		free_ast(pipe->left);
+		pipe->left = NULL;
 	}
-	free(msh_envp);
+	if (pipe->right)
+	{
+		free_ast(pipe->right);
+		pipe->right = NULL;
+	}
+	free(pipe);
 }

@@ -12,8 +12,21 @@
 
 #include "../../minishell.h"
 
+void	signal_handler(int sig)
+{
+	if (sig == SIGINT)
+	{
+		g_signal_received = 1;
+		write(STDOUT_FILENO, "\n", 1);
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
+}
+
 int	process_signals(struct sigaction *sa)
 {
+	sa->sa_handler = signal_handler;
 	sigemptyset(&sa->sa_mask);
 	sa->sa_flags = 0;
 	if (sigaction(SIGINT, sa, NULL) == -1)
@@ -21,5 +34,16 @@ int	process_signals(struct sigaction *sa)
 		perror("sigaction");
 		return (0);
 	}
+	signal(SIGQUIT, SIG_IGN);
 	return (1);
+}
+
+void	save_terminal_state(struct termios *original_state)
+{
+	tcgetattr(STDIN_FILENO, original_state);
+}
+
+void	restore_terminal_state(struct termios *original_state)
+{
+	tcsetattr(STDIN_FILENO, TCSANOW, original_state);
 }

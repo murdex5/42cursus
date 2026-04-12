@@ -1,38 +1,69 @@
-# 42cursus
+<div align="center">
 
-> My core curriculum projects at **42 Roma Luiss** — written in C, built from scratch.
+# Hey, I'm Malsha 👋
 
-The 42 curriculum focuses on peer-learning and hands-on systems programming. Every project is implemented without relying on high-level libraries, forcing a deep understanding of memory, processes, and algorithms.
+**Software Engineering Student · Systems Programmer · Based in Naples, Italy 🇮🇹🇱🇰**
 
----
+[![LinkedIn](https://img.shields.io/static/v1?message=LinkedIn&logo=linkedin&label=&color=0077B5&logoColor=white&labelColor=&style=for-the-badge)](https://www.linkedin.com/in/praboth-malsha-fernando-4b8563224/)
+[![Instagram](https://img.shields.io/static/v1?message=Instagram&logo=instagram&label=&color=E4405F&logoColor=white&labelColor=&style=for-the-badge)](https://www.instagram.com/malsha_praboth)
 
-## 🗂️ Projects
-
-| # | Project | Description | Topics |
-|---|---------|-------------|--------|
-| 01 | [**libft**](./libft) | Re-implementation of a subset of the C standard library | C, Memory, Strings, Linked Lists |
-| 02 | [**ft_printf**](./ft_printf) | Custom implementation of `printf` with format specifiers | C, Variadic functions, Formatting |
-| 03 | [**get_next_line**](./get_next_line) | Function that reads a line from a file descriptor | C, File I/O, Static variables, Buffers |
-| 04 | [**born2beroot**](./born2beroot) | Linux VM configuration with strict security policies | Linux, Sysadmin, Bash, VM |
-| 05 | [**push_swap**](./push_swap) | Sort integers using two stacks with minimum operations | C, Algorithms, Sorting, Complexity |
-| 06 | [**pipex**](./pipex) | Simulate shell pipe behavior (`cmd1 \| cmd2`) in C | C, Processes, `fork`, `exec`, `pipe` |
-| 07 | [**so_long**](./so_long) | A small 2D game using the MiniLibX graphics library | C, Graphics, MiniLibX, Game loop |
-| 08 | [**philosophers**](./philosophers) | Dining philosophers problem — concurrency without deadlocks | C, Threads, Mutexes, `pthread` |
-| 09 | [**minishell**](./minishell) | A minimal Bash-like shell with built-ins and piping | C, Shell, Parsing, Processes, Signals |
+</div>
 
 ---
 
-## 🛠️ Built With
+### 👨‍💻 About Me
 
-![C](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg "C" height="40")&nbsp;
-![Linux](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg "Linux" height="40")&nbsp;
-![Bash](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg "Bash" height="40")&nbsp;
-![Git](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg "Git" height="40")
+I'm a software engineering student with a focus on **low-level systems and C programming**, trained through the rigorous peer-learning curriculum at **42 School**.
+
+I care about understanding how things actually work, not just making them run. That means writing shells from scratch, implementing sorting algorithms without shortcuts, and managing memory manually rather than letting a GC do it for me.
+
+- 🔧 Currently deepening: **C, data structures, systems programming**
+- 🎵 Musician (guitar, piano, bass, drums, production)
 
 ---
 
-## 📌 Notes
+### 🛠️ Skills & Tools
 
-- Projects are listed in the order they were completed during the curriculum.
-- Some project folders include submodules (e.g., `libft`, `ft_printf`, `get_next_line`) reused across later projects.
-- `born2beroot` contains only a `signature.txt` as the project deliverable is a VM disk image.
+<div align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="36" alt="C" title="C"/>
+  <img width="10" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" height="36" alt="C++" title="C++"/>
+  <img width="10" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="36" alt="Python" title="Python"/>
+  <img width="10" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" height="36" alt="Linux" title="Linux"/>
+  <img width="10" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" height="36" alt="Bash" title="Bash"/>
+  <img width="10" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" height="36" alt="Docker" title="Docker"/>
+  <img width="10" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" height="36" alt="Git" title="Git"/>
+</div>
+
+---
+
+### 🚀 Highlight Projects
+
+| Project | What it is | Key concepts |
+|---|---|---|
+| [**minishell**](https://github.com/murdex5/minishell) | A fully functional Unix shell built from scratch | Process management, pipes, redirections, signal handling, lexer/parser |
+| [**42_philosophers**](https://github.com/murdex5/42_philosophers) | Dining philosophers problem | Multithreading, mutexes, deadlock prevention, race conditions |
+| [**push_swap**](https://github.com/murdex5/push_swap) | Stack sorting with minimal operations | Algorithm design, complexity optimisation |
+| [**pipex**](https://github.com/murdex5/pipex) | Replication of Unix pipe operator | fork(), execve(), file descriptors, IPC |
+| [**ft_printf**](https://github.com/murdex5/ft_printf) | Reimplementation of printf | Variadic functions, format parsing |
+| [**libft**](https://github.com/murdex5/libft) | Custom C standard library | Memory, strings, linked lists from scratch |
+
+---
+
+### 📊 GitHub Stats
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=murdex5&show_icons=true&theme=dark&hide_border=true&count_private=true" height="150"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=murdex5&layout=compact&theme=dark&hide_border=true" height="150"/>
+</div>
+
+---
+
+<div align="center">
+  <img src="https://visitor-badge.laobi.icu/badge?page_id=murdex5.murdex5"/>
+</div>
